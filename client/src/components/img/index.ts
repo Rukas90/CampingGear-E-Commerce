@@ -1,0 +1,6 @@
+export { default as IconMountain } from "./IconMountain"
+export { default as IconAccount } from "./IconAccount"
+export { default as IconCart } from "./IconCart"
+export { default as IconSearch } from "./IconSearch"
+export { default as IconSaved } from "./IconSaved"
+export { default as IconArrow } from "./IconArrow"
