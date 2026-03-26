@@ -4,15 +4,24 @@
 
 @variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
+@theme {
+  --breakpoint-xs: 320px;
+  --breakpoint-3xl: 1920px;
+}
+
 :root {
-    font-family: "Jost", "Inter", "Fira Sans", sans-serif;
+  font-family: "Jost", "Inter", "Fira Sans", sans-serif;
 }
 #root, body, html {
-    min-width: 100%;
+  min-width: 100%;
 }
 .playfair-display {
-    font-family: "Playfair Display", serif;
+  font-family: "Playfair Display", serif;
 }
+.inter {
+  font-family: "Inter", "Jost", "Fira Sans", sans-serif;
+}
+
 
 @keyframes shine {
   0% {

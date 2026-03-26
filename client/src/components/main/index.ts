@@ -1,3 +1,4 @@
 export { default as TopNav } from "./TopNav"
 export { default as Footer } from "./Footer"
 export { default as Feed } from "./Feed"
+export { default as Newsletter } from "./Newsletter"

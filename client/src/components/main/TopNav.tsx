@@ -35,7 +35,12 @@ const TopNav = () => {
 
             <IconAccount className="size-5 dark:text-stone-100 text-stone-800" />
             <IconSaved className="size-5 dark:text-stone-100 text-stone-800" />
-            <IconCart className="size-5 dark:text-stone-100 text-stone-800" />
+            <div className="relative">
+              <IconCart className="size-5 dark:text-stone-100 text-stone-800" />
+              <span className="absolute bg-[#000000] inter text-stone-200 text-[11px] font-semibold min-w-3.75 h-3.75 p-1 rounded-full flex items-center justify-center outline-2 outline-white -right-2 -top-2">
+                0
+              </span>
+            </div>
           </div>
         </div>
       </PageWrapper>

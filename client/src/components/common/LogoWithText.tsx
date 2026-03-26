@@ -8,7 +8,7 @@ const LogoWithText = () => {
       </div>
       <p className="font-medium text-xl dark:text-stone-200 text-stone-900 my-auto">
         <span className="font-semibold">Camping</span>{" "}
-        <span className="font-medium playfair-display">Gear</span>
+        <span className="font-medium playfair-display italic">Gear</span>
       </p>
     </div>
   )

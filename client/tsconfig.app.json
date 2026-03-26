@@ -28,6 +28,8 @@
     "paths": {
       "@components": ["src/components/index.ts"],
       "@components/*": ["src/components/*"],
+      "@types": ["src/types/index.ts"],
+      "@@types/*": ["src/types/*"],
     }
   },
   "include": ["src"]
