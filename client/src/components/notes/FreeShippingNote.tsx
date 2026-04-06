@@ -5,7 +5,8 @@ const FreeShippingNote = () => {
     <div className="flex gap-2 justify-center items-center text-stone-50">
       <IconCart className="size-5" />
       <p>
-        <span className="font-semibold">Free Shipping </span>On Orders $150+
+        <span className="font-semibold">Free Shipping </span>
+        On Orders $150+
       </p>
     </div>
   )

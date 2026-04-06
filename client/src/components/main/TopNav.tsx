@@ -15,11 +15,11 @@ const TopNav = () => {
       <PageWrapper>
         <div className="flex items-center justify-between w-full">
           <ul className="flex gap-5 w-1/3 dark:text-stone-200">
-            <li className="font-medium flex gap-1.5 items-center">
+            <li className="font-normal flex gap-1.5 items-center">
               Products <IconArrow className="rotate-90 size-4" />
             </li>
-            <li className="font-medium">Help</li>
-            <li className="font-medium">About</li>
+            <li className="font-normal">Help</li>
+            <li className="font-normal">About</li>
           </ul>
           <div className="flex items-center justify-center w-1/3">
             <LogoWithText />
@@ -34,7 +34,12 @@ const TopNav = () => {
             </div>
 
             <IconAccount className="size-5 dark:text-stone-100 text-stone-800" />
-            <IconSaved className="size-5 dark:text-stone-100 text-stone-800" />
+            <div className="relative">
+              <IconSaved className="size-5 dark:text-stone-100 text-stone-800" />
+              <span className="absolute bg-[#000000] inter text-stone-200 text-[11px] font-semibold min-w-3.75 h-3.75 p-1 rounded-full flex items-center justify-center outline-2 outline-white -right-2 -top-2">
+                0
+              </span>
+            </div>
             <div className="relative">
               <IconCart className="size-5 dark:text-stone-100 text-stone-800" />
               <span className="absolute bg-[#000000] inter text-stone-200 text-[11px] font-semibold min-w-3.75 h-3.75 p-1 rounded-full flex items-center justify-center outline-2 outline-white -right-2 -top-2">

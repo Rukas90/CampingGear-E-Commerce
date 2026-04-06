@@ -1,0 +1,22 @@
+﻿using TrailStore.Shared.Common;
+
+namespace TrailStore.Domain.Models;
+
+public enum Privileges
+{
+    User,
+    Admin
+}
+public class Customer : IModel<Customer>
+{
+    public required Id<Customer>      Id            { get; init; }
+    public required string            FirstName     { get; init; }
+    public required string            LastName      { get; init; }
+    public required string            Email         { get; init; }
+    public required string            PasswordHash  { get; init; }
+    public Privileges                 Privileges    { get; init; } = Privileges.User;
+    
+    public ICollection<Review>        Reviews       { get; private set; } = [];
+    public ICollection<Address>       Addresses     { get; private set; } = [];
+    public ICollection<RefreshToken>? RefreshTokens { get; private set; } = [];
+}
