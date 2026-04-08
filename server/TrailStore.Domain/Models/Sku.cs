@@ -15,7 +15,6 @@ public class Sku : IModel<Sku>
     public string?                     ImageUrl  { get; init; }
     
     public ICollection<Option> Options { get; init; } = [];
-    
     public Product Product { get; private set; } = null!;
 
     public static Sku Create(

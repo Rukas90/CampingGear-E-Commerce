@@ -1,4 +1,6 @@
-﻿namespace TrailStore.Shared.Common;
+﻿using System.Text.Json.Serialization;
+
+namespace TrailStore.Shared.Common;
 
 public readonly record struct Id<TType>(Guid Value)
 {
@@ -18,5 +20,6 @@ public readonly record struct Id<TType>(Guid Value)
     
     public static Id<TType> Empty => new(Guid.Empty);
     
+    [JsonIgnore]
     public bool IsEmpty => Value == Guid.Empty;
 }

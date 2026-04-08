@@ -4,7 +4,7 @@ using TrailStore.Domain.Models;
 
 namespace TrailStore.Infrastructure.Data.Config;
 
-public class SkuConfigration : IEntityTypeConfiguration<Sku>
+public class SkuConfiguration : IEntityTypeConfiguration<Sku>
 {
     public void Configure(EntityTypeBuilder<Sku> builder)
     {
