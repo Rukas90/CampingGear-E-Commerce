@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Options;
 public class LengthOption
 {
     [SeededEntity]
-    public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Length");
+    public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Length", slug: "length");
     
     [SeededEntity]
     public static readonly Option Cm165 = Option.Create(

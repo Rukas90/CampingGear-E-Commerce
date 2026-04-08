@@ -1,11 +1,8 @@
 ﻿using TrailStore.Domain.Models;
+using TrailStore.Domain.Products;
 
-namespace TrailStore.Domain.Products;
+namespace TrailStore.Infrastructure.Products;
 
-public interface IProductsService
-{
-    public Task<List<Product>> QueryProducts(ProductsFilter filter);
-}
 public class ProductsService : IProductsService
 {
     public async Task<List<Product>> QueryProducts(ProductsFilter filter)

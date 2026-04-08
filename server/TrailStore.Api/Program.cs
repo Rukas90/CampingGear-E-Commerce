@@ -1,4 +1,5 @@
 using FastEndpoints;
+using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using TrailStore.Infrastructure.Data;
@@ -8,8 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 var defaultConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(defaultConnectionString));
+builder.Services.AddDbContext<AppDbContext>(options => 
+    options.UseNpgsql(defaultConnectionString).WithExpressionExpanding());
 
 Console.WriteLine("Starting...");
 

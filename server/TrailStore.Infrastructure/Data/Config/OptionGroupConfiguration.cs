@@ -14,7 +14,11 @@ public class OptionGroupConfiguration : IEntityTypeConfiguration<OptionGroup>
                .IsRequired()
                .HasMaxLength(200);
         
-        builder.HasIndex(group => group.Name)
+        builder.Property(group => group.Slug)
+            .IsRequired()
+            .HasMaxLength(200);
+        
+        builder.HasIndex(group => group.Slug)
                .IsUnique();
         
         builder.HasMany(group => group.Options)

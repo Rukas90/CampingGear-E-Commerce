@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Options;
 public class ZipOption
 {
     [SeededEntity]
-    public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Zip");
+    public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Zip", slug: "zip");
     
     [SeededEntity]
     public static readonly Option Left = Option.Create(

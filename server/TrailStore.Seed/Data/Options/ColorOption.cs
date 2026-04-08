@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Options;
 public class ColorOption
 {
     [SeededEntity]
-    public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Color");
+    public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Color", slug: "color");
 
     [SeededEntity]
     public static readonly Option Black = Option.Create(

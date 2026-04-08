@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Options;
 public class SizeOption
 {
     [SeededEntity]
-    public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Size");
+    public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Size", slug: "size");
     
     [SeededEntity]
     public static readonly Option Small = Option.Create(

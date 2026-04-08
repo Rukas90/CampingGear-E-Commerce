@@ -2,11 +2,6 @@
 
 namespace TrailStore.Domain.Products;
 
-public readonly record struct OptionFilter(string GroupSlug, string ValueSlug)
-{
-    public bool IsValid => !string.IsNullOrEmpty(GroupSlug) && !string.IsNullOrEmpty(ValueSlug);
-}
-
 public class ProductsFilter
 {
     public SortBy         SortBy       { get; init; } = SortBy.Manual;

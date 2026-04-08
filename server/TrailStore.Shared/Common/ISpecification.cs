@@ -1,6 +1,8 @@
-﻿namespace TrailStore.Shared.Common;
+﻿using System.Linq.Expressions;
 
-public interface ISpecification
+namespace TrailStore.Shared.Common;
+
+public interface ISpecification<T>
 {
-    
+    public Expression<Func<T, bool>> ToExpression();
 }
