@@ -1,3 +1,9 @@
-﻿namespace TrailStore.Api.Products.Dto;
+﻿using TrailStore.Domain.Models;
+using TrailStore.Shared.Common;
 
-public readonly record struct ProductRequest(Guid productId);
+namespace TrailStore.Api.Products.Dto;
+
+public class ProductRequest
+{
+    public Id<Product> Id { get; set; }
+}

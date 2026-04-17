@@ -30,6 +30,7 @@ public static class SeedRunner
         }
         var assembly = typeof(SeedRunner).Assembly;
         
+        await context.Customers.AddRangeAsync(Discover<Customer>(assembly));
         await context.Brands.AddRangeAsync(Discover<Brand>(assembly));
         await context.Categories.AddRangeAsync(Discover<Category>(assembly));
         await context.OptionGroups.AddRangeAsync(Discover<OptionGroup>(assembly));
@@ -51,6 +52,8 @@ public static class SeedRunner
         context.OptionGroups.RemoveRange(context.OptionGroups);
         context.Categories.RemoveRange(context.Categories);
         context.Brands.RemoveRange(context.Brands);
+        context.Customers.RemoveRange(
+            context.Customers.Where(c => c.PasswordHash == SeedDefaults.NO_LOGIN_HASH));
         
         await context.SaveChangesAsync();
     }

@@ -2,7 +2,7 @@
 using TrailStore.Domain.Enums;
 using TrailStore.Domain.Products;
 
-namespace TrailStore.Api.Mapping;
+namespace TrailStore.Api.Products.Mapping;
 
 public static class ProductsMapping
 {
@@ -13,11 +13,13 @@ public static class ProductsMapping
             SortBy       = request.SortBy ?? SortBy.Manual,
             BrandSlug    = request.Brand,
             CategorySlug = request.Category,
+            Pagination   = request.Pagination ?? false,
             Page         = request.Page ?? 0,
+            PageSize     = request.PageSize ?? 30,
             PriceGte     = request.PriceGte ?? 0,
             PriceLte     = request.PriceLte ?? decimal.MaxValue,
             Availability = request.Availability ?? Availability.All,
-            Options      = request.Option?
+            Option       = request.Option?
                                          .Select(ConvertToOptionFilter)
                                          .Where(filter => filter.IsValid)
                                          .ToArray() ?? []

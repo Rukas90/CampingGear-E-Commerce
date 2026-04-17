@@ -2,7 +2,7 @@ using FastEndpoints;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
-using TrailStore.Domain.Products;
+using TrailStore.Infrastructure.Categories;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Infrastructure.Products;
 using TrailStore.Seed;
@@ -31,8 +31,8 @@ if (args.Contains("seed"))
     return;
 }
 
-builder.Services.AddScoped<IProductsService, ProductsService>();
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
+builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 
 builder.Services.AddFastEndpoints();
 builder.Services.AddOpenApi();

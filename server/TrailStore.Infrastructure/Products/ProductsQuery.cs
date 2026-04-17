@@ -8,6 +8,7 @@ public class ProductsQuery
 {
     public Specification<Product>? Specification { get; init; }
     public SortBy                  SortBy        { get; init; }
+    public bool                    Pagination    { get; init; }
     public int                     Page          { get; init; }
     public int                     PageSize      { get; init; }
 }

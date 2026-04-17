@@ -25,9 +25,9 @@ public static class ProductsSpecificationBuilder
             spec = spec.And(ProductSpecifications.PriceRange(filter.PriceGte, filter.PriceLte));
         }
         
-        if (filter.Options.Length > 0)
+        if (filter.Option.Length > 0)
         {
-            spec = spec.And(ProductSpecifications.Options(filter.Options));
+            spec = spec.And(ProductSpecifications.Options(filter.Option));
         }
         
         spec = filter.Availability switch

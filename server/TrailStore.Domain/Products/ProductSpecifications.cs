@@ -5,6 +5,9 @@ namespace TrailStore.Domain.Products;
 
 public class ProductSpecifications
 {
+    public static Specification<Product> Id(Id<Product> id)
+        => Specification<Product>.Where(p => p.Id == id);
+    
     public static Specification<Product> Brand(string slug)
         => Specification<Product>.Where(p => p.Brand.Slug == slug);
 
