@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react"
-import { storage } from "./storage"
+import { storage } from "./Storage"
 
 const useLocalStorage = <T,>(key: string, initial: T) => {
   const [value, setValue] = useState<T>(() => storage.get<T>(key) ?? initial)

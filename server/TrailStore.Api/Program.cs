@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using TrailStore.Infrastructure.Categories;
 using TrailStore.Infrastructure.Data;
+using TrailStore.Infrastructure.Options;
 using TrailStore.Infrastructure.Products;
 using TrailStore.Seed;
 
@@ -14,25 +15,20 @@ var defaultConnectionString = builder.Configuration.GetConnectionString("Default
 builder.Services.AddDbContext<AppDbContext>(options => 
     options.UseNpgsql(defaultConnectionString).WithExpressionExpanding());
 
-Console.WriteLine("Starting...");
-
-foreach (var arg in args)
+builder.Services.AddCors(options =>
 {
-    Console.WriteLine(arg);
-}
-
-if (args.Contains("seed"))
-{
-    using var scope = builder.Build().Services.CreateScope();
-    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-    await SeedRunner.RunAsync(context, new SeedOptions { Reseed = true });
-    
-    return;
-}
+    options.AddPolicy("AllowClient", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+builder.Services.AddScoped<IOptionsRepository, OptionsRepository>();
 
 builder.Services.AddFastEndpoints();
 builder.Services.AddOpenApi();
@@ -45,9 +41,20 @@ builder.Services.AddResponseCompression(options =>
 
 var app = builder.Build();
 
-app.UseAuthorization();
+if (args.Contains("seed"))
+{
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
+    await SeedRunner.RunAsync(context, new SeedOptions { Reseed = true });
+    
+    return;
+}
+
+app.UseCors("AllowClient");
 app.UseHttpsRedirection();
+
+app.UseAuthorization();
 app.UseFastEndpoints();
 
 if (app.Environment.IsDevelopment())

@@ -19,22 +19,9 @@ public static class ProductsMapping
             PriceGte     = request.PriceGte ?? 0,
             PriceLte     = request.PriceLte ?? decimal.MaxValue,
             Availability = request.Availability ?? Availability.All,
-            Option       = request.Option?
-                                         .Select(ConvertToOptionFilter)
-                                         .Where(filter => filter.IsValid)
-                                         .ToArray() ?? []
+            Option       = request.Filter?
+                            .Select(kvp => new OptionFilter(kvp.Key, kvp.Value))
+                            .ToArray() ?? []
         };
-    }
-    private static OptionFilter ConvertToOptionFilter(string option)
-    {
-        var index = option.IndexOf(':');
-
-        if (index <= 0 || index >= option.Length - 1)
-        {
-            return new OptionFilter();
-        }
-        return new OptionFilter(
-            GroupSlug: option[..index],
-            ValueSlug: option[(index + 1)..]);
     }
 }

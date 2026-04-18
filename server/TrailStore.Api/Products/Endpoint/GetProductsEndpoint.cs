@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using TrailStore.Api.Products.Binding;
 using TrailStore.Api.Products.Dto;
 using TrailStore.Api.Products.Mapping;
 using TrailStore.Domain.Products;
@@ -11,11 +12,17 @@ public class GetProductsEndpoint(IProductsRepository productsRepository)
 {
     public override void Configure()
     {
-        Get("/api/v1/product");
+        Get("/api/v1/products");
         AllowAnonymous();
+        RequestBinder(new ProductsRequestBinder());
     }
     public override async Task<IEnumerable<ProductSummaryDto>> ExecuteAsync(ProductsRequest req, CancellationToken ct)
     {
+        foreach (var (g, v) in req.Filter)
+        {
+            Console.WriteLine($"{g}: {v}");
+        }
+        
         var filter = req.MapToFilter();
         
         return await productsRepository.ListAsync(new ProductsQuery
@@ -25,6 +32,6 @@ public class GetProductsEndpoint(IProductsRepository productsRepository)
             Pagination    = filter.Pagination,
             Page          = filter.Page,
             PageSize      = 30
-        }, selector: ProductMappingExpressions.ToSummaryDto());
+        }, selector: ProductMappingSelectors.ToSummaryDto());
     }
 }

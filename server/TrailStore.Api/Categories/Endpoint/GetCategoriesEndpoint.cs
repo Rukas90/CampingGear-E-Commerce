@@ -3,14 +3,14 @@ using TrailStore.Api.Categories.Dto;
 using TrailStore.Api.Categories.Mapping;
 using TrailStore.Infrastructure.Categories;
 
-namespace TrailStore.Api.Categories.Endpoints;
+namespace TrailStore.Api.Categories.Endpoint;
 
 public class GetCategoriesEndpoint(ICategoriesRepository categoriesRepository) 
     : EndpointWithoutRequest<IEnumerable<CategoryDto>>
 {
     public override void Configure()
     {
-        Get("/api/v1/category");
+        Get("/api/v1/categories");
         AllowAnonymous();
     }
 

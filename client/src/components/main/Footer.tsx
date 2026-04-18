@@ -4,13 +4,12 @@ import {
   CardMastercard,
   CardPaypal,
   CardVisa,
-  IconArrow,
   PageWrapper,
 } from "@components"
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#f1f1ee]">
+    <footer className="relative bg-[#f1f1ee] mt-auto">
       <div className="px-24 py-12">
         <PageWrapper>
           <div className="grid grid-cols-5 gap-6">

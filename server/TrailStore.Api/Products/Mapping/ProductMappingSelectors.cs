@@ -4,7 +4,7 @@ using TrailStore.Domain.Models;
 
 namespace TrailStore.Api.Products.Mapping;
 
-public static class ProductMappingExpressions
+public static class ProductMappingSelectors
 {
     public static Expression<Func<Product, ProductSummaryDto>> ToSummaryDto()
     {

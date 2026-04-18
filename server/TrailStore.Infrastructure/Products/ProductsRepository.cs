@@ -27,6 +27,7 @@ public sealed class ProductsRepository(AppDbContext context) : IProductsReposito
             .Select(selector)
             .FirstOrDefaultAsync();
     }
+    
     public async Task<List<TResult>> ListAsync<TResult>(ProductsQuery query, Expression<Func<Product, TResult>> selector)
     {
         var queryable = context.Products.AsQueryable();
@@ -55,8 +56,8 @@ public sealed class ProductsRepository(AppDbContext context) : IProductsReposito
             SortBy.PriceDescending => query.OrderByDescending(p => p.Skus.Min(s => s.UnitPrice)),
             SortBy.TitleAscending  => query.OrderBy(p => p.Name),
             SortBy.TitleDescending => query.OrderByDescending(p => p.Name),
-            //SortBy.BestSelling     => query.OrderByDescending(p => p.Skus.Sum(s => s.OrderCount)), // TODO e.g.
+            //SortBy.BestSelling     => query.OrderByDescending(p => p.Skus.Sum(s => s.OrderCount)), // TODO
             _                      => query.OrderBy(p => p.Name)
-        };;
+        };
     }
 }

@@ -23,13 +23,18 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-
+  
+    "ignoreDeprecations": "5.0",
     "baseUrl": ".",
     "paths": {
       "@components": ["src/components/index.ts"],
       "@components/*": ["src/components/*"],
       "@types": ["src/types/index.ts"],
-      "@@types/*": ["src/types/*"],
+      "@types/*": ["src/types/*"],
+      "@lib": ["src/lib/index.ts"],
+      "@lib/*": ["src/lib/*"],
+      "@features": ["src/features/index.ts"],
+      "@features/*": ["src/features/*"],
     }
   },
   "include": ["src"]

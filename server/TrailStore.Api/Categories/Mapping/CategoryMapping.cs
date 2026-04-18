@@ -3,7 +3,7 @@ using TrailStore.Domain.Models;
 
 namespace TrailStore.Api.Categories.Mapping;
 
-public static class CategoriesMapping
+public static class CategoryMapping
 {
     public static IEnumerable<CategoryDto> ToDto(this ICollection<Category> categories)
         => categories.Select(ToDto);

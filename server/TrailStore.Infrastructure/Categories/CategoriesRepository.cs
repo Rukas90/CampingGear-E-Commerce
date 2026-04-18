@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TrailStore.Domain.Models;
 using TrailStore.Infrastructure.Data;
+using TrailStore.Shared.Common;
 
 namespace TrailStore.Infrastructure.Categories;
 

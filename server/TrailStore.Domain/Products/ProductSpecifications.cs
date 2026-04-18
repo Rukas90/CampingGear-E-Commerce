@@ -3,7 +3,7 @@ using TrailStore.Shared.Common;
 
 namespace TrailStore.Domain.Products;
 
-public class ProductSpecifications
+public static class ProductSpecifications
 {
     public static Specification<Product> Id(Id<Product> id)
         => Specification<Product>.Where(p => p.Id == id);
