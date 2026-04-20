@@ -4,19 +4,20 @@ using TrailStore.Domain.Models;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Shared.Common;
 
-namespace TrailStore.Infrastructure.Options;
+namespace TrailStore.Infrastructure.Skus;
 
-public interface IOptionsRepository
-{
+public interface ISkuRepository
+{ 
     Task<List<TResult>> ListAllAsync<TResult>(
-        Specification<OptionGroup> specification, Expression<Func<OptionGroup, TResult>> selector);
+        Specification<Sku> specification, Expression<Func<Sku, TResult>> selector);
 }
-public class OptionsRepository(AppDbContext context) : IOptionsRepository
+
+public class SkuRepository(AppDbContext context) : ISkuRepository
 {
     public Task<List<TResult>> ListAllAsync<TResult>(
-        Specification<OptionGroup> specification, Expression<Func<OptionGroup, TResult>> selector)
+        Specification<Sku> specification, Expression<Func<Sku, TResult>> selector)
     {
-        return context.OptionGroups
+        return context.Skus
             .Where(specification.ToExpression())
             .Select(selector)
             .ToListAsync();

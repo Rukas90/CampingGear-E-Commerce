@@ -7,14 +7,6 @@ using TrailStore.Shared.Common;
 
 namespace TrailStore.Infrastructure.Products;
 
-public interface IProductsRepository
-{
-    Task<TResult?> GetByIdAsync<TResult>(
-        Specification<Product> specification, Expression<Func<Product, TResult>> selector);
-    
-    Task<List<TResult>> ListAsync<TResult>(
-        ProductsQuery query, Expression<Func<Product, TResult>> selector);
-}
 public sealed class ProductsRepository(AppDbContext context) : IProductsRepository
 {
     public async Task<TResult?> GetByIdAsync<TResult>(

@@ -13,5 +13,5 @@ public record ProductsRequest
     public decimal?                          PriceGte     { get; init; }
     public decimal?                          PriceLte     { get; init; }
     public Availability?                     Availability { get; init; }
-    public Dictionary<string, string>?       Filter       { get; init; }
+    public Dictionary<string, string>?       Option       { get; init; }
 }

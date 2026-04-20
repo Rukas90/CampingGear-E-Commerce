@@ -19,7 +19,7 @@ public static class ProductsMapping
             PriceGte     = request.PriceGte ?? 0,
             PriceLte     = request.PriceLte ?? decimal.MaxValue,
             Availability = request.Availability ?? Availability.All,
-            Option       = request.Filter?
+            Option       = request.Option?
                             .Select(kvp => new OptionFilter(kvp.Key, kvp.Value))
                             .ToArray() ?? []
         };

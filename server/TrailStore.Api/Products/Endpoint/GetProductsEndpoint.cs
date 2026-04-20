@@ -18,11 +18,6 @@ public class GetProductsEndpoint(IProductsRepository productsRepository)
     }
     public override async Task<IEnumerable<ProductSummaryDto>> ExecuteAsync(ProductsRequest req, CancellationToken ct)
     {
-        foreach (var (g, v) in req.Filter)
-        {
-            Console.WriteLine($"{g}: {v}");
-        }
-        
         var filter = req.MapToFilter();
         
         return await productsRepository.ListAsync(new ProductsQuery

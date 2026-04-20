@@ -4,8 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using TrailStore.Infrastructure.Categories;
 using TrailStore.Infrastructure.Data;
-using TrailStore.Infrastructure.Options;
+using TrailStore.Infrastructure.Filters;
 using TrailStore.Infrastructure.Products;
+using TrailStore.Infrastructure.Skus;
 using TrailStore.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,7 +29,8 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
-builder.Services.AddScoped<IOptionsRepository, OptionsRepository>();
+builder.Services.AddScoped<ISkuRepository, SkuRepository>();
+builder.Services.AddScoped<IFiltersService, FiltersService>();
 
 builder.Services.AddFastEndpoints();
 builder.Services.AddOpenApi();

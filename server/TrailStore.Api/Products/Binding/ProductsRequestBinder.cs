@@ -9,15 +9,15 @@ public class ProductsRequestBinder : RequestBinder<ProductsRequest>
     {
         var base_request = await base.BindAsync(ctx, ct);
 
-        var filter = ctx.HttpContext.Request.Query
-            .Where(q => q.Key.StartsWith("filter[") && q.Key.EndsWith(']'))
+        var option = ctx.HttpContext.Request.Query
+            .Where(q => q.Key.StartsWith("option[") && q.Key.EndsWith(']'))
             .ToDictionary(
                 q => q.Key[7..^1],
                 q => q.Value.ToString());
 
         return base_request with
         {
-            Filter = filter.Count > 0 ? filter : null
+            Option = option.Count > 0 ? option : null
         };
     }
 }
