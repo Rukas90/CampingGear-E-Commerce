@@ -1,18 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
-using TrailStore.Shared.Common;
+﻿using TrailStore.Shared.Common;
 
 namespace TrailStore.Domain.Models;
 
 public class Sku : IModel<Sku>
 {
-    public required Id<Sku>            Id        { get; init; }
-    public required Id<Product>        ProductId { get; init; }
-    [MaxLength(200)]
-    public required string             Code      { get; init; }
-    public required decimal            UnitPrice { get; init; }
-    public required int                Stock     { get; set; }
-    [MaxLength(400)]
-    public string?                     ImageUrl  { get; init; }
+    public required Id<Sku>     Id        { get; init; }
+    public required Id<Product> ProductId { get; init; }
+    public required string      Code      { get; init; }
+    public required decimal     UnitPrice { get; init; }
+    public required int         Stock     { get; set; }
+    public string?              ImageUrl  { get; init; }
     
     public ICollection<Option> Options { get; init; } = [];
     public Product Product { get; private set; } = null!;

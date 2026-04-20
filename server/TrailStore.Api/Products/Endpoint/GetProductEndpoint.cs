@@ -11,13 +11,13 @@ public class GetProductEndpoint(IProductsRepository productsRepository)
 {
     public override void Configure()
     {
-        Get("/api/v1/products/{id}");
+        Get("/api/v1/products/{slug}");
         AllowAnonymous();
     }
     public override async Task HandleAsync(ProductRequest req, CancellationToken ct)
     {
         var result = await productsRepository.GetByIdAsync(
-            specification: ProductSpecifications.Id(req.Id ),
+            specification: ProductSpecifications.Slug(req.Slug),
             selector:      ProductMappingSelectors.ToDetailDto());
 
         if (result is null)
@@ -25,7 +25,7 @@ public class GetProductEndpoint(IProductsRepository productsRepository)
             await new ProblemDetails
             {
                 Status = StatusCodes.Status404NotFound,
-                Detail = $"Product was not found by id '{req.Id.ToString()}'"
+                Detail = $"Product was not found by slug '{req.Slug}'"
             }.ExecuteAsync(HttpContext);
             
             return;

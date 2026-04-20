@@ -4,12 +4,12 @@ namespace TrailStore.Domain.Models;
 
 public class Brand : IModel<Brand>
 {
-    public required Id<Brand>   Id          { get; init; }
-    public required string      Name        { get; init; }
-    public string               Description { get; init; } = string.Empty;
-    public required string      Slug        { get; init; }
-    public required string      LogoUrl     { get; init; }
-    public required string      WebsiteUrl  { get; init; }
+    public required Id<Brand> Id          { get; init; }
+    public required string    Name        { get; init; }
+    public string?            Description { get; init; }
+    public required string    Slug        { get; init; }
+    public required string    LogoUrl     { get; init; }
+    public required string    WebsiteUrl  { get; init; }
     
     public ICollection<Product> Products { get; private set; } = [];
     

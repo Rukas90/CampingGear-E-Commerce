@@ -16,6 +16,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     
     public DbSet<CartItem>       CartItems       { get; set; }
     
+    public DbSet<Order>          Orders          { get; set; }
+    
+    public DbSet<OrderItem>      OrderItems      { get; set; }
+    
     public DbSet<Category>       Categories      { get; set; }
     
     public DbSet<Brand>          Brands          { get; set; }
@@ -32,4 +36,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     
     protected override void ConfigureConventions(ModelConfigurationBuilder config) 
         => ModelConfigConversions.ConfigureModelIdConversion(config);
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+    }
 }

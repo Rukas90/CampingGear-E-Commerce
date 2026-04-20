@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using TrailStore.Shared.Common;
+﻿using TrailStore.Shared.Common;
 
 namespace TrailStore.Domain.Models;
 
@@ -12,18 +11,21 @@ public class Option : IModel<Option>
 {
     public required Id<Option>      Id            { get; init; }
     public required Id<OptionGroup> OptionGroupId { get; init; }
-    [MaxLength(200)]
     public required string          Name          { get; init; }
-    [MaxLength(225)]
     public required string          Slug          { get; init; }
     public PreviewType?             PreviewType   { get; init; }
-    [MaxLength(400)]
     public string?                  PreviewValue  { get; init; }
     
     public OptionGroup OptionGroup { get; private set; } = null!;
     public ICollection<Sku> Skus   { get; private set; } = [];
 
-    public static Option Create(Id<Option> id, Id<OptionGroup> optionGroupId, string name, string slug, PreviewType? previewType = null, string? previewValue = null)
+    public static Option Create(
+        Id<Option> id, 
+        Id<OptionGroup> optionGroupId, 
+        string name, 
+        string slug, 
+        PreviewType? previewType = null, 
+        string? previewValue = null)
         => new()
         {
             Id            = id,
@@ -34,7 +36,12 @@ public class Option : IModel<Option>
             PreviewType   = previewType
         };
     
-    public static Option Create(Id<OptionGroup> optionGroupId, string name, string slug, PreviewType? previewType = null, string? previewValue = null)
+    public static Option Create(
+        Id<OptionGroup> optionGroupId, 
+        string name,
+        string slug, 
+        PreviewType? previewType = null, 
+        string? previewValue = null)
         => new()
         {
             Id            = Id<Option>.Part(optionGroupId).Part(slug).Build(),

@@ -1,14 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using TrailStore.Shared.Common;
+﻿using TrailStore.Shared.Common;
 
 namespace TrailStore.Domain.Models;
 
 public class OptionGroup : IModel<OptionGroup>
 {
     public required Id<OptionGroup> Id        { get; init; }
-    [MaxLength(200)]
     public required string          Name      { get; init; }
-    [MaxLength(200)]
     public required string          Slug      { get; init; }
     public          int             SortOrder { get; init; } = 0;
     

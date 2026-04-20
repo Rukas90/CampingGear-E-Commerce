@@ -8,30 +8,30 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
-        builder.HasKey(product => product.Id);
+        builder.HasKey(p => p.Id);
         
-        builder.Property(product => product.Name)
-               .IsRequired()
-               .HasMaxLength(200);
-
-        builder.Property(product => product.Description)
-               .HasMaxLength(2000);
+        builder.Property(p => p.Name)
+            .HasMaxLength(200)
+            .IsRequired();
         
-        builder.Property(product => product.Slug)
-               .IsRequired()
-               .HasMaxLength(200);
+        builder.Property(p => p.Description)
+            .HasMaxLength(2000);
         
-        builder.HasIndex(product => product.Slug)
-               .IsUnique();
-
-        builder.HasOne(product => product.Category)
-               .WithMany(category => category.Products)
-               .HasForeignKey(product => product.CategoryId)
-               .OnDelete(DeleteBehavior.Restrict);
+        builder.Property(p => p.Slug)
+            .HasMaxLength(200)
+            .IsRequired();
         
-        builder.HasOne(product => product.Brand)
-               .WithMany(brand => brand.Products)
-               .HasForeignKey(product => product.BrandId)
-               .OnDelete(DeleteBehavior.Restrict);
+        builder.HasIndex(p => p.Slug)
+            .IsUnique();
+        
+        builder.HasOne(p => p.Category)
+            .WithMany(c => c.Products)
+            .HasForeignKey(p => p.CategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        builder.HasOne(p => p.Brand)
+            .WithMany(b => b.Products)
+            .HasForeignKey(p => p.BrandId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

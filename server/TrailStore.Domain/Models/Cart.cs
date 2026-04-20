@@ -8,5 +8,5 @@ public class Cart : IModel<Cart>
     public Id<Customer>          CustomerId { get; init; }
     
     public Customer              Customer  { get; private set; } = null!;
-    public ICollection<CartItem> CartItems { get; private set; } = null!;
+    public ICollection<CartItem> Items     { get; private set; } = null!;
 }

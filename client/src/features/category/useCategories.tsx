@@ -6,7 +6,7 @@ const useCategories = () => {
   const { data } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await makeRequest<Category[]>("api/v1/category")
+      const res = await makeRequest<Category[]>("api/v1/categories")
       if (!res.isSuccess) throw res.error
       return res.data
     },

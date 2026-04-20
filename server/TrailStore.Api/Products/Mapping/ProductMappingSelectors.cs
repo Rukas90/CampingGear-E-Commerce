@@ -10,13 +10,12 @@ public static class ProductMappingSelectors
     {
         return product => new ProductSummaryDto
         {
-            Id         = product.Id,
             Name          = product.Name,
             Slug          = product.Slug,
-            BrandId    = product.BrandId,
-            CategoryId = product.CategoryId,
-            PriceGte      = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
-            PriceLte      = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
+            Brand         = product.Brand.Slug,
+            Category      = product.Category.Slug,
+            MinPrice      = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
+            MaxPrice      = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
             AverageRating = product.Reviews.Average(r => (double?)r.Rating) ?? 0.0,
             ReviewCount   = product.Reviews.Count,
             InStock       = product.Skus.Any(sku => sku.Stock > 0),
@@ -27,13 +26,12 @@ public static class ProductMappingSelectors
     {
         return product => new ProductDetailDto
         {
-            Id         = product.Id,
             Name          = product.Name,
             Slug          = product.Slug,
-            BrandId    = product.BrandId,
-            CategoryId = product.CategoryId,
-            PriceGte      = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
-            PriceLte      = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
+            Brand         = product.Brand.Slug,
+            Category      = product.Category.Slug,
+            MinPrice      = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
+            MaxPrice      = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
             AverageRating = product.Reviews.Average(r => (double?)r.Rating) ?? 0.0,
             ReviewCount   = product.Reviews.Count,
             InStock       = product.Skus.Any(sku => sku.Stock > 0),
@@ -47,8 +45,8 @@ public static class ProductMappingSelectors
                 ImageUrl  = sku.ImageUrl,
                 Options   = sku.Options.Select(option => new SkuOptionDto
                 {
-                    Id            = option.Id,
-                    OptionGroupId = option.OptionGroupId
+                    Slug        = option.Slug,
+                    OptionGroup = option.OptionGroup.Slug
                 }).ToArray() 
             }).ToArray()
         };

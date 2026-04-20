@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TrailStore.Infrastructure.Data;
@@ -11,9 +12,11 @@ using TrailStore.Infrastructure.Data;
 namespace TrailStore.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260420143125_ChangeModels")]
+    partial class ChangeModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.HasIndex("SkusId");
 
-                    b.ToTable("SkuOptions", (string)null);
+                    b.ToTable("OptionSku");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Models.Address", b =>
@@ -103,28 +106,24 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("LogoUrl")
                         .IsRequired()
-                        .HasMaxLength(400)
-                        .HasColumnType("character varying(400)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("text");
 
                     b.Property<string>("WebsiteUrl")
                         .IsRequired()
-                        .HasMaxLength(400)
-                        .HasColumnType("character varying(400)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -141,8 +140,7 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId")
-                        .IsUnique();
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Carts");
                 });
@@ -153,9 +151,7 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("AddedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("NOW()");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("CartId")
                         .HasColumnType("uuid");
@@ -182,27 +178,20 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ImageUrl")
-                        .HasMaxLength(400)
-                        .HasColumnType("character varying(400)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Slug")
-                        .IsUnique();
 
                     b.ToTable("Categories");
                 });
@@ -214,66 +203,26 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(254)
-                        .HasColumnType("character varying(254)");
+                        .HasColumnType("text");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("text");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
-
-                    b.Property<string>("Privileges")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Privileges")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
+                    b.HasKey("Id");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("TrailStore.Domain.Models.Discount", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("EndsAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid>("SkuId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("StartsAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<decimal>("Value")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("numeric(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SkuId");
-
-                    b.ToTable("Discount");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Models.Option", b =>
@@ -283,14 +232,14 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(125)
-                        .HasColumnType("character varying(125)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<Guid>("OptionGroupId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("PreviewType")
-                        .HasColumnType("text");
+                    b.Property<int?>("PreviewType")
+                        .HasColumnType("integer");
 
                     b.Property<string>("PreviewValue")
                         .HasMaxLength(400)
@@ -298,8 +247,8 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasMaxLength(125)
-                        .HasColumnType("character varying(125)");
+                        .HasMaxLength(225)
+                        .HasColumnType("character varying(225)");
 
                     b.HasKey("Id");
 
@@ -328,65 +277,7 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Slug")
-                        .IsUnique();
-
                     b.ToTable("OptionGroups");
-                });
-
-            modelBuilder.Entity("TrailStore.Domain.Models.Order", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("NOW()");
-
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasMaxLength(254)
-                        .HasColumnType("character varying(254)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("TrailStore.Domain.Models.OrderItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("SkuId")
-                        .HasColumnType("uuid");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("numeric(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("SkuId");
-
-                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Models.Product", b =>
@@ -402,27 +293,21 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("character varying(2000)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("Slug")
-                        .IsUnique();
 
                     b.ToTable("Products");
                 });
@@ -482,8 +367,7 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.Property<string>("Headline")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
+                        .HasColumnType("text");
 
                     b.Property<int>("Likes")
                         .HasColumnType("integer");
@@ -496,8 +380,10 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("character varying(2000)");
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -529,13 +415,9 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<decimal>("UnitPrice")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("numeric(18,2)");
+                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Code")
-                        .IsUnique();
 
                     b.HasIndex("ProductId");
 
@@ -562,7 +444,7 @@ namespace TrailStore.Infrastructure.Migrations
                     b.HasOne("TrailStore.Domain.Models.Customer", "Customer")
                         .WithMany("Addresses")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -571,8 +453,8 @@ namespace TrailStore.Infrastructure.Migrations
             modelBuilder.Entity("TrailStore.Domain.Models.Cart", b =>
                 {
                     b.HasOne("TrailStore.Domain.Models.Customer", "Customer")
-                        .WithOne("Cart")
-                        .HasForeignKey("TrailStore.Domain.Models.Cart", "CustomerId")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -582,7 +464,7 @@ namespace TrailStore.Infrastructure.Migrations
             modelBuilder.Entity("TrailStore.Domain.Models.CartItem", b =>
                 {
                     b.HasOne("TrailStore.Domain.Models.Cart", "Cart")
-                        .WithMany("Items")
+                        .WithMany("CartItems")
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -590,21 +472,10 @@ namespace TrailStore.Infrastructure.Migrations
                     b.HasOne("TrailStore.Domain.Models.Sku", "Sku")
                         .WithMany()
                         .HasForeignKey("SkuId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Cart");
-
-                    b.Navigation("Sku");
-                });
-
-            modelBuilder.Entity("TrailStore.Domain.Models.Discount", b =>
-                {
-                    b.HasOne("TrailStore.Domain.Models.Sku", "Sku")
-                        .WithMany()
-                        .HasForeignKey("SkuId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Sku");
                 });
@@ -614,155 +485,10 @@ namespace TrailStore.Infrastructure.Migrations
                     b.HasOne("TrailStore.Domain.Models.OptionGroup", "OptionGroup")
                         .WithMany("Options")
                         .HasForeignKey("OptionGroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("OptionGroup");
-                });
-
-            modelBuilder.Entity("TrailStore.Domain.Models.Order", b =>
-                {
-                    b.HasOne("TrailStore.Domain.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.OwnsOne("TrailStore.Domain.Orders.PostalAddress", "BillingAddress", b1 =>
-                        {
-                            b1.Property<Guid>("OrderId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<string>("AddressLine1")
-                                .IsRequired()
-                                .HasMaxLength(200)
-                                .HasColumnType("character varying(200)");
-
-                            b1.Property<string>("AddressLine2")
-                                .HasMaxLength(200)
-                                .HasColumnType("character varying(200)");
-
-                            b1.Property<string>("City")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
-
-                            b1.Property<string>("Company")
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
-
-                            b1.Property<string>("CountryCode")
-                                .IsRequired()
-                                .HasMaxLength(2)
-                                .HasColumnType("character varying(2)");
-
-                            b1.Property<string>("PhoneNumber")
-                                .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("character varying(20)");
-
-                            b1.Property<string>("PostalCode")
-                                .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("character varying(20)");
-
-                            b1.Property<string>("RecipientName")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
-
-                            b1.Property<string>("Region")
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
-
-                            b1.HasKey("OrderId");
-
-                            b1.ToTable("Orders");
-
-                            b1.WithOwner()
-                                .HasForeignKey("OrderId");
-                        });
-
-                    b.OwnsOne("TrailStore.Domain.Orders.PostalAddress", "ShippingAddress", b1 =>
-                        {
-                            b1.Property<Guid>("OrderId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<string>("AddressLine1")
-                                .IsRequired()
-                                .HasMaxLength(200)
-                                .HasColumnType("character varying(200)");
-
-                            b1.Property<string>("AddressLine2")
-                                .HasMaxLength(200)
-                                .HasColumnType("character varying(200)");
-
-                            b1.Property<string>("City")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
-
-                            b1.Property<string>("Company")
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
-
-                            b1.Property<string>("CountryCode")
-                                .IsRequired()
-                                .HasMaxLength(2)
-                                .HasColumnType("character varying(2)");
-
-                            b1.Property<string>("PhoneNumber")
-                                .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("character varying(20)");
-
-                            b1.Property<string>("PostalCode")
-                                .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("character varying(20)");
-
-                            b1.Property<string>("RecipientName")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
-
-                            b1.Property<string>("Region")
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
-
-                            b1.HasKey("OrderId");
-
-                            b1.ToTable("Orders");
-
-                            b1.WithOwner()
-                                .HasForeignKey("OrderId");
-                        });
-
-                    b.Navigation("BillingAddress")
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("ShippingAddress")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TrailStore.Domain.Models.OrderItem", b =>
-                {
-                    b.HasOne("TrailStore.Domain.Models.Order", "Order")
-                        .WithMany("Items")
-                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TrailStore.Domain.Models.Sku", "Sku")
-                        .WithMany()
-                        .HasForeignKey("SkuId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Sku");
+                    b.Navigation("OptionGroup");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Models.Product", b =>
@@ -770,13 +496,13 @@ namespace TrailStore.Infrastructure.Migrations
                     b.HasOne("TrailStore.Domain.Models.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TrailStore.Domain.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Brand");
@@ -800,13 +526,13 @@ namespace TrailStore.Infrastructure.Migrations
                     b.HasOne("TrailStore.Domain.Models.Customer", "Customer")
                         .WithMany("Reviews")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TrailStore.Domain.Models.Product", "Product")
                         .WithMany("Reviews")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -832,7 +558,7 @@ namespace TrailStore.Infrastructure.Migrations
 
             modelBuilder.Entity("TrailStore.Domain.Models.Cart", b =>
                 {
-                    b.Navigation("Items");
+                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Models.Category", b =>
@@ -844,9 +570,6 @@ namespace TrailStore.Infrastructure.Migrations
                 {
                     b.Navigation("Addresses");
 
-                    b.Navigation("Cart")
-                        .IsRequired();
-
                     b.Navigation("RefreshTokens");
 
                     b.Navigation("Reviews");
@@ -855,11 +578,6 @@ namespace TrailStore.Infrastructure.Migrations
             modelBuilder.Entity("TrailStore.Domain.Models.OptionGroup", b =>
                 {
                     b.Navigation("Options");
-                });
-
-            modelBuilder.Entity("TrailStore.Domain.Models.Order", b =>
-                {
-                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Models.Product", b =>

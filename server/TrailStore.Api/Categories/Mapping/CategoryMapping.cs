@@ -11,7 +11,6 @@ public static class CategoryMapping
     public static CategoryDto ToDto(this Category category)
         => new()
         {
-            Id       = category.Id,
             Name        = category.Name,
             Description = category.Description,
             Slug        = category.Slug,

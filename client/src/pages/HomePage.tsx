@@ -1,13 +1,8 @@
-import {
-  Button,
-  HeaderText,
-  PageWrapper,
-  ProductCategoryCard,
-  SectionContainer,
-} from "@components"
+import { Button, HeaderText, PageWrapper } from "@components"
 import Banner from "/img/banner.webp"
 import { useCategories } from "@features"
 import { useEffect } from "react"
+import { TopCategories } from "@components/categories"
 
 const HomePage = () => {
   const { data } = useCategories()
@@ -37,14 +32,7 @@ const HomePage = () => {
           <HeaderText>Top categories</HeaderText>
           <p className="text-lg">All categories -</p>
         </div>
-        <SectionContainer className="grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 gap-4">
-          <ProductCategoryCard category="handheld_gps" />
-          <ProductCategoryCard category="tent" />
-          <ProductCategoryCard category="backpack" />
-          <ProductCategoryCard category="sleeping_bag" />
-          <ProductCategoryCard category="backpack" />
-          <ProductCategoryCard category="tent" />
-        </SectionContainer>
+        <TopCategories />
       </PageWrapper>
     </>
   )

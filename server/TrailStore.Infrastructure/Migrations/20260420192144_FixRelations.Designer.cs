@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TrailStore.Infrastructure.Data;
@@ -11,9 +12,11 @@ using TrailStore.Infrastructure.Data;
 namespace TrailStore.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260420192144_FixRelations")]
+    partial class FixRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,9 +156,7 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("AddedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("NOW()");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("CartId")
                         .HasColumnType("uuid");
@@ -342,7 +343,7 @@ namespace TrailStore.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("NOW()");
+                        .HasDefaultValue(new DateTime(2026, 4, 20, 19, 21, 43, 620, DateTimeKind.Utc).AddTicks(8185));
 
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("uuid");

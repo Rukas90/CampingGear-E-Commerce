@@ -5,5 +5,5 @@ namespace TrailStore.Api.Products.Dto;
 
 public class ProductRequest
 {
-    public Id<Product> Id { get; set; }
+    public string Slug { get; set; }
 }

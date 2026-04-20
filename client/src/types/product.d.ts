@@ -1,10 +1,10 @@
 import type { CustomerId } from "./Id"
 
 export type ProductCategory =
-  | "handheld_gps"
-  | "tent"
-  | "backpack"
-  | "sleeping_bag"
+  | "handheld-gps"
+  | "tents"
+  | "backpacks"
+  | "sleeping-bags"
 
 export type Cart = {
   customerId: CustomerId

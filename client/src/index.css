@@ -58,3 +58,8 @@
   pointer-events: none;
   border-radius: inherit;
 }
+
+::selection {
+	background: black;
+  color: white;
+}

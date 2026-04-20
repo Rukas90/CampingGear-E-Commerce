@@ -8,31 +8,30 @@ public class ReviewConfiguration : IEntityTypeConfiguration<Review>
 {
     public void Configure(EntityTypeBuilder<Review> builder)
     {
-        builder.HasKey(review => review.Id);
-        
-        builder.Property(review => review.CreatedAt)
-               .IsRequired()
-               .HasDefaultValueSql("getdate()");
-
-        builder.Property(review => review.Rating)
-               .IsRequired();
-
-        builder.Property(review => review.Headline)
-               .IsRequired()
-               .HasMaxLength(100);
-        
-        builder.Property(review => review.Text)
-               .IsRequired()
-               .HasMaxLength(1000);
-        
-        builder.HasOne(review => review.Customer)
-               .WithMany(user => user.Reviews)
-               .HasForeignKey(review => review.UserId)
-               .OnDelete(DeleteBehavior.Restrict);
-        
-        builder.HasOne(review => review.Product)
-               .WithMany(product => product.Reviews)
-               .HasForeignKey(review => review.ProductId)
-               .OnDelete(DeleteBehavior.Restrict);
+        builder.HasKey(r => r.Id);
+              
+        builder.Property(r => r.Rating)
+            .IsRequired();
+              
+        builder.Property(r => r.Headline)
+            .HasMaxLength(200)
+            .IsRequired();
+              
+        builder.Property(r => r.Text)
+            .HasMaxLength(2000)
+            .IsRequired();
+              
+        builder.Property(r => r.CreatedAt)
+            .IsRequired();
+              
+        builder.HasOne(r => r.Customer)
+            .WithMany(c => c.Reviews)
+            .HasForeignKey(r => r.CustomerId)
+            .OnDelete(DeleteBehavior.Restrict);
+              
+        builder.HasOne(r => r.Product)
+            .WithMany(p => p.Reviews)
+            .HasForeignKey(r => r.ProductId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
