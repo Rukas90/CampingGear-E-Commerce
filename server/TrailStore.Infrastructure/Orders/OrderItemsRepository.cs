@@ -9,22 +9,19 @@ public class OrderItemsRepository(AppDbContext context) : IOrderItemsRepository
 {
     public Task<List<TResult>> ListMostSoldCategoriesAsync<TResult>(int count, Expression<Func<Category, TResult>> selector)
     {
-        var queryable = context.OrderItems.AsQueryable();
-
-        return queryable
-            .GroupBy(oi => oi.Sku.Product.CategoryId)
-            .Select(g => new
-            {
-                CategoryId = g.Key,
-                TotalSold = g.Sum(oi => oi.Quantity)
-            })
+        return context.Categories
+            .GroupJoin(
+                context.OrderItems,
+                c  => c.Id,
+                oi => oi.Sku.Product.CategoryId,
+                (c, items) => new
+                {
+                    Category  = c,
+                    TotalSold = items.Sum(oi => (int?)oi.Quantity) ?? 0
+                })
             .OrderByDescending(x => x.TotalSold)
             .Take(count)
-            .Join(
-                context.Categories,
-                x => x.CategoryId,
-                c => c.Id,
-                (_, c) => c)
+            .Select(x => x.Category)
             .Select(selector)
             .ToListAsync();
     }

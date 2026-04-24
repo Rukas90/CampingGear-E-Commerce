@@ -12,7 +12,7 @@ public sealed class DownSocks
         name:       "Down Socks",
         slug:       "goosefeet-gear-down-socks",
         brandId:    Brands.GooseFeet.Id,
-        categoryId: Categories.Accessories.Id);
+        categoryId: Categories.SleepingBags.Id);
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
@@ -157,4 +157,4 @@ public sealed class DownSocks
             stock: 4,
             options: [SizeOption.XL, ColorOption.Black]),
     ];
-}//
+}
