@@ -2,6 +2,8 @@
 
 namespace TrailStore.Seed.Data.Products.Deuter;
 
+// ReSharper disable All
+
 public sealed class AircontactPro7510
 {
     [SeededEntity]

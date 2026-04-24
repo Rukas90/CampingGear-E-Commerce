@@ -4,10 +4,12 @@ using TrailStore.Shared.Common;
 
 namespace TrailStore.Seed.Data;
 
+// ReSharper disable All
+
 public class Customers
 {
     [SeededEntity]
-    public static readonly IEnumerable<Customer> All = new Faker<Customer>()
+    public static readonly List<Customer> All = new Faker<Customer>()
         .UseSeed(94375185)
         .RuleFor(c => c.Id, f => 
             Id<Customer>.Part(f.Name.FullName()).Part(f.IndexFaker.ToString()).Build())

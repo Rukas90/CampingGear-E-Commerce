@@ -42,6 +42,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         b.Property(a => a.City).HasMaxLength(100).IsRequired();
         b.Property(a => a.Region).HasMaxLength(100);
         b.Property(a => a.PostalCode).HasMaxLength(20).IsRequired();
-        b.Property(a => a.PhoneNumber).HasMaxLength(20).IsRequired();
+        b.Property(a => a.PhoneNumber).HasMaxLength(35).IsRequired();
     }
 }

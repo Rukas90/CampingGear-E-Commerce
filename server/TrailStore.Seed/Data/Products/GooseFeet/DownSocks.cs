@@ -3,6 +3,8 @@ using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.GooseFeet;
 
+// ReSharper disable All
+
 public sealed class DownSocks
 {
     [SeededEntity]

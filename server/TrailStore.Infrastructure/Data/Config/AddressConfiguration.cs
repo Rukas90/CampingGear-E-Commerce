@@ -40,7 +40,7 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
             .IsRequired();
         
         builder.Property(address => address.PhoneNumber)
-            .HasMaxLength(20)
+            .HasMaxLength(35)
             .IsRequired();
         
         builder.Property(address => address.IsDefault)

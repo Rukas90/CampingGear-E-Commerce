@@ -2,6 +2,8 @@
 
 namespace TrailStore.Seed.Data;
 
+// ReSharper disable All
+
 public class Categories
 {
     [SeededEntity]
