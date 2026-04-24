@@ -9,19 +9,17 @@ public class Sku : IModel<Sku>
     public required string      Code      { get; init; }
     public required decimal     UnitPrice { get; init; }
     public required int         Stock     { get; set; }
-    public string?              ImageUrl  { get; init; }
     
-    public ICollection<Option> Options { get; init; } = [];
-    public Product             Product { get; private set; } = null!;
+    public IReadOnlyList<Option> Options { get; init; } = [];
+    public Product               Product { get; private set; } = null!;
 
     public static Sku Create(
-        Id<Sku>             id, 
-        Id<Product>         productId,
-        string              code,
-        decimal             price, 
-        int                 stock,
-        ICollection<Option> options,
-        string?             imageUrl = null)
+        Id<Sku>               id, 
+        Id<Product>           productId,
+        string                code,
+        decimal               price, 
+        int                   stock,
+        IReadOnlyList<Option> options)
         => new()
         {
             Id        = id,
@@ -30,16 +28,14 @@ public class Sku : IModel<Sku>
             UnitPrice = price,
             Stock     = stock,
             Options   = options,
-            ImageUrl  = imageUrl
         };
     
     public static Sku Create(
-        Id<Product>         productId,
-        string              code,
-        decimal             price, 
-        int                 stock,
-        ICollection<Option> options,
-        string?             imageUrl = null)
+        Id<Product>           productId,
+        string                code,
+        decimal               price, 
+        int                   stock,
+        IReadOnlyList<Option> options)
         => new()
         {
             Id        = Id<Sku>.Part(code).Build(),
@@ -48,6 +44,5 @@ public class Sku : IModel<Sku>
             UnitPrice = price,
             Stock     = stock,
             Options   = options,
-            ImageUrl  = imageUrl
         };
 }

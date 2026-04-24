@@ -3,7 +3,9 @@ using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.Thermarest;
 
-public sealed class NeoAir_XTherm_MAX
+// ReSharper disable UnusedType.Global
+
+public sealed class NeoAirXTherm_MAX
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
@@ -20,13 +22,13 @@ public sealed class NeoAir_XTherm_MAX
             code: "TREST-NEOAIR-XTHERM-MAX-LRG",
             price: 28.00m,
             stock: 1,
-            options: [SizeOption.Large]),
+            options: [HeightOption.Tall, WidthOption.Wide]),
 
         Sku.Create(
             productId: Product.Id,
             code: "TREST-NEOAIR-XTHERM-MAX-REGWIDE",
             price: 28.00m,
             stock: 0,
-            options: [SizeOption.RegularWide])
+            options: [HeightOption.Regular, WidthOption.Wide])
     ];
 }

@@ -126,4 +126,36 @@ public class ColorOption
         slug:          "chili-red",
         previewType:   PreviewType.Color,
         previewValue:  "#C44D4D");
+    
+    [SeededEntity]
+    public static readonly Option Orange = Option.Create(
+        optionGroupId: OptionGroup.Id,
+        name:          "Orange",
+        slug:          "orange",
+        previewType:   PreviewType.Color,
+        previewValue:  "#FFAF31");
+    
+    [SeededEntity]
+    public static readonly Option Navy = Option.Create(
+        optionGroupId: OptionGroup.Id,
+        name:          "Navy",
+        slug:          "navy",
+        previewType:   PreviewType.Color,
+        previewValue:  "#0C0D78");
+    
+    [SeededEntity]
+    public static readonly Option Forest = Option.Create(
+        optionGroupId: OptionGroup.Id,
+        name:          "Forest",
+        slug:          "forest",
+        previewType:   PreviewType.Color,
+        previewValue:  "#46732F");
+    
+    [SeededEntity]
+    public static readonly Option Charcoal = Option.Create(
+        optionGroupId: OptionGroup.Id,
+        name:          "Charcoal",
+        slug:          "charcoal",
+        previewType:   PreviewType.Color,
+        previewValue:  "#262626");
 }

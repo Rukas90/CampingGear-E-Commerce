@@ -27,6 +27,9 @@ public class OptionConfiguration : IEntityTypeConfiguration<Option>
         builder.Property(option => option.PreviewValue)
             .HasMaxLength(400);
         
+        builder.HasIndex(option => new { option.OptionGroupId, option.Slug })
+            .IsUnique();
+        
         builder.HasOne(option => option.OptionGroup)
             .WithMany(group => group.Options)
             .HasForeignKey(option => option.OptionGroupId)

@@ -3,6 +3,8 @@ using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.Zpacks;
 
+// ReSharper disable UnusedType.Global
+
 public sealed class ArcHaulUltra70
 {
     [SeededEntity]

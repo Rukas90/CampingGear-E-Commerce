@@ -24,9 +24,6 @@ public class SkuConfiguration : IEntityTypeConfiguration<Sku>
         builder.Property(sku => sku.Stock)
                .IsRequired();
         
-        builder.Property(sku => sku.ImageUrl)
-               .HasMaxLength(400);
-        
         builder.HasOne(sku => sku.Product)
                .WithMany(product => product.Skus)
                .HasForeignKey(sku => sku.ProductId)

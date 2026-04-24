@@ -9,7 +9,7 @@ public class OptionGroup : IModel<OptionGroup>
     public required string          Slug      { get; init; }
     public          int             SortOrder { get; init; } = 0;
     
-    public ICollection<Option> Options { get; private set; } = [];
+    public IReadOnlyList<Option> Options { get; private set; } = [];
 
     public static OptionGroup Create(Id<OptionGroup> id, string name, string slug, int sortOrder = 0)
         => new()

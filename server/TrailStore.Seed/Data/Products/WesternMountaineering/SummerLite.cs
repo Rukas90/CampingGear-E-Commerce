@@ -3,6 +3,8 @@ using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.WesternMountaineering;
 
+// ReSharper disable UnusedType.Global
+
 public sealed class SummerLite
 {
     [SeededEntity]

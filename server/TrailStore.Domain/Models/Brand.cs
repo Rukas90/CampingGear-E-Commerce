@@ -11,7 +11,7 @@ public class Brand : IModel<Brand>
     public required string    LogoUrl     { get; init; }
     public required string    WebsiteUrl  { get; init; }
     
-    public ICollection<Product> Products { get; private set; } = [];
+    public IReadOnlyList<Product> Products { get; private set; } = [];
     
     public static Brand Create(Id<Brand> id, string name, string slug, string logoUrl, string websiteUrl, string description = "")
         => new()

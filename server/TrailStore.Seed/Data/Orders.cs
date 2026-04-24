@@ -55,7 +55,7 @@ public class Orders
 
         var skus = SeedRunner.Discover<Sku>(SeedRunner.Assembly).ToArray();
         
-        faker.RuleFor(order => order.Items, (f, o) =>
+        faker.RuleFor(order => order.Items, (Faker f, Order o) =>
         {
             return f.Make(f.Random.Int(1, 5), i =>
             {
@@ -69,7 +69,7 @@ public class Orders
                     Quantity  = f.Random.Int(1, 3),
                     UnitPrice = sku.UnitPrice
                 };
-            });
+            }).AsReadOnly();
         });
         
         return faker.Generate(50);

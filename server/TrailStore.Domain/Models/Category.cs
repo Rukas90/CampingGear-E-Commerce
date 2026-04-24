@@ -10,7 +10,7 @@ public class Category : IModel<Category>
     public required string       Slug        { get; init; }
     public          string?      ImageUrl    { get; init; }
     
-    public ICollection<Product> Products { get; private set; } = [];
+    public IReadOnlyList<Product> Products { get; private set; } = [];
     
     public static Category Create(Id<Category> id, string name, string slug, string description = "", string? imageUrl = null)
         => new()

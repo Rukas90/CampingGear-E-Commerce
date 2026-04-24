@@ -18,16 +18,6 @@ public class SizeOption
         name: "Regular", slug: "regular");
         
     [SeededEntity]
-    public static readonly Option RegularWide = Option.Create(
-        optionGroupId: OptionGroup.Id,
-        name: "Regular Wide", slug: "regular-wide");
-        
-    [SeededEntity]
-    public static readonly Option ShortRegular = Option.Create(
-        optionGroupId: OptionGroup.Id,
-        name: "Short Regular", slug: "short-regular");
-        
-    [SeededEntity]
     public static readonly Option Medium = Option.Create(
         optionGroupId: OptionGroup.Id,
         name: "Medium", slug: "medium");
@@ -41,4 +31,9 @@ public class SizeOption
     public static readonly Option XL = Option.Create(
         optionGroupId: OptionGroup.Id,
         name: "XL", slug: "xl");
+    
+    [SeededEntity]
+    public static readonly Option XXL = Option.Create(
+        optionGroupId: OptionGroup.Id,
+        name: "2XL", slug: "2xl");
 }

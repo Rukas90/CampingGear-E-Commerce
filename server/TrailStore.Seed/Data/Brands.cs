@@ -111,12 +111,12 @@ public class Brands
         description: "Leading brand of ultralight, durable, and often single-wall shelters");
         
     [SeededEntity]
-    public static readonly Brand Enlightened = Brand.Create(
-        name:        "Enlightened Equipment",
+    public static readonly Brand EnlightenedEquipment = Brand.Create(
+        name:        "EnlightenedEquipment", 
         slug:        "enlightened-equipment",
-        logoUrl:     "brands/enlightened.webp",
+        logoUrl:     "brands/enlightened-equipment.webp",
         websiteUrl:  "https://enlightenedequipment.com/",
-        description: "Premier high-quality, ultralight backpacking quilts, sleeping bags, and insulated clothing");
+        description: "Premier US-based cottage company specializing in ultralight backpacking quilts, synthetic apparel, and accessories");
         
     [SeededEntity]
     public static readonly Brand Deuter = Brand.Create(

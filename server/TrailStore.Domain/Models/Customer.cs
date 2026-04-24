@@ -18,8 +18,8 @@ public class Customer : IModel<Customer>
     public required string            PasswordHash  { get; init; }
     public Privileges                 Privileges    { get; init; } = Privileges.User;
     
-    public Cart                       Cart          { get; private set; } = null!;
-    public ICollection<Review>        Reviews       { get; private set; } = [];
-    public ICollection<Address>       Addresses     { get; private set; } = [];
-    public ICollection<RefreshToken>? RefreshTokens { get; private set; } = [];
+    public Cart                         Cart          { get; private set; } = null!;
+    public IReadOnlyList<Review>        Reviews       { get; private set; } = [];
+    public IReadOnlyList<Address>       Addresses     { get; private set; } = [];
+    public IReadOnlyList<RefreshToken>? RefreshTokens { get; private set; } = [];
 }

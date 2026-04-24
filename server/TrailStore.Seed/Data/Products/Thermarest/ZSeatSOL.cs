@@ -3,6 +3,8 @@ using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.Thermarest;
 
+// ReSharper disable UnusedType.Global
+
 public sealed class ZSeatSOL
 {
     [SeededEntity]
@@ -10,8 +12,23 @@ public sealed class ZSeatSOL
         name:       "Z Seat SOL",
         slug:       "thermarest-zseat-sol",
         brandId:    Brands.Thermarest.Id,
-        categoryId: Categories.SleepingMats.Id);
+        categoryId: Categories.SleepingMats.Id,
+        thumbnailUrl:   "products/thermarest-zseat-sol-thumb.webp");
 
+    [SeededEntity] 
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.Yellow.Id, 
+            urls:      ["products/thermarest-zseat-sol-ylw.webp"]),
+        
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.Blue.Id, 
+            urls:      ["products/thermarest-zseat-sol-blu.webp"])
+    ];
+    
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [
