@@ -14,6 +14,5 @@ public class Review : IModel<Review>
     public int                   Likes      { get; set; } = 0;
     public int                   Dislikes   { get; set; } = 0;
     
-    public Customer Customer { get; private set; } = null!;
-    public Product  Product  { get; private set; } = null!;
+    public Product Product { get; private set; } = null!;
 }
