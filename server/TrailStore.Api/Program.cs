@@ -5,6 +5,7 @@ using Scalar.AspNetCore;
 using TrailStore.Infrastructure.Categories;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Infrastructure.Filters;
+using TrailStore.Infrastructure.Orders;
 using TrailStore.Infrastructure.Products;
 using TrailStore.Infrastructure.Skus;
 using TrailStore.Seed;
@@ -31,6 +32,7 @@ builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 builder.Services.AddScoped<ISkuRepository, SkuRepository>();
 builder.Services.AddScoped<IFiltersService, FiltersService>();
+builder.Services.AddScoped<IOrderItemsRepository, OrderItemsRepository>();
 
 builder.Services.AddFastEndpoints();
 builder.Services.AddOpenApi();
