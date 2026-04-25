@@ -14,6 +14,6 @@ public class Order : IModel<Order>
     public required PostalAddress ShippingAddress { get; init; }
     public required PostalAddress BillingAddress  { get; init; }
 
-    public Customer?                Customer { get; private set; } = null;
-    public IReadOnlyList<OrderItem> Items    { get; private set; } = [];
+    public Customer?              Customer { get; private set; } = null;
+    public ICollection<OrderItem> Items    { get; private set; } = [];
 }

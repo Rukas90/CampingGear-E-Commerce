@@ -12,11 +12,11 @@ public class Product : IModel<Product>
     public required Id<Brand>          BrandId       { get; init; }
     public string?                     ThumbnailUrl  { get; init; }
     
-    public IReadOnlyList<ProductImage> Images   { get; private set; } = [];
-    public IReadOnlyList<Review>       Reviews  { get; private set; } = [];
-    public IReadOnlyList<Sku>          Skus     { get; private set; } = [];
-    public Category                    Category { get; private set; } = null!;
-    public Brand                       Brand    { get; private set; } = null!;
+    public ICollection<ProductImage> Images   { get; private set; } = [];
+    public ICollection<Review>       Reviews  { get; private set; } = [];
+    public ICollection<Sku>          Skus     { get; private set; } = [];
+    public Category                  Category { get; private set; } = null!;
+    public Brand                     Brand    { get; private set; } = null!;
     
     public static Product Create(
         Id<Product>  id,

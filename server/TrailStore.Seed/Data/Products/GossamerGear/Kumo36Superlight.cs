@@ -1,16 +1,19 @@
 ﻿using TrailStore.Domain.Models;
 using TrailStore.Seed.Data.Options;
 
-namespace TrailStore.Seed.Data.Products.Gossamer;
+namespace TrailStore.Seed.Data.Products.GossamerGear;
+
+// ReSharper disable UnusedType.Global
 
 public sealed class Kumo36Superlight
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "Kumo36 Superlight",
-        slug:       "gossamer-gear-kumo36-superlight",
-        brandId:    Brands.Gossamer.Id,
-        categoryId: Categories.Backpacks.Id);
+        name:         "Kumo36 Superlight",
+        slug:         "gossamer-gear-kumo36-superlight",
+        brandId:      Brands.GossamerGear.Id,
+        categoryId:   Categories.Backpacks.Id,
+        thumbnailUrl: "products/gossamer-gear-kumo36-superlight-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

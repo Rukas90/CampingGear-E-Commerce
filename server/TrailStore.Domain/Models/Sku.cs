@@ -10,16 +10,16 @@ public class Sku : IModel<Sku>
     public required decimal     UnitPrice { get; init; }
     public required int         Stock     { get; set; }
     
-    public IReadOnlyList<Option> Options { get; init; } = [];
-    public Product               Product { get; private set; } = null!;
+    public ICollection<Option> Options { get; init; } = [];
+    public Product             Product { get; private set; } = null!;
 
     public static Sku Create(
-        Id<Sku>               id, 
-        Id<Product>           productId,
-        string                code,
-        decimal               price, 
-        int                   stock,
-        IReadOnlyList<Option> options)
+        Id<Sku>             id, 
+        Id<Product>         productId,
+        string              code,
+        decimal             price, 
+        int                 stock,
+        ICollection<Option> options)
         => new()
         {
             Id        = id,
@@ -31,11 +31,11 @@ public class Sku : IModel<Sku>
         };
     
     public static Sku Create(
-        Id<Product>           productId,
-        string                code,
-        decimal               price, 
-        int                   stock,
-        IReadOnlyList<Option> options)
+        Id<Product>         productId,
+        string              code,
+        decimal             price, 
+        int                 stock,
+        ICollection<Option> options)
         => new()
         {
             Id        = Id<Sku>.Part(code).Build(),

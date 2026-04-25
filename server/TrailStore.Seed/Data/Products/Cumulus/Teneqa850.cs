@@ -7,10 +7,11 @@ public sealed class Teneqa850
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "Teneqa 850",
-        slug:       "cumulus-teneqa-850",
-        brandId:    Brands.Cumulus.Id,
-        categoryId: Categories.SleepingBags.Id);
+        name:         "Teneqa 850",
+        slug:         "cumulus-teneqa-850",
+        brandId:      Brands.Cumulus.Id,
+        categoryId:   Categories.SleepingBags.Id,
+        thumbnailUrl: "products/cumulus-teneqa-850-thumb.webp");
     
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

@@ -303,7 +303,8 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OptionGroupId");
+                    b.HasIndex("OptionGroupId", "Slug")
+                        .IsUnique();
 
                     b.ToTable("Options");
                 });
@@ -405,9 +406,6 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("character varying(2000)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("text");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -417,6 +415,9 @@ namespace TrailStore.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
+
+                    b.Property<string>("ThumbnailUrl")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -428,6 +429,51 @@ namespace TrailStore.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Models.ProductImage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("OptionId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OptionId");
+
+                    b.HasIndex("ProductId", "OptionId")
+                        .IsUnique();
+
+                    b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Models.ProductImageUrl", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ProductImageId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasMaxLength(400)
+                        .HasColumnType("character varying(400)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductImageId", "SortOrder")
+                        .IsUnique();
+
+                    b.ToTable("ProductImageUrls");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Models.RefreshToken", b =>
@@ -520,10 +566,6 @@ namespace TrailStore.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasMaxLength(400)
-                        .HasColumnType("character varying(400)");
 
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
@@ -787,6 +829,31 @@ namespace TrailStore.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("TrailStore.Domain.Models.ProductImage", b =>
+                {
+                    b.HasOne("TrailStore.Domain.Models.Option", null)
+                        .WithMany()
+                        .HasForeignKey("OptionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TrailStore.Domain.Models.Product", "Product")
+                        .WithMany("Images")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Models.ProductImageUrl", b =>
+                {
+                    b.HasOne("TrailStore.Domain.Models.ProductImage", null)
+                        .WithMany("Urls")
+                        .HasForeignKey("ProductImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("TrailStore.Domain.Models.RefreshToken", b =>
                 {
                     b.HasOne("TrailStore.Domain.Models.Customer", "Customer")
@@ -865,9 +932,16 @@ namespace TrailStore.Infrastructure.Migrations
 
             modelBuilder.Entity("TrailStore.Domain.Models.Product", b =>
                 {
+                    b.Navigation("Images");
+
                     b.Navigation("Reviews");
 
                     b.Navigation("Skus");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Models.ProductImage", b =>
+                {
+                    b.Navigation("Urls");
                 });
 #pragma warning restore 612, 618
         }

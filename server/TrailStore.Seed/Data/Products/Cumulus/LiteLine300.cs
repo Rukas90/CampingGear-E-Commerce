@@ -7,10 +7,11 @@ public sealed class LiteLine300
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "Lite Line 300",
-        slug:       "cumulus-lite-line-300",
-        brandId:    Brands.Cumulus.Id,
-        categoryId: Categories.SleepingBags.Id);
+        name:         "Lite Line 300",
+        slug:         "cumulus-lite-line-300",
+        brandId:      Brands.Cumulus.Id,
+        categoryId:   Categories.SleepingBags.Id,
+        thumbnailUrl: "products/cumulus-lite-line-300-thumb.webp");
     
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

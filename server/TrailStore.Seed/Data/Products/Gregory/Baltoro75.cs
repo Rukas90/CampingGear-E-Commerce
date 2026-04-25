@@ -7,10 +7,11 @@ public sealed class Baltoro75
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "Baltoro 75",
-        slug:       "gregory-baltoro-75",
-        brandId:    Brands.Gregory.Id,
-        categoryId: Categories.Backpacks.Id);
+        name:         "Baltoro 75",
+        slug:         "gregory-baltoro-75",
+        brandId:      Brands.Gregory.Id,
+        categoryId:   Categories.Backpacks.Id,
+        thumbnailUrl: "products/gregory-baltoro-75-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

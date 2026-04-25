@@ -9,10 +9,11 @@ public sealed class SummerLite
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "SummerLite",
-        slug:       "western-mountaineering-summer-lite",
-        brandId:    Brands.WesternMountaineering.Id,
-        categoryId: Categories.SleepingBags.Id);
+        name:         "SummerLite",
+        slug:         "western-mountaineering-summer-lite",
+        brandId:      Brands.WesternMountaineering.Id,
+        categoryId:   Categories.SleepingBags.Id,
+        thumbnailUrl: "products/western-mountaineering-summer-lite-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

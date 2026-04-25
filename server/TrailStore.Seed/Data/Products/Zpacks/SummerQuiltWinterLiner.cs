@@ -9,11 +9,11 @@ public sealed class SummerQuiltWinterLiner
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "Summer Quilt Winter Liner",
-        slug:       "zpacks-summer-quilt-winter-liner",
-        brandId:    Brands.Zpacks.Id,
-        categoryId: Categories.Quilts.Id,
-        thumbnailUrl:   "products/zpacks-summer-quilt-winter-liner.webp");
+        name:         "Summer Quilt Winter Liner",
+        slug:         "zpacks-summer-quilt-winter-liner",
+        brandId:      Brands.Zpacks.Id,
+        categoryId:   Categories.Quilts.Id,
+        thumbnailUrl: "products/zpacks-summer-quilt-winter-liner-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

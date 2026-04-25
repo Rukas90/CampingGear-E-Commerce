@@ -9,11 +9,11 @@ public sealed class TorridHood
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "Torrid Hood",
-        slug:       "enlightened-equipment-torrid-hood",
-        brandId:    Brands.EnlightenedEquipment.Id,
-        categoryId: Categories.Quilts.Id,
-        thumbnailUrl:   "products/enlightened-equipment-torrid-hood.webp");
+        name:         "Torrid Hood",
+        slug:         "enlightened-equipment-torrid-hood",
+        brandId:      Brands.EnlightenedEquipment.Id,
+        categoryId:   Categories.Quilts.Id,
+        thumbnailUrl: "products/enlightened-equipment-torrid-hood-thumb.webp");
  
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

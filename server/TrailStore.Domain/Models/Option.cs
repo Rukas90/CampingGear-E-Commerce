@@ -16,8 +16,8 @@ public class Option : IModel<Option>
     public PreviewType?             PreviewType   { get; init; }
     public string?                  PreviewValue  { get; init; }
     
-    public OptionGroup        OptionGroup { get; private set; } = null!;
-    public IReadOnlyList<Sku> Skus        { get; private set; } = [];
+    public OptionGroup      OptionGroup { get; private set; } = null!;
+    public ICollection<Sku> Skus        { get; private set; } = [];
 
     public static Option Create(
         Id<Option>      id, 

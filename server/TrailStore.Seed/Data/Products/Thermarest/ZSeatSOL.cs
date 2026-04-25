@@ -9,11 +9,11 @@ public sealed class ZSeatSOL
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "Z Seat SOL",
-        slug:       "thermarest-zseat-sol",
-        brandId:    Brands.Thermarest.Id,
-        categoryId: Categories.SleepingMats.Id,
-        thumbnailUrl:   "products/thermarest-zseat-sol-thumb.webp");
+        name:         "Z Seat SOL",
+        slug:         "thermarest-zseat-sol",
+        brandId:      Brands.Thermarest.Id,
+        categoryId:   Categories.SleepingMats.Id,
+        thumbnailUrl: "products/thermarest-zseat-sol-thumb.webp");
 
     [SeededEntity] 
     public static readonly IEnumerable<ProductImage> Images =

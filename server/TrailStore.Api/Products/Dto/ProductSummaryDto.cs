@@ -11,5 +11,5 @@ public class ProductSummaryDto
     public double           AverageRating { get; init; }
     public int              ReviewCount   { get; init; }
     public bool             InStock       { get; init; }
-    public string?          ImageUrl      { get; init; }
+    public string?          ThumbnailUrl  { get; init; }
 }

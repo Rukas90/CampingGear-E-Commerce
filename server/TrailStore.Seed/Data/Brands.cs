@@ -39,7 +39,7 @@ public class Brands
         description: "Premier U.S. based ultralight backpacking gear");
     
     [SeededEntity]
-    public static readonly Brand Gossamer = Brand.Create(
+    public static readonly Brand GossamerGear = Brand.Create(
         name:        "Gossamer Gear", 
         slug:        "gossamer-gear",
         logoUrl:     "brands/gossamer-gear.webp",
@@ -55,9 +55,9 @@ public class Brands
         description: "Ultralight packs built for fast, efficient movement");
         
     [SeededEntity]
-    public static readonly Brand HyperliteMountain = Brand.Create(
+    public static readonly Brand HyperliteMountainGear = Brand.Create(
         name:        "Hyperlite Mountain Gear", 
-        slug:        "hyperlite-mountain", 
+        slug:        "hyperlite-mountain-gear", 
         logoUrl:     "brands/hyperlite-mountain.webp",
         websiteUrl:  "https://hyperlitemountaingear.com/",
         description: "Ultralight, minimalist outdoor gear");
@@ -127,7 +127,7 @@ public class Brands
         description: "Leading manufacturers of backpacks with high-quality standards, from trekking backpacks to daypacks");
         
     [SeededEntity]
-    public static readonly Brand Warbonnet = Brand.Create(
+    public static readonly Brand WarbonnetOutdoors = Brand.Create(
         name:        "Warbonnet Outdoors",
         slug:        "warbonnet-outdoors",
         logoUrl:     "brands/warbonnet.webp",

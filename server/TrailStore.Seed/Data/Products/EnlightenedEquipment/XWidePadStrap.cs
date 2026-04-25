@@ -8,10 +8,11 @@ public sealed class XWidePadStrap
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "XWide Pad Strap",
-        slug:       "enlightened-equipment-xwide-pad-strap",
-        brandId:    Brands.EnlightenedEquipment.Id,
-        categoryId: Categories.Quilts.Id);
+        name:         "XWide Pad Strap",
+        slug:         "enlightened-equipment-xwide-pad-strap",
+        brandId:      Brands.EnlightenedEquipment.Id,
+        categoryId:   Categories.Quilts.Id,
+        thumbnailUrl: "products/enlightened-equipment-xwide-pad-strap-thumb.webp");
  
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

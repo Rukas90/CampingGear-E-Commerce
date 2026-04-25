@@ -9,10 +9,11 @@ public sealed class NeoAirXLite
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "NeoAir® XLite™ NXT",
-        slug:       "thermarest-neoair-xlite",
-        brandId:    Brands.Thermarest.Id,
-        categoryId: Categories.SleepingMats.Id);
+        name:         "NeoAir® XLite™ NXT",
+        slug:         "thermarest-neoair-xlite",
+        brandId:      Brands.Thermarest.Id,
+        categoryId:   Categories.SleepingMats.Id,
+        thumbnailUrl: "products/thermarest-neoair-xlite-thumb.webp");
     
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

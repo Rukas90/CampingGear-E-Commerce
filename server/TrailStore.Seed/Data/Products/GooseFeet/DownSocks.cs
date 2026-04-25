@@ -9,10 +9,11 @@ public sealed class DownSocks
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "Down Socks",
-        slug:       "goosefeet-gear-down-socks",
-        brandId:    Brands.GooseFeet.Id,
-        categoryId: Categories.SleepingBags.Id);
+        name:         "Down Socks",
+        slug:         "goosefeet-gear-down-socks",
+        brandId:      Brands.GooseFeet.Id,
+        categoryId:   Categories.SleepingBags.Id,
+        thumbnailUrl: "products/goosefeet-gear-down-socks-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

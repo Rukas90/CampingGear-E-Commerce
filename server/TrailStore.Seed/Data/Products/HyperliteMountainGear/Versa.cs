@@ -7,10 +7,11 @@ public sealed class Versa
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "Versa",
-        slug:       "hyperlite-mountain-gear-versa",
-        brandId:    Brands.HyperliteMountain.Id,
-        categoryId: Categories.StuffSacks.Id);
+        name:         "Versa",
+        slug:         "hyperlite-mountain-gear-versa",
+        brandId:      Brands.HyperliteMountainGear.Id,
+        categoryId:   Categories.StuffSacks.Id,
+        thumbnailUrl: "products/hyperlite-mountain-gear-versa-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

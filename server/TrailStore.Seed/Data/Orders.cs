@@ -69,7 +69,7 @@ public class Orders
                     Quantity  = f.Random.Int(1, 3),
                     UnitPrice = sku.UnitPrice
                 };
-            }).AsReadOnly();
+            });
         });
         
         return faker.Generate(50);

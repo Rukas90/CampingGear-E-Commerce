@@ -19,7 +19,7 @@ public static class ProductMappingSelectors
             AverageRating = product.Reviews.Average(r => (double?)r.Rating) ?? 0.0,
             ReviewCount   = product.Reviews.Count,
             InStock       = product.Skus.Any(sku => sku.Stock > 0),
-            ImageUrl      = product.Skus.First().ImageUrl
+            ThumbnailUrl  = product.ThumbnailUrl
         };
     }
     public static Expression<Func<Product, ProductDetailDto>> ToDetailDto()
@@ -35,20 +35,20 @@ public static class ProductMappingSelectors
             AverageRating = product.Reviews.Average(r => (double?)r.Rating) ?? 0.0,
             ReviewCount   = product.Reviews.Count,
             InStock       = product.Skus.Any(sku => sku.Stock > 0),
-            ImageUrl      = product.Skus.First().ImageUrl ?? string.Empty,
+            ThumbnailUrl  = product.ThumbnailUrl,
             Description   = product.Description,
             Skus          = product.Skus.Select(sku => new ProductSkuDto
             {
                 Id     = sku.Id,
                 UnitPrice = sku.UnitPrice,
                 Stock     = sku.Stock,
-                ImageUrl  = sku.ImageUrl,
                 Options   = sku.Options.Select(option => new SkuOptionDto
                 {
                     Slug        = option.Slug,
                     OptionGroup = option.OptionGroup.Slug
                 }).ToArray() 
             }).ToArray()
+            // TODO: IMAGES (OR LOAD LAZILY ON CLIENT DEPENDING ON SELECTED OPTION?)
         };
     }
 }

@@ -158,4 +158,52 @@ public class ColorOption
         slug:          "charcoal",
         previewType:   PreviewType.Color,
         previewValue:  "#262626");
+    
+    [SeededEntity]
+    public static readonly Option Olive = Option.Create(
+        optionGroupId: OptionGroup.Id,
+        name:          "Olive",
+        slug:          "olive",
+        previewType:   PreviewType.Color,
+        previewValue:  "#5E781F");
+    
+    [SeededEntity]
+    public static readonly Option SpruceGreen = Option.Create(
+        optionGroupId: OptionGroup.Id,
+        name:          "Spruce Green",
+        slug:          "spruce-green",
+        previewType:   PreviewType.Color,
+        previewValue:  "#89C2A7");
+    
+    [SeededEntity]
+    public static readonly Option BushwackCamo = Option.Create(
+        optionGroupId: OptionGroup.Id,
+        name:          "Bushwack Camo",
+        slug:          "bushwack-camo",
+        previewType:   PreviewType.Image,
+        previewValue:  "options/color/bushwack-camo.webp");
+    
+    [SeededEntity]
+    public static readonly Option ShadowPineCamo = Option.Create(
+        optionGroupId: OptionGroup.Id,
+        name:          "Shadow Pine Camo",
+        slug:          "shadow-pine-camo",
+        previewType:   PreviewType.Image,
+        previewValue:  "options/color/shadow-pine-camo.webp");
+    
+    [SeededEntity]
+    public static readonly Option DarkFoliageGreen = Option.Create(
+        optionGroupId: OptionGroup.Id,
+        name:          "Dark Foliage Green",
+        slug:          "dark-foliage-green",
+        previewType:   PreviewType.Image,
+        previewValue:  "options/color/dark-foliage-green.webp");
+    
+    [SeededEntity]
+    public static readonly Option SnowDayCamo = Option.Create(
+        optionGroupId: OptionGroup.Id,
+        name:          "Snow Day Camo",
+        slug:          "snow-day-camo",
+        previewType:   PreviewType.Image,
+        previewValue:  "options/color/snow-day-camo.webp");
 }

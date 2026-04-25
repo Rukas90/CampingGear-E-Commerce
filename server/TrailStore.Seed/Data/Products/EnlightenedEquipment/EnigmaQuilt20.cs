@@ -26,7 +26,7 @@ public sealed class EnigmaQuilt20
         ProductImage.Create(
             productId: Product.Id, 
             optionId:  ColorOption.Navy.Id, 
-            urls:      ["products/enlightened-equipment-enigma-quilt-20-char.webp"])
+            urls:      ["products/enlightened-equipment-enigma-quilt-20-nvy.webp"])
     ];
     
     [SeededEntity]

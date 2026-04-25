@@ -9,10 +9,11 @@ public sealed class TorridBooties
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "Torrid Booties",
-        slug:       "enlightened-equipment-torrid-booties",
-        brandId:    Brands.EnlightenedEquipment.Id,
-        categoryId: Categories.Quilts.Id);
+        name:         "Torrid Booties",
+        slug:         "enlightened-equipment-torrid-booties",
+        brandId:      Brands.EnlightenedEquipment.Id,
+        categoryId:   Categories.Quilts.Id,
+        thumbnailUrl: "products/enlightened-equipment-torrid-booties-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

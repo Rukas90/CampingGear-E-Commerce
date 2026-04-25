@@ -9,10 +9,11 @@ public sealed class CypressGWSExpedition
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "Cypress GWS Expedition",
-        slug:       "western-mountaineering-cypress-gws",
-        brandId:    Brands.WesternMountaineering.Id,
-        categoryId: Categories.SleepingBags.Id);
+        name:         "Cypress GWS Expedition",
+        slug:         "western-mountaineering-cypress-gws",
+        brandId:      Brands.WesternMountaineering.Id,
+        categoryId:   Categories.SleepingBags.Id,
+        thumbnailUrl: "products/western-mountaineering-cypress-gws-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

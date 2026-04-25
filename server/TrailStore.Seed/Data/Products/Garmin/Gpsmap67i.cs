@@ -6,10 +6,11 @@ public sealed class Gpsmap67i
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
-        name:       "GPSMAP 67i",
-        slug:       "garmin-gpsmap-67i",
-        brandId:    Brands.Garmin.Id,
-        categoryId: Categories.HandheldGps.Id);
+        name:         "GPSMAP 67i",
+        slug:         "garmin-gpsmap-67i",
+        brandId:      Brands.Garmin.Id,
+        categoryId:   Categories.HandheldGps.Id,
+        thumbnailUrl: "products/garmin-gpsmap-67i-thumb.webp");
     
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
