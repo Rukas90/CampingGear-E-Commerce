@@ -11,12 +11,10 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         builder.HasKey(c => c.Id);
         
         builder.Property(c => c.FirstName)
-            .HasMaxLength(100)
-            .IsRequired();
+            .HasMaxLength(100);
         
         builder.Property(c => c.LastName)
-            .HasMaxLength(100)
-            .IsRequired();
+            .HasMaxLength(100);
         
         builder.Property(c => c.Email)
             .HasMaxLength(254)

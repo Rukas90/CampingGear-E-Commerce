@@ -218,12 +218,10 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasColumnType("character varying(254)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
@@ -490,9 +488,8 @@ namespace TrailStore.Infrastructure.Migrations
                     b.Property<DateTime>("ExpiresAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("FamilyId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid>("FamilyId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("LookupHash")
                         .IsRequired()
@@ -504,9 +501,6 @@ namespace TrailStore.Infrastructure.Migrations
                     b.Property<string>("TokenHash")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 

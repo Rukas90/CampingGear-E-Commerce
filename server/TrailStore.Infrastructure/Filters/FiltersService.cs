@@ -5,10 +5,7 @@ using TrailStore.Shared.Common;
 
 namespace TrailStore.Infrastructure.Filters;
 
-public interface IFiltersService
-{
-    Task<CatalogFilters> GetFilters(Specification<Sku> specification);
-}
+[AppService<IFiltersService>]
 public class FiltersService(ISkuRepository skuRepository) : IFiltersService
 {
     public async Task<CatalogFilters> GetFilters(Specification<Sku> specification)

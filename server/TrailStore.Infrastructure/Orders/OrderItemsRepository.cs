@@ -2,9 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using TrailStore.Domain.Models;
 using TrailStore.Infrastructure.Data;
+using TrailStore.Shared.Common;
 
 namespace TrailStore.Infrastructure.Orders;
 
+[AppService<IOrderItemsRepository>]
 public class OrderItemsRepository(AppDbContext context) : IOrderItemsRepository
 {
     public Task<List<TResult>> ListMostSoldCategoriesAsync<TResult>(int count, Expression<Func<Category, TResult>> selector)

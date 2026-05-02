@@ -20,6 +20,7 @@ export default defineConfig({
       "@components": path.resolve(__dirname, "./src/components"),
       "@types": path.resolve(__dirname, "./src/types"),
       "@lib": path.resolve(__dirname, "./src/lib"),
+      "@utils": path.resolve(__dirname, "./src/utils"),
       "@features": path.resolve(__dirname, "./src/features"),
     },
   },

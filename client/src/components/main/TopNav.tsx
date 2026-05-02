@@ -1,17 +1,18 @@
 import {
   IconAccount,
   IconArrow,
-  IconCart,
-  IconSaved,
   IconSearch,
   InputField,
   LogoWithText,
   PageWrapper,
+  WishlistBadge,
 } from "@components"
+import CartBadge from "./CartBadge"
+import { Link } from "react-router-dom"
 
 const TopNav = () => {
   return (
-    <nav className="fixed dark:bg-stone-950 bg-white w-full py-4 h-20 z-64">
+    <nav className="fixed dark:bg-stone-950 bg-white w-full py-4 h-18 z-64">
       <PageWrapper>
         <div className="flex items-center justify-between w-full">
           <ul className="flex gap-5 w-1/3 dark:text-stone-200">
@@ -22,7 +23,9 @@ const TopNav = () => {
             <li className="font-normal">About</li>
           </ul>
           <div className="flex items-center justify-center w-1/3">
-            <LogoWithText />
+            <Link to="/">
+              <LogoWithText />
+            </Link>
           </div>
           <div className="flex gap-5 items-center justify-end w-1/3">
             <div className="relative size-5">
@@ -32,20 +35,9 @@ const TopNav = () => {
                 placeholder="Search ..."
               />
             </div>
-
             <IconAccount className="size-5 dark:text-stone-100 text-stone-800" />
-            <div className="relative">
-              <IconSaved className="size-5 dark:text-stone-100 text-stone-800" />
-              <span className="absolute bg-[#000000] inter text-stone-200 text-[11px] font-semibold min-w-3.75 h-3.75 p-1 rounded-full flex items-center justify-center outline-2 outline-white -right-2 -top-2">
-                0
-              </span>
-            </div>
-            <div className="relative">
-              <IconCart className="size-5 dark:text-stone-100 text-stone-800" />
-              <span className="absolute bg-[#000000] inter text-stone-200 text-[11px] font-semibold min-w-3.75 h-3.75 p-1 rounded-full flex items-center justify-center outline-2 outline-white -right-2 -top-2">
-                0
-              </span>
-            </div>
+            <WishlistBadge />
+            <CartBadge />
           </div>
         </div>
       </PageWrapper>

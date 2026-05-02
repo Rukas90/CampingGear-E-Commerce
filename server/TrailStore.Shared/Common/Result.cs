@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics.CodeAnalysis;
+
 namespace TrailStore.Shared.Common;
 
 public class Result
@@ -21,6 +23,9 @@ public class Result
 
 public class Result<T>
 {
+    [MemberNotNullWhen(true, nameof(Value))]
+    [MemberNotNullWhen(false, nameof(Problem))]
+    
     public bool     IsSuccess { get; }
     public T?       Value     { get; }
     public Problem? Problem   { get; }

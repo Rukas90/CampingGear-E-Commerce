@@ -37,9 +37,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Sku>             Skus             { get; set; }
      
     public DbSet<Review>          Reviews          { get; set; }
-    
-    protected override void ConfigureConventions(ModelConfigurationBuilder config) 
-        => ModelConfigConversions.ConfigureModelIdConversion(config);
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder config)
+        => IdConfigConversions.ConfigureIdConversion(config);
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

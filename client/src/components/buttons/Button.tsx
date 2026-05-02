@@ -23,7 +23,7 @@ const ButtonClasses = cva(
       },
     },
     compoundVariants: [
-      { fill: "filled", style: "pale", class: "bg-white text-stone-900" },
+      { fill: "filled", style: "pale", class: "bg-natural-100 text-stone-900" },
       {
         fill: "outline",
         style: "pale",

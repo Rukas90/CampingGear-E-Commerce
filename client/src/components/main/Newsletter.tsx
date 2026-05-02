@@ -15,7 +15,7 @@ const Newsletter = () => {
         <div className="flex gap-2 justify-center w-[384px]">
           <span className="w-full">
             <InputField
-              className="text-lg! rounded-xl w-full"
+              className="text-base! rounded-xl w-full"
               placeholder="Email Address"
             />
           </span>
@@ -31,8 +31,8 @@ const Newsletter = () => {
         <p className="text-sm w-125 text-center mx-auto text-stone-700">
           By submitting, you agree to the processing of your personal data in
           accordance with our{" "}
-          <span className="font-bold text-[#9b473c]">privacy policy</span>. We
-          do not share your personal data with third parties.
+          <span className="font-bold text-lime-800">privacy policy</span>. We do
+          not share your personal data with third parties.
         </p>
       </div>
     </div>

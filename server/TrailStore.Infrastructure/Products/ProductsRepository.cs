@@ -7,6 +7,7 @@ using TrailStore.Shared.Common;
 
 namespace TrailStore.Infrastructure.Products;
 
+[AppService<IProductsRepository>]
 public sealed class ProductsRepository(AppDbContext context) : IProductsRepository
 {
     public async Task<TResult?> GetByIdAsync<TResult>(

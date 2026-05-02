@@ -1,3 +1,6 @@
 export { default as InputField } from "./InputField"
 export { default as LogoWithText } from "./LogoWithText"
 export { default as ProductCategoryCard } from "./ProductCategoryCard"
+export { default as LabeledInputField } from "./LabeledInputField"
+export { default as Spinner } from "./Spinner"
+export { default as Eye } from "./Eye"

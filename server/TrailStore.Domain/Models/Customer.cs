@@ -11,8 +11,8 @@ public enum Privileges
 public class Customer : IModel<Customer>
 {
     public required Id<Customer>      Id            { get; init; }
-    public required string            FirstName     { get; init; }
-    public required string            LastName      { get; init; }
+    public          string?           FirstName     { get; init; }
+    public          string?           LastName      { get; init; }
     [MaxLength(254)]
     public required string            Email         { get; init; }
     public required string            PasswordHash  { get; init; }
