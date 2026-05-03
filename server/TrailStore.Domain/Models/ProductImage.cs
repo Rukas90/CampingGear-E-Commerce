@@ -10,19 +10,6 @@ public class ProductImage : IModel<ProductImage>
     
     public ICollection<ProductImageUrl> Urls    { get; private set; } = [];
     public Product                      Product { get; private set; } = null!;
-    
-    public static ProductImage Create(
-        Id<ProductImage>    id,
-        Id<Product>         productId, 
-        Id<Option>?         optionId, 
-        ICollection<string> urls)
-        => new()
-        {
-            Id           = id,
-            ProductId    = productId,
-            OptionId     = optionId,
-            Urls         = urls.Select((url, i) => ProductImageUrl.Create(id, url, sortOrder: i)).ToList()
-        };
 
     public static ProductImage Create(
         Id<Product>         productId,

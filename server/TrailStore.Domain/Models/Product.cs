@@ -19,25 +19,6 @@ public class Product : IModel<Product>
     public Brand                     Brand    { get; private set; } = null!;
     
     public static Product Create(
-        Id<Product>  id,
-        string       name, 
-        string       slug, 
-        Id<Category> categoryId,
-        Id<Brand>    brandId,
-        string       description  = "",
-        string       thumbnailUrl = "")
-        => new()
-        {
-            Id           = id,
-            Name         = name,
-            Slug         = slug,
-            Description  = description,
-            CategoryId   = categoryId,
-            BrandId      = brandId,
-            ThumbnailUrl = thumbnailUrl
-        };
-    
-    public static Product Create(
         string       name, 
         string       slug, 
         Id<Category> categoryId,

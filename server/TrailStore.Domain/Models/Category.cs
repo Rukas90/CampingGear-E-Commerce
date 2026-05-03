@@ -14,17 +14,6 @@ public class Category : IModel<Category>
     public CategoryGroup        Group    { get; private set; } = null!;
     public ICollection<Product> Products { get; private set; } = [];
     
-    public static Category Create(Id<Category> id, Id<CategoryGroup> groupId, string name, string slug, string description = "", string? imageUrl = null)
-        => new()
-        {
-            Id          = id,
-            GroupId     = groupId,
-            Name        = name,
-            Slug        = slug,
-            Description = description,
-            ImageUrl    = imageUrl
-        };
-    
     public static Category Create(Id<CategoryGroup> groupId, string name, string slug, string description = "", string? imageUrl = null)
         => new()
         {

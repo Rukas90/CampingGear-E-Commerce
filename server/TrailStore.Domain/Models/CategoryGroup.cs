@@ -11,15 +11,6 @@ public class CategoryGroup : IModel<CategoryGroup>
     
     public ICollection<Category> Categories { get; private set; } = [];
     
-    public static CategoryGroup Create(Id<CategoryGroup> id, string name, string slug, int sortOrder = 0)
-        => new()
-        {
-            Id        = id,
-            Name      = name,
-            Slug      = slug,
-            SortOrder = sortOrder
-        };
-    
     public static CategoryGroup Create(string name, string slug, int sortOrder = 0)
         => new()
         {

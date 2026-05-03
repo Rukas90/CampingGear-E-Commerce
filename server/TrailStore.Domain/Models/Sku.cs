@@ -12,23 +12,6 @@ public class Sku : IModel<Sku>
     
     public ICollection<Option> Options { get; init; } = [];
     public Product             Product { get; private set; } = null!;
-
-    public static Sku Create(
-        Id<Sku>             id, 
-        Id<Product>         productId,
-        string              code,
-        decimal             price, 
-        int                 stock,
-        ICollection<Option> options)
-        => new()
-        {
-            Id        = id,
-            ProductId = productId,
-            Code      = code,
-            UnitPrice = price,
-            Stock     = stock,
-            Options   = options,
-        };
     
     public static Sku Create(
         Id<Product>         productId,

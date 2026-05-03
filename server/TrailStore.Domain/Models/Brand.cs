@@ -13,17 +13,6 @@ public class Brand : IModel<Brand>
     
     public ICollection<Product> Products { get; private set; } = [];
     
-    public static Brand Create(Id<Brand> id, string name, string slug, string logoUrl, string websiteUrl, string description = "")
-        => new()
-        {
-            Id          = id,
-            Name        = name,
-            Slug        = slug,
-            LogoUrl     = logoUrl,
-            WebsiteUrl  = websiteUrl,
-            Description = description
-        };
-    
     public static Brand Create(string name, string slug, string logoUrl, string websiteUrl, string description = "")
         => new()
         {

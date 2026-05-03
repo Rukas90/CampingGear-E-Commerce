@@ -10,19 +10,6 @@ public class ProductImageUrl : IModel<ProductImageUrl>
     public int                 SortOrder      { get; init; }
     
     public static ProductImageUrl Create(
-        Id<ProductImageUrl> id,
-        Id<ProductImage>    productImageId, 
-        string              url, 
-        int                 sortOrder)
-        => new()
-        {
-            Id             = id,
-            ProductImageId = productImageId,
-            Url            = url,
-            SortOrder      = sortOrder
-        };
-    
-    public static ProductImageUrl Create(
         Id<ProductImage>    productImageId, 
         string              url, 
         int                 sortOrder)
