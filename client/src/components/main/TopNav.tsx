@@ -9,7 +9,6 @@ import {
 } from "@components"
 import CartBadge from "./CartBadge"
 import { Link } from "react-router-dom"
-import { TopCategories } from "@components/categories"
 
 const TopNav = () => {
   return (
@@ -45,9 +44,7 @@ const TopNav = () => {
         </PageWrapper>
         <div className="absolute w-full top-full left-0 bg-white translate-y-2 z-128">
           <div className="w-full bg-neutral-300 h-px" />
-          <PageWrapper className="py-8">
-            <TopCategories />
-          </PageWrapper>
+          <PageWrapper className="py-8"></PageWrapper>
         </div>
       </div>
     </nav>

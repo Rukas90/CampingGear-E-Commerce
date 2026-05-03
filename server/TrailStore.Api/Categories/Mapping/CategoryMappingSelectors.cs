@@ -11,6 +11,7 @@ public class CategoryMappingSelectors
     {
         Name        = category.Name,
         Description = category.Description,
+        GroupSlug   = category.Group.Slug,
         Slug        = category.Slug,
         ImageUrl    = category.ImageUrl
     };

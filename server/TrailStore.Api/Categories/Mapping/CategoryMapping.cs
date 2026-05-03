@@ -13,7 +13,19 @@ public static class CategoryMapping
         {
             Name        = category.Name,
             Description = category.Description,
+            GroupSlug   = category.Group.Slug,
             Slug        = category.Slug,
             ImageUrl    = category.ImageUrl
+        };
+    
+    public static IEnumerable<CategoryGroupDto> ToDto(this ICollection<CategoryGroup> groups)
+        => groups.Select(ToDto);
+    
+    public static CategoryGroupDto ToDto(this CategoryGroup category)
+        => new()
+        {
+            Name      = category.Name,
+            Slug      = category.Slug,
+            SortOrder = category.SortOrder
         };
 }
