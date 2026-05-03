@@ -33,6 +33,7 @@ public static class SeedRunner
         
         await context.Customers.AddRangeAsync(Discover<Customer>(Assembly));
         await context.Brands.AddRangeAsync(Discover<Brand>(Assembly));
+        await context.CategoryGroups.AddRangeAsync(Discover<CategoryGroup>(Assembly));
         await context.Categories.AddRangeAsync(Discover<Category>(Assembly));
         await context.OptionGroups.AddRangeAsync(Discover<OptionGroup>(Assembly));
         await context.Options.AddRangeAsync(Discover<Option>(Assembly));
@@ -46,7 +47,7 @@ public static class SeedRunner
         logger?.LogInformation("Seeding done.");
     }
 
-    private static async Task ClearAsync(AppDbContext context)
+    public static async Task ClearAsync(AppDbContext context)
     {
         context.Reviews.RemoveRange(context.Reviews);
         context.Orders.RemoveRange(context.Orders.Where(order => 
@@ -58,6 +59,7 @@ public static class SeedRunner
         context.Options.RemoveRange(context.Options);
         context.OptionGroups.RemoveRange(context.OptionGroups);
         context.Categories.RemoveRange(context.Categories);
+        context.CategoryGroups.RemoveRange(context.CategoryGroups);
         context.Brands.RemoveRange(context.Brands);
         context.Customers.RemoveRange(
             context.Customers.Where(c => c.PasswordHash == SeedDefaults.NO_LOGIN_HASH));

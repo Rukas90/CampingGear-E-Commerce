@@ -17,11 +17,11 @@ public class CsrfValidateMiddleware(ICsrfService csrfService) : IMiddleware
             var cookieToken = context.Request.Cookies[CsrfConstants.CookieName];
             var headerToken = context.Request.Headers[CsrfConstants.HeaderName].FirstOrDefault();
             
-            if (string.IsNullOrEmpty(cookieToken) 
-                || string.IsNullOrEmpty(headerToken) 
-                || cookieToken.Length != headerToken.Length 
-                || !csrfService.VerifyToken(cookieToken) 
-                || !csrfService.VerifyToken(headerToken) 
+            if (string.IsNullOrEmpty(cookieToken)
+                || string.IsNullOrEmpty(headerToken)
+                || cookieToken.Length != headerToken.Length
+                || !csrfService.VerifyToken(cookieToken)
+                || !csrfService.VerifyToken(headerToken)
                 || !CryptographicOperations.FixedTimeEquals(
                     Encoding.UTF8.GetBytes(cookieToken),
                     Encoding.UTF8.GetBytes(headerToken)))
@@ -49,5 +49,5 @@ public class CsrfValidateMiddleware(ICsrfService csrfService) : IMiddleware
                 }
             ]
         }.ExecuteAsync(context);
-    } 
+    }
 }

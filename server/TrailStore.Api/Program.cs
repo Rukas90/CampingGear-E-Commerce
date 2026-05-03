@@ -57,7 +57,14 @@ if (args.Contains("seed"))
     using var scope = app.Services.CreateScope();
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-    await SeedRunner.RunAsync(context, new SeedOptions { Reseed = true });
+    if (args.Contains("clear-only"))
+    {
+        await SeedRunner.ClearAsync(context);
+    }
+    else
+    {
+        await SeedRunner.RunAsync(context, new SeedOptions { Reseed = true });
+    }
     
     return;
 }

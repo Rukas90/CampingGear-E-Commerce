@@ -24,7 +24,7 @@ public sealed class AltaplexClassic
                         "products/zpacks-altaplex-classic-2.webp",
                         "products/zpacks-altaplex-classic-3.webp",
                         "products/zpacks-altaplex-classic-4.webp",
-                        "products/zpacks-altaplex-classic-5.webp"]),
+                        "products/zpacks-altaplex-classic-5.webp"])
     ];
 
     [SeededEntity]

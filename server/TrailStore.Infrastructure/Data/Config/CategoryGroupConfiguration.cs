@@ -4,18 +4,15 @@ using TrailStore.Domain.Models;
 
 namespace TrailStore.Infrastructure.Data.Config;
 
-public class CategoryConfiguration : IEntityTypeConfiguration<Category>
+public class CategoryGroupConfiguration : IEntityTypeConfiguration<CategoryGroup>
 {
-    public void Configure(EntityTypeBuilder<Category> builder)
+    public void Configure(EntityTypeBuilder<CategoryGroup> builder)
     {
         builder.HasKey(c => c.Id);
         
         builder.Property(c => c.Name)
             .HasMaxLength(100)
             .IsRequired();
-        
-        builder.Property(c => c.Description)
-            .HasMaxLength(500);
         
         builder.Property(c => c.Slug)
             .HasMaxLength(100)
@@ -24,12 +21,12 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.HasIndex(c => c.Slug)
             .IsUnique();
         
-        builder.Property(c => c.ImageUrl)
-            .HasMaxLength(400);
+        builder.Property(group => group.SortOrder)
+            .IsRequired();
         
-        builder.HasOne(category => category.Group)
-            .WithMany(group => group.Categories)
+        builder.HasMany(group => group.Categories)
+            .WithOne(category => category.Group)
             .HasForeignKey(category => category.GroupId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

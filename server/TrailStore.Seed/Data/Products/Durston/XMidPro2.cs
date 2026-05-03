@@ -21,9 +21,9 @@ public sealed class XMidPro2
         ProductImage.Create(
             productId: Product.Id,
             urls:      ["products/durston-x-mid-pro-2-1.webp",
-                       "products/durston-x-mid-pro-2-2.webp",
-                       "products/durston-x-mid-pro-2-3.webp",
-                       "products/durston-x-mid-pro-2-4.webp"]),
+                        "products/durston-x-mid-pro-2-2.webp",
+                        "products/durston-x-mid-pro-2-3.webp",
+                        "products/durston-x-mid-pro-2-4.webp"]),
     ];
 
     [SeededEntity]

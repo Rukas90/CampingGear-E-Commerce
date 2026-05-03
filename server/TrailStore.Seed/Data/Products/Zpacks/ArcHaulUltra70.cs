@@ -15,6 +15,25 @@ public sealed class ArcHaulUltra70
         categoryId:   Categories.Backpacks.Id,
         thumbnailUrl: "products/zpacks-arc-haul-ultra-70-thumb.webp");
 
+    [SeededEntity] 
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.DuskBlue.Id, 
+            urls:      ["products/zpacks-arc-haul-ultra-70-dskblu.webp"]),
+        
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.JetBlack.Id, 
+            urls:      ["products/zpacks-arc-haul-ultra-70-jtblk.webp"]),
+        
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.StormGray.Id, 
+            urls:      ["products/zpacks-arc-haul-ultra-70-stmgry.webp"])
+    ];
+    
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [

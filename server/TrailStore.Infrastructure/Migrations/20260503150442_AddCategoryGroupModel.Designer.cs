@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TrailStore.Infrastructure.Data;
@@ -11,9 +12,11 @@ using TrailStore.Infrastructure.Data;
 namespace TrailStore.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260503150442_AddCategoryGroupModel")]
+    partial class AddCategoryGroupModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,7 +238,7 @@ namespace TrailStore.Infrastructure.Migrations
                     b.HasIndex("Slug")
                         .IsUnique();
 
-                    b.ToTable("CategoryGroups");
+                    b.ToTable("CategoryGroup");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Models.Customer", b =>

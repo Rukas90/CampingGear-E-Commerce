@@ -20,6 +20,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
       
     public DbSet<OrderItem>       OrderItems       { get; set; }
       
+    public DbSet<CategoryGroup>   CategoryGroups   { get; set; }
+    
     public DbSet<Category>        Categories       { get; set; }
       
     public DbSet<Brand>           Brands           { get; set; }

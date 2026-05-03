@@ -4,6 +4,9 @@ import { Navigate, Outlet } from "react-router-dom"
 const GuestOnlyGuard = ({ children }: React.PropsWithChildren) => {
   const { account } = useAccount()
 
+  if (account === undefined) {
+    return
+  }
   if (account) {
     return <Navigate to="/" replace />
   }
