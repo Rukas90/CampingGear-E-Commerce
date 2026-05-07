@@ -49,13 +49,6 @@ public static class Categories
         imageUrl:    "products/gregory-baltoro-75-man.webp");
         
     [SeededEntity]
-    public static readonly Category Sunglasses = Category.Create(
-        groupId:     CategoryGroups.ApparelProtection.Id,
-        name:        "Sunglasses", 
-        slug:        "sunglasses", 
-        imageUrl:    "products/ombraz-refugio-armless.webp");
-        
-    [SeededEntity]
     public static readonly Category BivysLiners = Category.Create(
         groupId:     CategoryGroups.SleepSystem.Id,
         name:        "Bivys & Liners", 
