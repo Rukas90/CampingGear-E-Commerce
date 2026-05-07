@@ -10,7 +10,7 @@ public sealed class Gpsmap67
         slug:         "garmin-gpsmap-67",
         brandId:      Brands.Garmin.Id,
         categoryId:   Categories.HandheldGps.Id,
-        thumbnailUrl: "products/garmin-gpsmap-67-thumb.webp");
+        thumbnailUrl: "/products/garmin-gpsmap-67-thumb.webp");
     
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

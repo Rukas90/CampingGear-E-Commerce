@@ -12,7 +12,8 @@ public static class ProductMappingSelectors
         {
             Name          = product.Name,
             Slug          = product.Slug,
-            Brand         = product.Brand.Slug,
+            BrandName     = product.Brand.Name,
+            BrandSlug     = product.Brand.Slug,
             Category      = product.Category.Slug,
             MinPrice      = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
             MaxPrice      = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
@@ -28,7 +29,8 @@ public static class ProductMappingSelectors
         {
             Name          = product.Name,
             Slug          = product.Slug,
-            Brand         = product.Brand.Slug,
+            BrandName     = product.Brand.Name,
+            BrandSlug     = product.Brand.Slug,
             Category      = product.Category.Slug,
             MinPrice      = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
             MaxPrice      = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,

@@ -13,7 +13,7 @@ public sealed class Kumo36Superlight
         slug:         "gossamer-gear-kumo36-superlight",
         brandId:      Brands.GossamerGear.Id,
         categoryId:   Categories.Backpacks.Id,
-        thumbnailUrl: "products/gossamer-gear-kumo36-superlight-thumb.webp");
+        thumbnailUrl: "/products/gossamer-gear-kumo36-superlight-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

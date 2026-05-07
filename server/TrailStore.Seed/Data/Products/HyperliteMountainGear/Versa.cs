@@ -11,7 +11,7 @@ public sealed class Versa
         slug:         "hyperlite-mountain-gear-versa",
         brandId:      Brands.HyperliteMountainGear.Id,
         categoryId:   Categories.StuffSacks.Id,
-        thumbnailUrl: "products/hyperlite-mountain-gear-versa-thumb.webp");
+        thumbnailUrl: "/products/hyperlite-mountain-gear-versa-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

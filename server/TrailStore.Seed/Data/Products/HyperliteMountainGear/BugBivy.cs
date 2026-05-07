@@ -13,15 +13,15 @@ public sealed class BugBivy
         slug:         "hyperlite-mountain-gear-bug-bivy",
         brandId:      Brands.HyperliteMountainGear.Id,
         categoryId:   Categories.BivysLiners.Id,
-        thumbnailUrl: "products/hyperlite-mountain-gear-bug-bivy-thumb.webp");
+        thumbnailUrl: "/products/hyperlite-mountain-gear-bug-bivy-thumb.webp");
 
     [SeededEntity] 
     public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
             productId: Product.Id, 
-            urls:      ["products/hyperlite-mountain-gear-bug-bivy-1.webp", 
-                        "products/hyperlite-mountain-gear-bug-bivy-2.webp"])
+            urls:      ["/products/hyperlite-mountain-gear-bug-bivy-1.webp", 
+                        "/products/hyperlite-mountain-gear-bug-bivy-2.webp"])
     ];
     
     [SeededEntity]

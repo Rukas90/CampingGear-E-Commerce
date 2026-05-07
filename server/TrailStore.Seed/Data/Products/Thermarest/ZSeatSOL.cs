@@ -13,7 +13,7 @@ public sealed class ZSeatSOL
         slug:         "thermarest-zseat-sol",
         brandId:      Brands.Thermarest.Id,
         categoryId:   Categories.SleepingMats.Id,
-        thumbnailUrl: "products/thermarest-zseat-sol-thumb.webp");
+        thumbnailUrl: "/products/thermarest-zseat-sol-thumb.webp");
 
     [SeededEntity] 
     public static readonly IEnumerable<ProductImage> Images =
@@ -21,12 +21,12 @@ public sealed class ZSeatSOL
         ProductImage.Create(
             productId: Product.Id, 
             optionId:  ColorOption.Yellow.Id, 
-            urls:      ["products/thermarest-zseat-sol-ylw.webp"]),
+            urls:      ["/products/thermarest-zseat-sol-ylw.webp"]),
         
         ProductImage.Create(
             productId: Product.Id, 
             optionId:  ColorOption.Blue.Id, 
-            urls:      ["products/thermarest-zseat-sol-blu.webp"])
+            urls:      ["/products/thermarest-zseat-sol-blu.webp"])
     ];
     
     [SeededEntity]

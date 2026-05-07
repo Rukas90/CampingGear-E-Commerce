@@ -12,7 +12,7 @@ public sealed class AircontactPro7510
         slug:         "deuter-aircontact-pro-75-10",
         brandId:      Brands.Deuter.Id,
         categoryId:   Categories.Backpacks.Id,
-        thumbnailUrl: "products/deuter-aircontact-pro-75-10-thumb.webp");
+        thumbnailUrl: "/products/deuter-aircontact-pro-75-10-thumb.webp");
     
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

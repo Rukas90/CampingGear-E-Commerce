@@ -7,7 +7,7 @@ const PageWrapper = ({
 }: React.ComponentProps<"div">) => {
   return (
     <div
-      className={twMerge(className, "relative max-w-6xl mx-auto px-6")}
+      className={twMerge(className, "relative max-w-7xl mx-auto px-6")}
       {...props}
     >
       {children}

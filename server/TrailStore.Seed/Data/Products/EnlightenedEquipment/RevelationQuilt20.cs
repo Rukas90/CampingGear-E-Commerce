@@ -13,7 +13,7 @@ public class RevelationQuilt20
         slug:         "enlightened-equipment-revelation-quilt-20",
         brandId:      Brands.EnlightenedEquipment.Id,
         categoryId:   Categories.Quilts.Id,
-        thumbnailUrl: "products/enlightened-equipment-revelation-quilt-20-thumb.webp");
+        thumbnailUrl: "/products/enlightened-equipment-revelation-quilt-20-thumb.webp");
     
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

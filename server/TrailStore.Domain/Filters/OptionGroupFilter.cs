@@ -1,7 +1,9 @@
 namespace TrailStore.Domain.Filters;
 
-public class OptionGroupFilter : FilterValue
+public class OptionGroupFilter
 {
-    public int            SortOrder { get; init; }
-    public OptionFilter[] Options   { get; init; } = [];
+    public required string Name      { get; init; }
+    public required string Slug      { get; init; }
+    public int             SortOrder { get; init; }
+    public OptionFilter[]  Options   { get; init; } = [];
 }

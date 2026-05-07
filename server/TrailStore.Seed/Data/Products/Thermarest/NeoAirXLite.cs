@@ -13,7 +13,7 @@ public sealed class NeoAirXLite
         slug:         "thermarest-neoair-xlite",
         brandId:      Brands.Thermarest.Id,
         categoryId:   Categories.SleepingMats.Id,
-        thumbnailUrl: "products/thermarest-neoair-xlite-thumb.webp");
+        thumbnailUrl: "/products/thermarest-neoair-xlite-thumb.webp");
     
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

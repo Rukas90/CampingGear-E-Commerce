@@ -13,7 +13,7 @@ public sealed class TorridBooties
         slug:         "enlightened-equipment-torrid-booties",
         brandId:      Brands.EnlightenedEquipment.Id,
         categoryId:   Categories.Quilts.Id,
-        thumbnailUrl: "products/enlightened-equipment-torrid-booties-thumb.webp");
+        thumbnailUrl: "/products/enlightened-equipment-torrid-booties-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

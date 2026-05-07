@@ -13,7 +13,7 @@ public sealed class TorridHood
         slug:         "enlightened-equipment-torrid-hood",
         brandId:      Brands.EnlightenedEquipment.Id,
         categoryId:   Categories.Quilts.Id,
-        thumbnailUrl: "products/enlightened-equipment-torrid-hood-thumb.webp");
+        thumbnailUrl: "/products/enlightened-equipment-torrid-hood-thumb.webp");
  
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

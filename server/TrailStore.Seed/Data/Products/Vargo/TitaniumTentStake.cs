@@ -14,7 +14,7 @@ public sealed class TitaniumTentStake
         brandId:      Brands.Vargo.Id,
         categoryId:   Categories.Accessories.Id,
         description:  "VARGO Titanium Tent Stake - is great lightweight original Vargo Titanium Tent Stake in the classic shepherd's hook design with orange fluorescent coated heads for increased visibility. The orange heads make them easy to find on any terrain and even in low light and prevent to get them lost. They are easy to put into relatively hard ground as long as it's not too rocky. Will be a great addition to your tent stakes kit.",
-        thumbnailUrl: "products/vargo-titanium-tent-stake-thumb.webp");
+        thumbnailUrl: "/products/vargo-titanium-tent-stake-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<ProductImage> Images =
@@ -22,12 +22,12 @@ public sealed class TitaniumTentStake
         ProductImage.Create(
             productId: Product.Id,
             optionId:  PackOption.Single.Id,
-            urls:      ["products/vargo-titanium-tent-stake-single.webp"]),
+            urls:      ["/products/vargo-titanium-tent-stake-single.webp"]),
 
         ProductImage.Create(
             productId: Product.Id,
             optionId:  PackOption.Pack6.Id,
-            urls:      ["products/vargo-titanium-tent-stake-pack6.webp"]),
+            urls:      ["/products/vargo-titanium-tent-stake-pack6.webp"]),
     ];
 
     [SeededEntity]

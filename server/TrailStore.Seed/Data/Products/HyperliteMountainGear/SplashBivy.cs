@@ -13,17 +13,17 @@ public sealed class SplashBivy
         slug:         "hyperlite-mountain-gear-splash-bivy",
         brandId:      Brands.HyperliteMountainGear.Id,
         categoryId:   Categories.BivysLiners.Id,
-        thumbnailUrl: "products/hyperlite-mountain-gear-splash-bivy-thumb.webp");
+        thumbnailUrl: "/products/hyperlite-mountain-gear-splash-bivy-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
             productId: Product.Id,
-            urls:      ["products/hyperlite-mountain-gear-splash-bivy-1.webp",
-                        "products/hyperlite-mountain-gear-splash-bivy-2.webp",
-                        "products/hyperlite-mountain-gear-splash-bivy-3.webp",
-                        "products/hyperlite-mountain-gear-splash-bivy-4.webp"]),
+            urls:      ["/products/hyperlite-mountain-gear-splash-bivy-1.webp",
+                        "/products/hyperlite-mountain-gear-splash-bivy-2.webp",
+                        "/products/hyperlite-mountain-gear-splash-bivy-3.webp",
+                        "/products/hyperlite-mountain-gear-splash-bivy-4.webp"]),
     ];
 
     [SeededEntity]

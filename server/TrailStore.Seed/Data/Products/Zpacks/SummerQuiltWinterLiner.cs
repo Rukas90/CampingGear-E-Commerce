@@ -13,7 +13,7 @@ public sealed class SummerQuiltWinterLiner
         slug:         "zpacks-summer-quilt-winter-liner",
         brandId:      Brands.Zpacks.Id,
         categoryId:   Categories.Quilts.Id,
-        thumbnailUrl: "products/zpacks-summer-quilt-winter-liner-thumb.webp");
+        thumbnailUrl: "/products/zpacks-summer-quilt-winter-liner-thumb.webp");
 
     [SeededEntity] 
     public static readonly IEnumerable<ProductImage> Images =
@@ -21,12 +21,12 @@ public sealed class SummerQuiltWinterLiner
         ProductImage.Create(
             productId: Product.Id, 
             optionId:  ColorOption.DuskBlue.Id, 
-            urls:      ["products/zpacks-summer-quilt-winter-liner-blu.webp"]),
+            urls:      ["/products/zpacks-summer-quilt-winter-liner-blu.webp"]),
         
         ProductImage.Create(
             productId: Product.Id, 
             optionId:  ColorOption.JetBlack.Id, 
-            urls:      ["products/zpacks-summer-quilt-winter-liner-org.webp"])
+            urls:      ["/products/zpacks-summer-quilt-winter-liner-org.webp"])
     ];
     
     [SeededEntity]

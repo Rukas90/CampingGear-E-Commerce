@@ -10,14 +10,27 @@ public static class ProductsSpecificationBuilder
     {
         var spec = Specification<Product>.Blank;
 
-        if (filter.BrandSlug is not null)
+        if (filter.BrandSlugs.Length > 0)
         {
-            spec = spec.And(ProductSpecifications.Brand(filter.BrandSlug));
+            var brandSpec = filter.BrandSlugs
+                .Skip(1)
+                .Aggregate(
+                    ProductSpecifications.Brand(filter.BrandSlugs[0]),
+                    (specification, slug) => specification.Or(ProductSpecifications.Brand(slug))
+                );
+
+            spec = spec.And(brandSpec);
         }
         
-        if (filter.CategorySlug is not null)
+        if (filter.CategorySlugs.Length > 0)
         {
-            spec = spec.And(ProductSpecifications.Category(filter.CategorySlug));
+            var categorySpec = filter.CategorySlugs
+                .Skip(1)
+                .Aggregate(
+                    ProductSpecifications.Category(filter.CategorySlugs[0]),
+                    (specification, slug) => specification.Or(ProductSpecifications.Category(slug))
+                );
+            spec = spec.And(categorySpec);
         }
         
         if (filter.PriceGte > 0 || filter.PriceLte < decimal.MaxValue)

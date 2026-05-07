@@ -13,7 +13,7 @@ public sealed class SummerLite
         slug:         "western-mountaineering-summer-lite",
         brandId:      Brands.WesternMountaineering.Id,
         categoryId:   Categories.SleepingBags.Id,
-        thumbnailUrl: "products/western-mountaineering-summer-lite-thumb.webp");
+        thumbnailUrl: "/products/western-mountaineering-summer-lite-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

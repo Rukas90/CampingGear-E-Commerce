@@ -13,7 +13,7 @@ public sealed class CypressGWSExpedition
         slug:         "western-mountaineering-cypress-gws",
         brandId:      Brands.WesternMountaineering.Id,
         categoryId:   Categories.SleepingBags.Id,
-        thumbnailUrl: "products/western-mountaineering-cypress-gws-thumb.webp");
+        thumbnailUrl: "/products/western-mountaineering-cypress-gws-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

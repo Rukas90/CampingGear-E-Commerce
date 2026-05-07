@@ -11,7 +11,7 @@ public sealed class Teneqa700
         slug:         "cumulus-teneqa-700",
         brandId:      Brands.Cumulus.Id,
         categoryId:   Categories.SleepingBags.Id,
-        thumbnailUrl: "products/cumulus-teneqa-700-thumb.webp");
+        thumbnailUrl: "/products/cumulus-teneqa-700-thumb.webp");
     
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

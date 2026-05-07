@@ -13,7 +13,7 @@ public sealed class SummerTwinQuilt
         slug:         "zpacks-summer-twin-quilt",
         brandId:      Brands.Zpacks.Id,
         categoryId:   Categories.Quilts.Id,
-        thumbnailUrl: "products/zpacks-summer-twin-quilt-thumb.webp");
+        thumbnailUrl: "/products/zpacks-summer-twin-quilt-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<ProductImage> Images =
@@ -21,7 +21,7 @@ public sealed class SummerTwinQuilt
         ProductImage.Create(
             productId: Product.Id,
             optionId:  ColorOption.Blue.Id,
-            urls:      ["products/zpacks-summer-twin-quilt-blu.webp"]),
+            urls:      ["/products/zpacks-summer-twin-quilt-blu.webp"]),
     ];
 
     [SeededEntity]

@@ -13,21 +13,21 @@ public sealed class XDome2
         slug:         "durston-x-dome-2",
         brandId:      Brands.Durston.Id,
         categoryId:   Categories.Tents.Id,
-        thumbnailUrl: "products/durston-x-dome-2-thumb.webp");
+        thumbnailUrl: "/products/durston-x-dome-2-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
             productId: Product.Id,
-            urls:      ["products/durston-x-dome-2-1.webp",
-                        "products/durston-x-dome-2-2.webp",
-                        "products/durston-x-dome-2-3.webp",
-                        "products/durston-x-dome-2-4.webp",
-                        "products/durston-x-dome-2-5.webp",
-                        "products/durston-x-dome-2-6.webp",
-                        "products/durston-x-dome-2-7.webp",
-                        "products/durston-x-dome-2-8.webp"]),
+            urls:      ["/products/durston-x-dome-2-1.webp",
+                        "/products/durston-x-dome-2-2.webp",
+                        "/products/durston-x-dome-2-3.webp",
+                        "/products/durston-x-dome-2-4.webp",
+                        "/products/durston-x-dome-2-5.webp",
+                        "/products/durston-x-dome-2-6.webp",
+                        "/products/durston-x-dome-2-7.webp",
+                        "/products/durston-x-dome-2-8.webp"]),
     ];
 
     [SeededEntity]

@@ -1,8 +1,8 @@
 ﻿using FastEndpoints;
+using TrailStore.Api.Filters.Bindings;
 using TrailStore.Api.Filters.Dto;
-using TrailStore.Api.Filters.Extensions;
+using TrailStore.Api.Filters.Mapping;
 using TrailStore.Domain.Filters;
-using TrailStore.Infrastructure.Filters;
 
 namespace TrailStore.Api.Filters.Endpoints;
 
@@ -12,10 +12,11 @@ public class GetFiltersEndpoint(IFiltersService filtersService) : Endpoint<Filte
     {
         Get("/api/v1/filters");
         AllowAnonymous();
+        RequestBinder(new FiltersRequestBinder());
     }
 
     public override async Task<CatalogFilters> ExecuteAsync(FiltersRequest req, CancellationToken ct)
     {
-        return await filtersService.GetFilters(req.ToSpecification());
+        return await filtersService.GetFilters(req.ToQuery());
     }
 }

@@ -13,17 +13,17 @@ public sealed class XMidPro2
         slug:         "durston-x-mid-pro-2",
         brandId:      Brands.Durston.Id,
         categoryId:   Categories.Tents.Id,
-        thumbnailUrl: "products/durston-x-mid-pro-2-thumb.webp");
+        thumbnailUrl: "/products/durston-x-mid-pro-2-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
             productId: Product.Id,
-            urls:      ["products/durston-x-mid-pro-2-1.webp",
-                        "products/durston-x-mid-pro-2-2.webp",
-                        "products/durston-x-mid-pro-2-3.webp",
-                        "products/durston-x-mid-pro-2-4.webp"]),
+            urls:      ["/products/durston-x-mid-pro-2-1.webp",
+                        "/products/durston-x-mid-pro-2-2.webp",
+                        "/products/durston-x-mid-pro-2-3.webp",
+                        "/products/durston-x-mid-pro-2-4.webp"]),
     ];
 
     [SeededEntity]

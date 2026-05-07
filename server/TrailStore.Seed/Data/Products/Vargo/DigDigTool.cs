@@ -13,18 +13,18 @@ public sealed class DigDigTool
         brandId:      Brands.Vargo.Id,
         categoryId:   Categories.Accessories.Id,
         description:  "VARGO Dig Dig Tool - is a great multi purpose titanium trowel for digging catholes or securing your shelter. The Dig Dig Tool's™ ergonomic design is easier and more efficient to use while its rounded handle won't \"dig\" into your hand like other trowels and allows you to use a two-handed technique for even more dirt digging power and leverage. Its serrated edges slice through tough ground and roots so it can dig where other trowels can't. As a tent stake, its wide U-shape design holds firmly in hard and soft soils alike (even snow or sand!). Made from strong, lightweight titanium, it buries other trowels in the dirt.",
-        thumbnailUrl: "products/vargo-dig-dig-tool-thumb.webp");
+        thumbnailUrl: "/products/vargo-dig-dig-tool-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
             productId: Product.Id,
-            urls:      ["products/vargo-dig-dig-tool-1.webp",
-                "products/vargo-dig-dig-tool-2.webp",
-                "products/vargo-dig-dig-tool-3.webp",
-                "products/vargo-dig-dig-tool-4.webp",
-                "products/vargo-dig-dig-tool-5.webp"]),
+            urls:      ["/products/vargo-dig-dig-tool-1.webp",
+                        "/products/vargo-dig-dig-tool-2.webp",
+                        "/products/vargo-dig-dig-tool-3.webp",
+                        "/products/vargo-dig-dig-tool-4.webp",
+                        "/products/vargo-dig-dig-tool-5.webp"]),
     ];
 
     [SeededEntity]

@@ -5,19 +5,30 @@ import {
   InputField,
   LogoWithText,
   PageWrapper,
+  ProductCategoryListing,
   WishlistBadge,
 } from "@components"
 import CartBadge from "./CartBadge"
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import clsx from "clsx"
 
 const TopNav = () => {
+  const [showListing, setShowListing] = useState(false)
+
   return (
-    <nav className="fixed dark:bg-stone-950 bg-white w-full py-4 h-18 z-64">
+    <nav
+      className="fixed dark:bg-stone-950 bg-white w-full py-4 h-18 z-64"
+      onMouseLeave={() => setShowListing(false)}
+    >
       <div className="relative">
-        <PageWrapper>
+        <PageWrapper className="z-65 bg-white">
           <div className="flex items-center justify-between w-full">
             <ul className="flex gap-5 w-1/3 dark:text-stone-200">
-              <li className="font-normal flex gap-1.5 items-center">
+              <li
+                className="font-normal flex gap-1.5 items-center"
+                onMouseOver={() => setShowListing(true)}
+              >
                 Products <IconArrow className="rotate-90 size-4" />
               </li>
               <li className="font-normal">Help</li>
@@ -42,9 +53,18 @@ const TopNav = () => {
             </div>
           </div>
         </PageWrapper>
-        <div className="absolute w-full top-full left-0 bg-white translate-y-2 z-128">
-          <div className="w-full bg-neutral-300 h-px" />
-          <PageWrapper className="py-8"></PageWrapper>
+        <div
+          className={clsx(
+            "absolute w-full left-0 bg-white translate-y-2 z-63 transition-all duration-200",
+            showListing && "top-full opacity-100 pointer-events-auto",
+            !showListing && "-top-full opacity-0 pointer-events-none",
+          )}
+        >
+          <div className="w-full bg-neutral-200 h-0.5" />
+          <PageWrapper className="py-4">
+            <ProductCategoryListing />
+          </PageWrapper>
+          <div className="w-full bg-lime-800 h-2" />
         </div>
       </div>
     </nav>

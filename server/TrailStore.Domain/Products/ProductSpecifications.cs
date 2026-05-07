@@ -26,7 +26,7 @@ public static class ProductSpecifications
     public static Specification<Product> OutOfStock()
         => Specification<Product>.Where(p => p.Skus.All(s => s.Stock <= 0));
 
-    public static Specification<Product> Options(OptionFilter[] options)
+    public static Specification<Product> Options(OptionSelection[] options)
     {
         return options.GroupBy(filter => filter.GroupSlug).Aggregate(Specification<Product>.Blank, 
             (specification, group) 

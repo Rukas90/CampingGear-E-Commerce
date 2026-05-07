@@ -12,17 +12,17 @@ public sealed class XMid1
         slug:         "durston-x-mid-1",
         brandId:      Brands.Durston.Id,
         categoryId:   Categories.Tents.Id,
-        thumbnailUrl: "products/durston-x-mid-1-thumb.webp");
+        thumbnailUrl: "/products/durston-x-mid-1-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
             productId: Product.Id,
-            urls:      ["products/durston-x-mid-1-1.webp",
-                        "products/durston-x-mid-1-2.webp",
-                        "products/durston-x-mid-1-3.webp",
-                        "products/durston-x-mid-1-4.webp"]),
+            urls:      ["/products/durston-x-mid-1-1.webp",
+                        "/products/durston-x-mid-1-2.webp",
+                        "/products/durston-x-mid-1-3.webp",
+                        "/products/durston-x-mid-1-4.webp"]),
     ];
 
     [SeededEntity]
@@ -32,7 +32,7 @@ public sealed class XMid1
             productId: Product.Id,
             code: "DRST-XMID1-STD",
             price: 341.00m,
-            stock: 8,
+            stock: 0,
             options: []),
     ];
 }

@@ -5,8 +5,8 @@ namespace TrailStore.Api.Products.Dto;
 public record ProductsRequest
 {
     public SortBy?                           SortBy       { get; init; }
-    public string?                           Brand        { get; init; }
-    public string?                           Category     { get; init; }
+    public string[]?                         Brand        { get; init; }
+    public string[]?                         Category     { get; init; }
     public bool?                             Pagination   { get; init; }
     public int?                              Page         { get; init; }
     public int?                              PageSize     { get; init; }

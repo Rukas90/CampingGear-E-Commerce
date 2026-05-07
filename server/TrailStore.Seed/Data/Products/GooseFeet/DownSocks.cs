@@ -13,7 +13,7 @@ public sealed class DownSocks
         slug:         "goosefeet-gear-down-socks",
         brandId:      Brands.GooseFeet.Id,
         categoryId:   Categories.SleepingBags.Id,
-        thumbnailUrl: "products/goosefeet-gear-down-socks-thumb.webp");
+        thumbnailUrl: "/products/goosefeet-gear-down-socks-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

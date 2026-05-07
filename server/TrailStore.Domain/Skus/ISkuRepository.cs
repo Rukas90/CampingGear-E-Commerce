@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using TrailStore.Domain.Models;
 using TrailStore.Shared.Common;
 
-namespace TrailStore.Infrastructure.Skus;
+namespace TrailStore.Domain.Skus;
 
 public interface ISkuRepository
 { 

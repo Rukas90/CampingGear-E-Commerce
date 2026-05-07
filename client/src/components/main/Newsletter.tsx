@@ -4,7 +4,7 @@ const Newsletter = () => {
   return (
     <div className="relative w-full py-8 bg-[#eeeae6]">
       <img
-        src="img/forest-nature-backdrop.webp"
+        src="/img/forest-nature-backdrop.webp"
         className="absolute mx-auto h-full left-1/2 top-1/2 -translate-1/2"
       />
       <div className="relative flex flex-col gap-3 items-center justify-center z-1">
@@ -15,7 +15,7 @@ const Newsletter = () => {
         <div className="flex gap-2 justify-center w-[384px]">
           <span className="w-full">
             <InputField
-              className="text-base! rounded-xl w-full"
+              className="text-base! w-full"
               placeholder="Email Address"
             />
           </span>
@@ -23,7 +23,7 @@ const Newsletter = () => {
             style="contrast"
             fill="filled"
             radius="halfRound"
-            className=" w-32 mt-0"
+            className="w-32 mt-0"
           >
             Subscribe
           </Button>

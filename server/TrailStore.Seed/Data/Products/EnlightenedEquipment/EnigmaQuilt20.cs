@@ -13,7 +13,7 @@ public sealed class EnigmaQuilt20
         slug:         "enlightened-equipment-enigma-quilt-20",
         brandId:      Brands.EnlightenedEquipment.Id,
         categoryId:   Categories.Quilts.Id,
-        thumbnailUrl: "products/enlightened-equipment-enigma-quilt-20-thumb.webp");
+        thumbnailUrl: "/products/enlightened-equipment-enigma-quilt-20-thumb.webp");
 
     [SeededEntity] 
     public static readonly IEnumerable<ProductImage> Images =
@@ -21,12 +21,12 @@ public sealed class EnigmaQuilt20
         ProductImage.Create(
             productId: Product.Id, 
             optionId:  ColorOption.Charcoal.Id, 
-            urls:      ["products/enlightened-equipment-enigma-quilt-20-char.webp"]),
+            urls:      ["/products/enlightened-equipment-enigma-quilt-20-char.webp"]),
         
         ProductImage.Create(
             productId: Product.Id, 
             optionId:  ColorOption.Navy.Id, 
-            urls:      ["products/enlightened-equipment-enigma-quilt-20-nvy.webp"])
+            urls:      ["/products/enlightened-equipment-enigma-quilt-20-nvy.webp"])
     ];
     
     [SeededEntity]

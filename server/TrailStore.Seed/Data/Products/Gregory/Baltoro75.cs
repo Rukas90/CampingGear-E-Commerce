@@ -3,6 +3,8 @@ using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.Gregory;
 
+// ReSharper disable UnusedType.Global
+
 public sealed class Baltoro75
 {
     [SeededEntity]
@@ -11,7 +13,7 @@ public sealed class Baltoro75
         slug:         "gregory-baltoro-75",
         brandId:      Brands.Gregory.Id,
         categoryId:   Categories.Backpacks.Id,
-        thumbnailUrl: "products/gregory-baltoro-75-thumb.webp");
+        thumbnailUrl: "/products/gregory-baltoro-75-thumb.webp");
 
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =

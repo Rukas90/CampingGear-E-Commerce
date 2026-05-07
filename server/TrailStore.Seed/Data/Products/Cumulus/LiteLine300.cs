@@ -13,17 +13,17 @@ public sealed class LiteLine300
         slug:         "cumulus-lite-line-300",
         brandId:      Brands.Cumulus.Id,
         categoryId:   Categories.SleepingBags.Id,
-        thumbnailUrl: "products/cumulus-lite-line-300-thumb.webp");
+        thumbnailUrl: "/products/cumulus-lite-line-300-thumb.webp");
     
     [SeededEntity]
     public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
             productId: Product.Id,
-            urls:      ["products/cumulus-lite-line-300-1.webp",
-                        "products/cumulus-lite-line-300-2.webp",
-                        "products/cumulus-lite-line-300-3.webp",
-                        "products/cumulus-lite-line-300-4.webp"])
+            urls:      ["/products/cumulus-lite-line-300-1.webp",
+                        "/products/cumulus-lite-line-300-2.webp",
+                        "/products/cumulus-lite-line-300-3.webp",
+                        "/products/cumulus-lite-line-300-4.webp"])
     ];
     
     [SeededEntity]
