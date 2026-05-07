@@ -12,10 +12,10 @@ public static class InteriorOption
     [SeededEntity]
     public static readonly Option Regular = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Regular", slug: "regular");
+        name: "Regular", slug: "regular", sortOrder: 0);
     
     [SeededEntity]
     public static readonly Option Solid = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Solid", slug: "solid");
+        name: "Solid", slug: "solid", sortOrder: 1);
 }

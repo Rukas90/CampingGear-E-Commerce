@@ -12,15 +12,15 @@ public static class PoleSetOption
     [SeededEntity]
     public static readonly Option Aluminum = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Aluminum", slug: "aluminum");
+        name: "Aluminum", slug: "aluminum", sortOrder: 0);
     
     [SeededEntity]
     public static readonly Option Carbon = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Carbon", slug: "carbon");
+        name: "Carbon", slug: "carbon", sortOrder: 1);
     
     [SeededEntity]
     public static readonly Option CarbonShort = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Carbon Short", slug: "carbon-short");
+        name: "Carbon Short", slug: "carbon-short", sortOrder: 2);
 }

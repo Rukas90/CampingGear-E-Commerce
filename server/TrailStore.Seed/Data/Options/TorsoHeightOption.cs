@@ -10,15 +10,15 @@ public static class TorsoHeightOption
     [SeededEntity]
     public static readonly Option Short = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Short", slug: "short");
+        name: "Short", slug: "short", sortOrder: 0);
         
     [SeededEntity]
     public static readonly Option Medium = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Medium", slug: "medium");
+        name: "Medium", slug: "medium", sortOrder: 1);
         
     [SeededEntity]
     public static readonly Option Tall = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Tall", slug: "tall");
+        name: "Tall", slug: "tall", sortOrder: 2);
 }

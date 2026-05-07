@@ -10,20 +10,20 @@ public static class WidthOption
     [SeededEntity]
     public static readonly Option Narrow = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Narrow", slug: "narrow");
+        name: "Narrow", slug: "narrow", sortOrder: 0);
     
     [SeededEntity]
     public static readonly Option Regular = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Regular", slug: "regular");
+        name: "Regular", slug: "regular", sortOrder: 1);
         
     [SeededEntity]
     public static readonly Option Medium = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Medium", slug: "medium");
+        name: "Medium", slug: "medium", sortOrder: 2);
         
     [SeededEntity]
     public static readonly Option Wide = Option.Create(
         optionGroupId: OptionGroup.Id,
-        name: "Wide", slug: "wide");
+        name: "Wide", slug: "wide", sortOrder: 3);
 }

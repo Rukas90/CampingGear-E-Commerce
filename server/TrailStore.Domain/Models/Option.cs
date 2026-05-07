@@ -13,6 +13,7 @@ public class Option : IModel<Option>
     public required Id<OptionGroup> OptionGroupId { get; init; }
     public required string          Name          { get; init; }
     public required string          Slug          { get; init; }
+    public required int             SortOrder     { get; init; }
     public PreviewType?             PreviewType   { get; init; }
     public string?                  PreviewValue  { get; init; }
     
@@ -23,6 +24,7 @@ public class Option : IModel<Option>
         Id<OptionGroup> optionGroupId, 
         string          name,
         string          slug, 
+        int             sortOrder = 0,
         PreviewType?    previewType = null, 
         string?         previewValue = null)
         => new()
@@ -31,6 +33,7 @@ public class Option : IModel<Option>
             OptionGroupId = optionGroupId,
             Name          = name,
             Slug          = slug,
+            SortOrder     = sortOrder,
             PreviewValue  = previewValue,
             PreviewType   = previewType
         };
