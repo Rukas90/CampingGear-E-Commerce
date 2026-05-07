@@ -56,33 +56,12 @@ public static class Categories
         imageUrl:    "products/ombraz-refugio-armless.webp");
         
     [SeededEntity]
-    public static readonly Category HydrationFiltration = Category.Create(
-        groupId:     CategoryGroups.HikingCamping.Id,
-        name:        "Hydration/Filtration", 
-        slug:        "hydration-filtration",
-        imageUrl:    "products/gossamer-gear-bottle-rocket.webp");
-        
-    [SeededEntity]
     public static readonly Category BivysLiners = Category.Create(
         groupId:     CategoryGroups.SleepSystem.Id,
         name:        "Bivys & Liners", 
         slug:        "bivys-liners",
         imageUrl:    "products/hyperlite-mountain-gear-bug-bivy.webp");
-        
-    [SeededEntity]
-    public static readonly Category FireStarters = Category.Create(
-        groupId:     CategoryGroups.HikingCamping.Id,
-        name:        "Fire Starters", 
-        slug:        "fire-starters",
-        imageUrl:    "products/vargo-ultimate-fire-starter-blaze.webp");
-        
-    [SeededEntity]
-    public static readonly Category Cutlery = Category.Create(
-        groupId:     CategoryGroups.KitchenCooking.Id,
-        name:        "Cutlery", 
-        slug:        "cutlery",
-        imageUrl:    "products/vargo-spork-ulv.webp");
-        
+    
     [SeededEntity]
     public static readonly Category StuffSacks = Category.Create(
         groupId:     CategoryGroups.HikingCamping.Id,
@@ -98,25 +77,11 @@ public static class Categories
         imageUrl:    "products/durston-incline-trekking-poles.webp");
         
     [SeededEntity]
-    public static readonly Category Stoves = Category.Create(
-        groupId:     CategoryGroups.KitchenCooking.Id,
-        name:        "Stoves", 
-        slug:        "stoves",
-        imageUrl:    "products/msr-pocket-rocket-2-stove.webp");
-        
-    [SeededEntity]
     public static readonly Category CareProtection = Category.Create(
         groupId:     CategoryGroups.ApparelProtection.Id,
         name:        "Care & Protection", 
         slug:        "care-protection",
         imageUrl:    "products/zpacks-arc-backpack-belt.webp");
-        
-    [SeededEntity]
-    public static readonly Category PotsPans = Category.Create(
-        groupId:     CategoryGroups.KitchenCooking.Id,
-        name:        "Pots & Pans", 
-        slug:        "pots-pans",
-        imageUrl:    "products/vargo-titanium-bot--700.webp");
         
     [SeededEntity]
     public static readonly Category Accessories = Category.Create(

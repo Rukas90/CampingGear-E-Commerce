@@ -23,12 +23,6 @@ public static class CategoryGroups
         sortOrder: 2);
     
     [SeededEntity]
-    public static readonly CategoryGroup KitchenCooking = CategoryGroup.Create(
-        name:      "Kitchen & Cooking",
-        slug:      "kitchen-cooking",
-        sortOrder: 3);
-    
-    [SeededEntity]
     public static readonly CategoryGroup ApparelProtection = CategoryGroup.Create(
         name:      "Apparel & Protection",
         slug:      "apparel-protection",
