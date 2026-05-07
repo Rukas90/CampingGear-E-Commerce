@@ -15,6 +15,20 @@ public static class Versa
         categoryId:   Categories.StuffSacks.Id,
         thumbnailUrl: "/products/hyperlite-mountain-gear-versa-thumb.webp");
 
+    [SeededEntity] 
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.Black.Id, 
+            urls:      ["/products/hyperlite-mountain-gear-versa-blk.webp"]),
+        
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.White.Id, 
+            urls:      ["/products/hyperlite-mountain-gear-versa-wht.webp"])
+    ];
+    
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [

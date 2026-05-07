@@ -72,22 +72,6 @@ public static class ColorOption
         previewValue:  "#58135E");
     
     [SeededEntity]
-    public static readonly Option StellarBlue = Option.Create(
-        optionGroupId: OptionGroup.Id,
-        name:          "Stellar Blue",
-        slug:          "stellar-blue",
-        previewType:   PreviewType.Color,
-        previewValue:  "#2E5194");
-    
-    [SeededEntity]
-    public static readonly Option TerrainGreen = Option.Create(
-        optionGroupId: OptionGroup.Id,
-        name:          "Terrain Green",
-        slug:          "terrain-green",
-        previewType:   PreviewType.Color,
-        previewValue:  "#709166");
-    
-    [SeededEntity]
     public static readonly Option DuskBlue = Option.Create(
         optionGroupId: OptionGroup.Id,
         name:          "Dusk Blue",

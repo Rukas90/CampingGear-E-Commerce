@@ -16,6 +16,14 @@ public static class Teneqa700
         thumbnailUrl: "/products/cumulus-teneqa-700-thumb.webp");
     
     [SeededEntity]
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id,
+            urls:      ["/products/cumulus-teneqa-700-1.webp"])
+    ];
+    
+    [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(

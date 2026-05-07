@@ -21,9 +21,7 @@ public static class SplashBivy
         ProductImage.Create(
             productId: Product.Id,
             urls:      ["/products/hyperlite-mountain-gear-splash-bivy-1.webp",
-                        "/products/hyperlite-mountain-gear-splash-bivy-2.webp",
-                        "/products/hyperlite-mountain-gear-splash-bivy-3.webp",
-                        "/products/hyperlite-mountain-gear-splash-bivy-4.webp"]),
+                        "/products/hyperlite-mountain-gear-splash-bivy-2.webp"]),
     ];
 
     [SeededEntity]

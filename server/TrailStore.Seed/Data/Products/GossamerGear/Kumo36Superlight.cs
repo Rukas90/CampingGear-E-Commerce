@@ -15,6 +15,25 @@ public static class Kumo36Superlight
         categoryId:   Categories.Backpacks.Id,
         thumbnailUrl: "/products/gossamer-gear-kumo36-superlight-thumb.webp");
 
+    [SeededEntity] 
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.Gray.Id, 
+            urls:      ["/products/gossamer-gear-kumo36-superlight-gray.webp"]),
+        
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.Yellow.Id, 
+            urls:      ["/products/gossamer-gear-kumo36-superlight-ylw.webp"]),
+        
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.Purple.Id, 
+            urls:      ["/products/gossamer-gear-kumo36-superlight-prpl.webp"])
+    ];
+    
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [

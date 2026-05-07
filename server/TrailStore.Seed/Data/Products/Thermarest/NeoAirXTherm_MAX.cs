@@ -16,6 +16,15 @@ public static class NeoAirXTherm_MAX
         thumbnailUrl: "/products/thermarest-neoair-xtherm-max-thumb.webp");
     
     [SeededEntity]
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id,
+            urls:      ["/products/thermarest-neoair-xtherm-max-1.webp",
+                        "/products/thermarest-neoair-xtherm-max-2.webp"]),
+    ];
+    
+    [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(

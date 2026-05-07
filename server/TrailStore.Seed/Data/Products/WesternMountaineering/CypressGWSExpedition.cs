@@ -16,6 +16,16 @@ public static class CypressGWSExpedition
         thumbnailUrl: "/products/western-mountaineering-cypress-gws-thumb.webp");
 
     [SeededEntity]
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id,
+            urls:      ["/products/western-mountaineering-cypress-gws-1.webp",
+                        "/products/western-mountaineering-cypress-gws-2.webp",
+                        "/products/western-mountaineering-cypress-gws-3.webp"]),
+    ];
+    
+    [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(

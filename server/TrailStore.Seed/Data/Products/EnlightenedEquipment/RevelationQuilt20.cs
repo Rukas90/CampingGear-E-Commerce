@@ -15,6 +15,25 @@ public static class RevelationQuilt20
         categoryId:   Categories.Quilts.Id,
         thumbnailUrl: "/products/enlightened-equipment-revelation-quilt-20-thumb.webp");
     
+    [SeededEntity] 
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.Orange.Id, 
+            urls:      ["/products/enlightened-equipment-revelation-quilt-20-org.webp"]),
+        
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.Navy.Id, 
+            urls:      ["/products/enlightened-equipment-revelation-quilt-20-nvy.webp"]),
+        
+        ProductImage.Create(
+            productId: Product.Id, 
+            optionId:  ColorOption.Forest.Id, 
+            urls:      ["/products/enlightened-equipment-revelation-quilt-20-for.webp"])
+    ];
+    
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [

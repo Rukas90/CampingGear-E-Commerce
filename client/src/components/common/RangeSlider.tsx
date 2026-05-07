@@ -15,6 +15,8 @@ const RangeSlider = ({
   onChange,
   onChanging,
 }: RangeSliderProps) => {
+  const isSameMinMax = min === max
+
   return (
     <Slider
       minValue={min}
@@ -23,16 +25,21 @@ const RangeSlider = ({
       onChange={onChanging}
       onChangeEnd={(v) => onChange?.(v as [number, number])}
       className="w-full py-2"
+      isDisabled={isSameMinMax}
     >
       <SliderTrack className="relative h-1 w-full bg-neutral-300 rounded">
         {({ state }) => (
           <>
             <div
               className="absolute h-0.5 translate-y-1/2 bg-lime-800 rounded"
-              style={{
-                left: `${state.getThumbPercent(0) * 100}%`,
-                width: `${(state.getThumbPercent(1) - state.getThumbPercent(0)) * 100}%`,
-              }}
+              style={
+                isSameMinMax
+                  ? { left: "0%", width: "100%" }
+                  : {
+                      left: `${state.getThumbPercent(0) * 100}%`,
+                      width: `${(state.getThumbPercent(1) - state.getThumbPercent(0)) * 100}%`,
+                    }
+              }
             />
             <SliderThumb
               index={0}
@@ -41,6 +48,7 @@ const RangeSlider = ({
             <SliderThumb
               index={1}
               className="block size-4.5 rounded-full border-2 border-neutral-600 bg-neutral-100 cursor-grab pressed:cursor-grabbing outline-none top-1/2"
+              style={isSameMinMax ? { left: "100%" } : undefined}
             />
           </>
         )}

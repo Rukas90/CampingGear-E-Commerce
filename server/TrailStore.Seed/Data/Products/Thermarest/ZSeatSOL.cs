@@ -21,12 +21,14 @@ public static class ZSeatSOL
         ProductImage.Create(
             productId: Product.Id, 
             optionId:  ColorOption.Yellow.Id, 
-            urls:      ["/products/thermarest-zseat-sol-ylw.webp"]),
+            urls:      ["/products/thermarest-zseat-sol-ylw-1.webp",
+                        "/products/thermarest-zseat-sol-ylw-2.webp"]),
         
         ProductImage.Create(
             productId: Product.Id, 
             optionId:  ColorOption.Blue.Id, 
-            urls:      ["/products/thermarest-zseat-sol-blu.webp"])
+            urls:      ["/products/thermarest-zseat-sol-blu-1.webp", 
+                        "/products/thermarest-zseat-sol-blu-2.webp"])
     ];
     
     [SeededEntity]

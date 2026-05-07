@@ -15,6 +15,14 @@ public static class TorridBooties
         categoryId:   Categories.Quilts.Id,
         thumbnailUrl: "/products/enlightened-equipment-torrid-booties-thumb.webp");
 
+    [SeededEntity] 
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id, 
+            urls:      ["/products/enlightened-equipment-torrid-booties-1.webp"])
+    ];
+    
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [

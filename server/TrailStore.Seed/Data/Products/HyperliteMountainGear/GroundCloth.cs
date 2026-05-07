@@ -22,9 +22,7 @@ public static class GroundCloth
             productId: Product.Id,
             urls:      ["/products/hyperlite-mountain-gear-ground-cloth-1.webp",
                         "/products/hyperlite-mountain-gear-ground-cloth-2.webp",
-                        "/products/hyperlite-mountain-gear-ground-cloth-3.webp",
-                        "/products/hyperlite-mountain-gear-ground-cloth-4.webp",
-                        "/products/hyperlite-mountain-gear-ground-cloth-5.webp"]),
+                        "/products/hyperlite-mountain-gear-ground-cloth-3.webp"]),
     ];
 
     [SeededEntity]

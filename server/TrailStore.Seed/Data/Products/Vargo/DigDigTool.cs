@@ -21,10 +21,7 @@ public static class DigDigTool
         ProductImage.Create(
             productId: Product.Id,
             urls:      ["/products/vargo-dig-dig-tool-1.webp",
-                        "/products/vargo-dig-dig-tool-2.webp",
-                        "/products/vargo-dig-dig-tool-3.webp",
-                        "/products/vargo-dig-dig-tool-4.webp",
-                        "/products/vargo-dig-dig-tool-5.webp"]),
+                        "/products/vargo-dig-dig-tool-2.webp"]),
     ];
 
     [SeededEntity]

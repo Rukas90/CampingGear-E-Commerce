@@ -15,6 +15,14 @@ public static class TorridHood
         categoryId:   Categories.Quilts.Id,
         thumbnailUrl: "/products/enlightened-equipment-torrid-hood-thumb.webp");
  
+    [SeededEntity] 
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id, 
+            urls:      ["/products/enlightened-equipment-torrid-hood-1.webp"])
+    ];
+    
     [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [

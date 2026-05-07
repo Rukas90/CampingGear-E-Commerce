@@ -15,6 +15,18 @@ public static class AircontactPro7510
         thumbnailUrl: "/products/deuter-aircontact-pro-75-10-thumb.webp");
     
     [SeededEntity]
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id,
+            urls:      ["/products/deuter-aircontact-pro-75-10-1.webp",
+                        "/products/deuter-aircontact-pro-75-10-2.webp",
+                        "/products/deuter-aircontact-pro-75-10-3.webp",
+                        "/products/deuter-aircontact-pro-75-10-4.webp",
+                        "/products/deuter-aircontact-pro-75-10-5.webp"])
+    ];
+    
+    [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(

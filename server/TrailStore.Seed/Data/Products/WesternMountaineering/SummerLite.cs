@@ -16,6 +16,15 @@ public static class SummerLite
         thumbnailUrl: "/products/western-mountaineering-summer-lite-thumb.webp");
 
     [SeededEntity]
+    public static readonly IEnumerable<ProductImage> Images =
+    [
+        ProductImage.Create(
+            productId: Product.Id,
+            urls:      ["/products/western-mountaineering-summer-lite-1.webp",
+                        "/products/western-mountaineering-summer-lite-2.webp"]),
+    ];
+    
+    [SeededEntity]
     public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(
