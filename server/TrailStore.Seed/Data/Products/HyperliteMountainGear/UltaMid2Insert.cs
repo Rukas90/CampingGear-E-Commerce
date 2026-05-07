@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data.Products.HyperliteMountainGear;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class UltaMid2Insert
+public static class UltaMid2Insert
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

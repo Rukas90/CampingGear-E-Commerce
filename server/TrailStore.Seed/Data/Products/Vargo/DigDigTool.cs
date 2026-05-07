@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data.Products.Vargo;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class DigDigTool
+public static class DigDigTool
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.Thermarest;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class ZSeatSOL
+public static class ZSeatSOL
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

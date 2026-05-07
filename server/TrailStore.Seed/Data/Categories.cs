@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data;
 
 // ReSharper disable All
 
-public class Categories
+public static class Categories
 {
     [SeededEntity]
     public static readonly Category HandheldGps = Category.Create(

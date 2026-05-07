@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data.Products.Deuter;
 
 // ReSharper disable All
 
-public sealed class AircontactPro7510
+public static class AircontactPro7510
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

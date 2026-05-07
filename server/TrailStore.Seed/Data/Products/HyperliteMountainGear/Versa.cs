@@ -3,7 +3,9 @@ using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.HyperliteMountainGear;
 
-public sealed class Versa
+// ReSharper disable UnusedType.Global
+
+public static class Versa
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

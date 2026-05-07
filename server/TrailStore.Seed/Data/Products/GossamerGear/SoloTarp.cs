@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data.Products.GossamerGear;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class SoloTarp
+public static class SoloTarp
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

@@ -8,7 +8,7 @@ namespace TrailStore.Seed.Data;
 
 // ReSharper disable All
 
-public class Orders
+public static class Orders
 {
     [SeededEntity]
     public static readonly List<Order> All = CreateOrders();
@@ -55,7 +55,7 @@ public class Orders
 
         var skus = SeedRunner.Discover<Sku>(SeedRunner.Assembly).ToArray();
         
-        faker.RuleFor(order => order.Items, (Faker f, Order o) =>
+        faker.RuleFor(order => order.Items, (Faker f, Order order) =>
         {
             return f.Make(f.Random.Int(1, 5), i =>
             {
@@ -63,8 +63,8 @@ public class Orders
                 
                 return new OrderItem
                 {
-                    Id        = Id<OrderItem>.Part(o.Id).Part(i.ToString()).Build(),
-                    OrderId   = o.Id,
+                    Id        = Id<OrderItem>.Part(order.Id).Part(i.ToString()).Build(),
+                    OrderId   = order.Id,
                     SkuId     = sku.Id,
                     Quantity  = f.Random.Int(1, 3),
                     UnitPrice = sku.UnitPrice

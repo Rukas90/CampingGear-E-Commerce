@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data.Products.Zpacks;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class AltaplexClassic
+public static class AltaplexClassic
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

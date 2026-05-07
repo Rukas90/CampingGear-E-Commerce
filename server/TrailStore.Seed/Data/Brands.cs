@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data;
 
 // ReSharper disable All
 
-public class Brands
+public static class Brands
 {
     [SeededEntity]
     public static readonly Brand Garmin = Brand.Create(

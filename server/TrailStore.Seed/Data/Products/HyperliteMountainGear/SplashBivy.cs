@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.HyperliteMountainGear;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class SplashBivy
+public static class SplashBivy
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

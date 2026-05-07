@@ -2,7 +2,7 @@
 
 namespace TrailStore.Seed.Data.Options;
 
-public class WidthOption
+public static class WidthOption
 {
     [SeededEntity]
     public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Width", slug: "width");

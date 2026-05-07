@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data.Options;
 
 // ReSharper disable UnusedType.Global
 
-public class PoleSetOption
+public static class PoleSetOption
 {
     [SeededEntity]
     public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Pole Set", slug: "pole-set");

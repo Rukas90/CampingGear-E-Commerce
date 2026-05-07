@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.Zpacks;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class SummerTwinQuilt
+public static class SummerTwinQuilt
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

@@ -2,7 +2,7 @@
 
 namespace TrailStore.Seed.Data.Options;
 
-public class ColorOption
+public static class ColorOption
 {
     [SeededEntity]
     public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Color", slug: "color");
@@ -53,7 +53,7 @@ public class ColorOption
         name:          "Blue",
         slug:          "blue",
         previewType:   PreviewType.Color,
-        previewValue:  "#172ECC");
+        previewValue:  "#3244c1");
     
     [SeededEntity]
     public static readonly Option Yellow = Option.Create(
@@ -181,7 +181,7 @@ public class ColorOption
         name:          "Bushwack Camo",
         slug:          "bushwack-camo",
         previewType:   PreviewType.Image,
-        previewValue:  "options/color/bushwack-camo.webp");
+        previewValue:  "/options/color/bushwack-camo.webp");
     
     [SeededEntity]
     public static readonly Option ShadowPineCamo = Option.Create(
@@ -189,15 +189,15 @@ public class ColorOption
         name:          "Shadow Pine Camo",
         slug:          "shadow-pine-camo",
         previewType:   PreviewType.Image,
-        previewValue:  "options/color/shadow-pine-camo.webp");
+        previewValue:  "/options/color/shadow-pine-camo.webp");
     
     [SeededEntity]
     public static readonly Option DarkFoliageGreen = Option.Create(
         optionGroupId: OptionGroup.Id,
         name:          "Dark Foliage Green",
         slug:          "dark-foliage-green",
-        previewType:   PreviewType.Image,
-        previewValue:  "options/color/dark-foliage-green.webp");
+        previewType:   PreviewType.Color,
+        previewValue:  "#003f1b");
     
     [SeededEntity]
     public static readonly Option SnowDayCamo = Option.Create(
@@ -205,5 +205,5 @@ public class ColorOption
         name:          "Snow Day Camo",
         slug:          "snow-day-camo",
         previewType:   PreviewType.Image,
-        previewValue:  "options/color/snow-day-camo.webp");
+        previewValue:  "/options/color/snow-day-camo.webp");
 }

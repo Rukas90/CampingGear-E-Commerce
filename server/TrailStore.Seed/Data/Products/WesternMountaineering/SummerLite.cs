@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.WesternMountaineering;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class SummerLite
+public static class SummerLite
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

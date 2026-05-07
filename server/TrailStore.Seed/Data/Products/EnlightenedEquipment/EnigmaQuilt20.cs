@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.EnlightenedEquipment;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class EnigmaQuilt20
+public static class EnigmaQuilt20
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data.Products.EnlightenedEquipment;
  
 // ReSharper disable UnusedType.Global
 
-public sealed class XWidePadStrap
+public static class XWidePadStrap
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

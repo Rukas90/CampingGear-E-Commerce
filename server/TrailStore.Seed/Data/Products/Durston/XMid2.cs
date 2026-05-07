@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data.Products.Durston;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class XMid2
+public static class XMid2
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

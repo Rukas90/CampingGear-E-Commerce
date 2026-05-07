@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data.Options;
 
 // ReSharper disable UnusedType.Global
 
-public class FloorOption
+public static class FloorOption
 {
     [SeededEntity]
     public static readonly OptionGroup OptionGroup = OptionGroup.Create(name: "Floor", slug: "floor");

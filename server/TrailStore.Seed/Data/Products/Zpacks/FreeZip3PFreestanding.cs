@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.Zpacks;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class FreeZip3PFreestanding
+public static class FreeZip3PFreestanding
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

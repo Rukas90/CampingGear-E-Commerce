@@ -3,9 +3,9 @@ using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.GooseFeet;
 
-// ReSharper disable All
+// ReSharper disable UnusedType.Global
 
-public sealed class DownSocks
+public static class DownSocks
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

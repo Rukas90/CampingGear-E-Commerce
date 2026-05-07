@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.Zpacks;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class ArcHaulUltra70
+public static class ArcHaulUltra70
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

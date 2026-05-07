@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.Cumulus;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class LiteLine300
+public static class LiteLine300
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

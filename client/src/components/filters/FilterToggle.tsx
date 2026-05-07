@@ -50,10 +50,19 @@ const FilterToggle = ({
       return (
         <Toggle
           checked={selected}
-          className={(_) => `bg-[${previewValue}]`}
-          knobClassName={(checked) =>
-            checked ? "bg-[rgba(0, 0, 0, 0.5)]" : "bg-transparent"
-          }
+          className={(checked) => (checked ? "p-0.5" : "p-0 border-0 shadow")}
+          knobStyle={{ backgroundColor: previewValue }}
+        />
+      )
+    }
+    if (previewType === PreviewType.Image) {
+      console.log(previewType)
+      return (
+        <Toggle
+          checked={selected}
+          className={(checked) => (checked ? "p-0.5" : "p-0 border-0 shadow")}
+          knobClassName={(_) => "bg-transparent"}
+          knobStyle={{ backgroundImage: `url(${previewValue})` }}
         />
       )
     }

@@ -2,7 +2,9 @@
 
 namespace TrailStore.Seed.Data.Products.Garmin;
 
-public sealed class Gpsmap67
+// ReSharper disable UnusedType.Global
+
+public static class Gpsmap67
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

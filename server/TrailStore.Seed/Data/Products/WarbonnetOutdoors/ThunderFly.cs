@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.WarbonnetOutdoors;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class ThunderFly
+public static class ThunderFly
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

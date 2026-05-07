@@ -6,7 +6,7 @@ namespace TrailStore.Seed.Data;
 
 // ReSharper disable All
 
-public class Customers
+public static class Customers
 {
     [SeededEntity]
     public static readonly List<Customer> All = new Faker<Customer>()

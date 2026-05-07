@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.WesternMountaineering;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class CypressGWSExpedition
+public static class CypressGWSExpedition
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

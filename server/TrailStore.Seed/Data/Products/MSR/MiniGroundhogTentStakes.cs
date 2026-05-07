@@ -4,7 +4,7 @@ namespace TrailStore.Seed.Data.Products.MSR;
  
 // ReSharper disable UnusedType.Global
  
-public sealed class MiniGroundhogTentStakes
+public static class MiniGroundhogTentStakes
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

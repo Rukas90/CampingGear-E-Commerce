@@ -2,7 +2,7 @@
 
 namespace TrailStore.Seed.Data;
 
-public class CategoryGroups
+public static class CategoryGroups
 {
     [SeededEntity]
     public static readonly CategoryGroup SleepSystem = CategoryGroup.Create(

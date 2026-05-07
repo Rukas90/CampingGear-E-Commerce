@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.Thermarest;
 
 // ReSharper disable UnusedType.Global
 
-public sealed class NeoAirXTherm_MAX
+public static class NeoAirXTherm_MAX
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(

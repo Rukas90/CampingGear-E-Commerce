@@ -1,15 +1,24 @@
 import clsx from "clsx"
-import { useState } from "react"
+import { useState, type CSSProperties } from "react"
 import { twMerge } from "tailwind-merge"
 
 interface ToggleProps {
   className?: (checked: boolean) => string
   knobClassName?: (checked: boolean) => string
+  style?: CSSProperties
+  knobStyle?: CSSProperties
   checked?: boolean
   onChange?: (checked: boolean) => void
 }
 
-const Toggle = ({ className, checked, onChange }: ToggleProps) => {
+const Toggle = ({
+  className,
+  knobClassName,
+  style,
+  knobStyle,
+  checked,
+  onChange,
+}: ToggleProps) => {
   const [isChecked, setChecked] = useState(checked ?? false)
 
   const isControlled = checked !== undefined
@@ -41,12 +50,17 @@ const Toggle = ({ className, checked, onChange }: ToggleProps) => {
         ),
         className?.(effectiveChecked),
       )}
+      style={style}
     >
       <div
-        className={clsx(
-          "size-full rounded-full transition-colors duration-200",
-          effectiveChecked ? "bg-lime-800" : "bg-transparent",
+        className={twMerge(
+          clsx(
+            "size-full rounded-full transition-colors duration-200",
+            effectiveChecked ? "bg-lime-800" : "bg-transparent",
+          ),
+          knobClassName?.(effectiveChecked),
         )}
+        style={knobStyle}
       />
     </div>
   )

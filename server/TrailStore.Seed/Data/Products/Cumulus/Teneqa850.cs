@@ -3,7 +3,9 @@ using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.Cumulus;
 
-public sealed class Teneqa850
+// ReSharper disable UnusedType.Global
+
+public static class Teneqa850
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
