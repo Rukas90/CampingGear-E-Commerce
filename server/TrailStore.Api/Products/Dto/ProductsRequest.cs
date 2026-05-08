@@ -2,7 +2,9 @@
 
 namespace TrailStore.Api.Products.Dto;
 
-public record ProductsRequest
+// ReSharper disable CollectionNeverUpdated.Global
+
+public sealed record ProductsRequest
 {
     public SortBy?                           SortBy       { get; init; }
     public string[]?                         Brand        { get; init; }

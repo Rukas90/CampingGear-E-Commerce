@@ -1,7 +1,7 @@
 ﻿using FastEndpoints;
 using TrailStore.Shared.Common;
 
-namespace TrailStore.Api.Common;
+namespace TrailStore.Api.Common.Extensions;
 
 public static class ProblemMapper
 {

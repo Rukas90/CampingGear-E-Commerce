@@ -41,16 +41,41 @@ public static class ProductMappingSelectors
             Description   = product.Description,
             Skus          = product.Skus.Select(sku => new ProductSkuDto
             {
-                Id     = sku.Id,
+                CodeHash  = sku.CodeHash,
                 UnitPrice = sku.UnitPrice,
                 Stock     = sku.Stock,
-                Options   = sku.Options.Select(option => new SkuOptionDto
+                OptionIds = sku.Options.Select(option => option.Id).ToArray()
+                
+            }).ToArray(),
+            Options = product.Skus
+                .SelectMany(sku => sku.Options)
+                .GroupBy(option => new 
                 {
-                    Slug        = option.Slug,
-                    OptionGroup = option.OptionGroup.Slug
-                }).ToArray() 
+                    option.OptionGroup.Slug, option.OptionGroup.Name, option.OptionGroup.SortOrder
+                })
+                .Select(group => new ProductOptionGroupDto
+            {
+                Name      = group.Key.Name,
+                SortOrder = group.Key.SortOrder,
+                Options   = group.Select(option => new ProductOptionDto
+                {
+                    Id           = option.Id,
+                    Name         = option.Name,
+                    InStock      = product.Skus
+                        .Where(sku => sku.Options.Any(o => o.Id == option.Id)).Any(sku => sku.Stock > 0),
+                    PreviewType  = option.PreviewType,
+                    PreviewValue = option.PreviewValue
+                }).ToArray()
+            }).ToArray(),
+            Images = product.Images.Select(image => new ProductImageDto
+            {
+                OptionId = image.OptionId,
+                Urls     = image.Urls.Select(url => new ProductImageUrlDto
+                {
+                    Url       = url.Url,
+                    SortOrder = url.SortOrder
+                }).ToArray()
             }).ToArray()
-            // TODO: IMAGES (OR LOAD LAZILY ON CLIENT DEPENDING ON SELECTED OPTION?)
         };
     }
 }

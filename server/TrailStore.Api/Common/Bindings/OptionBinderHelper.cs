@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Api.Common;
+﻿namespace TrailStore.Api.Common.Bindings;
 
 public static class OptionBinderHelper
 {

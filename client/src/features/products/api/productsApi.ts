@@ -1,5 +1,9 @@
 import { makeRequest } from "@lib"
-import type { ProductsQueryRequest, ProductSummary } from "@types"
+import type {
+  ProductDetail,
+  ProductsQueryRequest,
+  ProductSummary,
+} from "@types"
 
 const productsApi = {
   queryProducts: async (request: ProductsQueryRequest) => {
@@ -22,6 +26,10 @@ const productsApi = {
     return await makeRequest<ProductSummary[]>(
       `api/v1/products?${params.toString()}`,
     )
+  },
+
+  fetchProduct: async (slug: string) => {
+    return await makeRequest<ProductDetail>(`api/v1/products/${slug}`)
   },
 }
 export default productsApi

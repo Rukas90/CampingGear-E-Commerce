@@ -1,5 +1,6 @@
 ﻿using FastEndpoints;
 using TrailStore.Api.Common;
+using TrailStore.Api.Common.Bindings;
 using TrailStore.Api.Products.Dto;
 
 namespace TrailStore.Api.Products.Bindings;

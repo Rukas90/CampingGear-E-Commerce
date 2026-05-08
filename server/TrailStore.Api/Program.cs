@@ -5,6 +5,7 @@ using Scalar.AspNetCore;
 using TrailStore.Api;
 using TrailStore.Api.Auth.Extensions;
 using TrailStore.Api.Auth.Middleware;
+using TrailStore.Api.Common.Converters;
 using TrailStore.Infrastructure;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Infrastructure.Extensions;
@@ -83,6 +84,8 @@ app.UseFastEndpoints(config =>
 {
     config.Errors.UseProblemDetails();
     config.Errors.ProducesMetadataType = typeof(ProblemDetails);
+    
+    config.Serializer.Options.Converters.Add(new IdJsonConverterFactory());
     
     config.Errors.ResponseBuilder = (failures, _, statusCode) => new ProblemDetails
     {

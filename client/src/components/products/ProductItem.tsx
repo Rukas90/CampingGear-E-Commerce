@@ -1,9 +1,13 @@
 import type { ProductSummary } from "@types"
 import PriceBadge from "./PriceBadge"
 import RatingBadge from "./RatingBadge"
+import OutOfStockTag from "./OutOfStockTag"
+import { IconAddToCart, IconCart, IconSaved } from "@components"
+import { Link } from "react-router-dom"
 
 const ProductItem = ({
   name,
+  slug,
   brandName,
   brandSlug,
   minPrice,
@@ -13,24 +17,31 @@ const ProductItem = ({
   inStock,
   thumbnailUrl,
 }: ProductSummary) => {
+  const link = `/product/${slug}`
+
   return (
     <div className="relative p-2 flex flex-col gap-1">
-      {!inStock && (
-        <p className="absolute top-8 right-8 text-white text-sm px-2 py-0.5 font-medium rounded-xl bg-black">
-          Out of Stock
-        </p>
-      )}
+      {!inStock && <OutOfStockTag />}
       <div className="py-6 flex-1">
-        <img
-          src={thumbnailUrl}
-          className="mix-blend-darken mx-auto w-full h-full object-contain"
-        />
+        <Link to={link} target="_self">
+          <img
+            src={thumbnailUrl}
+            className="mix-blend-darken mx-auto w-full h-full object-contain"
+          />
+        </Link>
       </div>
-      <p className="text-neutral-500">{brandName}</p>
-      <p className="text-xl font-medium">{name}</p>
+      <Link to={`/brands/${brandSlug}`} target="_self">
+        <p className="text-neutral-500">{brandName}</p>
+      </Link>
+      <Link to={link} target="_self">
+        <p className="text-xl font-medium">{name}</p>
+      </Link>
       <PriceBadge minPrice={minPrice} maxPrice={maxPrice} />
       <RatingBadge averageRating={averageRating} reviewCount={reviewCount} />
-      <div></div>
+      <button className="flex gap-2 mt-1.5">
+        <IconSaved className="size-5 text-gray-700" />
+        <IconCart className="size-5 text-gray-700" />
+      </button>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import type { CustomerId } from "./Id"
+import type { CustomerId, OptionId } from "./id"
 
 export type ProductCategory =
   | "handheld-gps"
@@ -13,20 +13,21 @@ export type CartItem = {
   id: CartItemId
 }
 
-export type Category = {
-  id: CategoryId
+export type NameSlug = {
   name: string
-  description?: string
-  groupSlug: string
   slug: string
-  imageUrl?: string
 }
 
+export type Category = {
+  id: CategoryId
+  description?: string
+  groupSlug: string
+  imageUrl?: string
+} & NameSlug
+
 export type CategoryGroup = {
-  name: string
-  slug: string
   sortOrder: number
-}
+} & NameSlug
 
 export type SortBy =
   | "Manual"
@@ -59,10 +60,8 @@ export type FiltersQueryRequest = Omit<
 }
 
 export type FilterValue = {
-  name: string
-  slug: string
   count: number
-}
+} & NameSlug
 
 export type OptionFilter = {
   previewType?: PreviewType
@@ -85,8 +84,6 @@ export type CatalogFilters = {
 }
 
 export type ProductSummary = {
-  name: string
-  slug: string
   brandName: string
   brandSlug: string
   category: string
@@ -96,4 +93,42 @@ export type ProductSummary = {
   reviewCount: number
   inStock: boolean
   thumbnailUrl: string
+} & NameSlug
+
+export type ProductDetail = {
+  description: string
+  skus: ProductSku[]
+  options: ProductOptionGroup[]
+  images: ProductImage[]
+} & ProductSummary
+
+export type ProductSku = {
+  codeHash: string
+  unitPrice: number
+  stock: number
+  optionIds: OptionId[]
+}
+
+export type ProductOptionGroup = {
+  name: string
+  sortOrder: number
+  options: ProductOption[]
+}
+
+export type ProductOption = {
+  id: OptionId
+  name: string
+  inStock: boolean
+  previewType?: PreviewType
+  previewValue?: string
+}
+
+export type ProductImage = {
+  optionId?: OptionId
+  urls: ProductImageUrl[]
+}
+
+export type ProductImageUrl = {
+  url: string
+  sortOrder: number
 }
