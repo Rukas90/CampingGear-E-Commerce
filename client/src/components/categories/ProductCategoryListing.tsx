@@ -17,6 +17,7 @@ const ProductCatgoryListing = () => {
         .sort((group) => group.sortOrder)
         .map((group) => (
           <Listing
+            key={group.slug}
             group={group}
             categories={categories.filter(
               (category) => category.groupSlug === group.slug,
@@ -38,8 +39,8 @@ const Listing = ({ group, categories }: ListingProps) => {
       <p className="font-medium mb-1">{group.name}</p>
       <ul>
         {categories.map((category) => (
-          <Link to={`/products/${category.slug}`}>
-            <li key={category.slug}>{category.name}</li>
+          <Link key={category.slug} to={`/products/${category.slug}`}>
+            <li>{category.name}</li>
           </Link>
         ))}
       </ul>

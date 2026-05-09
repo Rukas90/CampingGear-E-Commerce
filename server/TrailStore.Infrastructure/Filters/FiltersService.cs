@@ -30,7 +30,7 @@ public sealed class FiltersService(ISkuRepository skuRepository) : IFiltersServi
             new BrandProjection(sku.Product.BrandId, sku.Product.Brand.Name, sku.Product.Brand.Slug),
             new CategoryProjection(sku.Product.CategoryId, sku.Product.Category.Name, sku.Product.Category.Slug),
             sku.Options.Select(o => new OptionProjection(
-               o.Name, o.Slug, o.PreviewType, o.PreviewValue, new OptionGroupProjection(o.OptionGroup.Name, o.OptionGroup.Slug, o.OptionGroup.SortOrder)
+               o.Name, o.Slug, o.SortOrder, o.PreviewType, o.PreviewValue, new OptionGroupProjection(o.OptionGroup.Name, o.OptionGroup.Slug, o.OptionGroup.SortOrder)
             ))
         ));
     }

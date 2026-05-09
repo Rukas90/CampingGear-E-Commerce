@@ -2,6 +2,8 @@
 
 namespace TrailStore.Api.Filters.Dto;
 
+// ReSharper disable CollectionNeverUpdated.Global
+
 public record FiltersRequest
 {
     public string? QueryBrand    { get; init; }

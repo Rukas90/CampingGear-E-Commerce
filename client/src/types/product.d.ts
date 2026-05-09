@@ -64,6 +64,7 @@ export type FilterValue = {
 } & NameSlug
 
 export type OptionFilter = {
+  sortOrder: number
   previewType?: PreviewType
   previewValue?: string
 } & FilterValue

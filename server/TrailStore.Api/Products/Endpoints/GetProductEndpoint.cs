@@ -2,7 +2,6 @@
 using TrailStore.Api.Products.Dto;
 using TrailStore.Api.Products.Mapping;
 using TrailStore.Domain.Products;
-using TrailStore.Infrastructure.Products;
 
 namespace TrailStore.Api.Products.Endpoints;
 
@@ -16,11 +15,10 @@ public class GetProductEndpoint(IProductsRepository productsRepository)
     }
     public override async Task HandleAsync(ProductRequest req, CancellationToken ct)
     {
-        var result = await productsRepository.GetByIdAsync(
-            specification: ProductSpecifications.Slug(req.Slug),
-            selector:      ProductMappingSelectors.ToDetailDto());
+        var product = await productsRepository.GetFullProductAsync(
+            specification: ProductSpecifications.Slug(req.Slug));
 
-        if (result is null)
+        if (product is null)
         {
             await new ProblemDetails
             {
@@ -30,6 +28,6 @@ public class GetProductEndpoint(IProductsRepository productsRepository)
             
             return;
         }
-        await Send.OkAsync(result, ct);
+        await Send.OkAsync(product.ToDetailDto(), ct);
     }
 }

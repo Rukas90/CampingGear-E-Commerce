@@ -1,5 +1,5 @@
 import { IconStarEmpty, IconStarFilled, IconStarHalf } from "@components"
-import clsx from "clsx"
+import { twMerge } from "tailwind-merge"
 
 const getStars = (rating: number) => {
   return Array.from({ length: 5 }, (_, i) => {
@@ -16,10 +16,12 @@ const getStars = (rating: number) => {
 }
 
 interface RatingBadgeProps extends React.ComponentProps<"div"> {
+  starsClassName?: string
   averageRating: number
   reviewCount: number
 }
 const RatingBadge = ({
+  starsClassName,
   averageRating,
   reviewCount,
   className,
@@ -28,17 +30,35 @@ const RatingBadge = ({
   const stars = getStars(averageRating)
 
   return (
-    <div className={clsx("flex gap-1 items-center", className)} {...props}>
+    <div
+      className={twMerge("flex gap-1 items-center text-sm", className)}
+      {...props}
+    >
       {stars.map((type, i) => {
         if (type === "full") {
-          return <IconStarFilled className="size-3.5" key={i} />
+          return (
+            <IconStarFilled
+              className={twMerge("size-3.5", starsClassName)}
+              key={i}
+            />
+          )
         }
         if (type === "half") {
-          return <IconStarHalf className="size-3.5" key={i} />
+          return (
+            <IconStarHalf
+              className={twMerge("size-3.5", starsClassName)}
+              key={i}
+            />
+          )
         }
-        return <IconStarEmpty className="size-3.5" key={i} />
+        return (
+          <IconStarEmpty
+            className={twMerge("size-3.5", starsClassName)}
+            key={i}
+          />
+        )
       })}
-      <p className="text-sm text-neutral-900">({reviewCount})</p>
+      <p className="text-neutral-900">({reviewCount})</p>
     </div>
   )
 }

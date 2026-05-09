@@ -6,7 +6,7 @@ const Page = () => {
     <div className="w-full h-full min-h-svh flex flex-col">
       <TopNav />
       <ContentContainer>
-        <div className="bg-neutral-200 py-2 px-4 text-center">
+        <div className="bg-neutral-200 py-2 px-4 text-center hidden">
           <p className="font-semibold">Disclaimer</p>
           <p className="text-sm text-neutral-600">
             This is a portfolio project and not a real site. I do not sell any

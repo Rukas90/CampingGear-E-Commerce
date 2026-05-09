@@ -57,6 +57,7 @@ internal static class CatalogBuilder
                             {
                                 Name         = projection.Name,
                                 Slug         = projection.Slug,
+                                SortOrder    = projection.SortOrder,
                                 PreviewType  = projection.PreviewType,
                                 PreviewValue = projection.PreviewValue,
                                 Count        = counter.CountProducts(

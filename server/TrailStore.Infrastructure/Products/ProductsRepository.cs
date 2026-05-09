@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TrailStore.Domain.Enums;
 using TrailStore.Domain.Models;
+using TrailStore.Domain.Products;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Shared.Common;
 
@@ -10,7 +11,7 @@ namespace TrailStore.Infrastructure.Products;
 [AppService<IProductsRepository>]
 public sealed class ProductsRepository(AppDbContext context) : IProductsRepository
 {
-    public async Task<TResult?> GetByIdAsync<TResult>(
+    public async Task<TResult?> SelectAsync<TResult>(
         Specification<Product> specification, Expression<Func<Product, TResult>> selector)
     {
         var queryable = context.Products.AsQueryable();
@@ -19,6 +20,20 @@ public sealed class ProductsRepository(AppDbContext context) : IProductsReposito
             .Where(specification.ToExpression())
             .Select(selector)
             .FirstOrDefaultAsync();
+    }
+    
+    public async Task<Product?> GetFullProductAsync(
+        Specification<Product> specification)
+    {
+        return await context.Products
+            .Include(product => product.Brand)
+            .Include(product => product.Category)
+            .Include(product => product.Reviews)
+            .Include(product => product.Images).ThenInclude(image => image.Urls)
+            .Include(product => product.Skus).ThenInclude(sku => sku.Options).ThenInclude(option => option.OptionGroup)
+            .Where(specification.ToExpression())
+            .FirstOrDefaultAsync();
+
     }
     
     public async Task<List<TResult>> ListAsync<TResult>(ProductsQuery query, Expression<Func<Product, TResult>> selector)

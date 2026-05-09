@@ -2,7 +2,7 @@
 using TrailStore.Domain.Models;
 using TrailStore.Shared.Common;
 
-namespace TrailStore.Infrastructure.Products;
+namespace TrailStore.Domain.Products;
 
 public class ProductsQuery
 {
