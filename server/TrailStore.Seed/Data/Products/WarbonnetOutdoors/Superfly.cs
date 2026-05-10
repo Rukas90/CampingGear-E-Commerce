@@ -21,8 +21,8 @@ public static class Superfly
     [
         ProductImage.Create(
             productId: Product.Id,
-            optionId:  ColorOption.BushwackCamo.Id,
-            urls:      ["/products/warbonnet-outdoors-superfly-bwcmo.webp"]),
+            optionId:  ColorOption.Brown.Id,
+            urls:      ["/products/warbonnet-outdoors-superfly-brn.webp"]),
 
         ProductImage.Create(
             productId: Product.Id,
@@ -31,8 +31,8 @@ public static class Superfly
 
         ProductImage.Create(
             productId: Product.Id,
-            optionId:  ColorOption.DarkFoliageGreen.Id,
-            urls:      ["/products/warbonnet-outdoors-superfly-dfgrn.webp"]),
+            optionId:  ColorOption.LeafyWoodsCamo.Id,
+            urls:      ["/products/warbonnet-outdoors-superfly-lwcmo.webp"]),
 
         ProductImage.Create(
             productId: Product.Id,
@@ -42,9 +42,7 @@ public static class Superfly
         ProductImage.Create(
             productId: Product.Id,
             urls:      ["/products/warbonnet-outdoors-superfly-1.webp",
-                        "/products/warbonnet-outdoors-superfly-2.webp",
-                        "/products/warbonnet-outdoors-superfly-3.webp",
-                        "/products/warbonnet-outdoors-superfly-4.webp"]),
+                        "/products/warbonnet-outdoors-superfly-2.webp"]),
     ];
 
     [SeededEntity]
@@ -52,10 +50,10 @@ public static class Superfly
     [
         Sku.Create(
             productId: Product.Id,
-            code: "WBO-SFLY-BWCMO",
-            price: 305.00m,
+            code: "WBO-SFLY-BRN",
+            price: 259.00m,
             stock: 6,
-            options: [ColorOption.BushwackCamo]),
+            options: [ColorOption.Brown]),
 
         Sku.Create(
             productId: Product.Id,
@@ -66,10 +64,10 @@ public static class Superfly
 
         Sku.Create(
             productId: Product.Id,
-            code: "WBO-SFLY-DFGRN",
-            price: 259.00m,
+            code: "WBO-SFLY-LWCMO",
+            price: 305.00m,
             stock: 8,
-            options: [ColorOption.DarkFoliageGreen]),
+            options: [ColorOption.LeafyWoodsCamo]),
 
         Sku.Create(
             productId: Product.Id,

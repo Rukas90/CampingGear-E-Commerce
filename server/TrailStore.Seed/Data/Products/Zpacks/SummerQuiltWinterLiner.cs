@@ -20,12 +20,12 @@ public static class SummerQuiltWinterLiner
     [
         ProductImage.Create(
             productId: Product.Id, 
-            optionId:  ColorOption.DuskBlue.Id, 
+            optionId:  ColorOption.Blue.Id, 
             urls:      ["/products/zpacks-summer-quilt-winter-liner-blu.webp"]),
         
         ProductImage.Create(
             productId: Product.Id, 
-            optionId:  ColorOption.JetBlack.Id, 
+            optionId:  ColorOption.Orange.Id, 
             urls:      ["/products/zpacks-summer-quilt-winter-liner-org.webp"])
     ];
     

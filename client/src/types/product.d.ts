@@ -1,4 +1,5 @@
 import type { CustomerId, OptionId } from "./id"
+import { PreviewType } from "./enums"
 
 export type ProductCategory =
   | "handheld-gps"
@@ -87,7 +88,8 @@ export type CatalogFilters = {
 export type ProductSummary = {
   brandName: string
   brandSlug: string
-  category: string
+  categoryName: string
+  categorySlug: string
   minPrice: number
   maxPrice: number
   averageRating: number
@@ -119,6 +121,7 @@ export type ProductOptionGroup = {
 export type ProductOption = {
   id: OptionId
   name: string
+  sortOrder: number
   inStock: boolean
   previewType?: PreviewType
   previewValue?: string
@@ -133,3 +136,5 @@ export type ProductImageUrl = {
   url: string
   sortOrder: number
 }
+
+export type Stock = "InStock" | "LowStock" | "OutOfStock"

@@ -23,7 +23,10 @@ public static class XMidPro2
             urls:      ["/products/durston-x-mid-pro-2-1.webp",
                         "/products/durston-x-mid-pro-2-2.webp",
                         "/products/durston-x-mid-pro-2-3.webp",
-                        "/products/durston-x-mid-pro-2-4.webp"]),
+                        "/products/durston-x-mid-pro-2-4.webp",
+                        "/products/durston-x-mid-pro-2-5.webp",
+                        "/products/durston-x-mid-pro-2-6.webp",
+                        "/products/durston-x-mid-pro-2-7.webp"]),
     ];
 
     [SeededEntity]

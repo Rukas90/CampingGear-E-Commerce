@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import ImagePickerCarousel from "./ImagePickerCarousel"
+import ImageViewerCursor from "./ImageViewerCursor"
 
 interface ImageViewerProps {
   imagePaths: string[]
@@ -7,6 +8,7 @@ interface ImageViewerProps {
 const ImageViewer = ({ imagePaths }: ImageViewerProps) => {
   const [viewingIndex, setViewingIndex] = useState(0)
   const [aspectRatio, setAspectRatio] = useState<number>(1)
+  const viewerRef = useRef<HTMLDivElement>(null)
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalWidth, naturalHeight } = e.currentTarget
@@ -15,15 +17,20 @@ const ImageViewer = ({ imagePaths }: ImageViewerProps) => {
     setAspectRatio(Math.min(Math.max(raw, 0.75), 1.5))
   }
 
+  const handlePrev = () => setViewingIndex((i) => Math.max(0, i - 1))
+  const handleNext = () =>
+    setViewingIndex((i) => Math.min(imagePaths.length - 1, i + 1))
+
   useEffect(() => setViewingIndex(0), [imagePaths])
 
   return (
     <div id="image-viewer" className="flex flex-col gap-6 grow">
       <div
-        className="w-full overflow-hidden max-h-150"
+        className="relative cursor-none w-full overflow-hidden max-h-150"
         style={{
           aspectRatio,
         }}
+        ref={viewerRef}
       >
         <div
           className="mix-blend-darken flex transition-transform duration-500 ease-in-out w-full h-full"
@@ -38,6 +45,11 @@ const ImageViewer = ({ imagePaths }: ImageViewerProps) => {
             />
           ))}
         </div>
+        <ImageViewerCursor
+          containerRef={viewerRef}
+          onPrev={handlePrev}
+          onNext={handleNext}
+        />
       </div>
       <ImagePickerCarousel
         imagePaths={imagePaths}

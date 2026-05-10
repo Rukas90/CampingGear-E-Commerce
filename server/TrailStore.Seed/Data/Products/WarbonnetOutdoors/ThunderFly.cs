@@ -5,7 +5,7 @@ namespace TrailStore.Seed.Data.Products.WarbonnetOutdoors;
 
 // ReSharper disable UnusedType.Global
 
-public static class ThunderFly
+public sealed class ThunderFly
 {
     [SeededEntity]
     public static readonly Product Product = Product.Create(
@@ -21,13 +21,13 @@ public static class ThunderFly
     [
         ProductImage.Create(
             productId: Product.Id,
-            optionId:  ColorOption.BushwackCamo.Id,
-            urls:      ["/products/warbonnet-outdoors-thunderfly-bwcmo.webp"]),
+            optionId:  ColorOption.Brown.Id,
+            urls:      ["/products/warbonnet-outdoors-thunderfly-brn.webp"]),
 
         ProductImage.Create(
             productId: Product.Id,
-            optionId:  ColorOption.ShadowPineCamo.Id,
-            urls:      ["/products/warbonnet-outdoors-thunderfly-spcmo.webp"]),
+            optionId:  ColorOption.OliveGreen.Id,
+            urls:      ["/products/warbonnet-outdoors-thunderfly-olvgrn.webp"]),
 
         ProductImage.Create(
             productId: Product.Id,
@@ -36,15 +36,23 @@ public static class ThunderFly
 
         ProductImage.Create(
             productId: Product.Id,
-            optionId:  ColorOption.SnowDayCamo.Id,
-            urls:      ["/products/warbonnet-outdoors-thunderfly-sdcmo.webp"]),
+            optionId:  ColorOption.RangerGreen.Id,
+            urls:      ["/products/warbonnet-outdoors-thunderfly-rgrn.webp"]),
+
+        ProductImage.Create(
+            productId: Product.Id,
+            optionId:  ColorOption.AutumnOrange.Id,
+            urls:      ["/products/warbonnet-outdoors-thunderfly-aorg.webp"]),
+
+        ProductImage.Create(
+            productId: Product.Id,
+            optionId:  ColorOption.OceanBlue.Id,
+            urls:      ["/products/warbonnet-outdoors-thunderfly-oblu.webp"]),
 
         ProductImage.Create(
             productId: Product.Id,
             urls:      ["/products/warbonnet-outdoors-thunderfly-1.webp",
-                        "/products/warbonnet-outdoors-thunderfly-2.webp",
-                        "/products/warbonnet-outdoors-thunderfly-3.webp",
-                        "/products/warbonnet-outdoors-thunderfly-4.webp"]),
+                        "/products/warbonnet-outdoors-thunderfly-2.webp"]),
     ];
 
     [SeededEntity]
@@ -52,30 +60,44 @@ public static class ThunderFly
     [
         Sku.Create(
             productId: Product.Id,
-            code: "WBO-TFLY-BWCMO",
+            code: "WBO-TFLY-BRN",
             price: 244.00m,
             stock: 5,
-            options: [ColorOption.BushwackCamo]),
+            options: [ColorOption.Brown]),
 
         Sku.Create(
             productId: Product.Id,
-            code: "WBO-TFLY-SPCMO",
+            code: "WBO-TFLY-OLVGRN",
             price: 244.00m,
             stock: 4,
-            options: [ColorOption.ShadowPineCamo]),
+            options: [ColorOption.OliveGreen]),
 
         Sku.Create(
             productId: Product.Id,
             code: "WBO-TFLY-DFGRN",
-            price: 202.00m,
-            stock: 6,
+            price: 244.00m,
+            stock: 7,
             options: [ColorOption.DarkFoliageGreen]),
 
         Sku.Create(
             productId: Product.Id,
-            code: "WBO-TFLY-SDCMO",
-            price: 248.00m,
+            code: "WBO-TFLY-RGRN",
+            price: 244.00m,
             stock: 0,
-            options: [ColorOption.SnowDayCamo]),
+            options: [ColorOption.RangerGreen]),
+
+        Sku.Create(
+            productId: Product.Id,
+            code: "WBO-TFLY-AORG",
+            price: 202.00m,
+            stock: 6,
+            options: [ColorOption.AutumnOrange]),
+
+        Sku.Create(
+            productId: Product.Id,
+            code: "WBO-TFLY-OBLU",
+            price: 202.00m,
+            stock: 3,
+            options: [ColorOption.OceanBlue]),
     ];
 }

@@ -21,7 +21,7 @@ public static class SummerTwinQuilt
         ProductImage.Create(
             productId: Product.Id,
             optionId:  ColorOption.Blue.Id,
-            urls:      ["/products/zpacks-summer-twin-quilt-blu.webp"]),
+            urls:      ["/products/zpacks-summer-twin-quilt-blu.webp"])
     ];
 
     [SeededEntity]

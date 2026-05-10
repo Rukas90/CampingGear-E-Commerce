@@ -25,6 +25,31 @@ const ImagePickerCarousel = ({
 
   const FULL_SHIFT_AMOUNT = ITEM_SIZE * 7
 
+  useEffect(() => {
+    if (selected === undefined) return
+
+    const viewport = viewportRef.current
+    if (!viewport || !canScroll()) return
+
+    const firstVisible = Math.round(offset / ITEM_STEP)
+    const visibleCount = Math.floor(viewport.clientWidth / ITEM_STEP)
+    const lastVisible = firstVisible + visibleCount - 1
+
+    if (selected <= firstVisible) {
+      setOffset((o) => {
+        const next = Math.max(0, o - ITEM_STEP)
+        scrollProgressRef.current = next / maxOffset()
+        return next
+      })
+    } else if (selected >= lastVisible) {
+      setOffset((o) => {
+        const next = Math.min(maxOffset(), o + ITEM_STEP)
+        scrollProgressRef.current = next / maxOffset()
+        return next
+      })
+    }
+  }, [selected])
+
   const maxOffset = () => {
     if (!viewportRef.current || !containerRef.current) {
       return 0
@@ -52,33 +77,6 @@ const ImagePickerCarousel = ({
       scrollProgressRef.current = next / maxOffset()
       return next
     })
-
-  const nudgeForSelected = (index: number) => {
-    const viewport = viewportRef.current
-
-    if (!viewport) {
-      return
-    }
-    onSelected?.(index)
-
-    const firstVisible = Math.round(offset / ITEM_STEP)
-    const visibleCount = Math.floor(viewport.clientWidth / ITEM_STEP)
-    const lastVisible = firstVisible + visibleCount - 1
-
-    if (index <= firstVisible && canScroll()) {
-      setOffset((o) => {
-        const next = Math.max(0, o - ITEM_STEP)
-        scrollProgressRef.current = next / maxOffset()
-        return next
-      })
-    } else if (index >= lastVisible && canScroll()) {
-      setOffset((o) => {
-        const next = Math.min(maxOffset(), o + ITEM_STEP)
-        scrollProgressRef.current = next / maxOffset()
-        return next
-      })
-    }
-  }
 
   useEffect(() => {
     const viewport = viewportRef.current
@@ -131,7 +129,7 @@ const ImagePickerCarousel = ({
             return (
               <li
                 key={path}
-                onClick={() => nudgeForSelected?.(index)}
+                onClick={() => onSelected?.(index)}
                 style={{
                   width: ITEM_SIZE,
                   height: ITEM_SIZE,

@@ -1,8 +1,12 @@
 import {
-  Line,
   PageWrapper,
-  ProductHeader,
+  ProductSummary,
   ProductImageViewer,
+  ProductOptionPicker,
+  ProductPurchase,
+  ProductTrustMessages,
+  ProductBreadcrumbs,
+  ProductDescription,
 } from "@components"
 import { ProductViewProvider } from "@features"
 import { useNavigate, useParams } from "react-router-dom"
@@ -18,14 +22,20 @@ const ProductPage = () => {
 
   return (
     <ProductViewProvider slug={slug}>
-      <PageWrapper className="flex gap-12 my-12 w-full grow">
-        <div className="grow max-w-4/7 shrink-0 ">
-          <ProductImageViewer />
+      <PageWrapper className="my-12 w-full">
+        <ProductBreadcrumbs />
+        <div className="flex md:flex-row flex-col gap-12 w-full grow">
+          <div className="grow md:max-w-4/7 w-full shrink-0 ">
+            <ProductImageViewer />
+          </div>
+          <div className="flex-1 min-w-0 py-4">
+            <ProductSummary />
+            <ProductOptionPicker />
+            <ProductPurchase />
+            <ProductTrustMessages />
+          </div>
         </div>
-        <div className="flex-1 min-w-0 py-4">
-          <ProductHeader />
-          <Line className="my-4" />
-        </div>
+        <ProductDescription />
       </PageWrapper>
     </ProductViewProvider>
   )

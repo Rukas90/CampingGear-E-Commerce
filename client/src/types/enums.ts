@@ -7,6 +7,7 @@ export const Availability = {
 export type Availability = (typeof Availability)[keyof typeof Availability]
 
 export enum PreviewType {
+  None = -1,
   Color = 0,
   Image = 1,
 }

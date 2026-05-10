@@ -31,8 +31,8 @@ public static class PlexSoloLite
 
         ProductImage.Create(
             productId: Product.Id,
-            optionId:  ColorOption.White.Id,
-            urls:      ["/products/zpacks-plex-solo-lite-wht.webp"]),
+            optionId:  ColorOption.SpruceGreen.Id,
+            urls:      ["/products/zpacks-plex-solo-lite-sgrn.webp"]),
     ];
 
     [SeededEntity]
@@ -54,9 +54,9 @@ public static class PlexSoloLite
 
         Sku.Create(
             productId: Product.Id,
-            code: "ZP-PLXSLLT-WHT",
+            code: "ZP-PLXSLLT-SGRN",
             price: 809.00m,
             stock: 1,
-            options: [ColorOption.White]),
+            options: [ColorOption.SpruceGreen]),
     ];
 }

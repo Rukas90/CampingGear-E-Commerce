@@ -23,8 +23,7 @@ public static class SoloTarp
             urls:      ["/products/gossamer-gear-solo-tarp-1.webp",
                         "/products/gossamer-gear-solo-tarp-2.webp",
                         "/products/gossamer-gear-solo-tarp-3.webp",
-                        "/products/gossamer-gear-solo-tarp-4.webp",
-                        "/products/gossamer-gear-solo-tarp-5.webp"]),
+                        "/products/gossamer-gear-solo-tarp-4.webp"]),
     ];
 
     [SeededEntity]

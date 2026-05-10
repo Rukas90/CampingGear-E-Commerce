@@ -22,9 +22,11 @@ const ProductsPage = () => {
     <PageWrapper className="relative items-start flex gap-12 py-12 w-full">
       <CatalogFiltersSidebar {...catalogFilters} exclude={["categories"]} />
       <div className="grid grid-cols-3 self-start grow max-w-full">
-        {products?.map((summary) => (
-          <ProductItem {...summary} />
-        ))}
+        {products
+          ?.sort((a, b) => (b.inStock ? 1 : 0) - (a.inStock ? 1 : 0))
+          .map((summary) => (
+            <ProductItem {...summary} />
+          ))}
       </div>
       {(products?.length ?? 0) <= 0 && (
         <p className="w-full text-center pt-12 text-lg text-neutral-400">

@@ -16,7 +16,8 @@ public static class ProductsMapping
             Slug          = product.Slug,
             BrandName     = product.Brand.Name,
             BrandSlug     = product.Brand.Slug,
-            Category      = product.Category.Slug,
+            CategoryName  = product.Category.Name,
+            CategorySlug  = product.Category.Slug,
             MinPrice      = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
             MaxPrice      = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
             AverageRating = product.Reviews.Average(r => (double?)r.Rating) ?? 0.0,
@@ -49,6 +50,7 @@ public static class ProductsMapping
                 {
                     Id           = option.Id,
                     Name         = option.Name,
+                    SortOrder    = option.SortOrder,
                     InStock      = product.Skus
                         .Where(sku => sku.Options.Any(o => o.Id == option.Id)).Any(sku => sku.Stock > 0),
                     PreviewType  = option.PreviewType,

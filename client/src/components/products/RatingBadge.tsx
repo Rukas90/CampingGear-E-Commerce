@@ -58,7 +58,7 @@ const RatingBadge = ({
           />
         )
       })}
-      <p className="text-neutral-900">({reviewCount})</p>
+      {averageRating} <p className="text-neutral-900">({reviewCount})</p>
     </div>
   )
 }
