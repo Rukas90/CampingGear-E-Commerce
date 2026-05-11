@@ -19,11 +19,13 @@ interface RatingBadgeProps extends React.ComponentProps<"div"> {
   starsClassName?: string
   averageRating: number
   reviewCount: number
+  showLabel?: boolean
 }
 const RatingBadge = ({
   starsClassName,
   averageRating,
   reviewCount,
+  showLabel = true,
   className,
   ...props
 }: RatingBadgeProps) => {
@@ -58,7 +60,12 @@ const RatingBadge = ({
           />
         )
       })}
-      {averageRating} <p className="text-neutral-900">({reviewCount})</p>
+      {showLabel && (
+        <p>
+          <span>{averageRating.toPrecision(2)} </span>
+          <span className="text-neutral-900">({reviewCount})</span>
+        </p>
+      )}
     </div>
   )
 }

@@ -1,21 +1,27 @@
-import { Button, InputField } from "@components"
+import { Button, InputField, Line } from "@components"
 
 const Newsletter = () => {
   return (
-    <div className="relative w-full py-8 bg-[#eeeae6]">
+    <div className="relative w-full py-8 bg-[#EDEDEC]">
       <img
         src="/img/forest-nature-backdrop.webp"
-        className="absolute mx-auto h-full left-1/2 top-1/2 -translate-1/2"
+        className="absolute mx-auto h-full left-1/2 top-1/2 -translate-1/2 mix-blend-darken opacity-5 select-none pointer-events-none"
       />
       <div className="relative flex flex-col gap-3 items-center justify-center z-1">
-        <p className="font-semibold text-3xl">20% Off your first order!</p>
-        <p className="text-lg">
+        <div className="flex w-full items-center">
+          <Line className="bg-stone-400" />
+          <p className="font-black text-xl uppercase font-serif shrink-0 mx-8">
+            Camping Gear Line
+          </p>
+          <Line className="bg-stone-400" />
+        </div>
+        <p className="text-base">
           Join our mailing list to receive the latest news and promotions.
         </p>
         <div className="flex gap-2 justify-center w-[384px]">
           <span className="w-full">
             <InputField
-              className="text-base! w-full"
+              className="text-base w-full rounded-lg"
               placeholder="Email Address"
             />
           </span>

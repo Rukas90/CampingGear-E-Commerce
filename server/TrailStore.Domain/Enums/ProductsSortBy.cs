@@ -1,6 +1,6 @@
 ﻿namespace TrailStore.Domain.Enums;
 
-public enum SortBy
+public enum ProductsSortBy
 {
     Manual,
     MostRelevant,

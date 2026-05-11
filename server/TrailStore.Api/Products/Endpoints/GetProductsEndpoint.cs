@@ -3,7 +3,6 @@ using TrailStore.Api.Products.Bindings;
 using TrailStore.Api.Products.Dto;
 using TrailStore.Api.Products.Mapping;
 using TrailStore.Domain.Products;
-using TrailStore.Infrastructure.Products;
 
 namespace TrailStore.Api.Products.Endpoints;
 

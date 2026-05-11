@@ -1,8 +1,8 @@
 import { useProductView } from "@features"
 import ProductOptionHeader from "./ProductOptionHeader"
 import clsx from "clsx"
-import { IconDiagonalLine, Line } from "@components"
-import { PreviewType } from "@types"
+import { Line } from "@components"
+import { PreviewOptionButton, TextOptionButton } from "./OptionButtons"
 
 const ProductOptionPicker = () => {
   const { sku, data, optionChanged, availableOptionIds } = useProductView()
@@ -34,64 +34,20 @@ const ProductOptionPicker = () => {
               {group.options
                 ?.sort((a, b) => a.sortOrder - b.sortOrder)
                 .flatMap((option) => {
-                  const isSelected = selectedOption?.id === option.id
-                  const isAvailableOption = availableOptionIds.has(option.id)
-                  const isOutOfStock = !data?.skus.some(
-                    (sku) => sku.optionIds.includes(option.id) && sku.stock > 0,
-                  )
-                  if (option.previewValue) {
-                    const isImage = option.previewType === PreviewType.Image
-
-                    return (
-                      <button
-                        key={option.id}
-                        className={clsx(
-                          "size-10 rounded-full p-0.5 border-2",
-                          isSelected && "border-neutral-600",
-                          !isSelected && "border-neutral-200",
-                        )}
-                        onClick={() => optionChanged(option.id)}
-                        disabled={!isAvailableOption}
-                      >
-                        <div
-                          className="relative w-full h-full rounded-full overflow-hidden"
-                          style={{
-                            backgroundColor: isImage
-                              ? "transparent"
-                              : option.previewValue,
-                            backgroundImage: isImage
-                              ? `url(${option.previewValue})`
-                              : undefined,
-                          }}
-                        >
-                          {isOutOfStock && (
-                            <IconDiagonalLine className="text-neutral-400" />
-                          )}
-                        </div>
-                      </button>
-                    )
+                  const props = {
+                    isSelected: selectedOption?.id === option.id,
+                    isAvailable: availableOptionIds.has(option.id),
+                    isOutOfStock: !data?.skus.some(
+                      (s) => s.optionIds.includes(option.id) && s.stock > 0,
+                    ),
+                    onClick: () => optionChanged(option.id),
+                    option,
                   }
 
-                  return (
-                    <button
-                      key={option.id}
-                      className={clsx(
-                        "relative border-2 px-3 py-1.5 rounded-md cursor-pointer",
-                        isSelected && "border-neutral-700",
-                        !isSelected && "border-neutral-200",
-                        isOutOfStock && "text-neutral-400",
-                        !isAvailableOption && "opacity-40 cursor-not-allowed",
-                        (!isAvailableOption || !isSelected) &&
-                          "hover:border-neutral-400",
-                      )}
-                      onClick={() => optionChanged(option.id)}
-                      disabled={!isAvailableOption}
-                    >
-                      {option.name}
-                      {isOutOfStock && (
-                        <IconDiagonalLine className="text-neutral-400" />
-                      )}
-                    </button>
+                  return option.previewValue ? (
+                    <PreviewOptionButton key={option.id} {...props} />
+                  ) : (
+                    <TextOptionButton key={option.id} {...props} />
                   )
                 })}
             </div>

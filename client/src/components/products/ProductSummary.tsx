@@ -1,6 +1,5 @@
 import { useProductView } from "@features"
-import RatingBadge from "./RatingBadge"
-import { Line } from "@components"
+import { Line, RatingBadge } from "@components"
 
 const ProductSummary = () => {
   const { sku, data } = useProductView()
@@ -11,12 +10,14 @@ const ProductSummary = () => {
       <p className="text-3xl font-semibold mb-2">{data?.name}</p>
       <p className="text-xl text-lime-800 font-semibold">{sku?.unitPrice}€</p>
       <p className="italic text-neutral-400">Tax included</p>
-      <RatingBadge
-        starsClassName="size-4"
-        averageRating={data?.averageRating ?? 0}
-        reviewCount={data?.reviewCount ?? 0}
-        className="mt-2 text-base"
-      />
+      <a href="#customer-reviews">
+        <RatingBadge
+          starsClassName="size-4"
+          averageRating={data?.averageRating ?? 0}
+          reviewCount={data?.reviewCount ?? 0}
+          className="mt-2 text-base"
+        />
+      </a>
       <Line className="my-4" />
     </div>
   )

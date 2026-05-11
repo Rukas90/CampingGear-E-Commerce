@@ -3,12 +3,16 @@ import { IconCart, IconSaved } from "@components"
 interface ProductButtonsProps {
   stock: number
   isInSavedList?: boolean
+  unitPrice: number
+  quantity: number
   onAddToCart?: () => void
   onAddToWishlist?: () => void
 }
 const ProductButtons = ({
   stock,
   isInSavedList,
+  unitPrice,
+  quantity,
   onAddToCart,
   onAddToWishlist,
 }: ProductButtonsProps) => {
@@ -26,6 +30,9 @@ const ProductButtons = ({
       >
         <IconCart className="size-5" />
         {stock > 0 ? "Add to Cart" : "Notify when available"}
+        {stock > 0 && quantity > 1 && (
+          <span className="font-normal"> - ${unitPrice * quantity}€</span>
+        )}
       </button>
     </div>
   )

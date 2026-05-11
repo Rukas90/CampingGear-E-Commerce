@@ -31,6 +31,8 @@ const ProductPurchase = () => {
       <ProductStockLabel stock={stock} />
       <ProductButtons
         stock={stock}
+        unitPrice={sku?.unitPrice ?? 0}
+        quantity={quantity}
         onAddToCart={handleAddToCart}
         onAddToWishlist={handleAddToWishlist}
       />

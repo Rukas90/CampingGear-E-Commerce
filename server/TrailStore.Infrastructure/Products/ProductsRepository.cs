@@ -56,14 +56,14 @@ public sealed class ProductsRepository(AppDbContext context) : IProductsReposito
             .ToListAsync();
     }
     
-    private static IQueryable<Product> GetOrderedQueryable(IQueryable<Product> query, SortBy sortBy)
+    private static IQueryable<Product> GetOrderedQueryable(IQueryable<Product> query, ProductsSortBy sortBy)
     {
         return sortBy switch
         {
-            SortBy.PriceAscending  => query.OrderBy(p => p.Skus.Min(s => s.UnitPrice)),
-            SortBy.PriceDescending => query.OrderByDescending(p => p.Skus.Min(s => s.UnitPrice)),
-            SortBy.TitleAscending  => query.OrderBy(p => p.Name),
-            SortBy.TitleDescending => query.OrderByDescending(p => p.Name),
+            ProductsSortBy.PriceAscending  => query.OrderBy(p => p.Skus.Min(s => s.UnitPrice)),
+            ProductsSortBy.PriceDescending => query.OrderByDescending(p => p.Skus.Min(s => s.UnitPrice)),
+            ProductsSortBy.TitleAscending  => query.OrderBy(p => p.Name),
+            ProductsSortBy.TitleDescending => query.OrderByDescending(p => p.Name),
             //SortBy.BestSelling     => query.OrderByDescending(p => p.Skus.Sum(s => s.OrderCount)), // TODO
             _                      => query.OrderBy(p => p.Name)
         };

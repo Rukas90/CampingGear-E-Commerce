@@ -12,20 +12,22 @@ public static class ProductsMapping
     {
         return new ProductDetailDto
         {
-            Name          = product.Name,
-            Slug          = product.Slug,
-            BrandName     = product.Brand.Name,
-            BrandSlug     = product.Brand.Slug,
-            CategoryName  = product.Category.Name,
-            CategorySlug  = product.Category.Slug,
-            MinPrice      = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
-            MaxPrice      = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
-            AverageRating = product.Reviews.Average(r => (double?)r.Rating) ?? 0.0,
-            ReviewCount   = product.Reviews.Count,
-            InStock       = product.Skus.Any(sku => sku.Stock > 0),
-            ThumbnailUrl  = product.ThumbnailUrl,
-            Description   = product.Description,
-            Skus          = product.Skus.Select(sku => new ProductSkuDto
+            Name             = product.Name,
+            Slug             = product.Slug,
+            BrandName        = product.Brand.Name,
+            BrandSlug        = product.Brand.Slug,
+            CategoryName     = product.Category.Name,
+            CategorySlug     = product.Category.Slug,
+            MinPrice         = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
+            MaxPrice         = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
+            AverageRating    = product.Reviews.Average(r => (double?)r.Rating) ?? 0.0,
+            ReviewCount      = product.Reviews.Count,
+            InStock          = product.Skus.Any(sku => sku.Stock > 0),
+            ThumbnailUrl     = product.ThumbnailUrl,
+            RecommendedCount = product.Reviews.Count(review => review.Recommended),
+            StarCounts       = Enumerable.Range(1, 5).ToDictionary(star => star, star => product.Reviews.Count(r => r.Rating == star)),
+            Description      = product.Description,
+            Skus             = product.Skus.Select(sku => new ProductSkuDto
             {
                 CodeHash  = sku.CodeHash,
                 UnitPrice = sku.UnitPrice,
@@ -73,7 +75,7 @@ public static class ProductsMapping
     {
         return new ProductsFilter
         {
-            SortBy        = request.SortBy ?? SortBy.Manual,
+            SortBy        = request.SortBy ?? ProductsSortBy.Manual,
             BrandSlugs    = request.Brand ?? [],
             CategorySlugs = request.Category ?? [],
             Pagination    = request.Pagination ?? false,

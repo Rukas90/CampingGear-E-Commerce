@@ -5,7 +5,7 @@ namespace TrailStore.Domain.Products;
 
 public class ProductsFilter
 {
-    public SortBy            SortBy        { get; init; } = SortBy.Manual;
+    public ProductsSortBy            SortBy        { get; init; } = ProductsSortBy.Manual;
     public string[]          BrandSlugs    { get; init; } = [];
     public string[]          CategorySlugs { get; init; } = [];
     public bool              Pagination    { get; init; } = false;

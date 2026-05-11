@@ -53,7 +53,7 @@ public static class Orders
             PhoneNumber   = f.Phone.PhoneNumber()
         });
 
-        var skus = SeedRunner.Discover<Sku>(SeedRunner.Assembly).ToArray();
+        var skus = SeedRunner.Discover<Sku>(SeedAssembly.Reference).ToArray();
         
         faker.RuleFor(order => order.Items, (Faker f, Order order) =>
         {

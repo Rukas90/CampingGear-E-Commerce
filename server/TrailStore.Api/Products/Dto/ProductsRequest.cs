@@ -6,7 +6,7 @@ namespace TrailStore.Api.Products.Dto;
 
 public sealed record ProductsRequest
 {
-    public SortBy?                           SortBy       { get; init; }
+    public ProductsSortBy?                   SortBy       { get; init; }
     public string[]?                         Brand        { get; init; }
     public string[]?                         Category     { get; init; }
     public bool?                             Pagination   { get; init; }

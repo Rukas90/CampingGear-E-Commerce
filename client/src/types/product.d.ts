@@ -99,11 +99,15 @@ export type ProductSummary = {
 } & NameSlug
 
 export type ProductDetail = {
+  recommendedCount: number
+  starCounts: Record<StarRating, number>
   description: string
   skus: ProductSku[]
   options: ProductOptionGroup[]
   images: ProductImage[]
 } & ProductSummary
+
+export type StarRating = 1 | 2 | 3 | 4 | 5
 
 export type ProductSku = {
   codeHash: string
@@ -138,3 +142,5 @@ export type ProductImageUrl = {
 }
 
 export type Stock = "InStock" | "LowStock" | "OutOfStock"
+
+export type Review = {}

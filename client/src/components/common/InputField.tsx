@@ -2,6 +2,7 @@ import clsx from "clsx"
 import type React from "react"
 import { useState } from "react"
 import Eye from "./Eye"
+import { twMerge } from "tailwind-merge"
 
 export interface InputFieldProps extends Omit<
   React.ComponentProps<"input">,
@@ -24,13 +25,15 @@ const InputField = ({
   return (
     <div className="flex w-full">
       <input
-        className={clsx(
+        className={twMerge(
+          clsx(
+            !indicateError && "border-stone-300 hover:border-stone-400",
+            indicateError && "border-red-800 hover:border-red-700",
+            isHideable ? "rounded-l-sm" : "rounded-sm",
+            hidden && "font-serif",
+            "bg-stone-50 px-3 py-2 border transition-colors",
+          ),
           className,
-          !indicateError && "border-stone-300 hover:border-stone-400",
-          indicateError && "border-red-800 hover:border-red-700",
-          isHideable ? "rounded-l-sm" : "rounded-sm",
-          hidden && "font-serif",
-          "bg-stone-50 px-3 py-2 border transition-colors",
         )}
         type={hidden ? "password" : type}
         {...props}

@@ -165,7 +165,7 @@ public static class ColorOption
         name:          "Dark Foliage Green",
         slug:          "dark-foliage-green",
         previewType:   PreviewType.Color,
-        previewValue:  "#003f1b");
+        previewValue:  "#354238");
     
     [SeededEntity]
     public static readonly Option RangerGreen = Option.Create(

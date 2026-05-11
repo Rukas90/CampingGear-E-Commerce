@@ -14,8 +14,6 @@ public class SeedOptions
 }
 public static class SeedRunner
 {
-    public static readonly Assembly Assembly = typeof(SeedRunner).Assembly;
-    
     public static async Task RunAsync(AppDbContext context, SeedOptions? options = null)
     {
         var logger = options?.Logger;
@@ -30,18 +28,20 @@ public static class SeedRunner
             logger?.LogWarning("Already seeded. Use --reseed to force.");
             return;
         }
+
+        var assembly = SeedAssembly.Reference;
         
-        await context.Customers.AddRangeAsync(Discover<Customer>(Assembly));
-        await context.Brands.AddRangeAsync(Discover<Brand>(Assembly));
-        await context.CategoryGroups.AddRangeAsync(Discover<CategoryGroup>(Assembly));
-        await context.Categories.AddRangeAsync(Discover<Category>(Assembly));
-        await context.OptionGroups.AddRangeAsync(Discover<OptionGroup>(Assembly));
-        await context.Options.AddRangeAsync(Discover<Option>(Assembly));
-        await context.Products.AddRangeAsync(Discover<Product>(Assembly));
-        await context.ProductImages.AddRangeAsync(Discover<ProductImage>(Assembly));
-        await context.Skus.AddRangeAsync(Discover<Sku>(Assembly));
-        await context.Orders.AddRangeAsync(Discover<Order>(Assembly));
-        await context.Reviews.AddRangeAsync(Discover<Review>(Assembly));
+        await context.Customers.AddRangeAsync(Discover<Customer>(assembly));
+        await context.Brands.AddRangeAsync(Discover<Brand>(assembly));
+        await context.CategoryGroups.AddRangeAsync(Discover<CategoryGroup>(assembly));
+        await context.Categories.AddRangeAsync(Discover<Category>(assembly));
+        await context.OptionGroups.AddRangeAsync(Discover<OptionGroup>(assembly));
+        await context.Options.AddRangeAsync(Discover<Option>(assembly));
+        await context.Products.AddRangeAsync(Discover<Product>(assembly));
+        await context.ProductImages.AddRangeAsync(Discover<ProductImage>(assembly));
+        await context.Skus.AddRangeAsync(Discover<Sku>(assembly));
+        await context.Orders.AddRangeAsync(Discover<Order>(assembly));
+        await context.Reviews.AddRangeAsync(Discover<Review>(assembly));
 
         await context.SaveChangesAsync();
         logger?.LogInformation("Seeding done.");

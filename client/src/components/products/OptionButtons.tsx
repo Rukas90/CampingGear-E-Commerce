@@ -10,7 +10,7 @@ interface OptionButtonProps {
   option: ProductOption
 }
 
-const PreviewOptionButton = ({
+export const PreviewOptionButton = ({
   isSelected,
   isAvailable,
   isOutOfStock,
@@ -42,4 +42,26 @@ const PreviewOptionButton = ({
     </div>
   </button>
 )
-export default PreviewOptionButton
+
+export const TextOptionButton = ({
+  isSelected,
+  isAvailable,
+  isOutOfStock,
+  onClick,
+  option,
+}: OptionButtonProps) => (
+  <button
+    className={clsx(
+      "relative border-2 px-3 py-1.5 rounded-md cursor-pointer",
+      isSelected ? "border-neutral-700" : "border-neutral-200",
+      isOutOfStock && "text-neutral-400",
+      !isAvailable && "opacity-40 cursor-not-allowed",
+      (!isAvailable || !isSelected) && "hover:border-neutral-400",
+    )}
+    onClick={onClick}
+    disabled={!isAvailable}
+  >
+    {option.name}
+    {isOutOfStock && <IconDiagonalLine className="text-neutral-400" />}
+  </button>
+)

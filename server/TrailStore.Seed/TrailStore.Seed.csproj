@@ -15,4 +15,9 @@
       <PackageReference Include="Bogus" Version="35.6.5" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Update="Data\Reviews.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>

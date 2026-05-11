@@ -1,8 +1,7 @@
 import type { ProductSummary } from "@types"
 import PriceBadge from "./PriceBadge"
-import RatingBadge from "./RatingBadge"
 import OutOfStockTag from "./OutOfStockTag"
-import { IconAddToCart, IconCart, IconSaved } from "@components"
+import { RatingBadge, IconCart, IconSaved } from "@components"
 import { Link } from "react-router-dom"
 
 const ProductItem = ({

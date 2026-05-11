@@ -9,20 +9,20 @@ public static class IcelineTrekkingPoles
     [SeededEntity]
     public static readonly Product Product = Product.Create(
         name:         "Iceline Trekking Poles",
-        slug:         "durston-incline-trekking-poles",
+        slug:         "durston-iceline-trekking-poles",
         brandId:      Brands.Durston.Id,
         categoryId:   Categories.TrekkingPoles.Id,
-        thumbnailUrl: "/products/durston-incline-trekking-poles-thumb.webp");
+        thumbnailUrl: "/products/durston-iceline-trekking-poles-thumb.webp");
     
     [SeededEntity]
     public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
             productId: Product.Id,
-            urls:      ["/products/durston-incline-trekking-poles-1.webp",
-                        "/products/durston-incline-trekking-poles-2.webp",
-                        "/products/durston-incline-trekking-poles-3.webp",
-                        "/products/durston-incline-trekking-poles-4.webp"]),
+            urls:      ["/products/durston-iceline-trekking-poles-1.webp",
+                        "/products/durston-iceline-trekking-poles-2.webp",
+                        "/products/durston-iceline-trekking-poles-3.webp",
+                        "/products/durston-iceline-trekking-poles-4.webp"]),
     ];
     
     [SeededEntity]

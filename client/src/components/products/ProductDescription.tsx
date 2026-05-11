@@ -1,4 +1,3 @@
-import { Line } from "@components"
 import { useProductView } from "@features"
 
 const ProductDescription = () => {
@@ -10,7 +9,6 @@ const ProductDescription = () => {
 
   return (
     <div>
-      <Line className="my-8" />
       <p className="text-xl mb-4">Description</p>
       <p>{data.description}</p>
     </div>
