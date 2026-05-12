@@ -1,31 +1,39 @@
 ﻿using TrailStore.Api.Categories.Dto;
-using TrailStore.Domain.Models;
+using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Api.Categories.Mapping;
 
 public static class CategoryMapping
 {
     public static IEnumerable<CategoryDto> ToDto(this ICollection<Category> categories)
-        => categories.Select(ToDto);
-    
+    {
+        return categories.Select(ToDto);
+    }
+
     public static CategoryDto ToDto(this Category category)
-        => new()
+    {
+        return new CategoryDto
         {
-            Name        = category.Name,
+            Name = category.Name,
             Description = category.Description,
-            GroupSlug   = category.Group.Slug,
-            Slug        = category.Slug,
-            ImageUrl    = category.ImageUrl
+            GroupSlug = category.Group.Slug,
+            Slug = category.Slug,
+            ImageUrl = category.ImageUrl
         };
-    
+    }
+
     public static IEnumerable<CategoryGroupDto> ToDto(this ICollection<CategoryGroup> groups)
-        => groups.Select(ToDto);
-    
+    {
+        return groups.Select(ToDto);
+    }
+
     public static CategoryGroupDto ToDto(this CategoryGroup category)
-        => new()
+    {
+        return new CategoryGroupDto
         {
-            Name      = category.Name,
-            Slug      = category.Slug,
+            Name = category.Name,
+            Slug = category.Slug,
             SortOrder = category.SortOrder
         };
+    }
 }

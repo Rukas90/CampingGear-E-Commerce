@@ -1,5 +1,6 @@
 ﻿using TrailStore.Api.Auth.Constants;
-using TrailStore.Domain.Auth;
+using TrailStore.Domain.Auth.Interfaces;
+using TrailStore.Domain.Auth.Models;
 using TrailStore.Shared.Auth;
 using TrailStore.Shared.Common;
 
@@ -11,33 +12,33 @@ public class AuthCookieService(IWebHostEnvironment env, ICsrfService csrfService
     private CookieOptions AccessTokenOptions => new()
     {
         HttpOnly = true,
-        Secure   = env.IsProduction(),
+        Secure = env.IsProduction(),
         SameSite = SameSiteMode.Lax,
-        Expires  = DateTimeOffset.UtcNow.AddMinutes(15)
+        Expires = DateTimeOffset.UtcNow.AddMinutes(15)
     };
 
     private CookieOptions RefreshTokenOptions => new()
     {
         HttpOnly = true,
-        Secure   = env.IsProduction(),
+        Secure = env.IsProduction(),
         SameSite = SameSiteMode.Lax,
-        Expires  = DateTimeOffset.UtcNow.AddDays(30),
-        Path     = "/api/v1/auth/refresh"
+        Expires = DateTimeOffset.UtcNow.AddDays(30),
+        Path = "/api/v1/auth/refresh"
     };
-    
+
     private CookieOptions CsrfTokenOptions => new()
     {
         HttpOnly = false,
-        Secure   = env.IsProduction(),
+        Secure = env.IsProduction(),
         SameSite = SameSiteMode.Lax,
-        Path     = "/"
+        Path = "/"
     };
 
     public void AppendAuthCookies(HttpResponse response, AuthTokens tokens)
     {
         response.Cookies.Append(
             AuthCookies.AccessToken, tokens.AccessToken, AccessTokenOptions);
-        
+
         response.Cookies.Append(
             AuthCookies.RefreshToken, tokens.RefreshToken, RefreshTokenOptions);
     }
@@ -51,9 +52,9 @@ public class AuthCookieService(IWebHostEnvironment env, ICsrfService csrfService
     public string SetCsrfToken(HttpResponse response)
     {
         var token = csrfService.GenerateToken();
-        
+
         response.Cookies.Append(CsrfConstants.CookieName, token, CsrfTokenOptions);
-        
+
         return token;
     }
 }

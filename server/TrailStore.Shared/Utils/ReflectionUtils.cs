@@ -11,10 +11,14 @@ public class ReflectionUtils
                 .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == openGenericInterface)
                 .Select(i => i.GetGenericArguments()[0]));
     }
-    
+
     public static MethodInfo GetPrivateMethod(Type type, string name)
-        => type.GetMethod(name, BindingFlags.NonPublic | BindingFlags.Static)!;
+    {
+        return type.GetMethod(name, BindingFlags.NonPublic | BindingFlags.Static)!;
+    }
 
     public static void InvokeGeneric(MethodInfo method, Type type, params object[] args)
-        => method.MakeGenericMethod(type).Invoke(null, args);
+    {
+        method.MakeGenericMethod(type).Invoke(null, args);
+    }
 }

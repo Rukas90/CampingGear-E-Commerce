@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TrailStore.Domain.Models;
+using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Infrastructure.Data.Config;
 
@@ -9,24 +9,24 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     public void Configure(EntityTypeBuilder<Category> builder)
     {
         builder.HasKey(c => c.Id);
-        
+
         builder.Property(c => c.Name)
             .HasMaxLength(100)
             .IsRequired();
-        
+
         builder.Property(c => c.Description)
             .HasMaxLength(500);
-        
+
         builder.Property(c => c.Slug)
             .HasMaxLength(100)
             .IsRequired();
-        
+
         builder.HasIndex(c => c.Slug)
             .IsUnique();
-        
+
         builder.Property(c => c.ImageUrl)
             .HasMaxLength(400);
-        
+
         builder.HasOne(category => category.Group)
             .WithMany(group => group.Categories)
             .HasForeignKey(category => category.GroupId)

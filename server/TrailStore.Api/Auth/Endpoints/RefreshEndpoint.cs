@@ -2,14 +2,14 @@
 using TrailStore.Api.Auth.Cookies;
 using TrailStore.Api.Auth.Dto;
 using TrailStore.Api.Auth.Mapping;
-using TrailStore.Api.Common;
 using TrailStore.Api.Common.Extensions;
-using TrailStore.Domain.Auth;
+using TrailStore.Domain.Auth.Interfaces;
 using TrailStore.Shared.Auth;
 
 namespace TrailStore.Api.Auth.Endpoints;
 
-public class RefreshEndpoint(IAuthService authService, IAuthCookieService authCookieService) : EndpointWithoutRequest<AccountDto>
+public class RefreshEndpoint(IAuthService authService, IAuthCookieService authCookieService)
+    : EndpointWithoutRequest<AccountDto>
 {
     public override void Configure()
     {
@@ -26,10 +26,10 @@ public class RefreshEndpoint(IAuthService authService, IAuthCookieService authCo
         {
             authCookieService.RevokeAuthCookies(HttpContext.Response);
             await this.SendProblemAsync(result.Problem);
-            
+
             return;
         }
-        
+
         authCookieService.AppendAuthCookies(HttpContext.Response, result.Value.Tokens);
         await Send.OkAsync(result.Value.Customer.ToAccountDto(), ct);
     }

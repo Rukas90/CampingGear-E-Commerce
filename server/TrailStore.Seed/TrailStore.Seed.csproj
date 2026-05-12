@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TrailStore.Domain\TrailStore.Domain.csproj" />
-      <ProjectReference Include="..\TrailStore.Infrastructure\TrailStore.Infrastructure.csproj" />
+        <ProjectReference Include="..\TrailStore.Domain\TrailStore.Domain.csproj"/>
+        <ProjectReference Include="..\TrailStore.Infrastructure\TrailStore.Infrastructure.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Bogus" Version="35.6.5" />
+        <PackageReference Include="Bogus" Version="35.6.5"/>
     </ItemGroup>
 
     <ItemGroup>

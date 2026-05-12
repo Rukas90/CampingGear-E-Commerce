@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using TrailStore.Domain.Models;
-using TrailStore.Domain.Skus;
+using TrailStore.Domain.Shared.Models;
+using TrailStore.Domain.Skus.Interfaces;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Shared.Common;
 

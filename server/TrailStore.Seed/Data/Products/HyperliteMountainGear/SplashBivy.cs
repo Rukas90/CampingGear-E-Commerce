@@ -1,44 +1,42 @@
-﻿using TrailStore.Domain.Models;
+﻿using TrailStore.Domain.Shared.Models;
 using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.HyperliteMountainGear;
 
 // ReSharper disable UnusedType.Global
-
 public static class SplashBivy
 {
-    [SeededEntity]
-    public static readonly Product Product = Product.Create(
-        name:         "Splash Bivy",
-        slug:         "hyperlite-mountain-gear-splash-bivy",
-        brandId:      Brands.HyperliteMountainGear.Id,
-        categoryId:   Categories.BivysLiners.Id,
+    [SeededEntity] public static readonly Product Product = Product.Create(
+        "Splash Bivy",
+        "hyperlite-mountain-gear-splash-bivy",
+        brandId: Brands.HyperliteMountainGear.Id,
+        categoryId: Categories.BivysLiners.Id,
         thumbnailUrl: "/products/hyperlite-mountain-gear-splash-bivy-thumb.webp");
 
-    [SeededEntity]
-    public static readonly IEnumerable<ProductImage> Images =
+    [SeededEntity] public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
-            productId: Product.Id,
-            urls:      ["/products/hyperlite-mountain-gear-splash-bivy-1.webp",
-                        "/products/hyperlite-mountain-gear-splash-bivy-2.webp"]),
+            Product.Id,
+            [
+                "/products/hyperlite-mountain-gear-splash-bivy-1.webp",
+                "/products/hyperlite-mountain-gear-splash-bivy-2.webp"
+            ])
     ];
 
-    [SeededEntity]
-    public static readonly IEnumerable<Sku> Skus =
+    [SeededEntity] public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(
-            productId: Product.Id,
-            code: "HMG-SPLSHBIVY-REG",
-            price: 292.00m,
-            stock: 5,
-            options: [SizeOption.Regular]),
+            Product.Id,
+            "HMG-SPLSHBIVY-REG",
+            292.00m,
+            5,
+            [SizeOption.Regular]),
 
         Sku.Create(
-            productId: Product.Id,
-            code: "HMG-SPLSHBIVY-LG",
-            price: 292.00m,
-            stock: 3,
-            options: [SizeOption.Large]),
+            Product.Id,
+            "HMG-SPLSHBIVY-LG",
+            292.00m,
+            3,
+            [SizeOption.Large])
     ];
 }

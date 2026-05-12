@@ -1,190 +1,186 @@
-﻿using TrailStore.Domain.Models;
+﻿using TrailStore.Domain.Shared.Models;
 using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.GooseFeet;
 
 // ReSharper disable UnusedType.Global
-
 public static class DownSocks
 {
-    [SeededEntity]
-    public static readonly Product Product = Product.Create(
-        name:         "Down Socks",
-        slug:         "goosefeet-gear-down-socks",
-        brandId:      Brands.GooseFeet.Id,
-        categoryId:   Categories.SleepingBags.Id,
+    [SeededEntity] public static readonly Product Product = Product.Create(
+        "Down Socks",
+        "goosefeet-gear-down-socks",
+        brandId: Brands.GooseFeet.Id,
+        categoryId: Categories.SleepingBags.Id,
         thumbnailUrl: "/products/goosefeet-gear-down-socks-thumb.webp");
 
-    [SeededEntity] 
-    public static readonly IEnumerable<ProductImage> Images =
+    [SeededEntity] public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
-            productId: Product.Id, 
-            optionId:  ColorOption.Gray.Id, 
-            urls:      ["/products/goosefeet-gear-down-socks-gray.webp"]),
-        
+            Product.Id,
+            ColorOption.Gray.Id,
+            ["/products/goosefeet-gear-down-socks-gray.webp"]),
+
         ProductImage.Create(
-            productId: Product.Id, 
-            optionId:  ColorOption.BlazeOrange.Id, 
-            urls:      ["/products/goosefeet-gear-down-socks-blzong.webp"]),
-        
+            Product.Id,
+            ColorOption.BlazeOrange.Id,
+            ["/products/goosefeet-gear-down-socks-blzong.webp"]),
+
         ProductImage.Create(
-            productId: Product.Id, 
-            optionId:  ColorOption.ChiliRed.Id, 
-            urls:      ["/products/goosefeet-gear-down-socks-chlred.webp"]),
-        
+            Product.Id,
+            ColorOption.ChiliRed.Id,
+            ["/products/goosefeet-gear-down-socks-chlred.webp"]),
+
         ProductImage.Create(
-            productId: Product.Id, 
-            optionId:  ColorOption.Blue.Id, 
-            urls:      ["/products/goosefeet-gear-down-socks-blu.webp"]),
-        
+            Product.Id,
+            ColorOption.Blue.Id,
+            ["/products/goosefeet-gear-down-socks-blu.webp"]),
+
         ProductImage.Create(
-            productId: Product.Id, 
-            optionId:  ColorOption.Black.Id, 
-            urls:      ["/products/goosefeet-gear-down-socks-blk.webp"])
+            Product.Id,
+            ColorOption.Black.Id,
+            ["/products/goosefeet-gear-down-socks-blk.webp"])
     ];
-    
-    [SeededEntity]
-    public static readonly IEnumerable<Sku> Skus =
+
+    [SeededEntity] public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-SM-GRAY",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.Small, ColorOption.Gray]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-SM-GRAY",
+            96.00m,
+            0,
+            [SizeOption.Small, ColorOption.Gray]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-SM-BLZONG",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.Small, ColorOption.BlazeOrange]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-SM-BLZONG",
+            96.00m,
+            0,
+            [SizeOption.Small, ColorOption.BlazeOrange]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-SM-CHLRED",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.Small, ColorOption.ChiliRed]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-SM-CHLRED",
+            96.00m,
+            0,
+            [SizeOption.Small, ColorOption.ChiliRed]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-SM-BLU",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.Small, ColorOption.Blue]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-SM-BLU",
+            96.00m,
+            0,
+            [SizeOption.Small, ColorOption.Blue]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-SM-BLK",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.Small, ColorOption.Black]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-SM-BLK",
+            96.00m,
+            0,
+            [SizeOption.Small, ColorOption.Black]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-MD-GRAY",
-            price: 96.00m,
-            stock: 2,
-            options: [SizeOption.Medium, ColorOption.Gray]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-MD-GRAY",
+            96.00m,
+            2,
+            [SizeOption.Medium, ColorOption.Gray]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-MD-BLZONG",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.Medium, ColorOption.BlazeOrange]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-MD-BLZONG",
+            96.00m,
+            0,
+            [SizeOption.Medium, ColorOption.BlazeOrange]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-MD-CHLRED",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.Medium, ColorOption.ChiliRed]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-MD-CHLRED",
+            96.00m,
+            0,
+            [SizeOption.Medium, ColorOption.ChiliRed]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-MD-BLU",
-            price: 96.00m,
-            stock: 2,
-            options: [SizeOption.Medium, ColorOption.Blue]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-MD-BLU",
+            96.00m,
+            2,
+            [SizeOption.Medium, ColorOption.Blue]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-MD-BLK",
-            price: 96.00m,
-            stock: 1,
-            options: [SizeOption.Medium, ColorOption.Black]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-MD-BLK",
+            96.00m,
+            1,
+            [SizeOption.Medium, ColorOption.Black]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-LG-GRAY",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.Large, ColorOption.Gray]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-LG-GRAY",
+            96.00m,
+            0,
+            [SizeOption.Large, ColorOption.Gray]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-LG-BLZONG",
-            price: 96.00m,
-            stock: 1,
-            options: [SizeOption.Large, ColorOption.BlazeOrange]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-LG-BLZONG",
+            96.00m,
+            1,
+            [SizeOption.Large, ColorOption.BlazeOrange]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-LG-CHLRED",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.Large, ColorOption.ChiliRed]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-LG-CHLRED",
+            96.00m,
+            0,
+            [SizeOption.Large, ColorOption.ChiliRed]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-LG-BLU",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.Large, ColorOption.Blue]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-LG-BLU",
+            96.00m,
+            0,
+            [SizeOption.Large, ColorOption.Blue]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-LG-BLK",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.Large, ColorOption.Black]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-LG-BLK",
+            96.00m,
+            0,
+            [SizeOption.Large, ColorOption.Black]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-XL-GRAY",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.XL, ColorOption.Gray]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-XL-GRAY",
+            96.00m,
+            0,
+            [SizeOption.XL, ColorOption.Gray]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-XL-BLZONG",
-            price: 96.00m,
-            stock: 1,
-            options: [SizeOption.XL, ColorOption.BlazeOrange]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-XL-BLZONG",
+            96.00m,
+            1,
+            [SizeOption.XL, ColorOption.BlazeOrange]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-XL-CHLRED",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.XL, ColorOption.ChiliRed]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-XL-CHLRED",
+            96.00m,
+            0,
+            [SizeOption.XL, ColorOption.ChiliRed]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-XL-BLU",
-            price: 96.00m,
-            stock: 0,
-            options: [SizeOption.XL, ColorOption.Blue]),
-        
+            Product.Id,
+            "GFG-DOWNSOCKS-XL-BLU",
+            96.00m,
+            0,
+            [SizeOption.XL, ColorOption.Blue]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GFG-DOWNSOCKS-XL-BLK",
-            price: 96.00m,
-            stock: 4,
-            options: [SizeOption.XL, ColorOption.Black]),
+            Product.Id,
+            "GFG-DOWNSOCKS-XL-BLK",
+            96.00m,
+            4,
+            [SizeOption.XL, ColorOption.Black])
     ];
 }

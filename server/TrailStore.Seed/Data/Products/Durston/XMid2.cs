@@ -1,38 +1,36 @@
-﻿using TrailStore.Domain.Models;
+﻿using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Seed.Data.Products.Durston;
 
 // ReSharper disable UnusedType.Global
-
 public static class XMid2
 {
-    [SeededEntity]
-    public static readonly Product Product = Product.Create(
-        name:         "X-Mid 2",
-        slug:         "durston-x-mid-2",
-        brandId:      Brands.Durston.Id,
-        categoryId:   Categories.Tents.Id,
+    [SeededEntity] public static readonly Product Product = Product.Create(
+        "X-Mid 2",
+        "durston-x-mid-2",
+        brandId: Brands.Durston.Id,
+        categoryId: Categories.Tents.Id,
         thumbnailUrl: "/products/durston-x-mid-2-thumb.webp");
 
-    [SeededEntity]
-    public static readonly IEnumerable<ProductImage> Images =
+    [SeededEntity] public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
-            productId: Product.Id,
-            urls:      ["/products/durston-x-mid-2-1.webp",
-                        "/products/durston-x-mid-2-2.webp",
-                        "/products/durston-x-mid-2-3.webp",
-                        "/products/durston-x-mid-2-4.webp"]),
+            Product.Id,
+            [
+                "/products/durston-x-mid-2-1.webp",
+                "/products/durston-x-mid-2-2.webp",
+                "/products/durston-x-mid-2-3.webp",
+                "/products/durston-x-mid-2-4.webp"
+            ])
     ];
 
-    [SeededEntity]
-    public static readonly IEnumerable<Sku> Skus =
+    [SeededEntity] public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(
-            productId: Product.Id,
-            code: "DRST-XMID2-STD",
-            price: 391.00m,
-            stock: 7,
-            options: []),
+            Product.Id,
+            "DRST-XMID2-STD",
+            391.00m,
+            7,
+            [])
     ];
 }

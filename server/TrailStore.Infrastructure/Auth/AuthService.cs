@@ -1,20 +1,18 @@
-﻿using TrailStore.Domain.Auth;
+﻿using TrailStore.Domain.Auth.Interfaces;
+using TrailStore.Domain.Auth.Models;
 using TrailStore.Shared.Common;
 
 namespace TrailStore.Infrastructure.Auth;
 
 [AppService<IAuthService>]
-public class AuthService(IJwtService jwtService, IRefreshService refreshService, IRefreshRepository refreshRepository) 
+public class AuthService(IJwtService jwtService, IRefreshService refreshService, IRefreshRepository refreshRepository)
     : IAuthService
 {
     public async Task<Result<AuthResult>> RefreshSession(string? token, CancellationToken ct)
     {
         var validation = await refreshService.ValidateToken(token, ct);
-        
-        if (!validation.IsSuccess)
-        {
-            return validation.Problem;
-        }
+
+        if (!validation.IsSuccess) return validation.Problem;
         var refreshToken = validation.Value;
 
         await refreshRepository.RevokeToken(refreshToken.Id, ct);

@@ -1,8 +1,11 @@
 ﻿using MediatR;
-using TrailStore.Domain.Auth;
 using TrailStore.Domain.Auth.Commands;
-using TrailStore.Domain.Customers;
-using TrailStore.Domain.Models;
+using TrailStore.Domain.Auth.Errors;
+using TrailStore.Domain.Auth.Interfaces;
+using TrailStore.Domain.Auth.Models;
+using TrailStore.Domain.Customers.Events;
+using TrailStore.Domain.Customers.Interfaces;
+using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Shared;
 using TrailStore.Shared.Common;
 
@@ -10,21 +13,18 @@ namespace TrailStore.Infrastructure.Auth;
 
 [AppService<IRegisterService>]
 public class RegisterService(
-    ICustomerRepository customerRepository, 
-    IPasswordHasher     passwordHasher, 
-    IMediator           mediator,
-    ILoginService       loginService) : IRegisterService
+    ICustomerRepository customerRepository,
+    IPasswordHasher passwordHasher,
+    IMediator mediator,
+    ILoginService loginService) : IRegisterService
 {
     public async Task<Result<AuthResult>> RegisterAsync(RegisterCommand command, CancellationToken ct)
     {
-        if (await customerRepository.ExistsByEmailAsync(command.Email, ct))
-        {
-            return AuthProblems.EmailAlreadyTaken;
-        }
-        
+        if (await customerRepository.ExistsByEmailAsync(command.Email, ct)) return AuthProblems.EmailAlreadyTaken;
+
         var customer = await CreateCustomerAsync(command, ct);
         await mediator.Publish(new CustomerRegisteredEvent(customer), ct);
-        
+
         return new AuthResult(customer, await loginService.CreateAuthTokens(customer, ct));
     }
 
@@ -32,8 +32,8 @@ public class RegisterService(
     {
         return customerRepository.CreateAsync(new Customer
         {
-            Id           = Id<Customer>.New(),
-            Email        = command.Email,
+            Id = Id<Customer>.New(),
+            Email = command.Email,
             PasswordHash = passwordHasher.Hash(command.Password)
         }, ct);
     }

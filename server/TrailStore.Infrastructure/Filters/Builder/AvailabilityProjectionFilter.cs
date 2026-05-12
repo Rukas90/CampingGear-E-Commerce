@@ -1,4 +1,4 @@
-﻿using TrailStore.Domain.Enums;
+﻿using TrailStore.Domain.Shared.Enums;
 using TrailStore.Infrastructure.Filters.Projections;
 
 namespace TrailStore.Infrastructure.Filters.Builder;
@@ -9,9 +9,9 @@ internal sealed record AvailabilityProjectionFilter(Availability Availability) :
     {
         return Availability switch
         {
-            Availability.InStock    => projection.Stock > 0,
+            Availability.InStock => projection.Stock > 0,
             Availability.OutOfStock => projection.Stock <= 0,
-            _                       => true
+            _ => true
         };
     }
 }

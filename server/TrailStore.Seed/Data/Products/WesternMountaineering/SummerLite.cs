@@ -1,72 +1,70 @@
-﻿using TrailStore.Domain.Models;
+﻿using TrailStore.Domain.Shared.Models;
 using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.WesternMountaineering;
 
 // ReSharper disable UnusedType.Global
-
 public static class SummerLite
 {
-    [SeededEntity]
-    public static readonly Product Product = Product.Create(
-        name:         "SummerLite",
-        slug:         "western-mountaineering-summer-lite",
-        brandId:      Brands.WesternMountaineering.Id,
-        categoryId:   Categories.SleepingBags.Id,
+    [SeededEntity] public static readonly Product Product = Product.Create(
+        "SummerLite",
+        "western-mountaineering-summer-lite",
+        brandId: Brands.WesternMountaineering.Id,
+        categoryId: Categories.SleepingBags.Id,
         thumbnailUrl: "/products/western-mountaineering-summer-lite-thumb.webp");
 
-    [SeededEntity]
-    public static readonly IEnumerable<ProductImage> Images =
+    [SeededEntity] public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
-            productId: Product.Id,
-            urls:      ["/products/western-mountaineering-summer-lite-1.webp",
-                        "/products/western-mountaineering-summer-lite-2.webp"]),
+            Product.Id,
+            [
+                "/products/western-mountaineering-summer-lite-1.webp",
+                "/products/western-mountaineering-summer-lite-2.webp"
+            ])
     ];
-    
-    [SeededEntity]
-    public static readonly IEnumerable<Sku> Skus =
+
+    [SeededEntity] public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(
-            productId: Product.Id,
-            code: "WM-SUMMERLITE-165LFT",
-            price: 560.00m,
-            stock: 5,
-            options: [LengthOption.Cm165, ZipOption.Left]),
-        
+            Product.Id,
+            "WM-SUMMERLITE-165LFT",
+            560.00m,
+            5,
+            [LengthOption.Cm165, ZipOption.Left]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "WM-SUMMERLITE-165RHT",
-            price: 560.00m,
-            stock: 6,
-            options: [LengthOption.Cm165, ZipOption.Right]),
-        
+            Product.Id,
+            "WM-SUMMERLITE-165RHT",
+            560.00m,
+            6,
+            [LengthOption.Cm165, ZipOption.Right]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "WM-SUMMERLITE-180LFT",
-            price: 580.00m,
-            stock: 2,
-            options: [LengthOption.Cm180, ZipOption.Left]),
-        
+            Product.Id,
+            "WM-SUMMERLITE-180LFT",
+            580.00m,
+            2,
+            [LengthOption.Cm180, ZipOption.Left]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "WM-SUMMERLITE-180RHT",
-            price: 580.00m,
-            stock: 4,
-            options: [LengthOption.Cm180, ZipOption.Right]),
-        
+            Product.Id,
+            "WM-SUMMERLITE-180RHT",
+            580.00m,
+            4,
+            [LengthOption.Cm180, ZipOption.Right]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "WM-SUMMERLITE-200LFT",
-            price: 610.00m,
-            stock: 4,
-            options: [LengthOption.Cm200, ZipOption.Left]),
-        
+            Product.Id,
+            "WM-SUMMERLITE-200LFT",
+            610.00m,
+            4,
+            [LengthOption.Cm200, ZipOption.Left]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "WM-SUMMERLITE-200RHT",
-            price: 610.00m,
-            stock: 3,
-            options: [LengthOption.Cm200, ZipOption.Right])
+            Product.Id,
+            "WM-SUMMERLITE-200RHT",
+            610.00m,
+            3,
+            [LengthOption.Cm200, ZipOption.Right])
     ];
 }

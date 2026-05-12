@@ -2,6 +2,6 @@
 
 public sealed class ProductImageUrlDto
 {
-    public required string Url       { get; init; }
-    public required int    SortOrder { get; init; }
+    public required string Url { get; init; }
+    public required int SortOrder { get; init; }
 }

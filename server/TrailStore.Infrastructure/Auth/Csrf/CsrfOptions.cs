@@ -2,7 +2,7 @@
 
 namespace TrailStore.Infrastructure.Auth.Csrf;
 
-[AppOptions(key: "CSRF")]
+[AppOptions("CSRF")]
 public class CsrfOptions
 {
     public required string SecretKey { get; init; }

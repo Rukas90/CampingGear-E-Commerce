@@ -1,45 +1,43 @@
-﻿using TrailStore.Domain.Models;
+﻿using TrailStore.Domain.Shared.Models;
 using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.WesternMountaineering;
 
 // ReSharper disable UnusedType.Global
-
 public static class CypressGWSExpedition
 {
-    [SeededEntity]
-    public static readonly Product Product = Product.Create(
-        name:         "Cypress GWS Expedition",
-        slug:         "western-mountaineering-cypress-gws",
-        brandId:      Brands.WesternMountaineering.Id,
-        categoryId:   Categories.SleepingBags.Id,
+    [SeededEntity] public static readonly Product Product = Product.Create(
+        "Cypress GWS Expedition",
+        "western-mountaineering-cypress-gws",
+        brandId: Brands.WesternMountaineering.Id,
+        categoryId: Categories.SleepingBags.Id,
         thumbnailUrl: "/products/western-mountaineering-cypress-gws-thumb.webp");
 
-    [SeededEntity]
-    public static readonly IEnumerable<ProductImage> Images =
+    [SeededEntity] public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
-            productId: Product.Id,
-            urls:      ["/products/western-mountaineering-cypress-gws-1.webp",
-                        "/products/western-mountaineering-cypress-gws-2.webp",
-                        "/products/western-mountaineering-cypress-gws-3.webp"]),
+            Product.Id,
+            [
+                "/products/western-mountaineering-cypress-gws-1.webp",
+                "/products/western-mountaineering-cypress-gws-2.webp",
+                "/products/western-mountaineering-cypress-gws-3.webp"
+            ])
     ];
-    
-    [SeededEntity]
-    public static readonly IEnumerable<Sku> Skus =
+
+    [SeededEntity] public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(
-            productId: Product.Id,
-            code: "WM-CYPRESS-GWS-180LFT",
-            price: 1860.00m,
-            stock: 9,
-            options: [LengthOption.Cm180, ZipOption.Left]),
-        
+            Product.Id,
+            "WM-CYPRESS-GWS-180LFT",
+            1860.00m,
+            9,
+            [LengthOption.Cm180, ZipOption.Left]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "WM-CYPRESS-GWS-180RHT",
-            price: 1860.00m,
-            stock: 8,
-            options: [LengthOption.Cm180, ZipOption.Right]),
+            Product.Id,
+            "WM-CYPRESS-GWS-180RHT",
+            1860.00m,
+            8,
+            [LengthOption.Cm180, ZipOption.Right])
     ];
 }

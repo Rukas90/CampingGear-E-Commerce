@@ -1,64 +1,60 @@
-﻿using TrailStore.Domain.Models;
+﻿using TrailStore.Domain.Shared.Models;
 using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.EnlightenedEquipment;
 
 // ReSharper disable UnusedType.Global
-
 public static class TorridBooties
 {
-    [SeededEntity]
-    public static readonly Product Product = Product.Create(
-        name:         "Torrid Booties",
-        slug:         "enlightened-equipment-torrid-booties",
-        brandId:      Brands.EnlightenedEquipment.Id,
-        categoryId:   Categories.Quilts.Id,
+    [SeededEntity] public static readonly Product Product = Product.Create(
+        "Torrid Booties",
+        "enlightened-equipment-torrid-booties",
+        brandId: Brands.EnlightenedEquipment.Id,
+        categoryId: Categories.Quilts.Id,
         thumbnailUrl: "/products/enlightened-equipment-torrid-booties-thumb.webp");
 
-    [SeededEntity] 
-    public static readonly IEnumerable<ProductImage> Images =
+    [SeededEntity] public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
-            productId: Product.Id, 
-            urls:      ["/products/enlightened-equipment-torrid-booties-1.webp"])
+            Product.Id,
+            ["/products/enlightened-equipment-torrid-booties-1.webp"])
     ];
-    
-    [SeededEntity]
-    public static readonly IEnumerable<Sku> Skus =
+
+    [SeededEntity] public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(
-            productId: Product.Id,
-            code: "EE-TRRBOOT-SM",
-            price: 81.00m,
-            stock: 7,
-            options: [SizeOption.Small]),
+            Product.Id,
+            "EE-TRRBOOT-SM",
+            81.00m,
+            7,
+            [SizeOption.Small]),
 
         Sku.Create(
-            productId: Product.Id,
-            code: "EE-TRRBOOT-MD",
-            price: 81.00m,
-            stock: 9,
-            options: [SizeOption.Medium]),
+            Product.Id,
+            "EE-TRRBOOT-MD",
+            81.00m,
+            9,
+            [SizeOption.Medium]),
 
         Sku.Create(
-            productId: Product.Id,
-            code: "EE-TRRBOOT-LG",
-            price: 81.00m,
-            stock: 2,
-            options: [SizeOption.Large]),
+            Product.Id,
+            "EE-TRRBOOT-LG",
+            81.00m,
+            2,
+            [SizeOption.Large]),
 
         Sku.Create(
-            productId: Product.Id,
-            code: "EE-TRRBOOT-XL",
-            price: 81.00m,
-            stock: 0,
-            options: [SizeOption.XL]),
+            Product.Id,
+            "EE-TRRBOOT-XL",
+            81.00m,
+            0,
+            [SizeOption.XL]),
 
         Sku.Create(
-            productId: Product.Id,
-            code: "EE-TRRBOOT-2XL",
-            price: 81.00m,
-            stock: 0,
-            options: [SizeOption.XXL]),
+            Product.Id,
+            "EE-TRRBOOT-2XL",
+            81.00m,
+            0,
+            [SizeOption.XXL])
     ];
 }

@@ -1,82 +1,78 @@
-﻿using TrailStore.Domain.Models;
+﻿using TrailStore.Domain.Shared.Models;
 using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.GossamerGear;
 
 // ReSharper disable UnusedType.Global
-
 public static class Kumo36Superlight
 {
-    [SeededEntity]
-    public static readonly Product Product = Product.Create(
-        name:         "Kumo36 Superlight",
-        slug:         "gossamer-gear-kumo36-superlight",
-        brandId:      Brands.GossamerGear.Id,
-        categoryId:   Categories.Backpacks.Id,
+    [SeededEntity] public static readonly Product Product = Product.Create(
+        "Kumo36 Superlight",
+        "gossamer-gear-kumo36-superlight",
+        brandId: Brands.GossamerGear.Id,
+        categoryId: Categories.Backpacks.Id,
         thumbnailUrl: "/products/gossamer-gear-kumo36-superlight-thumb.webp");
 
-    [SeededEntity] 
-    public static readonly IEnumerable<ProductImage> Images =
+    [SeededEntity] public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
-            productId: Product.Id, 
-            optionId:  ColorOption.Gray.Id, 
-            urls:      ["/products/gossamer-gear-kumo36-superlight-gray.webp"]),
-        
+            Product.Id,
+            ColorOption.Gray.Id,
+            ["/products/gossamer-gear-kumo36-superlight-gray.webp"]),
+
         ProductImage.Create(
-            productId: Product.Id, 
-            optionId:  ColorOption.Yellow.Id, 
-            urls:      ["/products/gossamer-gear-kumo36-superlight-ylw.webp"]),
-        
+            Product.Id,
+            ColorOption.Yellow.Id,
+            ["/products/gossamer-gear-kumo36-superlight-ylw.webp"]),
+
         ProductImage.Create(
-            productId: Product.Id, 
-            optionId:  ColorOption.Purple.Id, 
-            urls:      ["/products/gossamer-gear-kumo36-superlight-prpl.webp"])
+            Product.Id,
+            ColorOption.Purple.Id,
+            ["/products/gossamer-gear-kumo36-superlight-prpl.webp"])
     ];
-    
-    [SeededEntity]
-    public static readonly IEnumerable<Sku> Skus =
+
+    [SeededEntity] public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(
-            productId: Product.Id,
-            code: "GG-KUMO36-GRAY-SM",
-            price: 195.00m,
-            stock: 0,
-            options: [ColorOption.Gray, SizeOption.Small]),
-        
+            Product.Id,
+            "GG-KUMO36-GRAY-SM",
+            195.00m,
+            0,
+            [ColorOption.Gray, SizeOption.Small]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GG-KUMO36-GRY-MD",
-            price: 195.00m,
-            stock: 3,
-            options: [ColorOption.Gray, SizeOption.Medium]),
-        
+            Product.Id,
+            "GG-KUMO36-GRY-MD",
+            195.00m,
+            3,
+            [ColorOption.Gray, SizeOption.Medium]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GG-KUMO36-YLW-SM",
-            price: 195.00m,
-            stock: 8,
-            options: [ColorOption.Yellow, SizeOption.Small]),
-        
+            Product.Id,
+            "GG-KUMO36-YLW-SM",
+            195.00m,
+            8,
+            [ColorOption.Yellow, SizeOption.Small]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GG-KUMO36-YLW-MD",
-            price: 195.00m,
-            stock: 1,
-            options: [ColorOption.Yellow, SizeOption.Medium]),
-        
+            Product.Id,
+            "GG-KUMO36-YLW-MD",
+            195.00m,
+            1,
+            [ColorOption.Yellow, SizeOption.Medium]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GG-KUMO36-PRPL-SM",
-            price: 195.00m,
-            stock: 4,
-            options: [ColorOption.Purple, SizeOption.Small]),
-        
+            Product.Id,
+            "GG-KUMO36-PRPL-SM",
+            195.00m,
+            4,
+            [ColorOption.Purple, SizeOption.Small]),
+
         Sku.Create(
-            productId: Product.Id,
-            code: "GG-KUMO36-PRPL-MD",
-            price: 195.00m,
-            stock: 6,
-            options: [ColorOption.Purple, SizeOption.Medium]),
+            Product.Id,
+            "GG-KUMO36-PRPL-MD",
+            195.00m,
+            6,
+            [ColorOption.Purple, SizeOption.Medium])
     ];
 }

@@ -1,44 +1,42 @@
-﻿using TrailStore.Domain.Models;
+﻿using TrailStore.Domain.Shared.Models;
 using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.Thermarest;
 
 // ReSharper disable UnusedType.Global
-
 public static class NeoAirXTherm_MAX
 {
-    [SeededEntity]
-    public static readonly Product Product = Product.Create(
-        name:         "NeoAir XTherm NXT MAX",
-        slug:         "thermarest-neoair-xtherm-max",
-        brandId:      Brands.Thermarest.Id,
-        categoryId:   Categories.SleepingMats.Id,
+    [SeededEntity] public static readonly Product Product = Product.Create(
+        "NeoAir XTherm NXT MAX",
+        "thermarest-neoair-xtherm-max",
+        brandId: Brands.Thermarest.Id,
+        categoryId: Categories.SleepingMats.Id,
         thumbnailUrl: "/products/thermarest-neoair-xtherm-max-thumb.webp");
-    
-    [SeededEntity]
-    public static readonly IEnumerable<ProductImage> Images =
+
+    [SeededEntity] public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
-            productId: Product.Id,
-            urls:      ["/products/thermarest-neoair-xtherm-max-1.webp",
-                        "/products/thermarest-neoair-xtherm-max-2.webp"]),
+            Product.Id,
+            [
+                "/products/thermarest-neoair-xtherm-max-1.webp",
+                "/products/thermarest-neoair-xtherm-max-2.webp"
+            ])
     ];
-    
-    [SeededEntity]
-    public static readonly IEnumerable<Sku> Skus =
+
+    [SeededEntity] public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(
-            productId: Product.Id,
-            code: "TREST-NEOAIR-XTHERM-MAX-LRG",
-            price: 28.00m,
-            stock: 1,
-            options: [HeightOption.Tall, WidthOption.Wide]),
+            Product.Id,
+            "TREST-NEOAIR-XTHERM-MAX-LRG",
+            28.00m,
+            1,
+            [HeightOption.Tall, WidthOption.Wide]),
 
         Sku.Create(
-            productId: Product.Id,
-            code: "TREST-NEOAIR-XTHERM-MAX-REGWIDE",
-            price: 28.00m,
-            stock: 0,
-            options: [HeightOption.Regular, WidthOption.Wide])
+            Product.Id,
+            "TREST-NEOAIR-XTHERM-MAX-REGWIDE",
+            28.00m,
+            0,
+            [HeightOption.Regular, WidthOption.Wide])
     ];
 }

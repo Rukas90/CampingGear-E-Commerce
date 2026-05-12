@@ -1,5 +1,5 @@
-﻿using TrailStore.Domain.Carts;
-using TrailStore.Domain.Models;
+﻿using TrailStore.Domain.Carts.Interfaces;
+using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Shared.Common;
 
@@ -12,7 +12,7 @@ public class CartRepository(AppDbContext context) : ICartRepository
     {
         await context.Carts.AddAsync(cart);
         await context.SaveChangesAsync();
-        
-        return cart; 
+
+        return cart;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TrailStore.Domain.Auth;
-using TrailStore.Domain.Models;
+using TrailStore.Domain.Auth.Interfaces;
+using TrailStore.Domain.Auth.Models;
+using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Shared.Common;
 
@@ -13,7 +14,7 @@ public class RefreshRepository(AppDbContext context) : IRefreshRepository
     {
         await context.RefreshTokens.AddAsync(token, ct);
         await context.SaveChangesAsync(ct);
-        
+
         return token;
     }
 

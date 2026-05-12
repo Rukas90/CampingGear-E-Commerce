@@ -1,8 +1,9 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using TrailStore.Domain.Enums;
-using TrailStore.Domain.Models;
-using TrailStore.Domain.Products;
+using TrailStore.Domain.Products.Interfaces;
+using TrailStore.Domain.Products.Models;
+using TrailStore.Domain.Shared.Enums;
+using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Shared.Common;
 
@@ -21,7 +22,7 @@ public sealed class ProductsRepository(AppDbContext context) : IProductsReposito
             .Select(selector)
             .FirstOrDefaultAsync();
     }
-    
+
     public async Task<Product?> GetFullProductAsync(
         Specification<Product> specification)
     {
@@ -33,39 +34,36 @@ public sealed class ProductsRepository(AppDbContext context) : IProductsReposito
             .Include(product => product.Skus).ThenInclude(sku => sku.Options).ThenInclude(option => option.OptionGroup)
             .Where(specification.ToExpression())
             .FirstOrDefaultAsync();
-
     }
-    
-    public async Task<List<TResult>> ListAsync<TResult>(ProductsQuery query, Expression<Func<Product, TResult>> selector)
+
+    public async Task<List<TResult>> ListAsync<TResult>(ProductsQuery query,
+        Expression<Func<Product, TResult>> selector)
     {
         var queryable = context.Products.AsQueryable();
 
-        if (query.Specification is not null)
-        {
-            queryable = queryable.Where(query.Specification.ToExpression());
-        }
-        
+        if (query.Specification is not null) queryable = queryable.Where(query.Specification.ToExpression());
+
         queryable = GetOrderedQueryable(queryable, query.SortBy);
-        
+
         queryable = query.Pagination
             ? queryable.Skip(query.Page * query.PageSize).Take(query.PageSize)
             : queryable;
-        
+
         return await queryable
             .Select(selector)
             .ToListAsync();
     }
-    
+
     private static IQueryable<Product> GetOrderedQueryable(IQueryable<Product> query, ProductsSortBy sortBy)
     {
         return sortBy switch
         {
-            ProductsSortBy.PriceAscending  => query.OrderBy(p => p.Skus.Min(s => s.UnitPrice)),
+            ProductsSortBy.PriceAscending => query.OrderBy(p => p.Skus.Min(s => s.UnitPrice)),
             ProductsSortBy.PriceDescending => query.OrderByDescending(p => p.Skus.Min(s => s.UnitPrice)),
-            ProductsSortBy.TitleAscending  => query.OrderBy(p => p.Name),
+            ProductsSortBy.TitleAscending => query.OrderBy(p => p.Name),
             ProductsSortBy.TitleDescending => query.OrderByDescending(p => p.Name),
-            //SortBy.BestSelling     => query.OrderByDescending(p => p.Skus.Sum(s => s.OrderCount)), // TODO
-            _                      => query.OrderBy(p => p.Name)
+            //     ProductsSortBy.BestSelling     => query.OrderByDescending(p => p.Skus.Count(s => s.OrderItem)),
+            _ => query.OrderBy(p => p.Name)
         };
     }
 }

@@ -2,7 +2,7 @@
 using System.Text;
 using FastEndpoints;
 using TrailStore.Api.Auth.Constants;
-using TrailStore.Domain.Auth;
+using TrailStore.Domain.Auth.Interfaces;
 using TrailStore.Shared.Common;
 
 namespace TrailStore.Api.Auth.Middleware;
@@ -16,7 +16,7 @@ public class CsrfValidateMiddleware(ICsrfService csrfService) : IMiddleware
         {
             var cookieToken = context.Request.Cookies[CsrfConstants.CookieName];
             var headerToken = context.Request.Headers[CsrfConstants.HeaderName].FirstOrDefault();
-            
+
             if (string.IsNullOrEmpty(cookieToken)
                 || string.IsNullOrEmpty(headerToken)
                 || cookieToken.Length != headerToken.Length
@@ -30,10 +30,10 @@ public class CsrfValidateMiddleware(ICsrfService csrfService) : IMiddleware
                 return;
             }
         }
-        
+
         await next(context);
     }
-    
+
     private static Task SendCsrfError(HttpContext context)
     {
         return new ProblemDetails
@@ -43,8 +43,8 @@ public class CsrfValidateMiddleware(ICsrfService csrfService) : IMiddleware
             [
                 new ProblemDetails.Error
                 {
-                    Name   = "Forbidden",
-                    Code   = "csrf.invalid_token",
+                    Name = "Forbidden",
+                    Code = "csrf.invalid_token",
                     Reason = "Invalid or missing CSRF token."
                 }
             ]

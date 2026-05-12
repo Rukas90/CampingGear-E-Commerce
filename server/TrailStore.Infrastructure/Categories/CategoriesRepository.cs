@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TrailStore.Domain.Categories;
-using TrailStore.Domain.Models;
+using TrailStore.Domain.Categories.Interfaces;
+using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Shared.Common;
 

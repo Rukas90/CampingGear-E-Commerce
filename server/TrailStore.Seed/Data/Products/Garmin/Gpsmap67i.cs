@@ -1,39 +1,37 @@
-﻿using TrailStore.Domain.Models;
+﻿using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Seed.Data.Products.Garmin;
 
 // ReSharper disable UnusedType.Global
-
 public static class Gpsmap67i
 {
-    [SeededEntity]
-    public static readonly Product Product = Product.Create(
-        name:         "GPSMAP 67i",
-        slug:         "garmin-gpsmap-67i",
-        brandId:      Brands.Garmin.Id,
-        categoryId:   Categories.HandheldGps.Id,
+    [SeededEntity] public static readonly Product Product = Product.Create(
+        "GPSMAP 67i",
+        "garmin-gpsmap-67i",
+        brandId: Brands.Garmin.Id,
+        categoryId: Categories.HandheldGps.Id,
         thumbnailUrl: "/products/garmin-gpsmap-67i-thumb.webp");
-    
-    [SeededEntity] 
-    public static readonly IEnumerable<ProductImage> Images =
+
+    [SeededEntity] public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
-            productId: Product.Id, 
-            urls:      ["/products/garmin-gpsmap-67i-1.webp",
-                        "/products/garmin-gpsmap-67i-2.webp",
-                        "/products/garmin-gpsmap-67i-3.webp",
-                        "/products/garmin-gpsmap-67i-4.webp",
-                        "/products/garmin-gpsmap-67i-5.webp"])
+            Product.Id,
+            [
+                "/products/garmin-gpsmap-67i-1.webp",
+                "/products/garmin-gpsmap-67i-2.webp",
+                "/products/garmin-gpsmap-67i-3.webp",
+                "/products/garmin-gpsmap-67i-4.webp",
+                "/products/garmin-gpsmap-67i-5.webp"
+            ])
     ];
-    
-    [SeededEntity]
-    public static readonly IEnumerable<Sku> Skus =
+
+    [SeededEntity] public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(
-            productId: Product.Id,
-            code:      "GARMIN-GPSMAP67i-STD",
-            price:     649.99m,
-            stock:     8,
-            options:   []),
+            Product.Id,
+            "GARMIN-GPSMAP67i-STD",
+            649.99m,
+            8,
+            [])
     ];
 }

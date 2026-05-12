@@ -10,10 +10,8 @@ public class CsrfInitializeMiddleware(IAuthCookieService cookieService) : IMiddl
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
         if (!context.Request.Cookies.ContainsKey(CsrfConstants.CookieName))
-        {
             cookieService.SetCsrfToken(context.Response);
-        }
-        
+
         await next(context);
     }
 }

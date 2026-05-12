@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TrailStore.Domain.Models;
-using TrailStore.Domain.Orders;
+using TrailStore.Domain.Orders.Models;
+using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Infrastructure.Data.Config;
 
@@ -13,25 +13,25 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 
         builder.Property(order => order.Status)
             .IsRequired();
-        
+
         builder.Property(review => review.CreatedAt)
             .IsRequired()
             .HasDefaultValueSql("NOW()");
-        
+
         builder.Property(o => o.EmailAddress)
             .HasMaxLength(254)
             .IsRequired();
 
         builder.OwnsOne(o => o.ShippingAddress, ConfigureAddress);
-            
-        builder.OwnsOne(o => o.BillingAddress,  ConfigureAddress);
-        
+
+        builder.OwnsOne(o => o.BillingAddress, ConfigureAddress);
+
         builder.HasOne(o => o.Customer)
             .WithMany()
             .HasForeignKey(o => o.CustomerId)
             .OnDelete(DeleteBehavior.SetNull);
     }
-    
+
     private static void ConfigureAddress(OwnedNavigationBuilder<Order, PostalAddress> b)
     {
         b.Property(a => a.CountryCode).HasMaxLength(2).IsRequired();

@@ -2,7 +2,8 @@
 using TrailStore.Api.Filters.Bindings;
 using TrailStore.Api.Filters.Dto;
 using TrailStore.Api.Filters.Mapping;
-using TrailStore.Domain.Filters;
+using TrailStore.Domain.Filters.Interfaces;
+using TrailStore.Domain.Filters.Models;
 
 namespace TrailStore.Api.Filters.Endpoints;
 

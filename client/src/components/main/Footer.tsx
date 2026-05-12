@@ -80,7 +80,7 @@ const Footer = () => {
             <CardGooglePay className="h-5 rounded-sm" />
           </div>
           <p className="text-stone-300 text-sm font-medium">
-            @2026 CampingGear | All rights reserved
+            @2026 TrailStore | All rights reserved
           </p>
         </PageWrapper>
       </div>

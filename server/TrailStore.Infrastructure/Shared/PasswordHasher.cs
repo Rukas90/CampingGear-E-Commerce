@@ -10,7 +10,7 @@ public class PasswordHasher : IPasswordHasher
     {
         return Argon2.Hash(password);
     }
-    
+
     public bool Verify(string password, string hash)
     {
         return Argon2.Verify(hash, password);

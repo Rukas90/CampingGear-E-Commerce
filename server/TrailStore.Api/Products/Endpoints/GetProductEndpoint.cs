@@ -1,11 +1,12 @@
 ﻿using FastEndpoints;
 using TrailStore.Api.Products.Dto;
 using TrailStore.Api.Products.Mapping;
-using TrailStore.Domain.Products;
+using TrailStore.Domain.Products.Interfaces;
+using TrailStore.Domain.Products.Specifications;
 
 namespace TrailStore.Api.Products.Endpoints;
 
-public class GetProductEndpoint(IProductsRepository productsRepository) 
+public class GetProductEndpoint(IProductsRepository productsRepository)
     : Endpoint<ProductRequest, ProductDetailDto>
 {
     public override void Configure()
@@ -13,10 +14,11 @@ public class GetProductEndpoint(IProductsRepository productsRepository)
         Get("/api/v1/products/{slug}");
         AllowAnonymous();
     }
+
     public override async Task HandleAsync(ProductRequest req, CancellationToken ct)
     {
         var product = await productsRepository.GetFullProductAsync(
-            specification: ProductSpecifications.Slug(req.Slug));
+            ProductSpecifications.Slug(req.Slug));
 
         if (product is null)
         {
@@ -25,9 +27,10 @@ public class GetProductEndpoint(IProductsRepository productsRepository)
                 Status = StatusCodes.Status404NotFound,
                 Detail = $"Product was not found by slug '{req.Slug}'"
             }.ExecuteAsync(HttpContext);
-            
+
             return;
         }
+
         await Send.OkAsync(product.ToDetailDto(), ct);
     }
 }

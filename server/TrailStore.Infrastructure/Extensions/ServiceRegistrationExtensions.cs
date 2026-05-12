@@ -8,8 +8,10 @@ public static class ServiceRegistrationExtensions
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddAppServices<T>() 
-            => services.AddAppServicesFromAssemblies(typeof(T).Assembly);
+        public IServiceCollection AddAppServices<T>()
+        {
+            return services.AddAppServicesFromAssemblies(typeof(T).Assembly);
+        }
 
         public IServiceCollection AddAppServicesFromAssemblies(params Assembly[] assemblies)
         {
@@ -35,10 +37,8 @@ public static class ServiceRegistrationExtensions
                             .GetValue(attr)!;
 
                         if (!serviceType.IsAssignableFrom(type))
-                        {
                             throw new InvalidOperationException(
                                 $"{type.FullName} does not implement {serviceType.FullName}");
-                        }
 
                         services.Add(new ServiceDescriptor(serviceType, type, lifetime));
                     }

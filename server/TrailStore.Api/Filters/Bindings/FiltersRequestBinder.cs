@@ -1,5 +1,4 @@
 ﻿using FastEndpoints;
-using TrailStore.Api.Common;
 using TrailStore.Api.Common.Bindings;
 using TrailStore.Api.Filters.Dto;
 

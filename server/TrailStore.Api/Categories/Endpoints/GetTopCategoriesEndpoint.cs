@@ -5,7 +5,7 @@ using TrailStore.Infrastructure.Orders;
 
 namespace TrailStore.Api.Categories.Endpoints;
 
-public class GetTopCategoriesEndpoint(IOrderItemsRepository orderItemsRepository) 
+public class GetTopCategoriesEndpoint(IOrderItemsRepository orderItemsRepository)
     : Endpoint<TopCategoriesRequest, IEnumerable<CategoryDto>>
 {
     public override void Configure()

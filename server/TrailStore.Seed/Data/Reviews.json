@@ -1,330 +1,1500 @@
 ﻿{
   "cumulus-lite-line-300": [
-    { "Rating": 5, "Recommended": true, "Headline": "Warm for the weight", "Text": "Took this on a late September trip in the Alps. Slept comfortably down to about 5°C with a base layer. The down loft is impressive for how light it packs." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great bag, slightly runs cold", "Text": "Really nice construction and the zip is smooth. I'd say it runs maybe 3-4 degrees cold compared to the rating, so plan accordingly. Still my go-to for 3-season trips." },
-    { "Rating": 5, "Recommended": true, "Headline": "Polish quality done right", "Text": "Cumulus doesn't get as much attention as Western or EE but the quality here is on par. Stitching is clean, shell fabric is soft, and it packs into a surprisingly small stuff sack." },
-    { "Rating": 4, "Recommended": true, "Headline": "Solid lightweight option", "Text": "Used it on the Tour du Mont Blanc. Paired with a liner on the colder nights and was fine throughout. Good value for the weight." },
-    { "Rating": 3, "Recommended": false, "Headline": "Decent but not exceptional", "Text": "It's a fine bag. Nothing really wrong with it but I expected a bit more loft given the fill weight. Maybe I got an off batch. Customer service was helpful though." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Warm for the weight",
+      "Text": "Took this on a late September trip in the Alps. Slept comfortably down to about 5°C with a base layer. The down loft is impressive for how light it packs."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great bag, slightly runs cold",
+      "Text": "Really nice construction and the zip is smooth. I'd say it runs maybe 3-4 degrees cold compared to the rating, so plan accordingly. Still my go-to for 3-season trips."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Polish quality done right",
+      "Text": "Cumulus doesn't get as much attention as Western or EE but the quality here is on par. Stitching is clean, shell fabric is soft, and it packs into a surprisingly small stuff sack."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Solid lightweight option",
+      "Text": "Used it on the Tour du Mont Blanc. Paired with a liner on the colder nights and was fine throughout. Good value for the weight."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Decent but not exceptional",
+      "Text": "It's a fine bag. Nothing really wrong with it but I expected a bit more loft given the fill weight. Maybe I got an off batch. Customer service was helpful though."
+    }
   ],
   "cumulus-teneqa-700": [
-    { "Rating": 5, "Recommended": true, "Headline": "Exceptional warmth", "Text": "This is my go-to for anything below freezing. The 700g fill is generous and the bag traps heat well even when there's humidity. Highly recommend for serious cold weather use." },
-    { "Rating": 5, "Recommended": true, "Headline": "Worth every penny", "Text": "I've had cheaper bags that lasted 2 seasons. This one has been through 4 winters and still lofts like new. The quality justifies the price." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great cold weather bag", "Text": "Very warm and well made. Only complaint is the zipper snags occasionally but nothing deal-breaking. Warmth-to-weight ratio is excellent." },
-    { "Rating": 4, "Recommended": true, "Headline": "Comfortable down to -10°C", "Text": "Tested in the Tatras in January. Slept well at -8°C with light thermals. Good hood design keeps drafts out." },
-    { "Rating": 5, "Recommended": true, "Headline": "Best purchase I made for winter camping", "Text": "Paired this with a good mat and haven't had a cold night since. The differential cut adds noticeable loft compared to my old bag." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Exceptional warmth",
+      "Text": "This is my go-to for anything below freezing. The 700g fill is generous and the bag traps heat well even when there's humidity. Highly recommend for serious cold weather use."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Worth every penny",
+      "Text": "I've had cheaper bags that lasted 2 seasons. This one has been through 4 winters and still lofts like new. The quality justifies the price."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great cold weather bag",
+      "Text": "Very warm and well made. Only complaint is the zipper snags occasionally but nothing deal-breaking. Warmth-to-weight ratio is excellent."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Comfortable down to -10°C",
+      "Text": "Tested in the Tatras in January. Slept well at -8°C with light thermals. Good hood design keeps drafts out."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best purchase I made for winter camping",
+      "Text": "Paired this with a good mat and haven't had a cold night since. The differential cut adds noticeable loft compared to my old bag."
+    }
   ],
   "cumulus-teneqa-850": [
-    { "Rating": 5, "Recommended": true, "Headline": "Extreme cold performer", "Text": "Used this in Lapland in February. Temps dropped to -22°C and I was genuinely comfortable. The 850 fill is in a different league for serious expeditions." },
-    { "Rating": 5, "Recommended": true, "Headline": "Expedition grade quality", "Text": "Everything about this bag screams quality. The YKK zipper, the shell fabric, the consistent loft. Worth the investment if you do serious winter trips." },
-    { "Rating": 4, "Recommended": true, "Headline": "Warm but bulky", "Text": "For the conditions it handles, the size is understandable. Packs down smaller than my old synthetic bag of similar rating. Would still prefer slightly less bulk." },
-    { "Rating": 5, "Recommended": true, "Headline": "Kept me warm in Norway", "Text": "Coastal Norway in March — damp and cold. The hydrophobic down treatment made a real difference. Still lofted well even with some moisture in the air." },
-    { "Rating": 4, "Recommended": true, "Headline": "Overkill for most but perfect for me", "Text": "I run cold so this bag is my 3-season bag. Most people probably don't need this much warmth unless doing serious alpine work. But if you do, it delivers." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Extreme cold performer",
+      "Text": "Used this in Lapland in February. Temps dropped to -22°C and I was genuinely comfortable. The 850 fill is in a different league for serious expeditions."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Expedition grade quality",
+      "Text": "Everything about this bag screams quality. The YKK zipper, the shell fabric, the consistent loft. Worth the investment if you do serious winter trips."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Warm but bulky",
+      "Text": "For the conditions it handles, the size is understandable. Packs down smaller than my old synthetic bag of similar rating. Would still prefer slightly less bulk."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Kept me warm in Norway",
+      "Text": "Coastal Norway in March — damp and cold. The hydrophobic down treatment made a real difference. Still lofted well even with some moisture in the air."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Overkill for most but perfect for me",
+      "Text": "I run cold so this bag is my 3-season bag. Most people probably don't need this much warmth unless doing serious alpine work. But if you do, it delivers."
+    }
   ],
   "deuter-aircontact-pro-75-10": [
-    { "Rating": 5, "Recommended": true, "Headline": "Best fit I've found", "Text": "Tried on probably a dozen packs before this one. The back system is genuinely adjustable and distributes weight better than anything else I tested. 18kg felt manageable." },
-    { "Rating": 4, "Recommended": true, "Headline": "Bomber construction", "Text": "Used this for a 3-week trekking trip. Every seam and strap held up perfectly. The hip belt pockets are large enough to be actually useful, which isn't always the case." },
-    { "Rating": 4, "Recommended": true, "Headline": "Heavy but worth it for big loads", "Text": "It's not a lightweight pack but it's not trying to be. If you're carrying 15kg+ for multi-week trips, the support makes it worth the base weight." },
-    { "Rating": 5, "Recommended": true, "Headline": "Handles everything I throw at it", "Text": "From the Dolomites to Nepal, this pack has done it all. The suspension handles uneven loads well and the back panel keeps things reasonably cool." },
-    { "Rating": 4, "Recommended": true, "Headline": "Good pack, not for everyone", "Text": "The fit is great for tall torsos but took me a while to dial in. Once adjusted properly it's comfortable. Just be prepared to spend time getting the fit right." },
-    { "Rating": 4, "Recommended": true, "Headline": "Solid traditional pack", "Text": "If you're not into ultralight and just want something that works reliably with a full load, this does the job well. The lid pocket is particularly well designed." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best fit I've found",
+      "Text": "Tried on probably a dozen packs before this one. The back system is genuinely adjustable and distributes weight better than anything else I tested. 18kg felt manageable."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Bomber construction",
+      "Text": "Used this for a 3-week trekking trip. Every seam and strap held up perfectly. The hip belt pockets are large enough to be actually useful, which isn't always the case."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Heavy but worth it for big loads",
+      "Text": "It's not a lightweight pack but it's not trying to be. If you're carrying 15kg+ for multi-week trips, the support makes it worth the base weight."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Handles everything I throw at it",
+      "Text": "From the Dolomites to Nepal, this pack has done it all. The suspension handles uneven loads well and the back panel keeps things reasonably cool."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Good pack, not for everyone",
+      "Text": "The fit is great for tall torsos but took me a while to dial in. Once adjusted properly it's comfortable. Just be prepared to spend time getting the fit right."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Solid traditional pack",
+      "Text": "If you're not into ultralight and just want something that works reliably with a full load, this does the job well. The lid pocket is particularly well designed."
+    }
   ],
   "durston-iceline-trekking-poles": [
-    { "Rating": 5, "Recommended": true, "Headline": "Surprisingly stiff for the weight", "Text": "Was skeptical about carbon poles at this price point but they feel solid. No flex under load and the grip shape works well for steep descents." },
-    { "Rating": 4, "Recommended": true, "Headline": "Light and functional", "Text": "About 30g lighter per pole than my old Lekis. The locking mechanism is reliable and I've had no slippage issues after a full season." },
-    { "Rating": 5, "Recommended": true, "Headline": "Great ultralight option", "Text": "Durston clearly knows their target customer. These are poles for people who care about grams without wanting to spend a fortune. Good value." },
-    { "Rating": 4, "Recommended": true, "Headline": "Solid everyday poles", "Text": "Nothing flashy but they work. The cork grips are comfortable over long days. Took them on a week in the Pyrenees with no issues." },
-    { "Rating": 4, "Recommended": true, "Headline": "Good but tips wear quickly", "Text": "The poles themselves are great but the carbide tips wore down faster than I'd like. Easy to replace, just an extra cost to factor in." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Surprisingly stiff for the weight",
+      "Text": "Was skeptical about carbon poles at this price point but they feel solid. No flex under load and the grip shape works well for steep descents."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Light and functional",
+      "Text": "About 30g lighter per pole than my old Lekis. The locking mechanism is reliable and I've had no slippage issues after a full season."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Great ultralight option",
+      "Text": "Durston clearly knows their target customer. These are poles for people who care about grams without wanting to spend a fortune. Good value."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Solid everyday poles",
+      "Text": "Nothing flashy but they work. The cork grips are comfortable over long days. Took them on a week in the Pyrenees with no issues."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Good but tips wear quickly",
+      "Text": "The poles themselves are great but the carbide tips wore down faster than I'd like. Easy to replace, just an extra cost to factor in."
+    }
   ],
   "durston-x-dome-2": [
-    { "Rating": 5, "Recommended": true, "Headline": "Best two-person tent I've owned", "Text": "Roomier than it looks in photos. My partner and I both fit comfortably with gear inside. The dome shape handles wind better than most non-freestanding tents." },
-    { "Rating": 5, "Recommended": true, "Headline": "Bomber in storms", "Text": "Caught a proper thunderstorm in the Cairngorms. The tent didn't budge and stayed completely dry. The seam sealing is thorough and the pole structure handles gusts well." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great tent, setup takes practice", "Text": "First few times pitching took longer than expected. Now I can do it in under 5 minutes. Once you learn the pitch, it's a solid shelter." },
-    { "Rating": 4, "Recommended": true, "Headline": "Good condensation management", "Text": "For a double-wall tent the ventilation is better than average. We had some condensation in wet weather but nothing compared to our old single-wall." },
-    { "Rating": 5, "Recommended": true, "Headline": "Worth the wait", "Text": "Ordered during a long backorder. Completely worth it. The materials quality is obvious and the geometry makes efficient use of the interior space." },
-    { "Rating": 4, "Recommended": true, "Headline": "Solid all-rounder", "Text": "We've used this in everything from desert heat to Scottish rain. Performs well across conditions. The storage pockets inside are a nice touch." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best two-person tent I've owned",
+      "Text": "Roomier than it looks in photos. My partner and I both fit comfortably with gear inside. The dome shape handles wind better than most non-freestanding tents."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Bomber in storms",
+      "Text": "Caught a proper thunderstorm in the Cairngorms. The tent didn't budge and stayed completely dry. The seam sealing is thorough and the pole structure handles gusts well."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great tent, setup takes practice",
+      "Text": "First few times pitching took longer than expected. Now I can do it in under 5 minutes. Once you learn the pitch, it's a solid shelter."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Good condensation management",
+      "Text": "For a double-wall tent the ventilation is better than average. We had some condensation in wet weather but nothing compared to our old single-wall."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Worth the wait",
+      "Text": "Ordered during a long backorder. Completely worth it. The materials quality is obvious and the geometry makes efficient use of the interior space."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Solid all-rounder",
+      "Text": "We've used this in everything from desert heat to Scottish rain. Performs well across conditions. The storage pockets inside are a nice touch."
+    }
   ],
   "durston-x-mid-1": [
-    { "Rating": 5, "Recommended": true, "Headline": "Perfect solo shelter", "Text": "Set up in seconds once you know the pitch. Lots of room for a solo shelter and handles bad weather well with a good pitch. A trekking pole tent done right." },
-    { "Rating": 4, "Recommended": true, "Headline": "Light and weatherproof", "Text": "About 600g including stakes. For a solo tent that handles proper rain and wind, that's excellent. The doors are well designed for ventilation without letting rain in." },
-    { "Rating": 5, "Recommended": true, "Headline": "My go-to for solo trips", "Text": "Replaced a heavier freestanding tent with this and haven't looked back. You do need to learn how to pitch it well but the payoff is worth it." },
-    { "Rating": 5, "Recommended": true, "Headline": "Great for the weight", "Text": "The Silpoly version handles condensation better than silnylon. Good call by Durston to offer both options so you can pick based on your conditions." },
-    { "Rating": 4, "Recommended": true, "Headline": "Not ideal for low-stake ground", "Text": "Had trouble with the stakes pulling out in soft alpine soil. Bring extra guys and longer stakes if you're in loose terrain. Performs well on firm ground though." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Perfect solo shelter",
+      "Text": "Set up in seconds once you know the pitch. Lots of room for a solo shelter and handles bad weather well with a good pitch. A trekking pole tent done right."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Light and weatherproof",
+      "Text": "About 600g including stakes. For a solo tent that handles proper rain and wind, that's excellent. The doors are well designed for ventilation without letting rain in."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "My go-to for solo trips",
+      "Text": "Replaced a heavier freestanding tent with this and haven't looked back. You do need to learn how to pitch it well but the payoff is worth it."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Great for the weight",
+      "Text": "The Silpoly version handles condensation better than silnylon. Good call by Durston to offer both options so you can pick based on your conditions."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Not ideal for low-stake ground",
+      "Text": "Had trouble with the stakes pulling out in soft alpine soil. Bring extra guys and longer stakes if you're in loose terrain. Performs well on firm ground though."
+    }
   ],
   "durston-x-mid-2": [
-    { "Rating": 5, "Recommended": true, "Headline": "Two person tent that actually fits two people", "Text": "Most 2-person tents barely fit one person comfortably. The X-Mid 2 has real room for two adults and their gear. The bathtub floor is a nice touch." },
-    { "Rating": 5, "Recommended": true, "Headline": "Incredible value", "Text": "You'd pay twice as much for similar specs from a mainstream brand. Durston has figured out that selling direct means you can offer better quality at lower prices." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great shelter, get the pitch right", "Text": "The geometry rewards a careful pitch. When pitched tightly it sheds water and wind impressively. A sloppy pitch will cause problems in bad weather." },
-    { "Rating": 4, "Recommended": true, "Headline": "Used for PCT section", "Text": "Did 3 weeks on trail with this tent. Not a single leak and the stakes held in varied terrain. The doors are positioned well for ventilation while cooking." },
-    { "Rating": 5, "Recommended": true, "Headline": "Best buy in ultralight shelters", "Text": "Compared it against several competitors before buying. Better specs, better price, comparable or better materials. Easy choice." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Two person tent that actually fits two people",
+      "Text": "Most 2-person tents barely fit one person comfortably. The X-Mid 2 has real room for two adults and their gear. The bathtub floor is a nice touch."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Incredible value",
+      "Text": "You'd pay twice as much for similar specs from a mainstream brand. Durston has figured out that selling direct means you can offer better quality at lower prices."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great shelter, get the pitch right",
+      "Text": "The geometry rewards a careful pitch. When pitched tightly it sheds water and wind impressively. A sloppy pitch will cause problems in bad weather."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Used for PCT section",
+      "Text": "Did 3 weeks on trail with this tent. Not a single leak and the stakes held in varied terrain. The doors are positioned well for ventilation while cooking."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best buy in ultralight shelters",
+      "Text": "Compared it against several competitors before buying. Better specs, better price, comparable or better materials. Easy choice."
+    }
   ],
   "durston-x-mid-2-solid": [
-    { "Rating": 5, "Recommended": true, "Headline": "No condensation issues", "Text": "The solid canopy version is the right call for humid climates. In the Pacific Northwest where I hike, mesh-inner tents are a disaster. This stays dry inside." },
-    { "Rating": 4, "Recommended": true, "Headline": "Warm and dry", "Text": "Using this in Scotland and Scandinavia where mesh inners are useless. The solid inner keeps warmth in and moisture from forming on your bag. Excellent choice for cold wet climates." },
-    { "Rating": 5, "Recommended": true, "Headline": "Cold weather pick", "Text": "If you're not camping in the desert, get the solid version. The mesh version might save a few grams but the warmth and condensation benefits of solid are worth it." },
-    { "Rating": 4, "Recommended": true, "Headline": "Slightly heavier but worth it", "Text": "The weight penalty over the mesh version is minimal. Warmth and condensation management are noticeably better. Good option for shoulder season camping." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "No condensation issues",
+      "Text": "The solid canopy version is the right call for humid climates. In the Pacific Northwest where I hike, mesh-inner tents are a disaster. This stays dry inside."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Warm and dry",
+      "Text": "Using this in Scotland and Scandinavia where mesh inners are useless. The solid inner keeps warmth in and moisture from forming on your bag. Excellent choice for cold wet climates."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Cold weather pick",
+      "Text": "If you're not camping in the desert, get the solid version. The mesh version might save a few grams but the warmth and condensation benefits of solid are worth it."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Slightly heavier but worth it",
+      "Text": "The weight penalty over the mesh version is minimal. Warmth and condensation management are noticeably better. Good option for shoulder season camping."
+    }
   ],
   "durston-x-mid-pro-1": [
-    { "Rating": 5, "Recommended": true, "Headline": "DCF done right", "Text": "The Dyneema version is noticeably stiffer and more durable feeling than the standard. Worth the price jump if you're committed to minimizing weight." },
-    { "Rating": 5, "Recommended": true, "Headline": "Ultralight and tough", "Text": "580g with stakes for a solo shelter that handles serious weather. That's a remarkable number. The DCF material feels bombproof compared to silnylon." },
-    { "Rating": 4, "Recommended": true, "Headline": "Impressive weight but expensive", "Text": "The performance is there. At this price point you're paying for the DCF material which is genuinely different in feel and weight. Just be aware it's not cheap to repair if damaged." },
-    { "Rating": 5, "Recommended": true, "Headline": "Best solo shelter available at this weight", "Text": "I've tried most competitors in this category. The X-Mid Pro 1 has the best geometry and interior space. Durston clearly thought carefully about how people actually use this space." },
-    { "Rating": 3, "Recommended": true, "Headline": "Great tent, DCF requires care", "Text": "You need to be more careful with DCF than nylon. Don't leave it under UV for extended periods and be careful with sharp objects. If you understand DCF it's excellent." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "DCF done right",
+      "Text": "The Dyneema version is noticeably stiffer and more durable feeling than the standard. Worth the price jump if you're committed to minimizing weight."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Ultralight and tough",
+      "Text": "580g with stakes for a solo shelter that handles serious weather. That's a remarkable number. The DCF material feels bombproof compared to silnylon."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Impressive weight but expensive",
+      "Text": "The performance is there. At this price point you're paying for the DCF material which is genuinely different in feel and weight. Just be aware it's not cheap to repair if damaged."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best solo shelter available at this weight",
+      "Text": "I've tried most competitors in this category. The X-Mid Pro 1 has the best geometry and interior space. Durston clearly thought carefully about how people actually use this space."
+    },
+    {
+      "Rating": 3,
+      "Recommended": true,
+      "Headline": "Great tent, DCF requires care",
+      "Text": "You need to be more careful with DCF than nylon. Don't leave it under UV for extended periods and be careful with sharp objects. If you understand DCF it's excellent."
+    }
   ],
   "durston-x-mid-pro-2": [
-    { "Rating": 5, "Recommended": true, "Headline": "Premium two-person ultralight", "Text": "For a couple doing serious trails, this is the tent. Lightweight enough to share the carry without breaking your back, and spacious enough to be liveable." },
-    { "Rating": 5, "Recommended": true, "Headline": "The upgrade was worth it", "Text": "Owned the standard X-Mid 2 first. The Pro version is lighter and the DCF material feels more substantial. Happy I made the jump." },
-    { "Rating": 4, "Recommended": true, "Headline": "Excellent but not cheap", "Text": "You know what you're getting with DCF. Lighter, stronger, more expensive. The execution here is excellent and the geometry is unchanged from the standard version." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great for fast and light trips", "Text": "When every gram matters on a long route, this tent earns its premium. Pitches fast, weighs little, and handles conditions well." },
-    { "Rating": 5, "Recommended": true, "Headline": "Top of the class", "Text": "In the crowded ultralight two-person tent market this stands out for the combination of interior space, weather resistance, and weight." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Premium two-person ultralight",
+      "Text": "For a couple doing serious trails, this is the tent. Lightweight enough to share the carry without breaking your back, and spacious enough to be liveable."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "The upgrade was worth it",
+      "Text": "Owned the standard X-Mid 2 first. The Pro version is lighter and the DCF material feels more substantial. Happy I made the jump."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Excellent but not cheap",
+      "Text": "You know what you're getting with DCF. Lighter, stronger, more expensive. The execution here is excellent and the geometry is unchanged from the standard version."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great for fast and light trips",
+      "Text": "When every gram matters on a long route, this tent earns its premium. Pitches fast, weighs little, and handles conditions well."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Top of the class",
+      "Text": "In the crowded ultralight two-person tent market this stands out for the combination of interior space, weather resistance, and weight."
+    }
   ],
   "durston-x-mid-pro-2-plus": [
-    { "Rating": 5, "Recommended": true, "Headline": "Huge interior for the weight", "Text": "The Plus version adds meaningful space without adding much weight. Two people can actually sit up and move around, which matters on rest days in bad weather." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great for couples on long trips", "Text": "The extra vestibule space is the key feature. We can both cook under cover simultaneously. Worth the small weight premium over the standard Pro 2." },
-    { "Rating": 5, "Recommended": true, "Headline": "Room to breathe", "Text": "Most ultralight two-person tents feel cramped. This one actually has enough room to store gear and still have living space. Impressive geometry." },
-    { "Rating": 4, "Recommended": true, "Headline": "Best large ultralight tent", "Text": "If you need space and still want a lightweight setup, there aren't many options that compete. The Pro 2 Plus fills a real gap in the market." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Huge interior for the weight",
+      "Text": "The Plus version adds meaningful space without adding much weight. Two people can actually sit up and move around, which matters on rest days in bad weather."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great for couples on long trips",
+      "Text": "The extra vestibule space is the key feature. We can both cook under cover simultaneously. Worth the small weight premium over the standard Pro 2."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Room to breathe",
+      "Text": "Most ultralight two-person tents feel cramped. This one actually has enough room to store gear and still have living space. Impressive geometry."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Best large ultralight tent",
+      "Text": "If you need space and still want a lightweight setup, there aren't many options that compete. The Pro 2 Plus fills a real gap in the market."
+    }
   ],
   "enlightened-equipment-enigma-quilt-20": [
-    { "Rating": 5, "Recommended": true, "Headline": "Light, warm, well made", "Text": "EE quilts have a strong reputation and this one earns it. The baffles are well constructed and there are no cold spots. Warmth-to-weight is excellent." },
-    { "Rating": 4, "Recommended": true, "Headline": "Good quilt, takes adjustment", "Text": "If you're coming from a sleeping bag, quilts take a night or two to get used to. Once you figure out the footbox and attachment system it's comfortable and lighter." },
-    { "Rating": 5, "Recommended": true, "Headline": "Converted me to quilts", "Text": "Was skeptical about switching from bags. The weight savings are real and once I learned to use it properly I sleep just as warm. The Enigma is a great entry point." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great for shoulder season", "Text": "Used from May to October in the mountains. The 20°F rating is accurate when used properly. Good quality down and no detectable weak spots after a full season." },
-    { "Rating": 5, "Recommended": true, "Headline": "EE quality is consistent", "Text": "Third EE product I've owned. They know what they're doing. The attention to detail — zipper pulls, snap placement, overfill — is consistent across their lineup." },
-    { "Rating": 3, "Recommended": false, "Headline": "Runs a bit cold", "Text": "I'd say it rates accurately at the lower comfort limit, not the comfort rating. If you're a cold sleeper, size up or add a liner. Otherwise good quality." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Light, warm, well made",
+      "Text": "EE quilts have a strong reputation and this one earns it. The baffles are well constructed and there are no cold spots. Warmth-to-weight is excellent."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Good quilt, takes adjustment",
+      "Text": "If you're coming from a sleeping bag, quilts take a night or two to get used to. Once you figure out the footbox and attachment system it's comfortable and lighter."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Converted me to quilts",
+      "Text": "Was skeptical about switching from bags. The weight savings are real and once I learned to use it properly I sleep just as warm. The Enigma is a great entry point."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great for shoulder season",
+      "Text": "Used from May to October in the mountains. The 20°F rating is accurate when used properly. Good quality down and no detectable weak spots after a full season."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "EE quality is consistent",
+      "Text": "Third EE product I've owned. They know what they're doing. The attention to detail — zipper pulls, snap placement, overfill — is consistent across their lineup."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Runs a bit cold",
+      "Text": "I'd say it rates accurately at the lower comfort limit, not the comfort rating. If you're a cold sleeper, size up or add a liner. Otherwise good quality."
+    }
   ],
   "enlightened-equipment-revelation-quilt-20": [
-    { "Rating": 5, "Recommended": true, "Headline": "More versatile than the Enigma", "Text": "The full zip option makes a big difference in shoulder season when you want to vent. Being able to open it fully is more useful than I expected." },
-    { "Rating": 5, "Recommended": true, "Headline": "My favourite quilt", "Text": "Have used the Revelation for three seasons. The full zip is worth it for the versatility. Converts to a top blanket easily when it's warm." },
-    { "Rating": 4, "Recommended": true, "Headline": "Excellent construction", "Text": "EE's build quality is top notch. The stitching on the baffles is even and consistent. Down distribution feels uniform throughout. Packs down very small." },
-    { "Rating": 4, "Recommended": true, "Headline": "Good cold weather quilt", "Text": "Slept comfortably at around -5°C with a liner. The Revelation handles cold well for its weight. The pad attachment straps work better than I expected." },
-    { "Rating": 5, "Recommended": true, "Headline": "Worth every cent", "Text": "Premium product at a fair price for the quality. The zipper is smooth and the snap buckles on the footbox are easy to manage in the dark. Thoughtful design." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "More versatile than the Enigma",
+      "Text": "The full zip option makes a big difference in shoulder season when you want to vent. Being able to open it fully is more useful than I expected."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "My favourite quilt",
+      "Text": "Have used the Revelation for three seasons. The full zip is worth it for the versatility. Converts to a top blanket easily when it's warm."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Excellent construction",
+      "Text": "EE's build quality is top notch. The stitching on the baffles is even and consistent. Down distribution feels uniform throughout. Packs down very small."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Good cold weather quilt",
+      "Text": "Slept comfortably at around -5°C with a liner. The Revelation handles cold well for its weight. The pad attachment straps work better than I expected."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Worth every cent",
+      "Text": "Premium product at a fair price for the quality. The zipper is smooth and the snap buckles on the footbox are easy to manage in the dark. Thoughtful design."
+    }
   ],
   "enlightened-equipment-torrid-booties": [
-    { "Rating": 5, "Recommended": true, "Headline": "Cold feet solved", "Text": "Have always struggled with cold feet in my quilt. These booties genuinely fix the problem. Put them on in camp and your feet stay warm all night." },
-    { "Rating": 4, "Recommended": true, "Headline": "Lightweight solution", "Text": "Weigh almost nothing and pack into nothing. Add meaningful warmth when sleeping in a quilt. Not sure why I waited so long to try down booties." },
-    { "Rating": 5, "Recommended": true, "Headline": "Essential cold weather accessory", "Text": "Paired with the Enigma quilt in shoulder season these make a big difference. Feet were always my cold spot. Problem solved." },
-    { "Rating": 4, "Recommended": true, "Headline": "Well made", "Text": "The stitching is neat and the down fill is evenly distributed. They're simple but well executed. Worth having in your kit if you use a quilt." },
-    { "Rating": 3, "Recommended": false, "Headline": "Fragile sole", "Text": "The bottom of the booties shows wear quickly if you walk around camp in them. They're sleeping booties, not camp shoes. As long as you understand that, they're good." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Cold feet solved",
+      "Text": "Have always struggled with cold feet in my quilt. These booties genuinely fix the problem. Put them on in camp and your feet stay warm all night."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Lightweight solution",
+      "Text": "Weigh almost nothing and pack into nothing. Add meaningful warmth when sleeping in a quilt. Not sure why I waited so long to try down booties."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Essential cold weather accessory",
+      "Text": "Paired with the Enigma quilt in shoulder season these make a big difference. Feet were always my cold spot. Problem solved."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Well made",
+      "Text": "The stitching is neat and the down fill is evenly distributed. They're simple but well executed. Worth having in your kit if you use a quilt."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Fragile sole",
+      "Text": "The bottom of the booties shows wear quickly if you walk around camp in them. They're sleeping booties, not camp shoes. As long as you understand that, they're good."
+    }
   ],
   "enlightened-equipment-torrid-hood": [
-    { "Rating": 5, "Recommended": true, "Headline": "Fixes the quilt cold head problem", "Text": "Using a quilt means no built-in hood. This solves that completely. Stays on well overnight and adds noticeable warmth without much weight." },
-    { "Rating": 4, "Recommended": true, "Headline": "Well thought out", "Text": "The elastic at the opening keeps it in place without being uncomfortable. Down fill is consistent and it packs tiny. Good accessory for cold sleepers." },
-    { "Rating": 5, "Recommended": true, "Headline": "Game changer for quilt users", "Text": "Never thought about getting a separate hood until I had a really cold night in just a quilt. This plus the booties completely transformed my sleep system." },
-    { "Rating": 4, "Recommended": true, "Headline": "Good quality as expected from EE", "Text": "Same build quality as their other products. Simple idea, well executed. Easy to stuff into a quilt's stuff sack." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Fixes the quilt cold head problem",
+      "Text": "Using a quilt means no built-in hood. This solves that completely. Stays on well overnight and adds noticeable warmth without much weight."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Well thought out",
+      "Text": "The elastic at the opening keeps it in place without being uncomfortable. Down fill is consistent and it packs tiny. Good accessory for cold sleepers."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Game changer for quilt users",
+      "Text": "Never thought about getting a separate hood until I had a really cold night in just a quilt. This plus the booties completely transformed my sleep system."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Good quality as expected from EE",
+      "Text": "Same build quality as their other products. Simple idea, well executed. Easy to stuff into a quilt's stuff sack."
+    }
   ],
   "enlightened-equipment-xwide-pad-strap": [
-    { "Rating": 5, "Recommended": true, "Headline": "Finally a strap that works", "Text": "Every other quilt strap system I've tried either slips or pulls the pad. The X-Wide actually keeps the quilt attached to my NeoAir overnight. Simple but effective." },
-    { "Rating": 4, "Recommended": true, "Headline": "Does what it says", "Text": "The wide design prevents the strap from cutting into the pad. Works well with both inflatable and foam pads. Reasonably priced for what it is." },
-    { "Rating": 5, "Recommended": true, "Headline": "Underrated accessory", "Text": "Small thing but makes a big difference for how much the quilt shifts overnight. Woke up much warmer once I started using this." },
-    { "Rating": 3, "Recommended": true, "Headline": "Works but bulky attachment", "Text": "The attachment point is a bit thick and can be felt through thinner pads. Functional but there's probably a more elegant solution." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Finally a strap that works",
+      "Text": "Every other quilt strap system I've tried either slips or pulls the pad. The X-Wide actually keeps the quilt attached to my NeoAir overnight. Simple but effective."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Does what it says",
+      "Text": "The wide design prevents the strap from cutting into the pad. Works well with both inflatable and foam pads. Reasonably priced for what it is."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Underrated accessory",
+      "Text": "Small thing but makes a big difference for how much the quilt shifts overnight. Woke up much warmer once I started using this."
+    },
+    {
+      "Rating": 3,
+      "Recommended": true,
+      "Headline": "Works but bulky attachment",
+      "Text": "The attachment point is a bit thick and can be felt through thinner pads. Functional but there's probably a more elegant solution."
+    }
   ],
   "garmin-gpsmap-67": [
-    { "Rating": 5, "Recommended": true, "Headline": "Reliable navigation tool", "Text": "Satellite lock is fast and accurate. Used it on a long route in the Cairngorms where phone signal was nonexistent. The track log and waypoint system are intuitive once you learn the interface." },
-    { "Rating": 4, "Recommended": true, "Headline": "Tough and accurate", "Text": "Dropped it twice on rocky terrain with no damage. The screen is readable in bright sunlight which most phone screens can't match. Battery lasts well over a day of active use." },
-    { "Rating": 5, "Recommended": true, "Headline": "Replaced my phone navigation entirely", "Text": "The dedicated GPS chip acquires satellites much faster than any phone I've tried. In dense forest or deep valleys it stays locked when my phone loses signal." },
-    { "Rating": 5, "Recommended": true, "Headline": "Great device with a learning curve", "Text": "The button interface takes getting used to after using touchscreen devices. Once you know the menus it's fast to use. TopoActive maps are good for trail navigation." },
-    { "Rating": 4, "Recommended": true, "Headline": "Good GPS but software is dated", "Text": "The hardware is excellent. The UI looks like it hasn't changed in a decade. Functional but feels behind modern standards. Still does the job reliably." },
-    { "Rating": 5, "Recommended": true, "Headline": "Peace of mind on remote routes", "Text": "Knowing I have a dedicated GPS with two-way messaging capability lets me take on more remote routes with confidence. The GPSMAP 67 is a solid piece of kit." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Reliable navigation tool",
+      "Text": "Satellite lock is fast and accurate. Used it on a long route in the Cairngorms where phone signal was nonexistent. The track log and waypoint system are intuitive once you learn the interface."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Tough and accurate",
+      "Text": "Dropped it twice on rocky terrain with no damage. The screen is readable in bright sunlight which most phone screens can't match. Battery lasts well over a day of active use."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Replaced my phone navigation entirely",
+      "Text": "The dedicated GPS chip acquires satellites much faster than any phone I've tried. In dense forest or deep valleys it stays locked when my phone loses signal."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Great device with a learning curve",
+      "Text": "The button interface takes getting used to after using touchscreen devices. Once you know the menus it's fast to use. TopoActive maps are good for trail navigation."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Good GPS but software is dated",
+      "Text": "The hardware is excellent. The UI looks like it hasn't changed in a decade. Functional but feels behind modern standards. Still does the job reliably."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Peace of mind on remote routes",
+      "Text": "Knowing I have a dedicated GPS with two-way messaging capability lets me take on more remote routes with confidence. The GPSMAP 67 is a solid piece of kit."
+    }
   ],
   "garmin-gpsmap-67i": [
-    { "Rating": 5, "Recommended": true, "Headline": "The satellite messaging is worth it", "Text": "Had a minor injury on a remote ridge. Being able to send a message to my hiking partner waiting at the trailhead was incredibly reassuring. The inReach integration alone justifies the price." },
-    { "Rating": 5, "Recommended": true, "Headline": "Best GPS I've owned", "Text": "The combination of accurate navigation, long battery life, and emergency communication in one device is hard to argue with. Heavy but worth it for serious trips." },
-    { "Rating": 5, "Recommended": true, "Headline": "Expensive but complete", "Text": "You're paying for the inReach subscription on top of the device cost. If you do remote trips regularly, the peace of mind is worth it. The GPS itself is excellent." },
-    { "Rating": 4, "Recommended": true, "Headline": "Battery life is impressive", "Text": "With satellite messaging active I still got over 16 hours of active navigation. In battery saver mode it lasts days. Important feature for multi-day trips." },
-    { "Rating": 5, "Recommended": true, "Headline": "Changed how I plan routes", "Text": "Knowing I can communicate from anywhere means I take on more ambitious routes. The tracking feature so people can follow my progress is a great safety feature." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great features, complex menus", "Text": "There's a lot going on with this device and it takes time to learn. The manual is essential. Once you know it it's powerful but the learning curve is real." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "The satellite messaging is worth it",
+      "Text": "Had a minor injury on a remote ridge. Being able to send a message to my hiking partner waiting at the trailhead was incredibly reassuring. The inReach integration alone justifies the price."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best GPS I've owned",
+      "Text": "The combination of accurate navigation, long battery life, and emergency communication in one device is hard to argue with. Heavy but worth it for serious trips."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Expensive but complete",
+      "Text": "You're paying for the inReach subscription on top of the device cost. If you do remote trips regularly, the peace of mind is worth it. The GPS itself is excellent."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Battery life is impressive",
+      "Text": "With satellite messaging active I still got over 16 hours of active navigation. In battery saver mode it lasts days. Important feature for multi-day trips."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Changed how I plan routes",
+      "Text": "Knowing I can communicate from anywhere means I take on more ambitious routes. The tracking feature so people can follow my progress is a great safety feature."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great features, complex menus",
+      "Text": "There's a lot going on with this device and it takes time to learn. The manual is essential. Once you know it it's powerful but the learning curve is real."
+    }
   ],
   "goosefeet-gear-down-socks": [
-    { "Rating": 5, "Recommended": true, "Headline": "Cold feet problem solved permanently", "Text": "Have used down socks from a couple of brands. GooseFeet's are the warmest I've tried. The construction is clean and the down fill is generous." },
-    { "Rating": 5, "Recommended": true, "Headline": "Handmade quality is obvious", "Text": "You can tell these aren't mass-produced. The stitching is careful and consistent. They feel durable despite being lightweight." },
-    { "Rating": 5, "Recommended": true, "Headline": "Essential for cold sleepers", "Text": "I added these to my sleep system last winter and immediately slept warmer. Simple product that works exactly as advertised." },
-    { "Rating": 4, "Recommended": true, "Headline": "Works well with quilts", "Text": "The combination of down booties and a quilt means I don't need as warm a quilt rating as I used to. Saves weight overall in my system." },
-    { "Rating": 4, "Recommended": true, "Headline": "Fragile if you walk in them", "Text": "They're sleeping socks. Walking around camp in them damages them quickly. As long as you use them only for sleeping, they hold up fine." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Cold feet problem solved permanently",
+      "Text": "Have used down socks from a couple of brands. GooseFeet's are the warmest I've tried. The construction is clean and the down fill is generous."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Handmade quality is obvious",
+      "Text": "You can tell these aren't mass-produced. The stitching is careful and consistent. They feel durable despite being lightweight."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Essential for cold sleepers",
+      "Text": "I added these to my sleep system last winter and immediately slept warmer. Simple product that works exactly as advertised."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Works well with quilts",
+      "Text": "The combination of down booties and a quilt means I don't need as warm a quilt rating as I used to. Saves weight overall in my system."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Fragile if you walk in them",
+      "Text": "They're sleeping socks. Walking around camp in them damages them quickly. As long as you use them only for sleeping, they hold up fine."
+    }
   ],
   "gossamer-gear-kumo36-superlight": [
-    { "Rating": 5, "Recommended": true, "Headline": "Lightest frameless pack I've used", "Text": "At just over 200g it's almost not there. For trips where I'm carrying under 8kg, this is perfect. The fit is surprisingly good for a frameless design." },
-    { "Rating": 4, "Recommended": true, "Headline": "Minimalist but functional", "Text": "No framing means you need to pack carefully to maintain structure. Once you get used to that it's a great pack. The hip belt is adequate for lighter loads." },
-    { "Rating": 5, "Recommended": true, "Headline": "Perfect for fastpacking", "Text": "When speed matters more than comfort, this is the pack. Ultralight, simple, and it moves with your body well. Love it for long days on trail." },
-    { "Rating": 4, "Recommended": true, "Headline": "Takes practice to pack", "Text": "The frameless design means your gear creates the structure. Takes a trip or two to figure out what works. Rewarding once you get it dialled." },
-    { "Rating": 3, "Recommended": false, "Headline": "Not for heavy loads", "Text": "Over 8kg it becomes uncomfortable without a frame. Know your use case before buying. For light fast trips it's excellent. For full kit expedition use, look elsewhere." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Lightest frameless pack I've used",
+      "Text": "At just over 200g it's almost not there. For trips where I'm carrying under 8kg, this is perfect. The fit is surprisingly good for a frameless design."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Minimalist but functional",
+      "Text": "No framing means you need to pack carefully to maintain structure. Once you get used to that it's a great pack. The hip belt is adequate for lighter loads."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Perfect for fastpacking",
+      "Text": "When speed matters more than comfort, this is the pack. Ultralight, simple, and it moves with your body well. Love it for long days on trail."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Takes practice to pack",
+      "Text": "The frameless design means your gear creates the structure. Takes a trip or two to figure out what works. Rewarding once you get it dialled."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Not for heavy loads",
+      "Text": "Over 8kg it becomes uncomfortable without a frame. Know your use case before buying. For light fast trips it's excellent. For full kit expedition use, look elsewhere."
+    }
   ],
   "gossamer-gear-solo-tarp": [
-    { "Rating": 5, "Recommended": true, "Headline": "Ultralight shelter that works", "Text": "Silnylon is noisy in wind but the weather protection is excellent. Pitched low it handles serious rain. At this weight there's nothing comparable." },
-    { "Rating": 4, "Recommended": true, "Headline": "Simple and effective", "Text": "Tarps require more skill to pitch well than tents but the weight savings are significant. This one has good tie-out placement and the silnylon sheds water well." },
-    { "Rating": 5, "Recommended": true, "Headline": "Great for experienced campers", "Text": "If you know how to read terrain and pitch a tarp, this is an excellent piece of kit. The simplicity means nothing can really go wrong with it." },
-    { "Rating": 3, "Recommended": false, "Headline": "Not beginner friendly", "Text": "This is a skill-based shelter. In poor conditions a badly pitched tarp will get you wet. If you know what you're doing it's great. If not, buy a tent first." },
-    { "Rating": 5, "Recommended": true, "Headline": "Perfect minimalist shelter", "Text": "Paired with a bivy for shoulder season camping. The combination is lighter than any tent and the open feel is genuinely enjoyable on nice nights." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Ultralight shelter that works",
+      "Text": "Silnylon is noisy in wind but the weather protection is excellent. Pitched low it handles serious rain. At this weight there's nothing comparable."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Simple and effective",
+      "Text": "Tarps require more skill to pitch well than tents but the weight savings are significant. This one has good tie-out placement and the silnylon sheds water well."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Great for experienced campers",
+      "Text": "If you know how to read terrain and pitch a tarp, this is an excellent piece of kit. The simplicity means nothing can really go wrong with it."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Not beginner friendly",
+      "Text": "This is a skill-based shelter. In poor conditions a badly pitched tarp will get you wet. If you know what you're doing it's great. If not, buy a tent first."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Perfect minimalist shelter",
+      "Text": "Paired with a bivy for shoulder season camping. The combination is lighter than any tent and the open feel is genuinely enjoyable on nice nights."
+    }
   ],
   "gregory-baltoro-75": [
-    { "Rating": 5, "Recommended": true, "Headline": "Carries heavy loads better than anything", "Text": "Loaded this with 22kg for a Himalayan approach march. The suspension system distributed weight so well I forgot how heavy it was. Remarkable engineering." },
-    { "Rating": 5, "Recommended": true, "Headline": "Worth the weight", "Text": "It's a heavy pack but it's designed for heavy loads. If you're carrying 15kg+, the support makes the base weight irrelevant. Comfort is unmatched." },
-    { "Rating": 5, "Recommended": true, "Headline": "Feature rich and comfortable", "Text": "Lots of pockets, well thought out organisation, and the AutoFit hip belt is excellent. Heavy but hard to fault on any feature." },
-    { "Rating": 4, "Recommended": true, "Headline": "Built for long trips", "Text": "Three weeks on trail and it was comfortable every day. The back panel suspension handles different loads well and the ventilation is better than most packs." },
-    { "Rating": 5, "Recommended": true, "Headline": "Best traditional pack available", "Text": "If ultralight isn't your priority and you want the most comfortable, best supported carry possible, this is it. Gregory's fit system is the best in the industry." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great pack but heavy", "Text": "It is what it is — a full-featured pack that weighs 2.3kg empty. For people who need the support, worth every gram. For lighter loads, look elsewhere." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Carries heavy loads better than anything",
+      "Text": "Loaded this with 22kg for a Himalayan approach march. The suspension system distributed weight so well I forgot how heavy it was. Remarkable engineering."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Worth the weight",
+      "Text": "It's a heavy pack but it's designed for heavy loads. If you're carrying 15kg+, the support makes the base weight irrelevant. Comfort is unmatched."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Feature rich and comfortable",
+      "Text": "Lots of pockets, well thought out organisation, and the AutoFit hip belt is excellent. Heavy but hard to fault on any feature."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Built for long trips",
+      "Text": "Three weeks on trail and it was comfortable every day. The back panel suspension handles different loads well and the ventilation is better than most packs."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best traditional pack available",
+      "Text": "If ultralight isn't your priority and you want the most comfortable, best supported carry possible, this is it. Gregory's fit system is the best in the industry."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great pack but heavy",
+      "Text": "It is what it is — a full-featured pack that weighs 2.3kg empty. For people who need the support, worth every gram. For lighter loads, look elsewhere."
+    }
   ],
   "hyperlite-mountain-gear-bug-bivy": [
-    { "Rating": 5, "Recommended": true, "Headline": "Solved my bug problem completely", "Text": "Camping in the Adirondacks in summer was miserable before this. Now I can sleep comfortably even in heavy mosquito areas. The mesh is fine enough to keep out midges too." },
-    { "Rating": 4, "Recommended": true, "Headline": "Light and functional", "Text": "Packs tiny and weighs almost nothing. The mesh construction means no condensation and the Dyneema floor is durable. Good companion for tarp camping." },
-    { "Rating": 5, "Recommended": true, "Headline": "Essential for bug season", "Text": "Paired with a tarp this is a nearly ideal summer setup. Full ventilation, bug protection, and at a fraction of the weight of a tent." },
-    { "Rating": 4, "Recommended": true, "Headline": "HMG quality throughout", "Text": "The construction is clean and the materials are premium. The zipper is smooth and the seams are reinforced where they need to be." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Solved my bug problem completely",
+      "Text": "Camping in the Adirondacks in summer was miserable before this. Now I can sleep comfortably even in heavy mosquito areas. The mesh is fine enough to keep out midges too."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Light and functional",
+      "Text": "Packs tiny and weighs almost nothing. The mesh construction means no condensation and the Dyneema floor is durable. Good companion for tarp camping."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Essential for bug season",
+      "Text": "Paired with a tarp this is a nearly ideal summer setup. Full ventilation, bug protection, and at a fraction of the weight of a tent."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "HMG quality throughout",
+      "Text": "The construction is clean and the materials are premium. The zipper is smooth and the seams are reinforced where they need to be."
+    }
   ],
   "hyperlite-mountain-gear-ground-cloth": [
-    { "Rating": 5, "Recommended": true, "Headline": "Dyneema is overkill in the best way", "Text": "For a ground cloth this is absurdly durable. Weighs almost nothing, doesn't absorb moisture, and should outlast any tent floor I use it under." },
-    { "Rating": 4, "Recommended": true, "Headline": "Pricey but light", "Text": "It's expensive for a ground cloth. But the weight is minimal and it protects the tent floor effectively. Good investment if you camp on rough terrain." },
-    { "Rating": 5, "Recommended": true, "Headline": "Perfect fit under my UltaMid", "Text": "Sized well for the HMG tents. Stays in place and keeps moisture from seeping through the floor. The Dyneema material feels almost indestructible." },
-    { "Rating": 3, "Recommended": false, "Headline": "Expensive for what it is", "Text": "Does the job but hard to justify the price over a cheaper alternative unless you're really committed to every gram. The quality is there, just not sure it's necessary." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Dyneema is overkill in the best way",
+      "Text": "For a ground cloth this is absurdly durable. Weighs almost nothing, doesn't absorb moisture, and should outlast any tent floor I use it under."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Pricey but light",
+      "Text": "It's expensive for a ground cloth. But the weight is minimal and it protects the tent floor effectively. Good investment if you camp on rough terrain."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Perfect fit under my UltaMid",
+      "Text": "Sized well for the HMG tents. Stays in place and keeps moisture from seeping through the floor. The Dyneema material feels almost indestructible."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Expensive for what it is",
+      "Text": "Does the job but hard to justify the price over a cheaper alternative unless you're really committed to every gram. The quality is there, just not sure it's necessary."
+    }
   ],
   "hyperlite-mountain-gear-splash-bivy": [
-    { "Rating": 5, "Recommended": true, "Headline": "Waterproof bivy that breathes", "Text": "Most waterproof bivies are suffocating inside. The Dyneema top actually breathes noticeably. Used it in a storm when my tarp failed and stayed dry." },
-    { "Rating": 4, "Recommended": true, "Headline": "Emergency worthy", "Text": "Brought this as a backup shelter on a remote route. Had to use it for real one night when conditions deteriorated. Performed exactly as hoped." },
-    { "Rating": 5, "Recommended": true, "Headline": "Light emergency shelter", "Text": "Weighs almost nothing and packs into a shirt pocket. For a legitimate waterproof shelter that's remarkable. HMG quality in a tiny package." },
-    { "Rating": 4, "Recommended": true, "Headline": "Pairs well with a tarp", "Text": "Using this under my gossamer gear tarp gives me a complete weather-proof shelter system at well under 500g. The combination is excellent." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Waterproof bivy that breathes",
+      "Text": "Most waterproof bivies are suffocating inside. The Dyneema top actually breathes noticeably. Used it in a storm when my tarp failed and stayed dry."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Emergency worthy",
+      "Text": "Brought this as a backup shelter on a remote route. Had to use it for real one night when conditions deteriorated. Performed exactly as hoped."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Light emergency shelter",
+      "Text": "Weighs almost nothing and packs into a shirt pocket. For a legitimate waterproof shelter that's remarkable. HMG quality in a tiny package."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Pairs well with a tarp",
+      "Text": "Using this under my gossamer gear tarp gives me a complete weather-proof shelter system at well under 500g. The combination is excellent."
+    }
   ],
   "hyperlite-mountain-gear-ultamid-1": [
-    { "Rating": 5, "Recommended": true, "Headline": "Cathedral of ultralight tents", "Text": "The UltaMid is in its own category. The space inside is enormous for a single-person shelter. The DCF is bomber and sheds snow like nothing else." },
-    { "Rating": 5, "Recommended": true, "Headline": "Worth every penny", "Text": "Expensive but when you're using it in serious conditions in the backcountry, quality matters. The four-pole pitch is stable in conditions that would flatten most shelters." },
-    { "Rating": 4, "Recommended": true, "Headline": "Incredible space, steep learning curve", "Text": "The pitch options take time to learn. Once you do, the versatility is unmatched. Can pitch it as a full shelter or open on one side in good weather." },
-    { "Rating": 4, "Recommended": true, "Headline": "Premium shelter for serious use", "Text": "This isn't a casual weekend tent. It's a serious backcountry shelter. The material and build quality match the price point. Cold weather performance is exceptional." },
-    { "Rating": 5, "Recommended": true, "Headline": "Bombproof in winter", "Text": "Had this pitched in sustained 60mph winds on a ridgeline. Not a budge. The pyramid geometry handles wind and snow loading better than any other design I've used." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Cathedral of ultralight tents",
+      "Text": "The UltaMid is in its own category. The space inside is enormous for a single-person shelter. The DCF is bomber and sheds snow like nothing else."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Worth every penny",
+      "Text": "Expensive but when you're using it in serious conditions in the backcountry, quality matters. The four-pole pitch is stable in conditions that would flatten most shelters."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Incredible space, steep learning curve",
+      "Text": "The pitch options take time to learn. Once you do, the versatility is unmatched. Can pitch it as a full shelter or open on one side in good weather."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Premium shelter for serious use",
+      "Text": "This isn't a casual weekend tent. It's a serious backcountry shelter. The material and build quality match the price point. Cold weather performance is exceptional."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Bombproof in winter",
+      "Text": "Had this pitched in sustained 60mph winds on a ridgeline. Not a budge. The pyramid geometry handles wind and snow loading better than any other design I've used."
+    }
   ],
   "hyperlite-mountain-gear-ultamid-2-insert": [
-    { "Rating": 5, "Recommended": true, "Headline": "Makes the UltaMid liveable", "Text": "Without the insert the UltaMid is fine for 3-season use. Add the insert and you have a proper winter tent. Essential accessory if you're doing cold weather trips." },
-    { "Rating": 4, "Recommended": true, "Headline": "Adds significant warmth", "Text": "The solid inner panels noticeably reduce cold air movement inside the tent. Worth the weight addition for shoulder season and winter camping." },
-    { "Rating": 5, "Recommended": true, "Headline": "Perfect fit", "Text": "Designed specifically for the UltaMid 2 so the fit is exact. Clips in easily and doesn't move once set up. HMG quality as expected." },
-    { "Rating": 3, "Recommended": false, "Headline": "Expensive accessory", "Text": "Works well but it's a lot to pay for what is essentially a tent insert. If you use your UltaMid in cold weather regularly it makes sense, otherwise hard to justify." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Makes the UltaMid liveable",
+      "Text": "Without the insert the UltaMid is fine for 3-season use. Add the insert and you have a proper winter tent. Essential accessory if you're doing cold weather trips."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Adds significant warmth",
+      "Text": "The solid inner panels noticeably reduce cold air movement inside the tent. Worth the weight addition for shoulder season and winter camping."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Perfect fit",
+      "Text": "Designed specifically for the UltaMid 2 so the fit is exact. Clips in easily and doesn't move once set up. HMG quality as expected."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Expensive accessory",
+      "Text": "Works well but it's a lot to pay for what is essentially a tent insert. If you use your UltaMid in cold weather regularly it makes sense, otherwise hard to justify."
+    }
   ],
   "hyperlite-mountain-gear-versa": [
-    { "Rating": 5, "Recommended": true, "Headline": "Most versatile stuff sack I own", "Text": "Works as a dry bag, stuff sack, and day pack. The DCF is bombproof and it floats when dropped in water. Great piece of kit." },
-    { "Rating": 4, "Recommended": true, "Headline": "Extremely durable", "Text": "Abuse this thing daily as a day hiking bag inside my main pack. No signs of wear after a full season. DCF construction is clearly overkill in the best way." },
-    { "Rating": 5, "Recommended": true, "Headline": "Lightweight and bombproof", "Text": "HMG knows DCF and this shows it. Weighs almost nothing, carries a surprising amount, and will outlast most gear it carries." },
-    { "Rating": 4, "Recommended": true, "Headline": "Pricey but worth it", "Text": "More expensive than nylon alternatives but the weight and durability difference is real. If you're already spending on quality gear, this fits the system." },
-    { "Rating": 3, "Recommended": false, "Headline": "Noisy material", "Text": "DCF crinkles and makes noise as you move. Not an issue functionally but if you're light sleeping it can be annoying inside your tent. Otherwise excellent." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Most versatile stuff sack I own",
+      "Text": "Works as a dry bag, stuff sack, and day pack. The DCF is bombproof and it floats when dropped in water. Great piece of kit."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Extremely durable",
+      "Text": "Abuse this thing daily as a day hiking bag inside my main pack. No signs of wear after a full season. DCF construction is clearly overkill in the best way."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Lightweight and bombproof",
+      "Text": "HMG knows DCF and this shows it. Weighs almost nothing, carries a surprising amount, and will outlast most gear it carries."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Pricey but worth it",
+      "Text": "More expensive than nylon alternatives but the weight and durability difference is real. If you're already spending on quality gear, this fits the system."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Noisy material",
+      "Text": "DCF crinkles and makes noise as you move. Not an issue functionally but if you're light sleeping it can be annoying inside your tent. Otherwise excellent."
+    }
   ],
   "msr-groundhog-tent-stakes": [
-    { "Rating": 5, "Recommended": true, "Headline": "The benchmark tent stake", "Text": "Used these for years and nothing has replaced them. The Y-beam cross section holds in loose soil better than any other stake shape I've tried." },
-    { "Rating": 5, "Recommended": true, "Headline": "Best general purpose stake", "Text": "Work in sand, dirt, grass, and loose soil. The hook design makes them easy to remove. Worth replacing all your kit stakes with these." },
-    { "Rating": 4, "Recommended": true, "Headline": "Reliable and tough", "Text": "Bent one on rocky ground but that was my fault for hammering too hard. Under normal use they're indestructible. Good weight for the holding power." },
-    { "Rating": 4, "Recommended": true, "Headline": "Standard recommendation for good reason", "Text": "These are recommended everywhere and the reputation is earned. Not ultralight but reliable in conditions where ultralight stakes might pull." },
-    { "Rating": 5, "Recommended": true, "Headline": "Essential kit", "Text": "Every tent stake I've ever used has been compared to these. Nothing has beaten them for general use. Buy a set and stop worrying about stakes." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "The benchmark tent stake",
+      "Text": "Used these for years and nothing has replaced them. The Y-beam cross section holds in loose soil better than any other stake shape I've tried."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best general purpose stake",
+      "Text": "Work in sand, dirt, grass, and loose soil. The hook design makes them easy to remove. Worth replacing all your kit stakes with these."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Reliable and tough",
+      "Text": "Bent one on rocky ground but that was my fault for hammering too hard. Under normal use they're indestructible. Good weight for the holding power."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Standard recommendation for good reason",
+      "Text": "These are recommended everywhere and the reputation is earned. Not ultralight but reliable in conditions where ultralight stakes might pull."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Essential kit",
+      "Text": "Every tent stake I've ever used has been compared to these. Nothing has beaten them for general use. Buy a set and stop worrying about stakes."
+    }
   ],
   "msr-mini-groundhog-tent-stakes": [
-    { "Rating": 5, "Recommended": true, "Headline": "Weight savers without sacrificing performance", "Text": "Almost as much holding power as the standard groundhog at significantly less weight. The sweet spot for ultralight hikers who still want reliable stakes." },
-    { "Rating": 4, "Recommended": true, "Headline": "Good compromise", "Text": "Lighter than the full size, slightly less grip in soft soil. For most conditions these are more than adequate. Smart choice for gram counting." },
-    { "Rating": 5, "Recommended": true, "Headline": "Replaced all my stakes with these", "Text": "After trying them on one trip I ordered enough for all my tents. The weight difference adds up with multiple stakes and they still hold well." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great ultralight stakes", "Text": "Performed well in varied terrain including some loose sandy soil. The design is smart and they extract easily even when driven deep." },
-    { "Rating": 3, "Recommended": false, "Headline": "Struggle in very loose soil", "Text": "In proper soft sand or loose alpine soil these don't hold as well as the full size. Know your terrain before relying on them in exposed locations." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Weight savers without sacrificing performance",
+      "Text": "Almost as much holding power as the standard groundhog at significantly less weight. The sweet spot for ultralight hikers who still want reliable stakes."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Good compromise",
+      "Text": "Lighter than the full size, slightly less grip in soft soil. For most conditions these are more than adequate. Smart choice for gram counting."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Replaced all my stakes with these",
+      "Text": "After trying them on one trip I ordered enough for all my tents. The weight difference adds up with multiple stakes and they still hold well."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great ultralight stakes",
+      "Text": "Performed well in varied terrain including some loose sandy soil. The design is smart and they extract easily even when driven deep."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Struggle in very loose soil",
+      "Text": "In proper soft sand or loose alpine soil these don't hold as well as the full size. Know your terrain before relying on them in exposed locations."
+    }
   ],
   "thermarest-neoair-xlite": [
-    { "Rating": 5, "Recommended": true, "Headline": "The standard for a reason", "Text": "Warm, light, and comfortable. I've tried a lot of sleeping mats and keep coming back to the NeoAir XLite. The R-value is better than most competitors at this weight." },
-    { "Rating": 4, "Recommended": true, "Headline": "Warm but noisy", "Text": "The ThermaCapture technology really works — this mat is significantly warmer than older air pads. The crinkly noise takes a night to tune out. Cold sleepers should know it's worth it." },
-    { "Rating": 5, "Recommended": true, "Headline": "Best sleep I get outdoors", "Text": "Comfortable enough that I sleep as well camping as I do at home. The combination of warmth, thickness, and light weight is hard to beat." },
-    { "Rating": 4, "Recommended": true, "Headline": "Expensive but worth it", "Text": "This is not a budget mat. The performance justifies the price if you're a serious backpacker who values warmth and weight. If you camp occasionally, cheaper options exist." },
-    { "Rating": 3, "Recommended": true, "Headline": "Deflates slightly overnight", "Text": "Lost maybe 10% inflation by morning on mine. Might be my valve. Customer service was responsive. The mat itself is excellent when fully inflated." },
-    { "Rating": 5, "Recommended": true, "Headline": "Winter camping possible", "Text": "With the new version's R-value I can cold camp at temperatures I previously needed a foam mat for. Remarkable for how light and small it packs." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "The standard for a reason",
+      "Text": "Warm, light, and comfortable. I've tried a lot of sleeping mats and keep coming back to the NeoAir XLite. The R-value is better than most competitors at this weight."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Warm but noisy",
+      "Text": "The ThermaCapture technology really works — this mat is significantly warmer than older air pads. The crinkly noise takes a night to tune out. Cold sleepers should know it's worth it."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best sleep I get outdoors",
+      "Text": "Comfortable enough that I sleep as well camping as I do at home. The combination of warmth, thickness, and light weight is hard to beat."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Expensive but worth it",
+      "Text": "This is not a budget mat. The performance justifies the price if you're a serious backpacker who values warmth and weight. If you camp occasionally, cheaper options exist."
+    },
+    {
+      "Rating": 3,
+      "Recommended": true,
+      "Headline": "Deflates slightly overnight",
+      "Text": "Lost maybe 10% inflation by morning on mine. Might be my valve. Customer service was responsive. The mat itself is excellent when fully inflated."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Winter camping possible",
+      "Text": "With the new version's R-value I can cold camp at temperatures I previously needed a foam mat for. Remarkable for how light and small it packs."
+    }
   ],
   "thermarest-neoair-xtherm-max": [
-    { "Rating": 5, "Recommended": true, "Headline": "Winter camping game changer", "Text": "R-value of 7.3 and still lighter than most 3-season mats. Made cold camping genuinely comfortable for the first time. The wide version is worth the slight weight penalty." },
-    { "Rating": 5, "Recommended": true, "Headline": "Warmest inflatable mat available", "Text": "Nothing comes close to this R-value in an inflatable mat. In genuinely cold conditions, the warmth from below matters more than the bag rating. This solves that." },
-    { "Rating": 4, "Recommended": true, "Headline": "Worth it for winter use only", "Text": "For 3-season use it's overkill and you pay in weight for warmth you don't need. For winter and alpine camping, nothing compares." },
-    { "Rating": 4, "Recommended": true, "Headline": "Extremely warm, moderately comfortable", "Text": "Firmness varies with temperature and altitude, which takes adjustment. The warmth is exceptional. Bring a pump sack to inflate properly — lung inflation is hard at altitude." },
-    { "Rating": 5, "Recommended": true, "Headline": "Changed my winter game", "Text": "Used to dread cold weather camping because of sleeping cold from below. This mat solved that completely. Expensive but essential for serious cold weather use." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Winter camping game changer",
+      "Text": "R-value of 7.3 and still lighter than most 3-season mats. Made cold camping genuinely comfortable for the first time. The wide version is worth the slight weight penalty."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Warmest inflatable mat available",
+      "Text": "Nothing comes close to this R-value in an inflatable mat. In genuinely cold conditions, the warmth from below matters more than the bag rating. This solves that."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Worth it for winter use only",
+      "Text": "For 3-season use it's overkill and you pay in weight for warmth you don't need. For winter and alpine camping, nothing compares."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Extremely warm, moderately comfortable",
+      "Text": "Firmness varies with temperature and altitude, which takes adjustment. The warmth is exceptional. Bring a pump sack to inflate properly — lung inflation is hard at altitude."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Changed my winter game",
+      "Text": "Used to dread cold weather camping because of sleeping cold from below. This mat solved that completely. Expensive but essential for serious cold weather use."
+    }
   ],
   "thermarest-zseat-sol": [
-    { "Rating": 5, "Recommended": true, "Headline": "Most used piece of kit I own", "Text": "Sits in my hip belt pocket and comes out constantly. Trail breaks, waiting for food to cook, sitting on wet rocks. Simple idea, works perfectly." },
-    { "Rating": 4, "Recommended": true, "Headline": "Essential trail accessory", "Text": "Weighs nothing and folds flat. The reflective side makes a noticeable difference in cold conditions. Don't leave home without one." },
-    { "Rating": 5, "Recommended": true, "Headline": "Why didn't I have one sooner", "Text": "Bought this on a whim and it instantly became essential kit. Never sit on cold wet ground anymore. The comfort improvement on rest stops is real." },
-    { "Rating": 4, "Recommended": true, "Headline": "Works as advertised", "Text": "Reflective side bounces warmth back. Foam side insulates from cold ground. Simple product that does exactly what it claims." },
-    { "Rating": 3, "Recommended": true, "Headline": "Shows wear quickly", "Text": "After a season the foam compresses noticeably. Still functional but not as comfortable. Would be better if the foam was denser." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Most used piece of kit I own",
+      "Text": "Sits in my hip belt pocket and comes out constantly. Trail breaks, waiting for food to cook, sitting on wet rocks. Simple idea, works perfectly."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Essential trail accessory",
+      "Text": "Weighs nothing and folds flat. The reflective side makes a noticeable difference in cold conditions. Don't leave home without one."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Why didn't I have one sooner",
+      "Text": "Bought this on a whim and it instantly became essential kit. Never sit on cold wet ground anymore. The comfort improvement on rest stops is real."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Works as advertised",
+      "Text": "Reflective side bounces warmth back. Foam side insulates from cold ground. Simple product that does exactly what it claims."
+    },
+    {
+      "Rating": 3,
+      "Recommended": true,
+      "Headline": "Shows wear quickly",
+      "Text": "After a season the foam compresses noticeably. Still functional but not as comfortable. Would be better if the foam was denser."
+    }
   ],
   "vargo-dig-dig-tool": [
-    { "Rating": 5, "Recommended": true, "Headline": "Titanium trowel that lasts forever", "Text": "This will outlive me. The titanium is rigid enough to dig in hard soil and light enough that it doesn't matter. Leave No Trace essential." },
-    { "Rating": 4, "Recommended": true, "Headline": "Does the job", "Text": "Simple, light, durable. What more do you want from a trowel. The scraper edge is useful for root cutting in hard ground." },
-    { "Rating": 5, "Recommended": true, "Headline": "Best trowel available", "Text": "Compared every option. The Dig Dig wins for weight, durability, and usability. The hole depth markings are a genuinely useful feature." },
-    { "Rating": 4, "Recommended": true, "Headline": "Thoughtful design", "Text": "The shape allows for leverage in harder soil better than flat trowels. The hook end is useful for pulling out stakes too." },
-    { "Rating": 3, "Recommended": true, "Headline": "Expensive for a trowel", "Text": "Works well but hard to justify over a plastic alternative unless you're committed to titanium throughout your kit. The weight difference is minimal." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Titanium trowel that lasts forever",
+      "Text": "This will outlive me. The titanium is rigid enough to dig in hard soil and light enough that it doesn't matter. Leave No Trace essential."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Does the job",
+      "Text": "Simple, light, durable. What more do you want from a trowel. The scraper edge is useful for root cutting in hard ground."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best trowel available",
+      "Text": "Compared every option. The Dig Dig wins for weight, durability, and usability. The hole depth markings are a genuinely useful feature."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Thoughtful design",
+      "Text": "The shape allows for leverage in harder soil better than flat trowels. The hook end is useful for pulling out stakes too."
+    },
+    {
+      "Rating": 3,
+      "Recommended": true,
+      "Headline": "Expensive for a trowel",
+      "Text": "Works well but hard to justify over a plastic alternative unless you're committed to titanium throughout your kit. The weight difference is minimal."
+    }
   ],
   "vargo-titanium-tent-stake": [
-    { "Rating": 5, "Recommended": true, "Headline": "Lightest stake that still works", "Text": "For firm to medium soil these are excellent. At this weight you can carry more of them without the penalty. Good option for known terrain." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great in hard ground", "Text": "The V-shape cuts into hard alpine soil better than Y-beam stakes. Lighter than MSR groundhogs. My go-to for rocky mountain terrain." },
-    { "Rating": 3, "Recommended": true, "Headline": "Not for soft soil", "Text": "In sand or loose dirt these pull out too easily. Know your terrain. For hard soil and rocky ground they're excellent and very light." },
-    { "Rating": 4, "Recommended": true, "Headline": "Worth the premium", "Text": "Titanium stakes at this weight are hard to argue with if you care about grams. The rigidity is better than aluminium alternatives." },
-    { "Rating": 5, "Recommended": true, "Headline": "My alpine stakes", "Text": "Use the MSR groundhogs for everything else and these for alpine trips where I know the soil is firm. Best tool for the right conditions." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Lightest stake that still works",
+      "Text": "For firm to medium soil these are excellent. At this weight you can carry more of them without the penalty. Good option for known terrain."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great in hard ground",
+      "Text": "The V-shape cuts into hard alpine soil better than Y-beam stakes. Lighter than MSR groundhogs. My go-to for rocky mountain terrain."
+    },
+    {
+      "Rating": 3,
+      "Recommended": true,
+      "Headline": "Not for soft soil",
+      "Text": "In sand or loose dirt these pull out too easily. Know your terrain. For hard soil and rocky ground they're excellent and very light."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Worth the premium",
+      "Text": "Titanium stakes at this weight are hard to argue with if you care about grams. The rigidity is better than aluminium alternatives."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "My alpine stakes",
+      "Text": "Use the MSR groundhogs for everything else and these for alpine trips where I know the soil is firm. Best tool for the right conditions."
+    }
   ],
   "warbonnet-outdoors-superfly": [
-    { "Rating": 5, "Recommended": true, "Headline": "Best tarp for hammock camping", "Text": "The asymmetric design works perfectly with a hammock setup. Full coverage without excess material. Warbonnet clearly designed this around actual use cases." },
-    { "Rating": 5, "Recommended": true, "Headline": "Excellent weather protection", "Text": "Set up correctly this handles serious rain without any splash-through. The doors are well positioned for different weather directions." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great quality, takes learning", "Text": "The ridgeline attachment system and tie-out geometry are different from standard tarps. Worth spending time practising before relying on it in bad weather." },
-    { "Rating": 4, "Recommended": true, "Headline": "Good material choice", "Text": "The silnylon is light and sheds water well. Would prefer DCF but at this price the silnylon is a reasonable trade-off. Seam sealing is thorough." },
-    { "Rating": 5, "Recommended": true, "Headline": "Transformed my hammock setup", "Text": "Was using a flat tarp before. The Superfly's coverage is dramatically better and the setup is faster once you know the system. Highly recommend." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best tarp for hammock camping",
+      "Text": "The asymmetric design works perfectly with a hammock setup. Full coverage without excess material. Warbonnet clearly designed this around actual use cases."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Excellent weather protection",
+      "Text": "Set up correctly this handles serious rain without any splash-through. The doors are well positioned for different weather directions."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great quality, takes learning",
+      "Text": "The ridgeline attachment system and tie-out geometry are different from standard tarps. Worth spending time practising before relying on it in bad weather."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Good material choice",
+      "Text": "The silnylon is light and sheds water well. Would prefer DCF but at this price the silnylon is a reasonable trade-off. Seam sealing is thorough."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Transformed my hammock setup",
+      "Text": "Was using a flat tarp before. The Superfly's coverage is dramatically better and the setup is faster once you know the system. Highly recommend."
+    }
   ],
   "warbonnet-outdoors-thunderfly": [
-    { "Rating": 5, "Recommended": true, "Headline": "Bomber storm tarp", "Text": "Tested in a genuine storm in the White Mountains. The ThunderFly held firm while other hammockers were scrambling. The silpoly material handles wind better than silnylon." },
-    { "Rating": 5, "Recommended": true, "Headline": "Best severe weather tarp", "Text": "If you hammock camp in areas with serious weather, this is the tarp to get. The geometry is designed for weather resistance first. Heavy for fair weather but essential for storms." },
-    { "Rating": 4, "Recommended": true, "Headline": "Heavier than Superfly but more capable", "Text": "Know what you're buying. The ThunderFly is heavier but handles serious conditions better. Worth it if you camp in exposed areas or shoulder season." },
-    { "Rating": 5, "Recommended": true, "Headline": "Well constructed", "Text": "The attachment points are reinforced correctly and the silpoly sheds water at steeper angles than silnylon. The extra weight is functional, not just material." },
-    { "Rating": 3, "Recommended": false, "Headline": "Overkill for mild conditions", "Text": "If you only camp in summer in sheltered sites the ThunderFly is more than you need. The Superfly serves most people fine. Get this only if you need it." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Bomber storm tarp",
+      "Text": "Tested in a genuine storm in the White Mountains. The ThunderFly held firm while other hammockers were scrambling. The silpoly material handles wind better than silnylon."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best severe weather tarp",
+      "Text": "If you hammock camp in areas with serious weather, this is the tarp to get. The geometry is designed for weather resistance first. Heavy for fair weather but essential for storms."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Heavier than Superfly but more capable",
+      "Text": "Know what you're buying. The ThunderFly is heavier but handles serious conditions better. Worth it if you camp in exposed areas or shoulder season."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Well constructed",
+      "Text": "The attachment points are reinforced correctly and the silpoly sheds water at steeper angles than silnylon. The extra weight is functional, not just material."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Overkill for mild conditions",
+      "Text": "If you only camp in summer in sheltered sites the ThunderFly is more than you need. The Superfly serves most people fine. Get this only if you need it."
+    }
   ],
   "western-mountaineering-cypress-gws": [
-    { "Rating": 5, "Recommended": true, "Headline": "The finest sleeping bag I've owned", "Text": "Western Mountaineering's quality is in a different class. The loft, the shell fabric, the zipper — everything is clearly made to last and perform. Worth the price for serious mountaineers." },
-    { "Rating": 5, "Recommended": true, "Headline": "Warm and durable", "Text": "Used this on expeditions in the Himalayas and Patagonia. Never failed me in extreme cold. The GWS treatment genuinely helps in humid conditions. Exceptional product." },
-    { "Rating": 4, "Recommended": true, "Headline": "Premium but heavy", "Text": "The warmth per gram isn't as good as some competitors because the shell is heavier for durability. The trade-off makes sense for expedition use where durability matters more." },
-    { "Rating": 5, "Recommended": true, "Headline": "Built for life", "Text": "Western Mountaineering bags are heirlooms. The craftsmanship is on another level. If you value quality and longevity over minimising weight, nothing competes." },
-    { "Rating": 4, "Recommended": true, "Headline": "Best cold weather bag for durability", "Text": "In conditions where you need warmth and reliability over multiple seasons of hard use, Western Mountaineering is the answer. Not light, not cheap, but absolutely excellent." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "The finest sleeping bag I've owned",
+      "Text": "Western Mountaineering's quality is in a different class. The loft, the shell fabric, the zipper — everything is clearly made to last and perform. Worth the price for serious mountaineers."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Warm and durable",
+      "Text": "Used this on expeditions in the Himalayas and Patagonia. Never failed me in extreme cold. The GWS treatment genuinely helps in humid conditions. Exceptional product."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Premium but heavy",
+      "Text": "The warmth per gram isn't as good as some competitors because the shell is heavier for durability. The trade-off makes sense for expedition use where durability matters more."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Built for life",
+      "Text": "Western Mountaineering bags are heirlooms. The craftsmanship is on another level. If you value quality and longevity over minimising weight, nothing competes."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Best cold weather bag for durability",
+      "Text": "In conditions where you need warmth and reliability over multiple seasons of hard use, Western Mountaineering is the answer. Not light, not cheap, but absolutely excellent."
+    }
   ],
   "western-mountaineering-summer-lite": [
-    { "Rating": 5, "Recommended": true, "Headline": "Best warm weather bag", "Text": "At 680g for a 35°F bag the weight is excellent. The WM quality means it will last indefinitely with care. Packs incredibly small for the warmth it provides." },
-    { "Rating": 5, "Recommended": true, "Headline": "3-season luxury at 1-season weight", "Text": "Used this from May to October. Comfortable across a wide temperature range. The shell fabric is noticeably nicer than competitors." },
-    { "Rating": 5, "Recommended": true, "Headline": "WM quality in a lightweight package", "Text": "Western Mountaineering applied their craftsmanship to a summer bag and it shows. The baffling is clean, the down is premium, and it should last for many years." },
-    { "Rating": 5, "Recommended": true, "Headline": "Expensive but justified", "Text": "You pay premium for WM quality. For a bag you'll use regularly for years, the cost per use argument makes sense. Excellent product." },
-    { "Rating": 4, "Recommended": true, "Headline": "Runs warm", "Text": "If you're a warm sleeper this might be too much in summer. The rating is conservative. Consider sizing up to a warmer temperature rating if you sleep hot." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best warm weather bag",
+      "Text": "At 680g for a 35°F bag the weight is excellent. The WM quality means it will last indefinitely with care. Packs incredibly small for the warmth it provides."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "3-season luxury at 1-season weight",
+      "Text": "Used this from May to October. Comfortable across a wide temperature range. The shell fabric is noticeably nicer than competitors."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "WM quality in a lightweight package",
+      "Text": "Western Mountaineering applied their craftsmanship to a summer bag and it shows. The baffling is clean, the down is premium, and it should last for many years."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Expensive but justified",
+      "Text": "You pay premium for WM quality. For a bag you'll use regularly for years, the cost per use argument makes sense. Excellent product."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Runs warm",
+      "Text": "If you're a warm sleeper this might be too much in summer. The rating is conservative. Consider sizing up to a warmer temperature rating if you sleep hot."
+    }
   ],
   "zpacks-altaplex-classic": [
-    { "Rating": 5, "Recommended": true, "Headline": "Iconic ultralight tent", "Text": "The Altaplex is one of the most refined solo shelters available. The single-pole setup works surprisingly well and the space inside is generous for the weight." },
-    { "Rating": 4, "Recommended": true, "Headline": "Light and liveable", "Text": "The storm doors are a clever feature that makes a real difference in varied conditions. Being able to crack one open for ventilation while keeping rain out is genuinely useful." },
-    { "Rating": 5, "Recommended": true, "Headline": "Worth the Zpacks price", "Text": "Zpacks gear is expensive and the Altaplex earns its price. The DCF is exceptional and the design is clearly the result of real-world testing and refinement." },
-    { "Rating": 4, "Recommended": true, "Headline": "Setup takes practice", "Text": "The geometry is different from conventional tents. Takes a few practice pitches to get it right. Once you have it, setup is fast and the result is solid." },
-    { "Rating": 3, "Recommended": false, "Headline": "Fragile if mishandled", "Text": "DCF requires more care than nylon. A snag on a branch can cause damage that nylon would shrug off. If you're careful it's fine, but it demands attention." },
-    { "Rating": 5, "Recommended": true, "Headline": "The PCT classic", "Text": "See these on trail constantly for good reason. Lightweight, liveable, and weatherproof. A benchmark solo ultralight shelter." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Iconic ultralight tent",
+      "Text": "The Altaplex is one of the most refined solo shelters available. The single-pole setup works surprisingly well and the space inside is generous for the weight."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Light and liveable",
+      "Text": "The storm doors are a clever feature that makes a real difference in varied conditions. Being able to crack one open for ventilation while keeping rain out is genuinely useful."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Worth the Zpacks price",
+      "Text": "Zpacks gear is expensive and the Altaplex earns its price. The DCF is exceptional and the design is clearly the result of real-world testing and refinement."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Setup takes practice",
+      "Text": "The geometry is different from conventional tents. Takes a few practice pitches to get it right. Once you have it, setup is fast and the result is solid."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Fragile if mishandled",
+      "Text": "DCF requires more care than nylon. A snag on a branch can cause damage that nylon would shrug off. If you're careful it's fine, but it demands attention."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "The PCT classic",
+      "Text": "See these on trail constantly for good reason. Lightweight, liveable, and weatherproof. A benchmark solo ultralight shelter."
+    }
   ],
   "zpacks-arc-backpack-belt": [
-    { "Rating": 5, "Recommended": true, "Headline": "Solved my hip belt problem", "Text": "The Arc Haul's hip belt never fit me quite right. Added this and the fit improved dramatically. Well made and the padding is comfortable under load." },
-    { "Rating": 4, "Recommended": true, "Headline": "Good aftermarket addition", "Text": "Works with other packs too if you have a compatible frame. The belt itself is comfortable and the construction is typical Zpacks quality." },
-    { "Rating": 5, "Recommended": true, "Headline": "Transforms pack comfort", "Text": "Hip belt load transfer makes a big difference on heavy miles. This belt does it well and the minimalist design keeps weight low." },
-    { "Rating": 3, "Recommended": false, "Headline": "Sizing is tricky", "Text": "Make sure you measure carefully before ordering. The fit is good when sized correctly but there isn't much adjustment range." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Solved my hip belt problem",
+      "Text": "The Arc Haul's hip belt never fit me quite right. Added this and the fit improved dramatically. Well made and the padding is comfortable under load."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Good aftermarket addition",
+      "Text": "Works with other packs too if you have a compatible frame. The belt itself is comfortable and the construction is typical Zpacks quality."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Transforms pack comfort",
+      "Text": "Hip belt load transfer makes a big difference on heavy miles. This belt does it well and the minimalist design keeps weight low."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Sizing is tricky",
+      "Text": "Make sure you measure carefully before ordering. The fit is good when sized correctly but there isn't much adjustment range."
+    }
   ],
   "zpacks-arc-haul-ultra-70": [
-    { "Rating": 5, "Recommended": true, "Headline": "Lightest pack with a frame", "Text": "The carbon frame changes everything for a 70L pack. Still only around 500g and it actually transfers load to your hips. Best of both worlds." },
-    { "Rating": 5, "Recommended": true, "Headline": "Transformed long trail hiking", "Text": "Used this on a month-long trail. The combination of frame load transfer and ultralight weight meant I felt better at the end of big days than on previous trips with heavier packs." },
-    { "Rating": 4, "Recommended": true, "Headline": "Takes time to fit correctly", "Text": "The frame and hip belt fitting takes patience. Once dialled in, the comfort is excellent. Don't rush the fitting process." },
-    { "Rating": 5, "Recommended": true, "Headline": "Outstanding for the weight", "Text": "At under 600g for a 70L framed pack the weight is remarkable. Some features are minimal to save weight but nothing is missing that actually matters." },
-    { "Rating": 5, "Recommended": true, "Headline": "Game changing design", "Text": "The arc frame is genuinely clever. It keeps weight off your shoulders while staying close enough to your back for balance. Zpacks clearly innovated here." },
-    { "Rating": 3, "Recommended": false, "Headline": "Expensive and requires care", "Text": "DCF packs need more careful handling than nylon. The cost is significant. But the performance justifies both if ultralight matters to you." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Lightest pack with a frame",
+      "Text": "The carbon frame changes everything for a 70L pack. Still only around 500g and it actually transfers load to your hips. Best of both worlds."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Transformed long trail hiking",
+      "Text": "Used this on a month-long trail. The combination of frame load transfer and ultralight weight meant I felt better at the end of big days than on previous trips with heavier packs."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Takes time to fit correctly",
+      "Text": "The frame and hip belt fitting takes patience. Once dialled in, the comfort is excellent. Don't rush the fitting process."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Outstanding for the weight",
+      "Text": "At under 600g for a 70L framed pack the weight is remarkable. Some features are minimal to save weight but nothing is missing that actually matters."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Game changing design",
+      "Text": "The arc frame is genuinely clever. It keeps weight off your shoulders while staying close enough to your back for balance. Zpacks clearly innovated here."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Expensive and requires care",
+      "Text": "DCF packs need more careful handling than nylon. The cost is significant. But the performance justifies both if ultralight matters to you."
+    }
   ],
   "zpacks-free-zip-3p-freestanding": [
-    { "Rating": 5, "Recommended": true, "Headline": "Freestanding ultralight is possible", "Text": "Was sceptical about a DCF freestanding tent but this genuinely works. Sets up without stakes on platforms or rocky ground. The weight is remarkable for freestanding." },
-    { "Rating": 5, "Recommended": true, "Headline": "Best group ultralight tent", "Text": "Three people in an ultralight tent that actually has space and is freestanding. Options are limited in this category and the Free Zip does it better than anything else I've tried." },
-    { "Rating": 5, "Recommended": true, "Headline": "Worth the price for groups", "Text": "Split three ways the cost is reasonable. Split three ways the weight is excellent. The freestanding design makes it viable for platforms and established sites." },
-    { "Rating": 4, "Recommended": true, "Headline": "Zpacks quality throughout", "Text": "The DCF is excellent and the zippers are smooth. The pole system is more complex than non-freestanding tents but it's well designed and not difficult once you know it." },
-    { "Rating": 3, "Recommended": false, "Headline": "Heavy for Zpacks", "Text": "Still ultralight by absolute standards but heavier than their other tents. That's the freestanding price. Know what you're buying." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Freestanding ultralight is possible",
+      "Text": "Was sceptical about a DCF freestanding tent but this genuinely works. Sets up without stakes on platforms or rocky ground. The weight is remarkable for freestanding."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Best group ultralight tent",
+      "Text": "Three people in an ultralight tent that actually has space and is freestanding. Options are limited in this category and the Free Zip does it better than anything else I've tried."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Worth the price for groups",
+      "Text": "Split three ways the cost is reasonable. Split three ways the weight is excellent. The freestanding design makes it viable for platforms and established sites."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Zpacks quality throughout",
+      "Text": "The DCF is excellent and the zippers are smooth. The pole system is more complex than non-freestanding tents but it's well designed and not difficult once you know it."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Heavy for Zpacks",
+      "Text": "Still ultralight by absolute standards but heavier than their other tents. That's the freestanding price. Know what you're buying."
+    }
   ],
   "zpacks-plex-solo-lite": [
-    { "Rating": 5, "Recommended": true, "Headline": "Lightest complete solo shelter", "Text": "With the inner, this is a complete shelter system under 300g. That number is hard to comprehend until you're holding it. The DCF quality is excellent." },
-    { "Rating": 5, "Recommended": true, "Headline": "Minimal and refined", "Text": "Zpacks stripped everything unnecessary out of this design. What's left is a shelter that does its job with nothing wasted. Good in mild to moderate conditions." },
-    { "Rating": 4, "Recommended": true, "Headline": "Fair weather or sheltered sites", "Text": "This isn't a storm tent. In protected sites and mild to moderate weather it's excellent. Know its limits and it's a wonderful piece of kit." },
-    { "Rating": 4, "Recommended": true, "Headline": "Great thru-hiking shelter", "Text": "On established trails where you're camping in proper sites and the weather is generally predictable, this is ideal. Super light and easy to pitch." },
-    { "Rating": 4, "Recommended": true, "Headline": "Limited severe weather performance", "Text": "In real storms the low pitch and minimal material show limitations. In exposed alpine conditions I'd want more tent. Perfect for its intended use though." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Lightest complete solo shelter",
+      "Text": "With the inner, this is a complete shelter system under 300g. That number is hard to comprehend until you're holding it. The DCF quality is excellent."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Minimal and refined",
+      "Text": "Zpacks stripped everything unnecessary out of this design. What's left is a shelter that does its job with nothing wasted. Good in mild to moderate conditions."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Fair weather or sheltered sites",
+      "Text": "This isn't a storm tent. In protected sites and mild to moderate weather it's excellent. Know its limits and it's a wonderful piece of kit."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Great thru-hiking shelter",
+      "Text": "On established trails where you're camping in proper sites and the weather is generally predictable, this is ideal. Super light and easy to pitch."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Limited severe weather performance",
+      "Text": "In real storms the low pitch and minimal material show limitations. In exposed alpine conditions I'd want more tent. Perfect for its intended use though."
+    }
   ],
   "zpacks-summer-quilt-winter-liner": [
-    { "Rating": 5, "Recommended": true, "Headline": "Two quilts in one", "Text": "Clever design that extends the range of your existing quilt significantly. The combination is lighter than buying a separate cold weather quilt. Smart thinking from Zpacks." },
-    { "Rating": 4, "Recommended": true, "Headline": "Adds meaningful warmth", "Text": "Using this with my summer quilt extended my camping season by about 6 weeks. The combination works well and the liner attaches securely." },
-    { "Rating": 5, "Recommended": true, "Headline": "Great system extension", "Text": "Instead of carrying two separate quilts, you carry a quilt and a liner and have three temperature options. The weight savings are real." },
-    { "Rating": 4, "Recommended": true, "Headline": "Good quality as expected", "Text": "The down fill is consistent and the stitching is clean. Attaches well to the Zpacks quilts it's designed for. Should also work with other brands." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Two quilts in one",
+      "Text": "Clever design that extends the range of your existing quilt significantly. The combination is lighter than buying a separate cold weather quilt. Smart thinking from Zpacks."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Adds meaningful warmth",
+      "Text": "Using this with my summer quilt extended my camping season by about 6 weeks. The combination works well and the liner attaches securely."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Great system extension",
+      "Text": "Instead of carrying two separate quilts, you carry a quilt and a liner and have three temperature options. The weight savings are real."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Good quality as expected",
+      "Text": "The down fill is consistent and the stitching is clean. Attaches well to the Zpacks quilts it's designed for. Should also work with other brands."
+    }
   ],
   "zpacks-summer-twin-quilt": [
-    { "Rating": 5, "Recommended": true, "Headline": "Couples camping sorted", "Text": "Using two separate sleeping bags or quilts as a couple is awkward. The twin quilt solves this completely. Large enough for two people and works well as a shared system." },
-    { "Rating": 4, "Recommended": true, "Headline": "Well designed for two", "Text": "The width is generous and the footbox accommodates two people comfortably. The temperature distribution is even across the quilt." },
-    { "Rating": 5, "Recommended": true, "Headline": "Light solution for two", "Text": "Heavier than one solo quilt but much lighter than two. The shared body warmth means you can use a lighter temperature rating than solo camping. Smart approach." },
-    { "Rating": 4, "Recommended": true, "Headline": "Takes some getting used to", "Text": "Sharing a quilt means coordinating movements overnight. After a few nights it becomes natural. The warmth sharing is genuinely effective." },
-    { "Rating": 3, "Recommended": false, "Headline": "Only for couples who agree on temperature", "Text": "If one person sleeps hot and one cold, a shared quilt is challenging. Works best when both people have similar warmth needs." }
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Couples camping sorted",
+      "Text": "Using two separate sleeping bags or quilts as a couple is awkward. The twin quilt solves this completely. Large enough for two people and works well as a shared system."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Well designed for two",
+      "Text": "The width is generous and the footbox accommodates two people comfortably. The temperature distribution is even across the quilt."
+    },
+    {
+      "Rating": 5,
+      "Recommended": true,
+      "Headline": "Light solution for two",
+      "Text": "Heavier than one solo quilt but much lighter than two. The shared body warmth means you can use a lighter temperature rating than solo camping. Smart approach."
+    },
+    {
+      "Rating": 4,
+      "Recommended": true,
+      "Headline": "Takes some getting used to",
+      "Text": "Sharing a quilt means coordinating movements overnight. After a few nights it becomes natural. The warmth sharing is genuinely effective."
+    },
+    {
+      "Rating": 3,
+      "Recommended": false,
+      "Headline": "Only for couples who agree on temperature",
+      "Text": "If one person sleeps hot and one cold, a shared quilt is challenging. Works best when both people have similar warmth needs."
+    }
   ]
 }

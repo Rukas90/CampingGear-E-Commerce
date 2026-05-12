@@ -2,7 +2,7 @@
 using FastEndpoints;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using TrailStore.Domain.Auth;
+using TrailStore.Domain.Auth.Errors;
 using TrailStore.Shared.Auth;
 
 namespace TrailStore.Api.Auth.Extensions;
@@ -18,13 +18,13 @@ public static class AuthenticationExtensions
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer           = true,
-                    ValidateAudience         = true,
-                    ValidateLifetime         = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer              = configuration["Jwt:Issuer"],
-                    ValidAudience            = configuration["Jwt:Audience"],
-                    IssuerSigningKey         = new SymmetricSecurityKey(
+                    ValidIssuer = configuration["Jwt:Issuer"],
+                    ValidAudience = configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"]!))
                 };
 
@@ -49,9 +49,9 @@ public static class AuthenticationExtensions
                             [
                                 new ProblemDetails.Error
                                 {
-                                    Name   = problem.Title,
-                                    Code   = problem.Code,
-                                    Reason = problem.Reason,
+                                    Name = problem.Title,
+                                    Code = problem.Code,
+                                    Reason = problem.Reason
                                 }
                             ]
                         }.ExecuteAsync(context.HttpContext);

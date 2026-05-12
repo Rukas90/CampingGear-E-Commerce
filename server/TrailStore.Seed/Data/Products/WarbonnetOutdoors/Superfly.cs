@@ -1,79 +1,78 @@
-﻿using TrailStore.Domain.Models;
+﻿using TrailStore.Domain.Shared.Models;
 using TrailStore.Seed.Data.Options;
 
 namespace TrailStore.Seed.Data.Products.WarbonnetOutdoors;
 
 // ReSharper disable UnusedType.Global
-
 public static class Superfly
 {
-    [SeededEntity]
-    public static readonly Product Product = Product.Create(
-        name:         "Superfly",
-        slug:         "warbonnet-outdoors-superfly",
-        brandId:      Brands.WarbonnetOutdoors.Id,
-        categoryId:   Categories.Tents.Id,
-        description:  "Warbonnet Outdoors Superfly 11Ft - is a large all-season tarp that provides excellent coverage at an affordable price. The Superfly is not only largest but most popular tarp from Warbonnet. Pairs well any of their hammock models. Great for cold weather use as \"Winter\" tarp or folks who want one tarp for all conditions and seasons as \"All-Season\" tarp. The doors of the Superfly are not removable, but are built-in to the shape of the tarp and can be folded underneath when not needed. The versatility, expansive coverage and convenient built-in doors make the Superfly a great tarp for any of Warbonnet's hammock models.",
+    [SeededEntity] public static readonly Product Product = Product.Create(
+        "Superfly",
+        "warbonnet-outdoors-superfly",
+        brandId: Brands.WarbonnetOutdoors.Id,
+        categoryId: Categories.Tents.Id,
+        description:
+        "Warbonnet Outdoors Superfly 11Ft - is a large all-season tarp that provides excellent coverage at an affordable price. The Superfly is not only largest but most popular tarp from Warbonnet. Pairs well any of their hammock models. Great for cold weather use as \"Winter\" tarp or folks who want one tarp for all conditions and seasons as \"All-Season\" tarp. The doors of the Superfly are not removable, but are built-in to the shape of the tarp and can be folded underneath when not needed. The versatility, expansive coverage and convenient built-in doors make the Superfly a great tarp for any of Warbonnet's hammock models.",
         thumbnailUrl: "/products/warbonnet-outdoors-superfly-thumb.webp");
 
-    [SeededEntity]
-    public static readonly IEnumerable<ProductImage> Images =
+    [SeededEntity] public static readonly IEnumerable<ProductImage> Images =
     [
         ProductImage.Create(
-            productId: Product.Id,
-            optionId:  ColorOption.Brown.Id,
-            urls:      ["/products/warbonnet-outdoors-superfly-brn.webp"]),
+            Product.Id,
+            ColorOption.Brown.Id,
+            ["/products/warbonnet-outdoors-superfly-brn.webp"]),
 
         ProductImage.Create(
-            productId: Product.Id,
-            optionId:  ColorOption.ShadowPineCamo.Id,
-            urls:      ["/products/warbonnet-outdoors-superfly-spcmo.webp"]),
+            Product.Id,
+            ColorOption.ShadowPineCamo.Id,
+            ["/products/warbonnet-outdoors-superfly-spcmo.webp"]),
 
         ProductImage.Create(
-            productId: Product.Id,
-            optionId:  ColorOption.LeafyWoodsCamo.Id,
-            urls:      ["/products/warbonnet-outdoors-superfly-lwcmo.webp"]),
+            Product.Id,
+            ColorOption.LeafyWoodsCamo.Id,
+            ["/products/warbonnet-outdoors-superfly-lwcmo.webp"]),
 
         ProductImage.Create(
-            productId: Product.Id,
-            optionId:  ColorOption.SnowDayCamo.Id,
-            urls:      ["/products/warbonnet-outdoors-superfly-sdcmo.webp"]),
+            Product.Id,
+            ColorOption.SnowDayCamo.Id,
+            ["/products/warbonnet-outdoors-superfly-sdcmo.webp"]),
 
         ProductImage.Create(
-            productId: Product.Id,
-            urls:      ["/products/warbonnet-outdoors-superfly-1.webp",
-                        "/products/warbonnet-outdoors-superfly-2.webp"]),
+            Product.Id,
+            [
+                "/products/warbonnet-outdoors-superfly-1.webp",
+                "/products/warbonnet-outdoors-superfly-2.webp"
+            ])
     ];
 
-    [SeededEntity]
-    public static readonly IEnumerable<Sku> Skus =
+    [SeededEntity] public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(
-            productId: Product.Id,
-            code: "WBO-SFLY-BRN",
-            price: 259.00m,
-            stock: 6,
-            options: [ColorOption.Brown]),
+            Product.Id,
+            "WBO-SFLY-BRN",
+            259.00m,
+            6,
+            [ColorOption.Brown]),
 
         Sku.Create(
-            productId: Product.Id,
-            code: "WBO-SFLY-SPCMO",
-            price: 305.00m,
-            stock: 0,
-            options: [ColorOption.ShadowPineCamo]),
+            Product.Id,
+            "WBO-SFLY-SPCMO",
+            305.00m,
+            0,
+            [ColorOption.ShadowPineCamo]),
 
         Sku.Create(
-            productId: Product.Id,
-            code: "WBO-SFLY-LWCMO",
-            price: 305.00m,
-            stock: 8,
-            options: [ColorOption.LeafyWoodsCamo]),
+            Product.Id,
+            "WBO-SFLY-LWCMO",
+            305.00m,
+            8,
+            [ColorOption.LeafyWoodsCamo]),
 
         Sku.Create(
-            productId: Product.Id,
-            code: "WBO-SFLY-SDCMO",
-            price: 305.00m,
-            stock: 2,
-            options: [ColorOption.SnowDayCamo]),
+            Product.Id,
+            "WBO-SFLY-SDCMO",
+            305.00m,
+            2,
+            [ColorOption.SnowDayCamo])
     ];
 }

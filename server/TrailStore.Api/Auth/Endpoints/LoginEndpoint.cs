@@ -2,13 +2,12 @@
 using TrailStore.Api.Auth.Cookies;
 using TrailStore.Api.Auth.Dto;
 using TrailStore.Api.Auth.Mapping;
-using TrailStore.Api.Common;
 using TrailStore.Api.Common.Extensions;
-using TrailStore.Domain.Auth;
+using TrailStore.Domain.Auth.Interfaces;
 
 namespace TrailStore.Api.Auth.Endpoints;
 
-public class LoginEndpoint(ILoginService loginService, IAuthCookieService authCookieService) 
+public class LoginEndpoint(ILoginService loginService, IAuthCookieService authCookieService)
     : Endpoint<LoginRequest, AccountDto>
 {
     public override void Configure()
@@ -27,7 +26,7 @@ public class LoginEndpoint(ILoginService loginService, IAuthCookieService authCo
             await this.SendProblemAsync(result.Problem);
             return;
         }
-        
+
         authCookieService.AppendAuthCookies(HttpContext.Response, result.Value.Tokens);
         await Send.OkAsync(result.Value.Customer.ToAccountDto(), ct);
     }

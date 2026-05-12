@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TrailStore.Domain.Models;
+using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Infrastructure.Data.Config;
 
@@ -9,19 +9,19 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
     public void Configure(EntityTypeBuilder<OrderItem> builder)
     {
         builder.HasKey(i => i.Id);
-        
+
         builder.Property(i => i.Quantity)
             .IsRequired();
-        
+
         builder.Property(i => i.UnitPrice)
             .HasPrecision(18, 2)
             .IsRequired();
-        
+
         builder.HasOne(i => i.Order)
             .WithMany(o => o.Items)
             .HasForeignKey(i => i.OrderId)
             .OnDelete(DeleteBehavior.Cascade);
-        
+
         builder.HasOne(i => i.Sku)
             .WithMany()
             .HasForeignKey(i => i.SkuId)

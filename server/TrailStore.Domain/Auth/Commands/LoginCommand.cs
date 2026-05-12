@@ -1,5 +1,5 @@
 ﻿namespace TrailStore.Domain.Auth.Commands;
 
 public record LoginCommand(
-    string Email, 
+    string Email,
     string Password);

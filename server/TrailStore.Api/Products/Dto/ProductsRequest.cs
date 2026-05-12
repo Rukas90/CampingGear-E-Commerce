@@ -1,19 +1,18 @@
-﻿using TrailStore.Domain.Enums;
+﻿using TrailStore.Domain.Shared.Enums;
 
 namespace TrailStore.Api.Products.Dto;
 
 // ReSharper disable CollectionNeverUpdated.Global
-
 public sealed record ProductsRequest
 {
-    public ProductsSortBy?                   SortBy       { get; init; }
-    public string[]?                         Brand        { get; init; }
-    public string[]?                         Category     { get; init; }
-    public bool?                             Pagination   { get; init; }
-    public int?                              Page         { get; init; }
-    public int?                              PageSize     { get; init; }
-    public decimal?                          PriceGte     { get; init; }
-    public decimal?                          PriceLte     { get; init; }
-    public Availability?                     Availability { get; init; }
-    public Dictionary<string, string>?       Option       { get; init; }
+    public ProductsSortBy? SortBy { get; init; }
+    public string[]? Brand { get; init; }
+    public string[]? Category { get; init; }
+    public bool? Pagination { get; init; }
+    public int? Page { get; init; }
+    public int? PageSize { get; init; }
+    public decimal? PriceGte { get; init; }
+    public decimal? PriceLte { get; init; }
+    public Availability? Availability { get; init; }
+    public Dictionary<string, string>? Option { get; init; }
 }

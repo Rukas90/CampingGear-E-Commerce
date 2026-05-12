@@ -1,23 +1,23 @@
-﻿
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using TrailStore.Domain.Models;
+using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Data;
 
 namespace TrailStore.Seed;
 
 public class SeedOptions
 {
-    public bool     Reseed   { get; init; }
-    public ILogger? Logger   { get; init; }
+    public bool Reseed { get; init; }
+    public ILogger? Logger { get; init; }
 }
+
 public static class SeedRunner
 {
     public static async Task RunAsync(AppDbContext context, SeedOptions? options = null)
     {
         var logger = options?.Logger;
-        
+
         if (options?.Reseed ?? false)
         {
             await ClearAsync(context);
@@ -30,7 +30,7 @@ public static class SeedRunner
         }
 
         var assembly = SeedAssembly.Reference;
-        
+
         await context.Customers.AddRangeAsync(Discover<Customer>(assembly));
         await context.Brands.AddRangeAsync(Discover<Brand>(assembly));
         await context.CategoryGroups.AddRangeAsync(Discover<CategoryGroup>(assembly));
@@ -50,8 +50,8 @@ public static class SeedRunner
     public static async Task ClearAsync(AppDbContext context)
     {
         context.Reviews.RemoveRange(context.Reviews);
-        context.Orders.RemoveRange(context.Orders.Where(order => 
-            context.Customers.Any(customer => 
+        context.Orders.RemoveRange(context.Orders.Where(order =>
+            context.Customers.Any(customer =>
                 customer.PasswordHash == SeedDefaults.NO_LOGIN_HASH && customer.Email == order.EmailAddress)));
         context.Skus.RemoveRange(context.Skus);
         context.ProductImages.RemoveRange(context.ProductImages);
@@ -63,10 +63,10 @@ public static class SeedRunner
         context.Brands.RemoveRange(context.Brands);
         context.Customers.RemoveRange(
             context.Customers.Where(c => c.PasswordHash == SeedDefaults.NO_LOGIN_HASH));
-        
+
         await context.SaveChangesAsync();
     }
-    
+
     public static IEnumerable<T> Discover<T>(Assembly assembly) where T : class
     {
         var collectionType = typeof(IEnumerable<T>);

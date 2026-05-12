@@ -1,11 +1,11 @@
 ﻿using FastEndpoints;
 using TrailStore.Api.Categories.Dto;
 using TrailStore.Api.Categories.Mapping;
-using TrailStore.Domain.Categories;
+using TrailStore.Domain.Categories.Interfaces;
 
 namespace TrailStore.Api.Categories.Endpoints;
 
-public class GetCategoryGroupsEndpoint(ICategoriesRepository categoriesRepository) 
+public class GetCategoryGroupsEndpoint(ICategoriesRepository categoriesRepository)
     : EndpointWithoutRequest<IEnumerable<CategoryGroupDto>>
 {
     public override void Configure()

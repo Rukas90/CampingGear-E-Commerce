@@ -16,7 +16,7 @@ var configuration = builder.Configuration;
 
 var defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<AppDbContext>(options => 
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(defaultConnectionString).WithExpressionExpanding());
 
 builder.Services.AddCors(options =>
@@ -31,7 +31,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddMediatR(cfg => 
+builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(InfrastructureAssembly.Reference));
 
 builder.Services.AddAppServicesFromAssemblies(
@@ -46,10 +46,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddAppAuthentication(configuration);
 builder.Services.AddAuthorization();
 
-builder.Services.AddResponseCompression(options =>
-{
-    options.EnableForHttps = true;
-});
+builder.Services.AddResponseCompression(options => { options.EnableForHttps = true; });
 
 var app = builder.Build();
 
@@ -59,14 +56,10 @@ if (args.Contains("seed"))
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
     if (args.Contains("clear-only"))
-    {
         await SeedRunner.ClearAsync(context);
-    }
     else
-    {
         await SeedRunner.RunAsync(context, new SeedOptions { Reseed = true });
-    }
-    
+
     return;
 }
 
@@ -84,16 +77,16 @@ app.UseFastEndpoints(config =>
 {
     config.Errors.UseProblemDetails();
     config.Errors.ProducesMetadataType = typeof(ProblemDetails);
-    
+
     config.Serializer.Options.Converters.Add(new IdJsonConverterFactory());
-    
+
     config.Errors.ResponseBuilder = (failures, _, statusCode) => new ProblemDetails
     {
         Status = statusCode,
         Errors = failures.Select(f => new ProblemDetails.Error
         {
-            Name   = f.PropertyName,
-            Code   = f.ErrorCode,
+            Name = f.PropertyName,
+            Code = f.ErrorCode,
             Reason = f.ErrorMessage
         }).ToArray()
     };

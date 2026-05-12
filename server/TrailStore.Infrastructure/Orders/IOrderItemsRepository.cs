@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using TrailStore.Domain.Models;
+using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Infrastructure.Orders;
 

@@ -1,10 +1,12 @@
 ﻿using TrailStore.Api.Auth.Dto;
-using TrailStore.Domain.Models;
+using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Api.Auth.Mapping;
 
 public static class ResponseMapping
 {
     public static AccountDto ToAccountDto(this Customer customer)
-        => new(customer.Id, customer.Email);
+    {
+        return new AccountDto(customer.Id, customer.Email);
+    }
 }

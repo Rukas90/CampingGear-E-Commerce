@@ -10,31 +10,35 @@ public static class ProblemMapper
         var status = problem.Code switch
         {
             var code when code.StartsWith("auth.") => GetAuthStatus(code),
-            _                                            => 400
+            _ => 400
         };
 
         return new ProblemDetails
         {
             Status = status,
-            Errors = [
+            Errors =
+            [
                 new ProblemDetails.Error
                 {
-                    Name   = problem.Title,
-                    Code   = problem.Code,
+                    Name = problem.Title,
+                    Code = problem.Code,
                     Reason = problem.Reason
                 }
             ]
         }.ExecuteAsync(endpoint.HttpContext);
     }
-    
-    private static int GetAuthStatus(string code) => code switch
+
+    private static int GetAuthStatus(string code)
     {
-        "auth.email_already_taken"     => 409,
-        "auth.invalid_credentials"     => 401,
-        "auth.refresh_token_invalid"   => 401,
-        "auth.refresh_token_reused"    => 401,
-        "auth.refresh_token_expired"   => 401,
-        "auth.refresh_token_not_found" => 404,
-        _                              => 400
-    };
+        return code switch
+        {
+            "auth.email_already_taken" => 409,
+            "auth.invalid_credentials" => 401,
+            "auth.refresh_token_invalid" => 401,
+            "auth.refresh_token_reused" => 401,
+            "auth.refresh_token_expired" => 401,
+            "auth.refresh_token_not_found" => 404,
+            _ => 400
+        };
+    }
 }

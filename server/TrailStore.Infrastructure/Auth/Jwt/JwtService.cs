@@ -3,8 +3,8 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using TrailStore.Domain.Auth;
-using TrailStore.Domain.Models;
+using TrailStore.Domain.Auth.Interfaces;
+using TrailStore.Domain.Shared.Models;
 using TrailStore.Shared.Common;
 
 namespace TrailStore.Infrastructure.Auth.Jwt;
@@ -13,23 +13,23 @@ namespace TrailStore.Infrastructure.Auth.Jwt;
 public class JwtService(IOptions<JwtOptions> options) : IJwtService
 {
     private readonly JwtOptions _jwtOptions = options.Value;
-    
+
     public string GenerateAccessToken(Customer customer)
     {
         var claims = new[]
         {
             new Claim(JwtRegisteredClaimNames.Sub, customer.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, customer.Email),
+            new Claim(JwtRegisteredClaimNames.Email, customer.Email)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SecretKey));
-        var credentials = new SigningCredentials(key, algorithm: SecurityAlgorithms.HmacSha256);
+        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
-            issuer:             _jwtOptions.Issuer,
-            audience:           _jwtOptions.Audience,
-            claims:             claims,
-            expires:            DateTime.UtcNow.AddMinutes(_jwtOptions.AccessTokenExpiryMinutes),
+            _jwtOptions.Issuer,
+            _jwtOptions.Audience,
+            claims,
+            expires: DateTime.UtcNow.AddMinutes(_jwtOptions.AccessTokenExpiryMinutes),
             signingCredentials: credentials
         );
 

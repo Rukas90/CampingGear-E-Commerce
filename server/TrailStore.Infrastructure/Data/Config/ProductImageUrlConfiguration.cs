@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TrailStore.Domain.Models;
+using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Infrastructure.Data.Config;
 
@@ -9,11 +9,11 @@ public class ProductImageUrlConfiguration : IEntityTypeConfiguration<ProductImag
     public void Configure(EntityTypeBuilder<ProductImageUrl> builder)
     {
         builder.HasKey(url => url.Id);
-        
+
         builder.Property(url => url.Url)
             .HasMaxLength(400)
             .IsRequired();
-        
+
         builder.HasIndex(url => new { url.ProductImageId, url.SortOrder })
             .IsUnique();
     }
