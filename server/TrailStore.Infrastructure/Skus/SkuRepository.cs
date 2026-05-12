@@ -11,11 +11,11 @@ namespace TrailStore.Infrastructure.Skus;
 public class SkuRepository(AppDbContext context) : ISkuRepository
 {
     public Task<List<TResult>> ListAllAsync<TResult>(
-        Specification<Sku> specification, Expression<Func<Sku, TResult>> selector)
+        Specification<Sku> specification, Expression<Func<Sku, TResult>> selector, CancellationToken ct)
     {
         return context.Skus
             .Where(specification.ToExpression())
             .Select(selector)
-            .ToListAsync();
+            .ToListAsync(ct);
     }
 }

@@ -10,6 +10,7 @@ public enum DiscountType
 
 public class Discount : IModel<Discount>
 {
+    public required Id<Discount> Id { get; init; }
     public required Id<Sku> SkuId { get; init; }
     public required DiscountType Type { get; init; }
     public required decimal Value { get; init; }
@@ -18,5 +19,4 @@ public class Discount : IModel<Discount>
     public bool IsActive { get; init; } = true;
 
     public Sku Sku { get; private set; } = null!;
-    public required Id<Discount> Id { get; init; }
 }

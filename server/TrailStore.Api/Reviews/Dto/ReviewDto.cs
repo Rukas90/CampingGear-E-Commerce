@@ -1,7 +1,11 @@
-﻿namespace TrailStore.Api.Reviews.Dto;
+﻿using TrailStore.Domain.Shared.Models;
+using TrailStore.Shared.Common;
+
+namespace TrailStore.Api.Reviews.Dto;
 
 public class ReviewDto
 {
+    public required Id<Review> Id { get; init; }
     public required string CustomerFirstName { get; init; }
     public required string CustomerLastName { get; init; }
     public required int Rating { get; init; }

@@ -18,6 +18,6 @@ public class GetFiltersEndpoint(IFiltersService filtersService) : Endpoint<Filte
 
     public override async Task<CatalogFilters> ExecuteAsync(FiltersRequest req, CancellationToken ct)
     {
-        return await filtersService.GetFilters(req.ToQuery());
+        return await filtersService.GetFilters(req.ToQuery(), ct);
     }
 }

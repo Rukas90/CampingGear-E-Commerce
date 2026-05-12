@@ -6,8 +6,7 @@ public static class CategoryGroups
 {
     [SeededEntity] public static readonly CategoryGroup SleepSystem = CategoryGroup.Create(
         "Sleep System",
-        "sleep-system",
-        0);
+        "sleep-system");
 
     [SeededEntity] public static readonly CategoryGroup NavigationSafety = CategoryGroup.Create(
         "Navigation & Safety",

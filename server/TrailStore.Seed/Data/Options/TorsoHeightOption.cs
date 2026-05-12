@@ -8,7 +8,7 @@ public static class TorsoHeightOption
 
     [SeededEntity] public static readonly Option Short = Option.Create(
         OptionGroup.Id,
-        "Short", "short", 0);
+        "Short", "short");
 
     [SeededEntity] public static readonly Option Medium = Option.Create(
         OptionGroup.Id,

@@ -15,6 +15,6 @@ public class CreateCartHandler(ICartRepository cartRepository)
         {
             Id = Id<Cart>.New(),
             CustomerId = ev.Customer.Id
-        });
+        }, ct);
     }
 }

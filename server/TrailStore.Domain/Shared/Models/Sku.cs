@@ -6,6 +6,7 @@ namespace TrailStore.Domain.Shared.Models;
 
 public class Sku : IModel<Sku>
 {
+    public required Id<Sku> Id { get; init; }
     public required Id<Product> ProductId { get; init; }
     public required string Code { get; init; }
     public required decimal UnitPrice { get; init; }
@@ -18,8 +19,6 @@ public class Sku : IModel<Sku>
 
     public string CodeHash =>
         Convert.ToHexString(MD5.HashData(Encoding.UTF8.GetBytes(Code)))[..10].ToLower();
-
-    public required Id<Sku> Id { get; init; }
 
     public static Sku Create(
         Id<Product> productId,

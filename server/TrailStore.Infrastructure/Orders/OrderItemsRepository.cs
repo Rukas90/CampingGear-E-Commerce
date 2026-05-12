@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using TrailStore.Domain.Orders.Interfaces;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Shared.Common;
@@ -10,7 +11,7 @@ namespace TrailStore.Infrastructure.Orders;
 public class OrderItemsRepository(AppDbContext context) : IOrderItemsRepository
 {
     public Task<List<TResult>> ListMostSoldCategoriesAsync<TResult>(int count,
-        Expression<Func<Category, TResult>> selector)
+        Expression<Func<Category, TResult>> selector, CancellationToken ct)
     {
         return context.Categories
             .GroupJoin(
@@ -26,6 +27,6 @@ public class OrderItemsRepository(AppDbContext context) : IOrderItemsRepository
             .Take(count)
             .Select(x => x.Category)
             .Select(selector)
-            .ToListAsync();
+            .ToListAsync(ct);
     }
 }

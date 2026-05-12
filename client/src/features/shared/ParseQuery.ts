@@ -1,4 +1,4 @@
-import type { ProductsQueryRequest, SortBy } from "@types"
+import type { ProductsQueryRequest, ProductSortBy } from "@types"
 
 export interface ParseQueryData<T extends ProductsQueryRequest> {
   searchParams: URLSearchParams
@@ -12,7 +12,7 @@ const parseQuery = <T extends ProductsQueryRequest>({
   exclude,
 }: ParseQueryData<T>): T => {
   const request: ProductsQueryRequest = {
-    sortBy: (searchParams.get("sortBy") as SortBy) ?? undefined,
+    sortBy: (searchParams.get("sortBy") as ProductSortBy) ?? undefined,
     brand:
       searchParams.getAll("brand").length > 0
         ? searchParams.getAll("brand")

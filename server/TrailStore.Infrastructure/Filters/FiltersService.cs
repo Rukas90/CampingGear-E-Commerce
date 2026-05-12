@@ -11,16 +11,16 @@ namespace TrailStore.Infrastructure.Filters;
 [AppService<IFiltersService>]
 public sealed class FiltersService(ISkuRepository skuRepository) : IFiltersService
 {
-    public async Task<CatalogFilters> GetFilters(FiltersQuery query)
+    public async Task<CatalogFilters> GetFilters(FiltersQuery query, CancellationToken ct)
     {
-        var skus = await GetSkuProjections(query);
+        var skus = await GetSkuProjections(query, ct);
 
-        if (skus.Count <= 0) return CatalogFilters.None;
+        if (skus.Count <= 0 || ct.IsCancellationRequested) return CatalogFilters.None;
 
         return CatalogBuilder.Build(skus, query);
     }
 
-    private async Task<IReadOnlyList<SkuProjection>> GetSkuProjections(FiltersQuery query)
+    private async Task<IReadOnlyList<SkuProjection>> GetSkuProjections(FiltersQuery query, CancellationToken ct)
     {
         var specification = FiltersSpecificationBuilder.FromQuery(query);
 
@@ -32,6 +32,6 @@ public sealed class FiltersService(ISkuRepository skuRepository) : IFiltersServi
                 o.Name, o.Slug, o.SortOrder, o.PreviewType, o.PreviewValue,
                 new OptionGroupProjection(o.OptionGroup.Name, o.OptionGroup.Slug, o.OptionGroup.SortOrder)
             ))
-        ));
+        ), ct);
     }
 }

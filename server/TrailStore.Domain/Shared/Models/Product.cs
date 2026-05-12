@@ -4,6 +4,7 @@ namespace TrailStore.Domain.Shared.Models;
 
 public class Product : IModel<Product>
 {
+    public required Id<Product> Id { get; init; }
     public required string Name { get; init; }
     public string Description { get; init; } = string.Empty;
     public required string Slug { get; init; }
@@ -16,7 +17,6 @@ public class Product : IModel<Product>
     public ICollection<Sku> Skus { get; private set; } = [];
     public Category Category { get; private set; } = null!;
     public Brand Brand { get; private set; } = null!;
-    public required Id<Product> Id { get; init; }
 
     public static Product Create(
         string name,

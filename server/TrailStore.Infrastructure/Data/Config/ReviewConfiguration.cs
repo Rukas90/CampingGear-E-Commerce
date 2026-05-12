@@ -23,10 +23,10 @@ public class ReviewConfiguration : IEntityTypeConfiguration<Review>
 
         builder.Property(r => r.CreatedAt)
             .IsRequired();
-
-        builder.HasOne(r => r.Product)
-            .WithMany(p => p.Reviews)
-            .HasForeignKey(r => r.ProductId)
-            .OnDelete(DeleteBehavior.Restrict);
+        
+        builder.HasOne(review => review.Product)
+            .WithMany(product => product.Reviews)
+            .HasForeignKey(review => review.ProductId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

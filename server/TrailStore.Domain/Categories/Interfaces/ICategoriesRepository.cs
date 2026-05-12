@@ -4,7 +4,7 @@ namespace TrailStore.Domain.Categories.Interfaces;
 
 public interface ICategoriesRepository
 {
-    Task<List<Category>> ListAllCategoriesAsync();
+    Task<List<Category>> ListAllCategoriesAsync(CancellationToken ct);
 
-    Task<List<CategoryGroup>> ListAllCategoryGroupsAsync();
+    Task<List<CategoryGroup>> ListAllCategoryGroupsAsync(CancellationToken ct);
 }

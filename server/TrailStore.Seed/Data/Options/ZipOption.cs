@@ -8,7 +8,7 @@ public static class ZipOption
 
     [SeededEntity] public static readonly Option Left = Option.Create(
         OptionGroup.Id,
-        "Left", "left", 0);
+        "Left", "left");
 
     [SeededEntity] public static readonly Option Right = Option.Create(
         OptionGroup.Id,

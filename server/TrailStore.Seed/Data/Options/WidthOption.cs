@@ -8,7 +8,7 @@ public static class WidthOption
 
     [SeededEntity] public static readonly Option Narrow = Option.Create(
         OptionGroup.Id,
-        "Narrow", "narrow", 0);
+        "Narrow", "narrow");
 
     [SeededEntity] public static readonly Option Regular = Option.Create(
         OptionGroup.Id,

@@ -10,6 +10,7 @@ public enum PreviewType
 
 public class Option : IModel<Option>
 {
+    public required Id<Option> Id { get; init; }
     public required Id<OptionGroup> OptionGroupId { get; init; }
     public required string Name { get; init; }
     public required string Slug { get; init; }
@@ -19,7 +20,6 @@ public class Option : IModel<Option>
 
     public OptionGroup OptionGroup { get; private set; } = null!;
     public ICollection<Sku> Skus { get; private set; } = [];
-    public required Id<Option> Id { get; init; }
 
     public static Option Create(
         Id<OptionGroup> optionGroupId,

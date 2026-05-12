@@ -1,23 +1,29 @@
 import { Line, PageWrapper } from "@components"
 import ProductRatingHeader from "./ProductRatingHeader"
-import ProductReviewItem from "./ProductReviewItem"
+import { useProductView } from "@features"
+import ReviewsList from "./ReviewsList"
+import { useState } from "react"
+import { ReviewSortBy, type StarRating } from "@types"
 
 const ProductCustomerReviews = () => {
+  const [filter, setFilter] = useState<StarRating | undefined>(undefined)
+
+  const { data } = useProductView()
+
   return (
     <div id="#customer-reviews">
       <PageWrapper>
         <p className="text-xl mb-4">Customer Reviews</p>
         <ProductRatingHeader />
-        <Line className="my-8" />
-        <ProductReviewItem />
-        <Line className="my-4" />
-        <ProductReviewItem />
-        <Line className="my-4" />
-        <ProductReviewItem />
-        <Line className="my-4" />
-        <ProductReviewItem />
-        <Line className="my-4" />
-        <ProductReviewItem />
+        {data ? (
+          <ReviewsList
+            slug={data.slug}
+            filter={filter}
+            sortBy={ReviewSortBy.MostRecent}
+          />
+        ) : (
+          <p>No reviews found.</p>
+        )}
       </PageWrapper>
 
       <Line className="my-4" />

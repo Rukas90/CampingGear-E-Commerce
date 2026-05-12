@@ -9,7 +9,7 @@ public static class PackOption
 
     [SeededEntity] public static readonly Option Single = Option.Create(
         OptionGroup.Id,
-        "Single", "single", 0);
+        "Single", "single");
 
     [SeededEntity] public static readonly Option Pack6 = Option.Create(
         OptionGroup.Id,

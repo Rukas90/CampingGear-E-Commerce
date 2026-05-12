@@ -9,7 +9,7 @@ public static class GirthOptions
 
     [SeededEntity] public static readonly Option Slim = Option.Create(
         OptionGroup.Id,
-        "Slim", "slim", 0);
+        "Slim", "slim");
 
     [SeededEntity] public static readonly Option Regular = Option.Create(
         OptionGroup.Id,

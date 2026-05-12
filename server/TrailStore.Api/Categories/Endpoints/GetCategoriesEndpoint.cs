@@ -16,6 +16,6 @@ public class GetCategoriesEndpoint(ICategoriesRepository categoriesRepository)
 
     public override async Task<IEnumerable<CategoryDto>> ExecuteAsync(CancellationToken ct)
     {
-        return (await categoriesRepository.ListAllCategoriesAsync()).ToDto();
+        return (await categoriesRepository.ListAllCategoriesAsync(ct)).ToDto();
     }
 }

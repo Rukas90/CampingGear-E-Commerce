@@ -2,8 +2,8 @@
 
 public enum ReviewsSortBy
 {
-    MostRecent,
-    HighestRating,
-    LowestRating,
-    MostHelpful
+    MostRecent = 0,
+    HighestRating = 1,
+    LowestRating = 2,
+    MostHelpful = 3
 }

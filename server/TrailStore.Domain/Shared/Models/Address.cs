@@ -4,6 +4,7 @@ namespace TrailStore.Domain.Shared.Models;
 
 public class Address : IModel<Address>
 {
+    public required Id<Address> Id { get; init; }
     public required string CountryCode { get; init; }
     public required string RecipientName { get; init; }
     public string? Company { get; init; }
@@ -17,5 +18,4 @@ public class Address : IModel<Address>
     public required Id<Customer> CustomerId { get; init; }
 
     public Customer Customer { get; init; } = null!;
-    public required Id<Address> Id { get; init; }
 }

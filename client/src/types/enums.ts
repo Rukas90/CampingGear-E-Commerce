@@ -11,3 +11,12 @@ export enum PreviewType {
   Color = 0,
   Image = 1,
 }
+
+export const ReviewSortBy = {
+  MostRecent: 0,
+  HighestRating: 1,
+  LowestRating: 2,
+  MostHelpful: 3,
+} as const
+
+export type ReviewSortBy = (typeof ReviewSortBy)[keyof typeof ReviewSortBy]

@@ -8,7 +8,7 @@ public static class LengthOption
 
     [SeededEntity] public static readonly Option Cm165 = Option.Create(
         OptionGroup.Id,
-        "5'6\" (165 cm)", "165cm", 0);
+        "5'6\" (165 cm)", "165cm");
 
     [SeededEntity] public static readonly Option Cm180 = Option.Create(
         OptionGroup.Id,

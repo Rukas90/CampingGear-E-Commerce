@@ -4,12 +4,12 @@ namespace TrailStore.Domain.Shared.Models;
 
 public class ProductImage : IModel<ProductImage>
 {
+    public Id<ProductImage> Id { get; init; }
     public Id<Product> ProductId { get; init; }
     public Id<Option>? OptionId { get; init; }
 
     public ICollection<ProductImageUrl> Urls { get; private set; } = [];
     public Product Product { get; private set; } = null!;
-    public Id<ProductImage> Id { get; init; }
 
     public static ProductImage Create(
         Id<Product> productId,

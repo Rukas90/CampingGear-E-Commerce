@@ -8,7 +8,7 @@ public static class HeightOption
 
     [SeededEntity] public static readonly Option Short = Option.Create(
         OptionGroup.Id,
-        "Short", "short", 0);
+        "Short", "short");
 
     [SeededEntity] public static readonly Option Regular = Option.Create(
         OptionGroup.Id,

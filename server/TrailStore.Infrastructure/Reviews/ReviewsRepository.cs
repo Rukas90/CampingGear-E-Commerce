@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TrailStore.Domain.Reviews.Interfaces;
 using TrailStore.Domain.Reviews.Models;
+using TrailStore.Domain.Reviews.Specifications;
 using TrailStore.Domain.Shared.Enums;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Data;
@@ -12,12 +13,14 @@ namespace TrailStore.Infrastructure.Reviews;
 [AppService<IReviewsRepository>]
 public sealed class ReviewsRepository(AppDbContext context) : IReviewsRepository
 {
-    public async Task<List<TResult>> ListAsync<TResult>(ReviewsQuery query, Expression<Func<Review, TResult>> selector)
+    public async Task<List<TResult>> ListAsync<TResult>(ReviewsQuery query, Expression<Func<Review, TResult>> selector,
+        CancellationToken ct)
     {
         var queryable = context.Reviews.AsQueryable();
 
-        queryable = queryable.Where(query.Specification.ToExpression());
+        var specification = ReviewsSpecificationBuilder.Build(query);
 
+        queryable = queryable.Where(specification.ToExpression());
         queryable = GetOrderedQueryable(queryable, query.SortBy);
 
         queryable = query.Pagination
@@ -26,7 +29,7 @@ public sealed class ReviewsRepository(AppDbContext context) : IReviewsRepository
 
         return await queryable
             .Select(selector)
-            .ToListAsync();
+            .ToListAsync(ct);
     }
 
     private static IQueryable<Review> GetOrderedQueryable(IQueryable<Review> query, ReviewsSortBy sortBy)

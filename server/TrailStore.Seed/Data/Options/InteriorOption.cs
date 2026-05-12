@@ -9,7 +9,7 @@ public static class InteriorOption
 
     [SeededEntity] public static readonly Option Regular = Option.Create(
         OptionGroup.Id,
-        "Regular", "regular", 0);
+        "Regular", "regular");
 
     [SeededEntity] public static readonly Option Solid = Option.Create(
         OptionGroup.Id,

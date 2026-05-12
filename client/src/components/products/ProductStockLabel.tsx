@@ -1,8 +1,8 @@
-import type { Stock } from "@types"
+import type { ProductStock } from "@types"
 import clsx from "clsx"
 
 const stockConfig: Record<
-  Stock,
+  ProductStock,
   { dot: string; text: string; ping: boolean; label: string }
 > = {
   InStock: {
@@ -29,7 +29,7 @@ interface ProductStockLabelProps {
   stock: number
 }
 const ProductStockLabel = ({ stock }: ProductStockLabelProps) => {
-  const getStock = (): Stock => {
+  const getStock = (): ProductStock => {
     if (stock <= 0) {
       return "OutOfStock"
     }

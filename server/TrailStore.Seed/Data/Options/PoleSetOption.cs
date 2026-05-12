@@ -9,7 +9,7 @@ public static class PoleSetOption
 
     [SeededEntity] public static readonly Option Aluminum = Option.Create(
         OptionGroup.Id,
-        "Aluminum", "aluminum", 0);
+        "Aluminum", "aluminum");
 
     [SeededEntity] public static readonly Option Carbon = Option.Create(
         OptionGroup.Id,

@@ -4,6 +4,7 @@ namespace TrailStore.Domain.Shared.Models;
 
 public class Review : IModel<Review>
 {
+    public required Id<Review> Id { get; init; }
     public required Id<Customer> CustomerId { get; init; }
     public required Id<Product> ProductId { get; init; }
     public required DateTime CreatedAt { get; init; }
@@ -15,5 +16,5 @@ public class Review : IModel<Review>
     public int Dislikes { get; set; } = 0;
 
     public Product Product { get; private set; } = null!;
-    public required Id<Review> Id { get; init; }
+    public Customer Customer { get; private set; } = null!;
 }

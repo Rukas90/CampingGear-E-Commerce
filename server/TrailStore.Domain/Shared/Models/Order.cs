@@ -6,6 +6,7 @@ namespace TrailStore.Domain.Shared.Models;
 
 public class Order : IModel<Order>
 {
+    public required Id<Order> Id { get; init; }
     public Id<Customer>? CustomerId { get; init; }
     public required OrderStatus Status { get; init; }
     public required DateTime CreatedAt { get; init; }
@@ -15,5 +16,4 @@ public class Order : IModel<Order>
 
     public Customer? Customer { get; private set; } = null;
     public ICollection<OrderItem> Items { get; private set; } = [];
-    public required Id<Order> Id { get; init; }
 }

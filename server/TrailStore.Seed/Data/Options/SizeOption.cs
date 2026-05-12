@@ -8,7 +8,7 @@ public static class SizeOption
 
     [SeededEntity] public static readonly Option Small = Option.Create(
         OptionGroup.Id,
-        "Small", "small", 0);
+        "Small", "small");
 
     [SeededEntity] public static readonly Option Regular = Option.Create(
         OptionGroup.Id,

@@ -1,36 +1,8 @@
 import type { CustomerId, OptionId } from "./id"
+import { NameSlug } from "./base"
 import { PreviewType } from "./enums"
 
-export type ProductCategory =
-  | "handheld-gps"
-  | "tents"
-  | "backpacks"
-  | "sleeping-bags"
-
-export type Cart = {
-  customerId: CustomerId
-}
-export type CartItem = {
-  id: CartItemId
-}
-
-export type NameSlug = {
-  name: string
-  slug: string
-}
-
-export type Category = {
-  id: CategoryId
-  description?: string
-  groupSlug: string
-  imageUrl?: string
-} & NameSlug
-
-export type CategoryGroup = {
-  sortOrder: number
-} & NameSlug
-
-export type SortBy =
+export type ProductSortBy =
   | "Manual"
   | "MostRelevant"
   | "BestSelling"
@@ -38,52 +10,6 @@ export type SortBy =
   | "TitleDescending"
   | "PriceAscending"
   | "PriceDescending"
-
-export type ProductsQueryRequest = {
-  sortBy?: SortBy
-  brand?: string[]
-  category?: string[]
-  pagination?: boolean
-  page?: number
-  pageSize?: number
-  priceGte?: number
-  priceLte?: number
-  availability?: Availability
-  option?: Record<string, string>
-}
-
-export type FiltersQueryRequest = Omit<
-  ProductsQueryRequest,
-  "sortBy" | "pagination" | "page" | "pageSize"
-> & {
-  queryBrand?: string
-  queryCategory?: string
-}
-
-export type FilterValue = {
-  count: number
-} & NameSlug
-
-export type OptionFilter = {
-  sortOrder: number
-  previewType?: PreviewType
-  previewValue?: string
-} & FilterValue
-
-export type OptionGroupFilter = {
-  sortOrder: number
-  options: OptionFilter[]
-} & Omit<FilterValue, "count">
-
-export type CatalogFilters = {
-  brands: FilterValue[]
-  categories: FilterValue[]
-  options: OptionGroupFilter[]
-  minPrice: number
-  maxPrice: number
-  inStock: number
-  outOfStock: number
-}
 
 export type ProductSummary = {
   brandName: string
@@ -106,8 +32,6 @@ export type ProductDetail = {
   options: ProductOptionGroup[]
   images: ProductImage[]
 } & ProductSummary
-
-export type StarRating = 1 | 2 | 3 | 4 | 5
 
 export type ProductSku = {
   codeHash: string
@@ -141,6 +65,4 @@ export type ProductImageUrl = {
   sortOrder: number
 }
 
-export type Stock = "InStock" | "LowStock" | "OutOfStock"
-
-export type Review = {}
+export type ProductStock = "InStock" | "LowStock" | "OutOfStock"
