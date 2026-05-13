@@ -15,7 +15,7 @@ public class OptionGroup : IModel<OptionGroup>
     {
         return new OptionGroup
         {
-            Id = Id<OptionGroup>.Part(name).Build(),
+            Id = Id<OptionGroup>.Part(slug).Build(),
             Name = name,
             Slug = slug,
             SortOrder = sortOrder

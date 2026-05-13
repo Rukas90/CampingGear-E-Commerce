@@ -1,16 +1,8 @@
 import { Button, HeaderText, PageWrapper } from "@components"
 import Banner from "/img/banner.webp"
-import { useCategories } from "@features"
-import { useEffect } from "react"
 import { TopCategories } from "@components/categories"
 
 const HomePage = () => {
-  const { data } = useCategories()
-
-  useEffect(() => {
-    data?.map((c) => console.log(JSON.stringify(c)))
-  }, [data])
-
   return (
     <>
       <div className="flex justify-center w-full">

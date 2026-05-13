@@ -18,8 +18,8 @@ public static class ReviewMappingSelectors
             Headline = review.Headline,
             Text = review.Text,
             Recommended = review.Recommended,
-            Likes = review.Likes,
-            Dislikes = review.Dislikes
+            Likes = review.Votes.Count(v => v.IsLike),
+            Dislikes = review.Votes.Count(v => !v.IsLike)
         };
     }
 }

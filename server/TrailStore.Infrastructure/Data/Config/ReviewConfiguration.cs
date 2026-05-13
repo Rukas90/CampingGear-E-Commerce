@@ -28,5 +28,10 @@ public class ReviewConfiguration : IEntityTypeConfiguration<Review>
             .WithMany(product => product.Reviews)
             .HasForeignKey(review => review.ProductId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasMany(review => review.Votes)
+            .WithOne(vote => vote.Review)
+            .HasForeignKey(vote => vote.ReviewId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

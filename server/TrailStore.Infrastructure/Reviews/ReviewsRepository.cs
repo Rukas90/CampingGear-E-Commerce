@@ -39,7 +39,7 @@ public sealed class ReviewsRepository(AppDbContext context) : IReviewsRepository
             ReviewsSortBy.MostRecent => query.OrderByDescending(review => review.CreatedAt),
             ReviewsSortBy.HighestRating => query.OrderByDescending(review => review.Rating),
             ReviewsSortBy.LowestRating => query.OrderBy(review => review.Rating),
-            ReviewsSortBy.MostHelpful => query.OrderByDescending(review => review.Likes),
+            ReviewsSortBy.MostHelpful => query.OrderByDescending(review => review.Votes.Count(v => v.IsLike)),
             _ => query
         };
     }

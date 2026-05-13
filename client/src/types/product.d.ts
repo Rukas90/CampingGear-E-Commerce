@@ -1,6 +1,7 @@
 import type { CustomerId, OptionId } from "./id"
 import { NameSlug } from "./base"
 import { PreviewType } from "./enums"
+import type { StarRating } from "./review"
 
 export type ProductSortBy =
   | "Manual"
@@ -34,7 +35,7 @@ export type ProductDetail = {
 } & ProductSummary
 
 export type ProductSku = {
-  codeHash: string
+  code: string
   unitPrice: number
   stock: number
   optionIds: OptionId[]

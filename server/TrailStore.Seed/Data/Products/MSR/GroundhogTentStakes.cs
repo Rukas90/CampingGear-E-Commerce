@@ -11,7 +11,15 @@ public static class GroundhogTentStakes
         brandId: Brands.MSR.Id,
         categoryId: Categories.Accessories.Id,
         description:
-        "MSR Groundhog™ Tent Stakes - are the go-to choice for most backpackers and are the most popular designs MSR offers. The Groundhogs sturdy Y-beam design provides solid anchoring in almost any soil environment. Constructed from 7000-series aluminum, this stake is light, strong, rugged and stands up to repeated use. Because of their design, they have incredible holding power and, when set properly, will hold up to any weather conditions. Each stake comes with an attached reflective pull loop for convenient removal and the bright color makes them easy to find.\nAt just 14 grams a piece the groundhog stake  isn't exactly \"ultralight\" but they're definitely reasonably lightweight for use in a backcountry. If you need a lighter stake the mini groundhog weighs just 10 grams and offers similar performance. Both stakes are standard equipment on new MSR tents and shelters. You can't go wrong with MSR stakes.",
+        """
+        The MSR Groundhog is one of the most trusted tent stakes in backpacking, built for reliability across a wide range of soil conditions.
+        
+        Its three-sided Y-beam design cuts into the ground cleanly and holds firm in everything from packed dirt to softer terrain. Machined from 7000-series aluminum, each stake weighs just 14g (0.49 oz) at 19cm (7.5 in) long — light enough for a fast-and-light kit, tough enough to last for years.
+        
+        A notched top secures guy lines without slipping, and the reflective pull loop makes retrieval easy even after dark. Sold as a kit of 6 stakes.
+        
+        If you want a stake you can trust without thinking about it, the Groundhog is the benchmark everything else gets compared to.
+        """,
         thumbnailUrl: "/products/msr-groundhog-tent-stakes-thumb.webp");
 
     [SeededEntity] public static readonly IEnumerable<ProductImage> Images =

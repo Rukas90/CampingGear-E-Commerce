@@ -39,6 +39,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Sku> Skus { get; set; }
 
     public DbSet<Review> Reviews { get; set; }
+    
+    public DbSet<ReviewVote> ReviewVotes { get; set; }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder config)
     {

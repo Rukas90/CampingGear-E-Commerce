@@ -40,7 +40,7 @@ const Listing = ({ group, categories }: ListingProps) => {
       <ul>
         {categories.map((category) => (
           <Link key={category.slug} to={`/products/${category.slug}`}>
-            <li>{category.name}</li>
+            <li className="hover:text-neutral-600">{category.name}</li>
           </Link>
         ))}
       </ul>

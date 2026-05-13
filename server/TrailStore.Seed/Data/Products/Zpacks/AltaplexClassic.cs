@@ -11,7 +11,13 @@ public static class AltaplexClassic
         brandId: Brands.Zpacks.Id,
         categoryId: Categories.Tents.Id,
         description:
-        "Zpacks Altaplex Tent - is the ultimate choice for solo backpackers up to 198 cm (6'6\") seeking a versatile and reliable shelter. This single-person tent is designed with simplicity and functionality in mind. Setting up the Altaplex is a breeze, requiring just a single trekking pole, typically adjusted to 142-147 cm. In windy conditions, it's recommended to use 10 stakes (minimum 6) for secure anchoring, ensuring your peace of mind in challenging weather.\nOne of the standout features of the Altaplex is its storm doors, which can be independently opened for ventilation or securely closed for rain protection using metal hooks. You won't have to worry about door zippers failing over time, a common concern with many tents.",
+        """
+        The Zpacks Altaplex Classic is a single-wall, trekking pole shelter built specifically for taller backpackers — comfortably fitting hikers up to 6'6" (198cm) with a peak height of 142–147cm (56–58 in).
+
+        Constructed from .75 oz/sqyd Dyneema Composite Fabric for a higher tear strength than the standard .55 oz/sqyd canopy, with a 20cm (8 in) tall bathtub floor and 2.3m² (25 ft²) of interior floor space. Pitches with a single trekking pole and packs down to just 11.5cm x 28cm (4.5 x 11 in) rolled tight. Storm doors open and close independently with no zippers — just metal hooks — giving you flexible ventilation without the long-term failure risk.
+
+        A well-rounded shelter for thru-hikers who need serious interior room without stepping up in weight.
+        """,
         thumbnailUrl: "/products/zpacks-altaplex-classic-thumb.webp");
 
     [SeededEntity] public static readonly IEnumerable<ProductImage> Images =

@@ -64,7 +64,7 @@ const TopNav = () => {
           <PageWrapper className="py-4">
             <ProductCategoryListing />
           </PageWrapper>
-          <div className="w-full bg-lime-800 h-2" />
+          <div className="w-full bg-black h-0.5" />
         </div>
       </div>
     </nav>

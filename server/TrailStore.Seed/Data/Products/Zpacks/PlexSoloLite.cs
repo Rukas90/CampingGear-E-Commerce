@@ -12,7 +12,15 @@ public static class PlexSoloLite
         brandId: Brands.Zpacks.Id,
         categoryId: Categories.Tents.Id,
         description:
-        "Zpacks Plex Solo Lite Tent - is easily the lightest full-featured one-person tent in the world. Designed for adventurers who value weight but aren't willing to sacrifice performance or comfort, the Plex Solo is the ultimate shelter for weight-conscious hikers looking to redefine boundaries and push limits. The Plex Solo Lite shares the same dimensions as standard Plex Solo Tent. It utilizes proven .55 oz/sqyd Dyneema Composite Fabric canopy combined with a .75 oz/sqyd DCF floor material which is 25% lighter and packs down smaller relative to our standard tent floors. It comes preconfigured with bright yellow 1.3 mm Z-Line guy-lines which saves weight compared to the 2 mm guy lines on Zpacks standard tents.",
+        """
+        The Zpacks Plex Solo Lite is the lightest full-featured solo tent on the market, built for ultralight backpackers who refuse to compromise on weather protection or livability.
+        
+        It features a .55 oz/sqyd Dyneema Composite Fabric canopy paired with a lighter .75 oz/sqyd DCF floor — 25% lighter than the standard Plex Solo floor — without giving up durability or waterproofness.
+        
+        Shares the same spacious geometry as the standard Plex Solo, with trekking pole setup and full coverage from the elements. Comes pre-rigged with 1.3 mm Z-Line guy-lines for additional weight savings over standard Zpacks tents.
+        
+        The go-to shelter for gram-counters tackling long trails, fast-and-light objectives, or any adventure where every ounce matters.
+        """,
         thumbnailUrl: "/products/zpacks-plex-solo-lite-thumb.webp");
 
     [SeededEntity] public static readonly IEnumerable<ProductImage> Images =

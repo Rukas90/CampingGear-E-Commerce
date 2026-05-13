@@ -12,7 +12,15 @@ public static class FreeZip3PFreestanding
         brandId: Brands.Zpacks.Id,
         categoryId: Categories.Tents.Id,
         description:
-        "Zpacks Free Zip 3P Freestanding Tent - weighing it around 1 kg, this tent combines simplicity and versatility, setting it apart from most other ultralight backpacking tents. On calm nights, it can be set up without stakes or guy-lines, while in stormy alpine conditions, it can be securely anchored with up to 10 stakes. Its freestanding design makes it ideal for challenging terrains such as beach sand, snow, granite, tent platforms, and compacted sites, where trekking pole style tents can be more difficult to pitch. Whether you're ultralight backpacking, bikepacking, or packing for a canoe or kayak trip, the Free Zip 3P is a reliable choice.",
+        """
+        The Zpacks Free Zip 3P is a freestanding ultralight tent built for backpackers who need the versatility of a traditional dome tent without giving up the weight savings of Dyneema Composite Fabric.
+
+        Four Easton Carbon 6.3 poles form a unique double-X frame that pitches fast, handles high winds well, and folds down to just 30.5cm (12 in) — small enough to pack horizontally in most backpacks. The canopy is constructed from .55 oz/sqyd DCF (available in blue and olive) or .75 oz/sqyd DCF (spruce green), with a total packaged weight of 1,025g (36.2 oz) including poles and guy lines.
+
+        Fits three standard-width sleeping pads side by side, or two wide pads with room to spare. Pitches with zero stakes on calm nights, or can be anchored with up to 10 stakes in storm conditions. Works on bedrock, sand, snow, or any surface where staking isn't an option.
+
+        The go-to choice for groups who want freestanding versatility and ultralight performance in one shelter.
+        """,
         thumbnailUrl: "/products/zpacks-free-zip-3p-freestanding-thumb.webp");
 
     [SeededEntity] public static readonly IEnumerable<ProductImage> Images =

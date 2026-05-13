@@ -9,7 +9,6 @@ interface ReviewsListProps extends ReviewsRequest {
 const ReviewsList = ({ slug, ...request }: ReviewsListProps) => {
   const { reviews } = useReviews({ slug, ...request })
 
-  console.log(slug)
   return (
     <div>
       {(reviews?.length ?? 0) > 0 && <Line className="my-8" />}

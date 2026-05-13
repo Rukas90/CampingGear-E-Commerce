@@ -30,10 +30,8 @@ export const ProductViewProvider = ({ slug, children }: ProductViewProps) => {
 
   const navigate = useNavigate()
 
-  const getSku = (
-    codeHash: string | undefined | null,
-  ): ProductSku | undefined =>
-    data?.skus.find((sku) => sku.codeHash === codeHash)
+  const getSku = (code: string | undefined | null): ProductSku | undefined =>
+    data?.skus.find((sku) => sku.code === code)
 
   if (!data && !isPending) {
     navigate("not-found")
@@ -61,16 +59,16 @@ export const ProductViewProvider = ({ slug, children }: ProductViewProps) => {
     const currentSku = getSku(variantParam)
 
     if (!currentSku && data) {
-      selectVariant(data.skus[0].codeHash)
+      selectVariant(data.skus[0].code)
     } else if (currentSku) {
-      selectVariant(currentSku.codeHash)
+      selectVariant(currentSku.code)
     }
   }, [data])
 
-  const selectVariant = (codeHash: string) => {
+  const selectVariant = (code: string) => {
     setSearchParams(
       (params) => {
-        params.set("variant", codeHash)
+        params.set("variant", code)
         return params
       },
       { replace: true },
@@ -91,7 +89,7 @@ export const ProductViewProvider = ({ slug, children }: ProductViewProps) => {
     if (!sku) {
       return
     }
-    selectVariant(sku.codeHash)
+    selectVariant(sku.code)
   }
 
   const getNewSelectedOptions = (id: OptionId) => {

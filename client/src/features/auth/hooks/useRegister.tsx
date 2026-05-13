@@ -18,7 +18,6 @@ const useRegister = () => {
       navigate("/")
     },
     onError: () => {
-      console.log("fail")
       setAccount(null)
     },
   })

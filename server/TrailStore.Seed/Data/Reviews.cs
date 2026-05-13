@@ -30,10 +30,11 @@ public static class Reviews
             foreach (var template in productReviews)
             {
                 var customer = faker.PickRandom(Customers.All);
+                var reviewId = Id<Review>.Part(product.Slug).Part(template.Headline).Build();
 
                 reviews.Add(new Review
                 {
-                    Id = Id<Review>.Part(product.Slug).Part(template.Headline).Build(),
+                    Id = reviewId,
                     CustomerId = customer.Id,
                     ProductId = product.Id,
                     CreatedAt = faker.Date.Past(3).ToUniversalTime(),
@@ -41,13 +42,25 @@ public static class Reviews
                     Headline = template.Headline,
                     Recommended = template.Recommended,
                     Text = template.Text,
-                    Likes = faker.Random.Int(0, 40),
-                    Dislikes = faker.Random.Int(0, 8)
+                    Votes = GenerateVotes(reviewId, faker)
                 });
             }
         }
 
         return reviews;
+    }
+    
+    private static List<ReviewVote> GenerateVotes(Id<Review> reviewId, Faker faker)
+    {
+        var voters = faker.PickRandom(Customers.All, faker.Random.Int(0, 40)).DistinctBy(c => c.Id).ToList();
+    
+        return voters.Select(customer => new ReviewVote
+        {
+            Id = Id<ReviewVote>.Part(reviewId.ToString()).Part(customer.Id.ToString()).Build(),
+            ReviewId = reviewId,
+            IsLike = faker.Random.Bool(0.85f),
+            CreatedAt = faker.Date.Past(3).ToUniversalTime()
+        }).ToList();
     }
 
     private static Dictionary<string, List<ReviewTemplate>> LoadReviews()

@@ -2,10 +2,10 @@ import { Button, InputField, Line } from "@components"
 
 const Newsletter = () => {
   return (
-    <div className="relative w-full py-8 bg-[#EDEDEC]">
+    <div className="relative w-full py-8 bg-[#f1f1ee]">
       <img
         src="/img/forest-nature-backdrop.webp"
-        className="absolute mx-auto h-full left-1/2 top-1/2 -translate-1/2 mix-blend-darken opacity-5 select-none pointer-events-none"
+        className="absolute mx-auto h-full left-1/2 top-1/2 -translate-y-1/2 scale-125 -translate-1/2 mix-blend-darken opacity-5 select-none pointer-events-none"
       />
       <div className="relative flex flex-col gap-3 items-center justify-center z-1">
         <div className="flex w-full items-center">

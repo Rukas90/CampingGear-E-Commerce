@@ -1,3 +1,6 @@
+import type { NameSlug } from "./base"
+import type { PreviewType } from "./enums"
+
 export type FilterValue = {
   count: number
 } & NameSlug

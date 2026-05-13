@@ -12,9 +12,8 @@ public class Review : IModel<Review>
     public required string Headline { get; init; }
     public required string Text { get; init; }
     public bool Recommended { get; init; }
-    public int Likes { get; set; } = 0;
-    public int Dislikes { get; set; } = 0;
-
+    
     public Product Product { get; private set; } = null!;
     public Customer Customer { get; private set; } = null!;
+    public ICollection<ReviewVote> Votes { get; init; } = [];
 }

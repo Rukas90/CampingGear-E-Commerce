@@ -11,7 +11,13 @@ public static class GroundCloth
         brandId: Brands.HyperliteMountainGear.Id,
         categoryId: Categories.Accessories.Id,
         description:
-        "HMG Ground Cloth - is ultimate, super lightweight Ground Cloth for minimalist overnight backpackers who like to sleep under the stars, but who still want foolproof protection for their gear from moisture, mud and dirt. Ideal for goal-oriented adventurers constantly on the move and in need of fast protection from inclement weather. It's sizeable at 244cm x 132cm (96\" X 52\") but weighs less than an iPhone. Pair it with HMG Flat Tarp, Echo Tarp or UltaMids (if not using the respective inserts) for optimal ultralight multi-sport travel.",
+        """
+        The Hyperlite Mountain Gear Ground Cloth is a minimalist DCF groundsheet for backpackers who want reliable moisture and puncture protection without meaningful added weight.
+
+        Made from DCF8 Dyneema Composite Fabric with DCF11-reinforced corners, it's fully waterproof and sized at 244cm x 132cm (96 x 52 in) — large enough for one person with all their gear. Six half-inch binding tie-out points keep it anchored in wind. Total weight is just 107g (3.77 oz). Packs into an included DCF stuff sack.
+
+        Works as a standalone cowboy camping layer, a footprint under floorless shelters like the HMG UltaMid or Flat Tarp, or simply as a clean surface to organize gear at camp.
+        """,
         thumbnailUrl: "/products/hyperlite-mountain-gear-ground-cloth-thumb.webp");
 
     [SeededEntity] public static readonly IEnumerable<ProductImage> Images =

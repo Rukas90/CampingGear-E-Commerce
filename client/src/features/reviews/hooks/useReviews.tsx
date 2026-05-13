@@ -12,8 +12,6 @@ const useReviews = ({
     queryFn: () => handleQueryFn(() => reviewsApi.queryReviews(slug, request)),
   })
 
-  console.log(slug, request)
-
   return { reviews: query.data, ...query }
 }
 export default useReviews

@@ -56,7 +56,6 @@ const FilterToggle = ({
       )
     }
     if (previewType === PreviewType.Image) {
-      console.log(previewType)
       return (
         <Toggle
           checked={selected}
@@ -69,10 +68,16 @@ const FilterToggle = ({
     return <Toggle checked={selected} />
   }
 
+  const disabled = count <= 0
+
   return (
     <button
       onClick={handleToggle}
-      className="flex w-full pr-1.5 gap-2 items-center"
+      className={clsx(
+        "flex w-full pr-1.5 gap-2 items-center",
+        disabled && "opacity-50",
+      )}
+      disabled={disabled}
     >
       {renderPrefix()}
 

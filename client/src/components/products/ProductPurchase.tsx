@@ -10,7 +10,7 @@ const ProductPurchase = () => {
 
   const stock = sku?.stock ?? 0
 
-  useEffect(() => setQuantity(stock > 0 ? 1 : 0), [sku?.codeHash])
+  useEffect(() => setQuantity(stock > 0 ? 1 : 0), [sku?.code])
 
   const handleAddToCart = () => {}
 

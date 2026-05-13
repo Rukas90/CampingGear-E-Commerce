@@ -65,7 +65,8 @@ internal static class CatalogBuilder
                                 Count = counter.CountProducts(
                                     skus,
                                     groupFilter != null ? [groupFilter] : [],
-                                    sku => sku.Options.Any(option => option.Slug == projection.Slug))
+                                    sku => sku.Options.Any(option => option.Group.Slug == projection.Group.Slug 
+                                                                     && option.Slug == projection.Slug))
                             }).ToArray()
                     };
                 })

@@ -30,7 +30,7 @@ public static class ProductsMapping
             Description = product.Description,
             Skus = product.Skus.Select(sku => new ProductSkuDto
             {
-                CodeHash = sku.CodeHash,
+                Code = sku.Code.ToLower(),
                 UnitPrice = sku.UnitPrice,
                 Stock = sku.Stock,
                 OptionIds = sku.Options.Select(option => option.Id).ToArray()

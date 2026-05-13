@@ -31,6 +31,10 @@ public class GetProductEndpoint(IProductsRepository productsRepository)
             return;
         }
 
-        await Send.OkAsync(product.ToDetailDto(), ct);
+        var dto = product.ToDetailDto();
+
+        Console.WriteLine(dto.Description);
+        
+        await Send.OkAsync(dto, ct);
     }
 }

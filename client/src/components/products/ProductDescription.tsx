@@ -1,4 +1,5 @@
 import { useProductView } from "@features"
+import Markdown from "react-markdown"
 
 const ProductDescription = () => {
   const { data } = useProductView()
@@ -10,7 +11,9 @@ const ProductDescription = () => {
   return (
     <div>
       <p className="text-xl mb-4">Description</p>
-      <p>{data.description}</p>
+      <div className="prose max-w-none">
+        <Markdown>{data.description}</Markdown>
+      </div>
     </div>
   )
 }
