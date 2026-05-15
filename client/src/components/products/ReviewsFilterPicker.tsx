@@ -13,6 +13,7 @@ const ReviewsFilterPicker = ({ starCounts }: ReviewsFilterPickerProps) => {
         .sort((a, b) => b - a)
         .map((star) => (
           <ReviewFilterItem
+            key={star}
             rating={star}
             count={starCounts[star]}
             total={total}

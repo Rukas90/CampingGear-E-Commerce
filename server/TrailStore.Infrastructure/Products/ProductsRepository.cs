@@ -41,8 +41,11 @@ public sealed class ProductsRepository(AppDbContext context) : IProductsReposito
     {
         var queryable = context.Products.AsQueryable();
 
-        if (query.Specification is not null) queryable = queryable.Where(query.Specification.ToExpression());
-
+        if (query.Specification is not null)
+        {
+            queryable = queryable.Where(query.Specification.ToExpression());
+        }
+        
         queryable = GetOrderedQueryable(queryable, query.SortBy);
 
         queryable = query.Pagination

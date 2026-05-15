@@ -1,6 +1,7 @@
 import { ProductSortBy } from "./product"
 import { Availability, ReviewSortBy } from "./enums"
 import type { StarRating } from "./review"
+import type { SkuCode } from "./id"
 
 export type ProductsQueryRequest = {
   sortBy?: ProductSortBy
@@ -13,6 +14,7 @@ export type ProductsQueryRequest = {
   priceLte?: number
   availability?: Availability
   option?: Record<string, string>
+  skuCode?: SkuCode[]
 }
 
 export type FiltersQueryRequest = Omit<
@@ -28,4 +30,8 @@ export type ReviewsRequest = {
   pageSize?: number
   sortBy: ReviewSortBy
   filter?: StarRating
+}
+
+export type GetCartSkusRequest = {
+  codes: string[]
 }

@@ -86,7 +86,8 @@ public static class ProductsMapping
             Availability = request.Availability ?? Availability.All,
             Option = request.Option?
                 .Select(kvp => new OptionSelection(kvp.Key, kvp.Value))
-                .ToArray() ?? []
+                .ToArray() ?? [],
+            SkuCode = request.SkuCode ?? [],
         };
     }
 }

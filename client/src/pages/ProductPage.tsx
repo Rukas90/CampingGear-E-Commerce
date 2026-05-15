@@ -18,7 +18,7 @@ const ProductPage = () => {
   const navigate = useNavigate()
 
   if (!slug) {
-    navigate("not-found")
+    navigate("/not-found")
     return
   }
 

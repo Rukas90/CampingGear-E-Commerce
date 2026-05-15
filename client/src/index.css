@@ -8,7 +8,7 @@
 @theme {
   --breakpoint-xs: 320px;
   --breakpoint-3xl: 1920px;
-}
+} 
 
 :root {
   font-family: "Jost", "Inter", "Fira Sans", sans-serif;

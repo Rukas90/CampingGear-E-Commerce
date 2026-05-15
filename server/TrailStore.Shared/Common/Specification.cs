@@ -5,7 +5,9 @@ namespace TrailStore.Shared.Common;
 
 public class Specification<T> : ISpecification<T>
 {
-    public static readonly Specification<T> Blank = new(_ => true);
+    public static readonly Specification<T> All = new(_ => true);
+    public static readonly Specification<T> None = new(_ => false);
+    
     private readonly Expression<Func<T, bool>>? expression;
 
     private Specification(Expression<Func<T, bool>> expression)

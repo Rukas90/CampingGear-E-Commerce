@@ -34,7 +34,6 @@ const useAuthInterceptor = () => {
         }
       },
     )
-
     return () => client.interceptors.response.eject(interceptorId)
   }, [refresh])
 }

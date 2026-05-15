@@ -1,28 +1,36 @@
-function storageGet<T>(key: string): T | null {
-  try {
+export const LocalStorage = {
+  getItems: <T>(key: string): T[] => {
     const raw = localStorage.getItem(key)
-    return raw ? (JSON.parse(raw) as T) : null
-  } catch {
-    return null
-  }
-}
 
-function storageSet<T>(key: string, value: T): void {
-  try {
-    localStorage.setItem(key, JSON.stringify(value))
-  } catch {
-    // storage full or unavailable (e.g. SSR, private mode)
-  }
-}
+    if (!raw) {
+      return []
+    }
 
-function storageRemove(key: string): void {
-  try {
-    localStorage.removeItem(key)
-  } catch {}
-}
+    try {
+      return JSON.parse(raw)
+    } catch {
+      localStorage.removeItem(key)
+      return []
+    }
+  },
 
-export const storage = {
-  get: storageGet,
-  set: storageSet,
-  remove: storageRemove,
+  setItems: <T>(key: string, items: T[]): boolean => {
+    try {
+      localStorage.setItem(key, JSON.stringify(items))
+      return true
+    } catch (error) {
+      console.warn(`Failed to save to localStorage key "${key}"`, error)
+      return false
+    }
+  },
+
+  clear: (key: string): boolean => {
+    try {
+      localStorage.removeItem(key)
+      return true
+    } catch (error) {
+      console.warn(`Failed to clear localStorage key "${key}"`, error)
+      return false
+    }
+  },
 }

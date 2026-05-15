@@ -9,7 +9,7 @@ public static class FiltersSpecificationBuilder
 {
     public static Specification<Sku> FromQuery(FiltersQuery query)
     {
-        var spec = Specification<Sku>.Blank;
+        var spec = Specification<Sku>.All;
 
         if (query.QueryCategory is not null) spec = spec.And(SkuSpecifications.Category(query.QueryCategory));
 

@@ -17,6 +17,11 @@ const useAccount = () => {
     queryClient.setQueryData(["account"], account)
   }
 
-  return { account: query.data, ...query, setAccount }
+  return {
+    account: query.data,
+    isLoggedIn: query.data !== null,
+    ...query,
+    setAccount,
+  }
 }
 export default useAccount

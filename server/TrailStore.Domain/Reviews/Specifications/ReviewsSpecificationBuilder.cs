@@ -16,7 +16,7 @@ public static class ReviewsSpecificationBuilder
             ReviewsFilter.ThreeStars => ReviewsSpecifications.Rating(3),
             ReviewsFilter.FourStars => ReviewsSpecifications.Rating(4),
             ReviewsFilter.FiveStars => ReviewsSpecifications.Rating(5),
-            _ => Specification<Review>.Blank
+            _ => Specification<Review>.All
         };
         
         if (query.ProductSlug is not null)

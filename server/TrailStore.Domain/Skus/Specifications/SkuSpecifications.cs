@@ -29,4 +29,9 @@ public static class SkuSpecifications
     {
         return Specification<Sku>.Where(p => p.Product.Skus.All(s => s.Stock <= 0));
     }
+    
+    public static Specification<Sku> Code(string code)
+    {
+        return Specification<Sku>.Where(sku => sku.Code == code);
+    }
 }

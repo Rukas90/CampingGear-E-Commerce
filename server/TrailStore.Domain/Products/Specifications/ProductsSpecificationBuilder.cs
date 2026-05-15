@@ -9,7 +9,7 @@ public static class ProductsSpecificationBuilder
 {
     public static Specification<Product> Build(ProductsFilter filter)
     {
-        var spec = Specification<Product>.Blank;
+        var spec = Specification<Product>.All;
 
         if (filter.BrandSlugs.Length > 0)
         {
@@ -35,9 +35,14 @@ public static class ProductsSpecificationBuilder
         }
 
         if (filter.PriceGte > 0 || filter.PriceLte < decimal.MaxValue)
+        {
             spec = spec.And(ProductSpecifications.PriceRange(filter.PriceGte, filter.PriceLte));
+        }
 
-        if (filter.Option.Length > 0) spec = spec.And(ProductSpecifications.Options(filter.Option));
+        if (filter.Option.Length > 0)
+        {
+            spec = spec.And(ProductSpecifications.Options(filter.Option));
+        }
 
         spec = filter.Availability switch
         {
@@ -45,6 +50,18 @@ public static class ProductsSpecificationBuilder
             Availability.OutOfStock => spec.And(ProductSpecifications.OutOfStock()),
             _ => spec
         };
+        
+        if (filter.SkuCode.Length > 0)
+        {
+            var codeSpec = filter.SkuCode
+                .Skip(1)
+                .Aggregate(
+                    ProductSpecifications.SkuCode(filter.SkuCode[0].ToUpper()),
+                    (specification, code) => specification.Or(ProductSpecifications.SkuCode(code.ToUpper()))
+                );
+            
+            spec = spec.And(codeSpec);
+        }
 
         return spec;
     }

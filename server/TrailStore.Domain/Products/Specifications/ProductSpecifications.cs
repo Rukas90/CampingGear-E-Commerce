@@ -42,7 +42,7 @@ public static class ProductSpecifications
 
     public static Specification<Product> Options(OptionSelection[] options)
     {
-        return options.GroupBy(filter => filter.GroupSlug).Aggregate(Specification<Product>.Blank,
+        return options.GroupBy(filter => filter.GroupSlug).Aggregate(Specification<Product>.All,
             (specification, group)
                 => specification.And(ByGroup(group.Key, group.Select(filter => filter.ValueSlug))));
     }
@@ -53,5 +53,10 @@ public static class ProductSpecifications
             sku.Options.Any(option =>
                 option.OptionGroup.Slug == groupSlug &&
                 valueSlugs.Contains(option.Slug))));
+    }
+
+    public static Specification<Product> SkuCode(string code)
+    {
+        return Specification<Product>.Where(p => p.Skus.Any(s => s.Code == code));
     }
 }

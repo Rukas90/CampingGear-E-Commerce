@@ -1,8 +1,9 @@
 import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister"
-import { QueryClient } from "@tanstack/react-query"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client"
 import { BrowserRouter } from "react-router-dom"
 import { get, set, del } from "idb-keyval"
+import { CartProvider } from "@features"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,6 +24,13 @@ const persister = createAsyncStoragePersister({
 
 const AppProviders = ({ children }: React.PropsWithChildren) => {
   return (
+    <QueryClientProvider client={queryClient}>
+      <CartProvider>
+        <BrowserRouter>{children}</BrowserRouter>
+      </CartProvider>
+    </QueryClientProvider>
+  )
+  return (
     <PersistQueryClientProvider
       client={queryClient}
       persistOptions={{
@@ -30,13 +38,14 @@ const AppProviders = ({ children }: React.PropsWithChildren) => {
         dehydrateOptions: {
           shouldDehydrateQuery: (query) => {
             const key = query.queryKey[0]
-
             return key === "categories" || key === "products" || key === "skus"
           },
         },
       }}
     >
-      <BrowserRouter>{children}</BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>{children}</BrowserRouter>
+      </CartProvider>
     </PersistQueryClientProvider>
   )
 }

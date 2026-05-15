@@ -25,14 +25,17 @@ const ProductsPage = () => {
 
   return (
     <PageWrapper className="w-full">
-      {category && <ProductsCategoryListingHeader categorySlug={category} />}
+      <div className="flex justify-between items-end mt-8">
+        {category && <ProductsCategoryListingHeader categorySlug={category} />}
+        <p className="ml-auto text-neutral-400">{products?.length} products</p>
+      </div>
       <div className="relative items-start flex gap-12 py-12 w-full">
         <CatalogFiltersSidebar {...catalogFilters} exclude={["categories"]} />
         <div className="grid grid-cols-3 self-start grow max-w-full">
           {products
             ?.sort((a, b) => (b.inStock ? 1 : 0) - (a.inStock ? 1 : 0))
             .map((summary) => (
-              <ProductItem {...summary} />
+              <ProductItem key={summary.slug} {...summary} />
             ))}
         </div>
         {(products?.length ?? 0) <= 0 && (

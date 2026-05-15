@@ -34,7 +34,7 @@ export const ProductViewProvider = ({ slug, children }: ProductViewProps) => {
     data?.skus.find((sku) => sku.code === code)
 
   if (!data && !isPending) {
-    navigate("not-found")
+    navigate("/not-found")
     return
   }
 

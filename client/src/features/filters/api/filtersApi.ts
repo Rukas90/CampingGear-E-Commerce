@@ -1,28 +1,13 @@
+import { recordMapper, reqToParams } from "@features"
 import { makeRequest } from "@lib"
 import type { CatalogFilters, FiltersQueryRequest } from "@types"
 
 const filtersApi = {
   queryFilters: async (request: FiltersQueryRequest) => {
-    const params = new URLSearchParams()
-
-    Object.entries(request).forEach(([key, value]) => {
-      if (value === undefined || value === null) {
-        return
-      }
-      if (key === "option" && typeof value === "object") {
-        Object.entries(value as Record<string, string>).forEach(
-          ([optKey, optValue]) => {
-            params.append(`option[${optKey}]`, optValue)
-          },
-        )
-      } else {
-        params.append(key, value.toString())
-      }
+    const params = reqToParams(request, {
+      option: recordMapper,
     })
-
-    return await makeRequest<CatalogFilters>(
-      `api/v1/filters?${params.toString()}`,
-    )
+    return await makeRequest<CatalogFilters>(`api/v1/filters?${params}`)
   },
 }
 export default filtersApi

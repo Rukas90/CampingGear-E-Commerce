@@ -1,4 +1,4 @@
-import type { ProductsQueryRequest, ProductSortBy } from "@types"
+import type { ProductsQueryRequest, ProductSortBy, SkuCode } from "@types"
 
 export interface ParseQueryData<T extends ProductsQueryRequest> {
   searchParams: URLSearchParams
@@ -32,6 +32,10 @@ const parseQuery = <T extends ProductsQueryRequest>({
         .filter(([key]) => key.startsWith("option["))
         .map(([key, value]) => [key.slice(7, -1), value]),
     ),
+    skuCode:
+      searchParams.getAll("skuCodes").length > 0
+        ? (searchParams.getAll("skuCodes") as SkuCode[])
+        : undefined,
     ...overrides,
   }
 

@@ -10,7 +10,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
   return (
     <p className="text-sm mb-4 space-x-2 font-medium">
       {items?.map((item, index) => (
-        <span key={item.link}>
+        <span key={item.name + "_" + item.link}>
           {item.disabled ? (
             <span className="text-neutral-600">{item.name}</span>
           ) : (

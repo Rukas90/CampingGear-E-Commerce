@@ -15,4 +15,5 @@ public sealed record ProductsRequest
     public decimal? PriceLte { get; init; }
     public Availability? Availability { get; init; }
     public Dictionary<string, string>? Option { get; init; }
+    public string[]? SkuCode { get; init; }
 }

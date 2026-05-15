@@ -1,7 +1,4 @@
-import { handleQueryFn } from "@lib"
-import { useQuery } from "@tanstack/react-query"
-import productsApi from "../api/productsApi"
-import { parseQuery, type ParseQueryData } from "@features"
+import { parseQuery, useProductsQuery, type ParseQueryData } from "@features"
 import type { ProductsQueryRequest } from "@types"
 
 const useCategoryProductsQuery = (
@@ -9,11 +6,6 @@ const useCategoryProductsQuery = (
 ) => {
   const request = parseQuery({ ...queryData })
 
-  const query = useQuery({
-    queryKey: ["products", request],
-    queryFn: () => handleQueryFn(() => productsApi.queryProducts(request)),
-  })
-
-  return { products: query.data, ...query }
+  return useProductsQuery(request)
 }
 export default useCategoryProductsQuery

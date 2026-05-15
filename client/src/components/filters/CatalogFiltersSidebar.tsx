@@ -52,12 +52,12 @@ const CatalogFiltersSidebar = ({
         options
           .sort((group) => group.sortOrder)
           .map((group, index) => (
-            <>
+            <div key={group.slug}>
               <CatalogOptionsFilter {...group} />
               {index < options.length - 1 && (
                 <div className="w-full h-px bg-stone-200 my-2" />
               )}
-            </>
+            </div>
           ))}
     </div>
   )

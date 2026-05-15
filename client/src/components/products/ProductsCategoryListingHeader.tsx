@@ -21,7 +21,7 @@ const ProductsCategoryListingHeader = ({
   }
 
   return (
-    <div className="mt-8">
+    <div>
       <Breadcrumbs
         items={[
           { name: "Home", link: "/" },

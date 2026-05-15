@@ -1,4 +1,4 @@
-import type { CustomerId, OptionId } from "./id"
+import type { CustomerId, OptionId, SkuCode } from "./id"
 import { NameSlug } from "./base"
 import { PreviewType } from "./enums"
 import type { StarRating } from "./review"
@@ -35,7 +35,7 @@ export type ProductDetail = {
 } & ProductSummary
 
 export type ProductSku = {
-  code: string
+  code: SkuCode
   unitPrice: number
   stock: number
   optionIds: OptionId[]
