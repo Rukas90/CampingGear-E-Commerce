@@ -21,5 +21,10 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
             .WithMany()
             .HasForeignKey(i => i.SkuId)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        builder.HasOne<Order>()
+            .WithMany(o => o.Items)
+            .HasForeignKey(i => i.OrderId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -29,7 +29,7 @@ public static class Gpsmap67i
     [
         Sku.Create(
             Product.Id,
-            "GARMIN-GPSMAP67i-STD",
+            "GARMIN-GPSMAP67I-STD",
             649.99m,
             8,
             [])

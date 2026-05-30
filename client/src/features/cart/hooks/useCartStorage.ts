@@ -1,18 +1,21 @@
 import { useStorage } from "@features"
-import type { CartItem, SkuCode } from "@types"
+import type { CartLineItem, SkuCode } from "@types"
 
 const KEY = "guest_cart"
 
 const useCartStorage = () => {
-  const { items, dispatch } = useStorage<CartItem>(KEY)
+  const { items, dispatch } = useStorage<CartLineItem>(KEY)
 
-  const addItemToStorage = (item: CartItem) => {
-    const existing = items.find((i) => i.code === item.code)
+  const compareCodes = (a: SkuCode, b: SkuCode) =>
+    a.toLowerCase() === b.toLowerCase()
+
+  const addItemToStorage = (item: CartLineItem) => {
+    const existing = items.find((i) => compareCodes(i.code, item.code))
 
     if (existing) {
       dispatch({
         type: "UPDATE",
-        predicate: (i) => i.code === item.code,
+        predicate: (i) => compareCodes(i.code, item.code),
         updater: (i) => ({ ...i, quantity: i.quantity + item.quantity }),
       })
     } else {
@@ -23,12 +26,12 @@ const useCartStorage = () => {
   const updateStorageItemQuantity = (code: SkuCode, quantity: number) =>
     dispatch({
       type: "UPDATE",
-      predicate: (i) => i.code === code,
+      predicate: (i) => compareCodes(i.code, code),
       updater: (i) => ({ ...i, quantity }),
     })
 
   const removeItemFromStorage = (code: SkuCode) =>
-    dispatch({ type: "REMOVE", predicate: (i) => i.code !== code })
+    dispatch({ type: "REMOVE", predicate: (i) => compareCodes(i.code, code) })
 
   const clearItemFromStorage = () => dispatch({ type: "CLEAR" })
 

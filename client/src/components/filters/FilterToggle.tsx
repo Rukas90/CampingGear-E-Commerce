@@ -74,7 +74,7 @@ const FilterToggle = ({
     <button
       onClick={handleToggle}
       className={clsx(
-        "flex w-full pr-1.5 gap-2 items-center",
+        "group flex w-full pr-1.5 gap-2 items-center cursor-pointer",
         disabled && "opacity-50",
       )}
       disabled={disabled}
@@ -84,16 +84,18 @@ const FilterToggle = ({
       <div className="flex justify-between w-full">
         <p
           className={clsx(
+            "text-sx",
             selected && "text-black",
-            !selected && "text-neutral-600",
+            !selected && "text-neutral-600 group-hover:text-neutral-800",
           )}
         >
           {name}
         </p>
         <p
           className={clsx(
+            "text-sx",
             selected && "text-black",
-            !selected && "text-neutral-600",
+            !selected && "text-neutral-600 group-hover:text-neutral-800",
           )}
         >
           {count}

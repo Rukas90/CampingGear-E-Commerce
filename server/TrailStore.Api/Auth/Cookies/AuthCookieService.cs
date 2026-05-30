@@ -1,8 +1,8 @@
 ﻿using TrailStore.Api.Auth.Constants;
 using TrailStore.Domain.Auth.Interfaces;
 using TrailStore.Domain.Auth.Models;
-using TrailStore.Shared.Auth;
 using TrailStore.Shared.Common;
+using TrailStore.Shared.Cookies;
 
 namespace TrailStore.Api.Auth.Cookies;
 

@@ -10,12 +10,24 @@ public class Result
         Problem = problem;
     }
 
+    [MemberNotNullWhen(false, nameof(Problem))]
+    
     public bool IsSuccess { get; }
     public Problem? Problem { get; }
-
-    public static Result Success()
+    
+    public static implicit operator Result(Problem problem)
+    {
+        return Failure(problem);
+    }
+    
+    public static Result Ok()
     {
         return new Result(true, null);
+    }
+    
+    public static Result<T> Success<T>(T value)
+    {
+        return Result<T>.Success(value);
     }
 
     public static Result Failure(Problem problem)

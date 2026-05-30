@@ -1,4 +1,5 @@
-﻿using TrailStore.Domain.Shared.Enums;
+﻿using TrailStore.Domain.Products.Enums;
+using TrailStore.Domain.Shared.Enums;
 
 namespace TrailStore.Api.Products.Dto;
 

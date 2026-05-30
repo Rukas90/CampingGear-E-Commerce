@@ -15,10 +15,5 @@ public class ReviewVoteConfiguration : IEntityTypeConfiguration<ReviewVote>
 
         builder.Property(r => r.CreatedAt)
             .IsRequired();
-        
-        builder.HasOne(vote => vote.Review)
-            .WithMany(review => review.Votes)
-            .HasForeignKey(review => review.ReviewId)
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }

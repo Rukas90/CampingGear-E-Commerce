@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using TrailStore.Domain.Products.Enums;
 using TrailStore.Domain.Products.Interfaces;
 using TrailStore.Domain.Products.Models;
 using TrailStore.Domain.Shared.Enums;

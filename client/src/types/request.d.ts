@@ -2,6 +2,7 @@ import { ProductSortBy } from "./product"
 import { Availability, ReviewSortBy } from "./enums"
 import type { StarRating } from "./review"
 import type { SkuCode } from "./id"
+import type { CartEntry, CartLineItem } from "./cart"
 
 export type ProductsQueryRequest = {
   sortBy?: ProductSortBy

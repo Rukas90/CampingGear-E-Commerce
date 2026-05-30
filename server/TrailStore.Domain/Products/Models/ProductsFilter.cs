@@ -1,4 +1,5 @@
-﻿using TrailStore.Domain.Shared.Enums;
+﻿using TrailStore.Domain.Products.Enums;
+using TrailStore.Domain.Shared.Enums;
 using TrailStore.Shared.Common;
 
 namespace TrailStore.Domain.Products.Models;

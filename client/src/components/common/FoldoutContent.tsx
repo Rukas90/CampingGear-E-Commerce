@@ -18,9 +18,11 @@ const FoldoutContent = ({
     <div className={clsx("flex flex-col", className)}>
       <button
         onClick={() => setOpened((current) => !current)}
-        className="flex w-full justify-between items-center"
+        className="group flex w-full justify-between items-center cursor-pointer"
       >
-        <p className="text-[1.085rem] font-medium">{label}</p>
+        <p className="text-[1.085rem] font-medium group-hover:text-neutral-800 group-active:text-neutral-700">
+          {label}
+        </p>
         <IconPlus
           className={clsx(
             "text-neutral-800 size-5 transition-transform duration-300",

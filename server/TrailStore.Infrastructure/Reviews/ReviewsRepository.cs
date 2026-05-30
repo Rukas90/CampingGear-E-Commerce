@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using TrailStore.Domain.Reviews.Enums;
 using TrailStore.Domain.Reviews.Interfaces;
 using TrailStore.Domain.Reviews.Models;
 using TrailStore.Domain.Reviews.Specifications;

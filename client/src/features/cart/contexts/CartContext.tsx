@@ -1,62 +1,46 @@
-import { useAccount } from "@features"
-import type { CartItem, SkuCode } from "@types"
-import { createContext, useContext } from "react"
-import useCartStorage from "../hooks/useCartStorage"
+import type { CartLineItem } from "@types"
+import { createContext, useContext, useState } from "react"
+import cartApi from "../api/cartApi"
+import { useQueryClient } from "@tanstack/react-query"
+import { useSessionSummary } from "@features"
 
 interface CartData {
-  items: CartItem[]
-  count: number
-  addItem: (item: CartItem) => void
-  updateQuantity: (code: SkuCode, newQuantity: number) => void
-  removeItem: (code: SkuCode) => void
-  getCount: () => number
+  isCartPanelOpen: boolean
+  openCartPanel: () => void
+  closeCartPanel: () => void
+  addItem: (item: CartLineItem) => void
+  invalidateCart: () => Promise<void>
 }
 
 const CartContext = createContext<CartData | undefined>(undefined)
 
 export const CartProvider = ({ children }: React.PropsWithChildren) => {
-  const { isLoggedIn } = useAccount()
-  const {
-    addItemToStorage,
-    removeItemFromStorage,
-    updateStorageItemQuantity,
-    items,
-  } = useCartStorage()
+  const [isCartPanelOpen, setIsCartOpen] = useState(false)
+  const queryClient = useQueryClient()
+  const { invalidate: invalidateSession } = useSessionSummary()
 
-  const addItem = (item: CartItem) => {
-    if (!isLoggedIn) {
-      return addItemToStorage(item)
-    }
+  const openCartPanel = () => setIsCartOpen(true)
+  const closeCartPanel = () => setIsCartOpen(false)
+
+  const addItem = async (item: CartLineItem) => {
+    await cartApi.addToCart(item)
+    await invalidateCart()
+    await invalidateSession()
+
+    openCartPanel()
   }
 
-  const updateQuantity = (code: SkuCode, newQuantity: number) => {
-    if (!isLoggedIn) {
-      return updateStorageItemQuantity(code, newQuantity)
-    }
-  }
-
-  const removeItem = (code: SkuCode) => {
-    if (!isLoggedIn) {
-      return removeItemFromStorage(code)
-    }
-  }
-
-  const getCount = () => {
-    if (!isLoggedIn) {
-      return items.length
-    }
-    return 0
-  }
+  const invalidateCart = async () =>
+    await queryClient.invalidateQueries({ queryKey: ["cart"] })
 
   return (
     <CartContext.Provider
       value={{
-        items: !isLoggedIn ? items : [],
-        count: getCount(),
+        isCartPanelOpen,
+        openCartPanel,
+        closeCartPanel,
         addItem,
-        updateQuantity,
-        removeItem,
-        getCount,
+        invalidateCart,
       }}
     >
       {children}

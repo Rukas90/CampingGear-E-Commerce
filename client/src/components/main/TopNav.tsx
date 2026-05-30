@@ -7,32 +7,45 @@ import {
   PageWrapper,
   ProductCategoryListing,
   WishlistBadge,
+  CartBadge,
 } from "@components"
-import CartBadge from "./CartBadge"
-import { Link } from "react-router-dom"
-import { useState } from "react"
+import { Link, useLocation } from "react-router-dom"
+import { useEffect, useState } from "react"
 import clsx from "clsx"
+import { useCart } from "@features"
+import { twMerge } from "tailwind-merge"
 
-const TopNav = () => {
+const TopNav = ({
+  className,
+  ...props
+}: Omit<React.ComponentProps<"nav">, "children" | "onMouseLeave">) => {
+  const { openCartPanel } = useCart()
   const [showListing, setShowListing] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => setShowListing(false), [location.pathname])
 
   return (
     <nav
-      className="fixed dark:bg-stone-950 bg-white w-full py-4 h-18 z-64"
+      className={twMerge(
+        "fixed dark:bg-stone-950 bg-white w-full py-4 h-18 z-64",
+        className,
+      )}
       onMouseLeave={() => setShowListing(false)}
+      {...props}
     >
       <div className="relative">
         <PageWrapper className="z-65 bg-white">
           <div className="flex items-center justify-between w-full">
             <ul className="flex gap-5 w-1/3 dark:text-stone-200">
               <li
-                className="font-normal flex gap-1.5 items-center"
+                className="font-normal text-sm flex gap-1.5 items-center"
                 onMouseOver={() => setShowListing(true)}
               >
-                Products <IconArrow className="rotate-90 size-4" />
+                Products <IconArrow className="rotate-90 size-3" />
               </li>
-              <li className="font-normal">Help</li>
-              <li className="font-normal">About</li>
+              <li className="font-normal text-sm">Help</li>
+              <li className="font-normal text-sm">About</li>
             </ul>
             <div className="flex items-center justify-center w-1/3">
               <Link to="/">
@@ -49,7 +62,7 @@ const TopNav = () => {
               </div>
               <IconAccount className="size-5 dark:text-stone-100 text-stone-800" />
               <WishlistBadge />
-              <CartBadge />
+              <CartBadge onClicked={openCartPanel} />
             </div>
           </div>
         </PageWrapper>

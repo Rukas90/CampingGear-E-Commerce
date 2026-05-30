@@ -9,6 +9,18 @@ public class OrderItem : IModel<OrderItem>
     public required Id<Sku> SkuId { get; init; }
     public required int Quantity { get; init; }
     public required decimal UnitPrice { get; init; }
+    public required decimal TaxAmount { get; init; }
 
     public Sku Sku { get; private set; } = null!;
+
+    public static OrderItem Create(Id<Order> orderId, Id<Sku> skuId, int quantity, decimal unitPrice, decimal taxAmount)
+        => new()
+        {
+            Id = Id<OrderItem>.New(),
+            OrderId = orderId,
+            SkuId = skuId,
+            Quantity = quantity,
+            UnitPrice = unitPrice,
+            TaxAmount = taxAmount
+        };
 }

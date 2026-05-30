@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Domain.Skus.Interfaces;
+using TrailStore.Domain.Skus.Specifications;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Shared.Common;
 
@@ -17,5 +18,13 @@ public class SkuRepository(AppDbContext context) : ISkuRepository
             .Where(specification.ToExpression())
             .Select(selector)
             .ToListAsync(ct);
+    }
+
+    public async Task<Sku?> FindByCodeAsync(string code, CancellationToken ct)
+    {
+        return await context.Skus
+            .AsQueryable()
+            .Where(SkuSpecifications.Code(code).ToExpression())
+            .FirstOrDefaultAsync(ct);
     }
 }

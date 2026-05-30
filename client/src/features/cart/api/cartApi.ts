@@ -1,11 +1,18 @@
-import { reqToParams } from "@features"
 import { makeRequest } from "@lib"
-import type { CartSku, GetCartSkusRequest } from "@types"
+import type { CartItem, CartLineItem, SkuCode } from "@types"
 
 const cartApi = {
-  getCartSkus: async (request: GetCartSkusRequest) =>
-    await makeRequest<CartSku[]>(
-      `api/v1/cart/skus?${reqToParams(request).toString()}`,
-    ),
+  addToCart: async (item: CartLineItem) =>
+    await makeRequest<string>(`api/v1/cart/item`, "post", item),
+
+  updateItemQuantity: async (item: CartLineItem) =>
+    await makeRequest<string>(`api/v1/cart/item`, "put", item),
+
+  deleteFromCart: async (code: SkuCode) =>
+    await makeRequest<string>(`api/v1/cart/item`, "delete", { code: code }),
+
+  emptyCart: async () => await makeRequest<string>(`api/v1/cart`, "delete"),
+
+  getCart: async () => await makeRequest<CartItem[]>(`api/v1/cart`),
 }
 export default cartApi

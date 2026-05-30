@@ -17,11 +17,13 @@ export type ProductSummary = {
   brandSlug: string
   categoryName: string
   categorySlug: string
+  defaultSkuCode: SkuCode
   minPrice: number
   maxPrice: number
   averageRating: number
   reviewCount: number
   inStock: boolean
+  hasVariants: boolean
   thumbnailUrl: string
 } & NameSlug
 

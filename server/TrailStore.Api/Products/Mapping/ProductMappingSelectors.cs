@@ -16,11 +16,13 @@ public static class ProductMappingSelectors
             BrandSlug = product.Brand.Slug,
             CategoryName = product.Category.Name,
             CategorySlug = product.Category.Slug,
+            DefaultSkuCode = product.Skus.First().Code,
             MinPrice = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
             MaxPrice = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
             AverageRating = product.Reviews.Average(r => (double?)r.Rating) ?? 0.0,
             ReviewCount = product.Reviews.Count,
             InStock = product.Skus.Any(sku => sku.Stock > 0),
+            HasVariants = product.Skus.Count > 1,
             ThumbnailUrl = product.ThumbnailUrl
         };
     }

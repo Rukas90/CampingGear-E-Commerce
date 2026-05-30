@@ -44,15 +44,19 @@ public static class SeedRunner
         await context.Reviews.AddRangeAsync(Discover<Review>(assembly));
 
         await context.SaveChangesAsync();
+        
         logger?.LogInformation("Seeding done.");
     }
 
     public static async Task ClearAsync(AppDbContext context)
     {
+        context.ReviewVotes.RemoveRange(context.ReviewVotes);
         context.Reviews.RemoveRange(context.Reviews);
         context.Orders.RemoveRange(context.Orders.Where(order =>
             context.Customers.Any(customer =>
                 customer.PasswordHash == SeedDefaults.NO_LOGIN_HASH && customer.Email == order.EmailAddress)));
+        context.OrderItems.RemoveRange(context.OrderItems);
+        context.CartItems.RemoveRange(context.CartItems);
         context.Skus.RemoveRange(context.Skus);
         context.ProductImages.RemoveRange(context.ProductImages);
         context.Products.RemoveRange(context.Products);

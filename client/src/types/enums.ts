@@ -20,3 +20,20 @@ export const ReviewSortBy = {
 } as const
 
 export type ReviewSortBy = (typeof ReviewSortBy)[keyof typeof ReviewSortBy]
+
+export const CheckoutStatus = {
+  Form: 0,
+  Complete: 1,
+} as const
+
+export type CheckoutStatus =
+  (typeof CheckoutStatus)[keyof typeof CheckoutStatus]
+
+export const PostalCodeRequirement = {
+  None: 0,
+  Optional: 1,
+  Required: 2,
+} as const
+
+export type PostalCodeRequirement =
+  (typeof PostalCodeRequirement)[keyof typeof PostalCodeRequirement]

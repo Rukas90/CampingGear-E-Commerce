@@ -23,7 +23,7 @@ client.interceptors.request.use(async (request) => {
 
 export const makeRequest = async <T>(
   path: string,
-  method: "get" | "post" | "put" | "delete" = "get",
+  method: "get" | "post" | "put" | "patch" | "delete" = "get",
   body?: unknown,
 ): Promise<ApiResult<T>> => {
   try {

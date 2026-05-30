@@ -9,5 +9,8 @@ export type * from "./review"
 export type * from "./base"
 export type * from "./category"
 export type * from "./cart"
+export type * from "./checkout"
+export type * from "./session"
+export type * from "./common"
 
 export * from "./enums"

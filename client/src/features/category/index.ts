@@ -1,3 +1,3 @@
-export { default as useCategories } from "./useCategories"
-export { default as useTopCategories } from "./useTopCategories"
-export { default as useCategoryGroups } from "./useCategoryGroups"
+export { default as useCategories } from "./hooks/useCategories"
+export { default as useTopCategories } from "./hooks/useTopCategories"
+export { default as useCategoryGroups } from "./hooks/useCategoryGroups"

@@ -1,12 +1,5 @@
-import {
-  CardDiscover,
-  CardGooglePay,
-  CardMastercard,
-  CardPaypal,
-  CardVisa,
-  Newsletter,
-  PageWrapper,
-} from "@components"
+import { Newsletter, PageWrapper } from "@components"
+import FooterBottom from "./FooterBottom"
 
 const Footer = () => {
   return (
@@ -69,21 +62,7 @@ const Footer = () => {
           </div>
         </PageWrapper>
       </div>
-
-      <div className="relative w-full bg-black py-2">
-        <PageWrapper className="flex items-center justify-between">
-          <div className="flex gap-2">
-            <CardMastercard className="h-5 rounded-sm" />
-            <CardVisa className="h-5 rounded-sm" />
-            <CardPaypal className="h-5 rounded-sm" />
-            <CardDiscover className="h-5 rounded-sm" />
-            <CardGooglePay className="h-5 rounded-sm" />
-          </div>
-          <p className="text-stone-300 text-sm font-medium">
-            @2026 TrailStore | All rights reserved
-          </p>
-        </PageWrapper>
-      </div>
+      <FooterBottom />
     </footer>
   )
 }

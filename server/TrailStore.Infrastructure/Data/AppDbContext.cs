@@ -11,15 +11,19 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Address> Addresses { get; set; }
 
     public DbSet<RefreshToken> RefreshTokens { get; set; }
-
-    public DbSet<Cart> Carts { get; set; }
-
+    
+    public DbSet<ShoppingSession> ShoppingSessions { get; set; }
+    
     public DbSet<CartItem> CartItems { get; set; }
 
+    public DbSet<CheckoutSession> CheckoutSessions { get; set; }
+    
     public DbSet<Order> Orders { get; set; }
 
     public DbSet<OrderItem> OrderItems { get; set; }
-
+    
+    public DbSet<Payment> Payments { get; set; }
+    
     public DbSet<CategoryGroup> CategoryGroups { get; set; }
 
     public DbSet<Category> Categories { get; set; }
@@ -41,7 +45,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Review> Reviews { get; set; }
     
     public DbSet<ReviewVote> ReviewVotes { get; set; }
-
+    
     protected override void ConfigureConventions(ModelConfigurationBuilder config)
     {
         IdConfigConversions.ConfigureIdConversion(config);

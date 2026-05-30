@@ -32,6 +32,8 @@ public static class SkuSpecifications
     
     public static Specification<Sku> Code(string code)
     {
-        return Specification<Sku>.Where(sku => sku.Code == code);
+        var normalized = code.ToUpperInvariant();
+
+        return Specification<Sku>.Where(sku => sku.Code == normalized);
     }
 }

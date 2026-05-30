@@ -2,6 +2,7 @@ using FastEndpoints;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using Stripe;
 using TrailStore.Api;
 using TrailStore.Api.Auth.Extensions;
 using TrailStore.Api.Auth.Middleware;
@@ -31,16 +32,20 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(InfrastructureAssembly.Reference));
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddAppServicesFromAssemblies(
     InfrastructureAssembly.Reference, ApiAssembly.Reference);
+
+StripeConfiguration.ApiKey = configuration["Stripe:SecretKey"];
+
+builder.Services.AddSingleton<PaymentIntentService>();
+builder.Services.AddSingleton<RefundService>();
 
 builder.Services.ConfigureAppOptionsFromAssemblies(configuration,
     InfrastructureAssembly.Reference, ApiAssembly.Reference);
 
 builder.Services.AddFastEndpoints();
+builder.Services.AddOutputCache();
 builder.Services.AddOpenApi();
 
 builder.Services.AddAppAuthentication(configuration);
@@ -63,6 +68,12 @@ if (args.Contains("seed"))
     return;
 }
 
+/*using (var scope = app.Services.CreateScope())
+{
+    var orderRepository = scope.ServiceProvider.GetRequiredService<IOrderRepository>();
+    await orderRepository.DeleteExpiredAsync(CancellationToken.None);
+}*/
+
 app.UseCors("AllowClient");
 app.UseHttpsRedirection();
 app.UseResponseCompression();
@@ -73,6 +84,7 @@ app.UseAuthorization();
 app.UseMiddleware<CsrfInitializeMiddleware>();
 app.UseMiddleware<CsrfValidateMiddleware>();
 
+app.UseOutputCache();
 app.UseFastEndpoints(config =>
 {
     config.Errors.UseProblemDetails();

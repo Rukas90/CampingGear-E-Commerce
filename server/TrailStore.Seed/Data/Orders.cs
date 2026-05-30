@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using TrailStore.Domain.Orders.Models;
+using TrailStore.Domain.Orders.Enums;
 using TrailStore.Domain.Shared.Enums;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Shared.Common;
@@ -19,38 +19,51 @@ public static class Orders
 
         faker.UseSeed(94375185);
 
-        faker.RuleFor(order => order.Id, f => Id<Order>.Part(f.IndexFaker.ToString()).Build());
-
+        faker.RuleFor(order => order.Id, f => Id<Order>.New());
+        
         faker.RuleFor(o => o.CustomerId, f => f.PickRandom(customers).Id);
 
+        faker.RuleFor(order => order.EmailAddress, (f, o) =>
+        {
+            var email = customers.FirstOrDefault(c => c.Id == o.CustomerId)?.Email;
+
+            if (email is not null)
+            {
+                return email;
+            }
+            return f.PickRandom(customers).Email;
+        });
+        
         faker.RuleFor(order => order.CreatedAt, f => f.Date.Past().ToUniversalTime());
+        
+        faker.RuleFor(order => order.Status, _ => OrderStatus.Completed);
 
-        faker.RuleFor(order => order.Status, _ => OrderStatus.Shipped);
-
-        faker.RuleFor(o => o.EmailAddress, (f, o) => customers.First(c => c.Id == o.CustomerId).Email);
-
+        faker.RuleFor(order => order.Currency, _ => "USD");
+        
         faker.RuleFor(order => order.ShippingAddress, f => new PostalAddress
         {
-            RecipientName = f.Name.FullName(),
-            AddressLine1 = f.Address.StreetAddress(),
+            RecipientFirstName = f.Name.FirstName(),
+            RecipientLastName = f.Name.LastName(),
+            AddressLine = f.Address.StreetAddress(),
             City = f.Address.City(),
             Region = f.Address.State(),
             PostalCode = f.Address.ZipCode(),
             CountryCode = "US",
             PhoneNumber = f.Phone.PhoneNumber()
         });
-
+        
         faker.RuleFor(order => order.BillingAddress, f => new PostalAddress
         {
-            RecipientName = f.Name.FullName(),
-            AddressLine1 = f.Address.StreetAddress(),
+            RecipientFirstName = f.Name.FirstName(),
+            RecipientLastName = f.Name.LastName(),
+            AddressLine = f.Address.StreetAddress(),
             City = f.Address.City(),
             Region = f.Address.State(),
             PostalCode = f.Address.ZipCode(),
             CountryCode = "US",
             PhoneNumber = f.Phone.PhoneNumber()
         });
-
+        
         var skus = SeedRunner.Discover<Sku>(SeedAssembly.Reference).ToArray();
 
         faker.RuleFor(order => order.Items, (Faker f, Order order) =>
@@ -65,11 +78,18 @@ public static class Orders
                     OrderId = order.Id,
                     SkuId = sku.Id,
                     Quantity = f.Random.Int(1, 3),
-                    UnitPrice = sku.UnitPrice
+                    UnitPrice = sku.UnitPrice,
+                    TaxAmount = 0
                 };
             });
         });
-
+        
+        faker.RuleFor(order => order.StatusUpdatedAt, (f, o) =>
+            o.CreatedAt.AddMinutes(f.Random.Int(1, 60)));
+        
+        faker.RuleFor(order => order.TotalPrice, (f, o) =>
+            o.Items.Sum(item => item.UnitPrice * item.Quantity));
+        
         return faker.Generate(50);
     }
 }

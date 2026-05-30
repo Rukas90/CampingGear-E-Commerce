@@ -8,6 +8,8 @@ const ProductsPage = lazy(() => import("./pages/ProductsPage"))
 const ProductPage = lazy(() => import("./pages/ProductPage"))
 const LoginPage = lazy(() => import("./pages/LoginPage"))
 const RegisterPage = lazy(() => import("./pages/RegisterPage"))
+const CartPage = lazy(() => import("./pages/CartPage"))
+const CheckoutPage = lazy(() => import("./pages/CheckoutPage"))
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"))
 
 const AppRouter = () => {
@@ -23,8 +25,10 @@ const AppRouter = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Route>
+        <Route path="/cart" element={<CartPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
+      <Route path="/checkout" element={<CheckoutPage />} />
     </Routes>
   )
 }

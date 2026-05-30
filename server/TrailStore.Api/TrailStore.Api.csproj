@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
@@ -7,26 +7,28 @@
         <PackageId>TrailStore.Api</PackageId>
         <AssemblyName>TrailStore.Api</AssemblyName>
         <RootNamespace>TrailStore.Api</RootNamespace>
-    </PropertyGroup>
+      <UserSecretsId>06982f30-4ca7-4a6f-98e4-62112748951f</UserSecretsId>
+  </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FastEndpoints" Version="8.1.0"/>
-        <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="10.0.11"/>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.7"/>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.5"/>
+        <PackageReference Include="FastEndpoints" Version="8.1.0" />
+        <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="10.0.11" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.7" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.5">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.1"/>
-        <PackageReference Include="Scalar.AspNetCore" Version="2.13.15"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.1" />
+        <PackageReference Include="Scalar.AspNetCore" Version="2.13.15" />
+        <PackageReference Include="Stripe.net" Version="51.1.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\TrailStore.Domain\TrailStore.Domain.csproj"/>
-        <ProjectReference Include="..\TrailStore.Infrastructure\TrailStore.Infrastructure.csproj"/>
-        <ProjectReference Include="..\TrailStore.Seed\TrailStore.Seed.csproj"/>
+        <ProjectReference Include="..\TrailStore.Domain\TrailStore.Domain.csproj" />
+        <ProjectReference Include="..\TrailStore.Infrastructure\TrailStore.Infrastructure.csproj" />
+        <ProjectReference Include="..\TrailStore.Seed\TrailStore.Seed.csproj" />
     </ItemGroup>
 
 </Project>

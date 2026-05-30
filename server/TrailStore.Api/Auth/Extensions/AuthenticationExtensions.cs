@@ -3,7 +3,7 @@ using FastEndpoints;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using TrailStore.Domain.Auth.Errors;
-using TrailStore.Shared.Auth;
+using TrailStore.Shared.Cookies;
 
 namespace TrailStore.Api.Auth.Extensions;
 

@@ -1,5 +1,7 @@
 ﻿using TrailStore.Shared.Common;
 
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
+
 namespace TrailStore.Infrastructure.Auth.Jwt;
 
 [AppOptions("Jwt")]

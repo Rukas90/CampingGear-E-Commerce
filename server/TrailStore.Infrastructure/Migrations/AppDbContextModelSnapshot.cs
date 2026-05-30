@@ -131,21 +131,6 @@ namespace TrailStore.Infrastructure.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("TrailStore.Domain.Shared.Models.Cart", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Carts");
-                });
-
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.CartItem", b =>
                 {
                     b.Property<Guid>("Id")
@@ -156,18 +141,18 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("NOW()");
 
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("uuid");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
+
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("SkuId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CartId");
+                    b.HasIndex("SessionId");
 
                     b.HasIndex("SkuId");
 
@@ -235,6 +220,34 @@ namespace TrailStore.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("CategoryGroups");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.CheckoutSession", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("EmailAddress")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("ShippingAddressAsBillingAddress")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CheckoutSessions");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Customer", b =>
@@ -376,16 +389,30 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("NOW()");
 
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasMaxLength(254)
-                        .HasColumnType("character varying(254)");
+                        .HasColumnType("text");
+
+                    b.Property<int>("MaxPaymentAttempts")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("StatusUpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
@@ -408,8 +435,8 @@ namespace TrailStore.Infrastructure.Migrations
                     b.Property<Guid>("SkuId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("SkuId1")
-                        .HasColumnType("uuid");
+                    b.Property<decimal>("TaxAmount")
+                        .HasColumnType("numeric");
 
                     b.Property<decimal>("UnitPrice")
                         .HasPrecision(18, 2)
@@ -421,10 +448,46 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.HasIndex("SkuId");
 
-                    b.HasIndex("SkuId1")
-                        .IsUnique();
-
                     b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.Payment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("IntentId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("UpdatedStatusAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Product", b =>
@@ -608,6 +671,27 @@ namespace TrailStore.Infrastructure.Migrations
                     b.ToTable("ReviewVotes");
                 });
 
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.ShoppingSession", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("ShoppingSessions");
+                });
+
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Sku", b =>
                 {
                     b.Property<Guid>("Id")
@@ -664,22 +748,11 @@ namespace TrailStore.Infrastructure.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("TrailStore.Domain.Shared.Models.Cart", b =>
-                {
-                    b.HasOne("TrailStore.Domain.Shared.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.CartItem", b =>
                 {
-                    b.HasOne("TrailStore.Domain.Shared.Models.Cart", "Cart")
-                        .WithMany("Items")
-                        .HasForeignKey("CartId")
+                    b.HasOne("TrailStore.Domain.Shared.Models.ShoppingSession", "ShoppingSession")
+                        .WithMany("CartItems")
+                        .HasForeignKey("SessionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -689,7 +762,7 @@ namespace TrailStore.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Cart");
+                    b.Navigation("ShoppingSession");
 
                     b.Navigation("Sku");
                 });
@@ -699,10 +772,135 @@ namespace TrailStore.Infrastructure.Migrations
                     b.HasOne("TrailStore.Domain.Shared.Models.CategoryGroup", "Group")
                         .WithMany("Categories")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.CheckoutSession", b =>
+                {
+                    b.OwnsOne("TrailStore.Domain.Shared.Models.PostalAddress", "BillingAddress", b1 =>
+                        {
+                            b1.Property<Guid>("CheckoutSessionId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("AddressLine")
+                                .IsRequired()
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
+
+                            b1.Property<string>("ApartmentSuite")
+                                .HasMaxLength(200)
+                                .HasColumnType("character varying(200)");
+
+                            b1.Property<string>("City")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.Property<string>("Company")
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.Property<string>("CountryCode")
+                                .IsRequired()
+                                .HasMaxLength(2)
+                                .HasColumnType("character varying(2)");
+
+                            b1.Property<string>("PhoneNumber")
+                                .IsRequired()
+                                .HasMaxLength(40)
+                                .HasColumnType("character varying(40)");
+
+                            b1.Property<string>("PostalCode")
+                                .HasMaxLength(20)
+                                .HasColumnType("character varying(20)");
+
+                            b1.Property<string>("RecipientFirstName")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
+
+                            b1.Property<string>("RecipientLastName")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
+
+                            b1.Property<string>("Region")
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.HasKey("CheckoutSessionId");
+
+                            b1.ToTable("CheckoutSessions");
+
+                            b1.WithOwner()
+                                .HasForeignKey("CheckoutSessionId");
+                        });
+
+                    b.OwnsOne("TrailStore.Domain.Shared.Models.PostalAddress", "ShippingAddress", b1 =>
+                        {
+                            b1.Property<Guid>("CheckoutSessionId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("AddressLine")
+                                .IsRequired()
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
+
+                            b1.Property<string>("ApartmentSuite")
+                                .HasMaxLength(200)
+                                .HasColumnType("character varying(200)");
+
+                            b1.Property<string>("City")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.Property<string>("Company")
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.Property<string>("CountryCode")
+                                .IsRequired()
+                                .HasMaxLength(2)
+                                .HasColumnType("character varying(2)");
+
+                            b1.Property<string>("PhoneNumber")
+                                .IsRequired()
+                                .HasMaxLength(40)
+                                .HasColumnType("character varying(40)");
+
+                            b1.Property<string>("PostalCode")
+                                .HasMaxLength(20)
+                                .HasColumnType("character varying(20)");
+
+                            b1.Property<string>("RecipientFirstName")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
+
+                            b1.Property<string>("RecipientLastName")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
+
+                            b1.Property<string>("Region")
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.HasKey("CheckoutSessionId");
+
+                            b1.ToTable("CheckoutSessions");
+
+                            b1.WithOwner()
+                                .HasForeignKey("CheckoutSessionId");
+                        });
+
+                    b.Navigation("BillingAddress");
+
+                    b.Navigation("ShippingAddress");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Discount", b =>
@@ -734,17 +932,17 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.OwnsOne("TrailStore.Domain.Orders.Models.PostalAddress", "BillingAddress", b1 =>
+                    b.OwnsOne("TrailStore.Domain.Shared.Models.PostalAddress", "BillingAddress", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
                                 .HasColumnType("uuid");
 
-                            b1.Property<string>("AddressLine1")
+                            b1.Property<string>("AddressLine")
                                 .IsRequired()
-                                .HasMaxLength(200)
-                                .HasColumnType("character varying(200)");
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
 
-                            b1.Property<string>("AddressLine2")
+                            b1.Property<string>("ApartmentSuite")
                                 .HasMaxLength(200)
                                 .HasColumnType("character varying(200)");
 
@@ -764,18 +962,22 @@ namespace TrailStore.Infrastructure.Migrations
 
                             b1.Property<string>("PhoneNumber")
                                 .IsRequired()
-                                .HasMaxLength(35)
-                                .HasColumnType("character varying(35)");
+                                .HasMaxLength(40)
+                                .HasColumnType("character varying(40)");
 
                             b1.Property<string>("PostalCode")
-                                .IsRequired()
                                 .HasMaxLength(20)
                                 .HasColumnType("character varying(20)");
 
-                            b1.Property<string>("RecipientName")
+                            b1.Property<string>("RecipientFirstName")
                                 .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
+
+                            b1.Property<string>("RecipientLastName")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
 
                             b1.Property<string>("Region")
                                 .HasMaxLength(100)
@@ -789,17 +991,17 @@ namespace TrailStore.Infrastructure.Migrations
                                 .HasForeignKey("OrderId");
                         });
 
-                    b.OwnsOne("TrailStore.Domain.Orders.Models.PostalAddress", "ShippingAddress", b1 =>
+                    b.OwnsOne("TrailStore.Domain.Shared.Models.PostalAddress", "ShippingAddress", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
                                 .HasColumnType("uuid");
 
-                            b1.Property<string>("AddressLine1")
+                            b1.Property<string>("AddressLine")
                                 .IsRequired()
-                                .HasMaxLength(200)
-                                .HasColumnType("character varying(200)");
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
 
-                            b1.Property<string>("AddressLine2")
+                            b1.Property<string>("ApartmentSuite")
                                 .HasMaxLength(200)
                                 .HasColumnType("character varying(200)");
 
@@ -819,18 +1021,22 @@ namespace TrailStore.Infrastructure.Migrations
 
                             b1.Property<string>("PhoneNumber")
                                 .IsRequired()
-                                .HasMaxLength(35)
-                                .HasColumnType("character varying(35)");
+                                .HasMaxLength(40)
+                                .HasColumnType("character varying(40)");
 
                             b1.Property<string>("PostalCode")
-                                .IsRequired()
                                 .HasMaxLength(20)
                                 .HasColumnType("character varying(20)");
 
-                            b1.Property<string>("RecipientName")
+                            b1.Property<string>("RecipientFirstName")
                                 .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
+
+                            b1.Property<string>("RecipientLastName")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
 
                             b1.Property<string>("Region")
                                 .HasMaxLength(100)
@@ -867,11 +1073,18 @@ namespace TrailStore.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("TrailStore.Domain.Shared.Models.Sku", null)
-                        .WithOne("OrderItem")
-                        .HasForeignKey("TrailStore.Domain.Shared.Models.OrderItem", "SkuId1");
-
                     b.Navigation("Sku");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.Payment", b =>
+                {
+                    b.HasOne("TrailStore.Domain.Shared.Models.Order", "Order")
+                        .WithMany("Payments")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Product", b =>
@@ -953,10 +1166,19 @@ namespace TrailStore.Infrastructure.Migrations
                     b.HasOne("TrailStore.Domain.Shared.Models.Review", "Review")
                         .WithMany("Votes")
                         .HasForeignKey("ReviewId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Review");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.ShoppingSession", b =>
+                {
+                    b.HasOne("TrailStore.Domain.Shared.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Sku", b =>
@@ -973,11 +1195,6 @@ namespace TrailStore.Infrastructure.Migrations
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Brand", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("TrailStore.Domain.Shared.Models.Cart", b =>
-                {
-                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Category", b =>
@@ -1007,6 +1224,8 @@ namespace TrailStore.Infrastructure.Migrations
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Order", b =>
                 {
                     b.Navigation("Items");
+
+                    b.Navigation("Payments");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Product", b =>
@@ -1028,10 +1247,9 @@ namespace TrailStore.Infrastructure.Migrations
                     b.Navigation("Votes");
                 });
 
-            modelBuilder.Entity("TrailStore.Domain.Shared.Models.Sku", b =>
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.ShoppingSession", b =>
                 {
-                    b.Navigation("OrderItem")
-                        .IsRequired();
+                    b.Navigation("CartItems");
                 });
 #pragma warning restore 612, 618
         }

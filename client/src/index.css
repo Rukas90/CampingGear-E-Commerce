@@ -8,10 +8,14 @@
 @theme {
   --breakpoint-xs: 320px;
   --breakpoint-3xl: 1920px;
+  --text-sx: 15px;
+  --text-xm: 13px;
+  --color-accent: #606B54;
+  --color-accent-dark: #424939;
 } 
 
 :root {
-  font-family: "Jost", "Inter", "Fira Sans", sans-serif;
+  font-family: "Inter", "Fira Sans", sans-serif;
 }
 #root, body, html {
   min-width: 100%;

@@ -21,7 +21,7 @@ const Newsletter = () => {
         <div className="flex gap-2 justify-center w-[384px]">
           <span className="w-full">
             <InputField
-              className="text-base w-full rounded-lg"
+              className="text-base w-full rounded-lg bg-stone-50"
               placeholder="Email Address"
             />
           </span>

@@ -23,10 +23,5 @@ public class CategoryGroupConfiguration : IEntityTypeConfiguration<CategoryGroup
 
         builder.Property(group => group.SortOrder)
             .IsRequired();
-
-        builder.HasMany(group => group.Categories)
-            .WithOne(category => category.Group)
-            .HasForeignKey(category => category.GroupId)
-            .OnDelete(DeleteBehavior.Restrict);
     }
 }

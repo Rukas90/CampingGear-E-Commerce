@@ -3,8 +3,9 @@ using TrailStore.Api.Auth.Cookies;
 using TrailStore.Api.Auth.Dto;
 using TrailStore.Api.Auth.Mapping;
 using TrailStore.Api.Common.Extensions;
+using TrailStore.Api.Common.Mapping;
 using TrailStore.Domain.Auth.Interfaces;
-using TrailStore.Shared.Auth;
+using TrailStore.Shared.Cookies;
 
 namespace TrailStore.Api.Auth.Endpoints;
 

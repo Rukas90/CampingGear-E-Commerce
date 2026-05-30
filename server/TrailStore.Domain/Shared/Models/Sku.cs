@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using TrailStore.Shared.Common;
+﻿using TrailStore.Shared.Common;
 
 namespace TrailStore.Domain.Shared.Models;
 
@@ -13,12 +11,7 @@ public class Sku : IModel<Sku>
     public required int Stock { get; set; }
 
     public ICollection<Option> Options { get; init; } = [];
-
-    public OrderItem OrderItem { get; private set; } = null!;
     public Product Product { get; private set; } = null!;
-
-    public string CodeHash =>
-        Convert.ToHexString(MD5.HashData(Encoding.UTF8.GetBytes(Code)))[..10].ToLower();
 
     public static Sku Create(
         Id<Product> productId,
@@ -31,7 +24,7 @@ public class Sku : IModel<Sku>
         {
             Id = Id<Sku>.Part(code).Build(),
             ProductId = productId,
-            Code = code,
+            Code = code.ToUpperInvariant(),
             UnitPrice = price,
             Stock = stock,
             Options = options

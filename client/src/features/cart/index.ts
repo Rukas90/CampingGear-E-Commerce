@@ -1,2 +1,3 @@
 export { CartProvider, useCart } from "./contexts/CartContext"
-export { default as useCartSkuQuery } from "./hooks/useCartSkuQuery"
+export { CartItemProvider, useCartItem } from "./contexts/CartItemContext"
+export { CartItemsProvider, useCartItems } from "./contexts/CartItemsContext"

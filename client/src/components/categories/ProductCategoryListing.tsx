@@ -8,7 +8,7 @@ const ProductCatgoryListing = () => {
   const { data: groups } = useCategoryGroups()
 
   if (!groups || !categories) {
-    return <Spinner />
+    return <Spinner className="size-5" />
   }
 
   return (
@@ -36,11 +36,13 @@ interface ListingProps {
 const Listing = ({ group, categories }: ListingProps) => {
   return (
     <div>
-      <p className="font-medium mb-1">{group.name}</p>
+      <p className="font-medium text-[15px] mb-1">{group.name}</p>
       <ul>
         {categories.map((category) => (
           <Link key={category.slug} to={`/products/${category.slug}`}>
-            <li className="hover:text-neutral-600">{category.name}</li>
+            <li className="hover:text-neutral-600 text-sm mt-1">
+              {category.name}
+            </li>
           </Link>
         ))}
       </ul>

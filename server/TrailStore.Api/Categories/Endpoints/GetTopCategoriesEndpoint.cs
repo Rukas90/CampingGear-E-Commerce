@@ -5,7 +5,7 @@ using TrailStore.Domain.Orders.Interfaces;
 
 namespace TrailStore.Api.Categories.Endpoints;
 
-public class GetTopCategoriesEndpoint(IOrderItemsRepository orderItemsRepository)
+public class GetTopCategoriesEndpoint(IOrderItemRepository orderItemRepository)
     : Endpoint<TopCategoriesRequest, IEnumerable<CategoryDto>>
 {
     public override void Configure()
@@ -17,7 +17,7 @@ public class GetTopCategoriesEndpoint(IOrderItemsRepository orderItemsRepository
     public override async Task<IEnumerable<CategoryDto>> ExecuteAsync(
         TopCategoriesRequest req, CancellationToken ct)
     {
-        return await orderItemsRepository.ListMostSoldCategoriesAsync(
+        return await orderItemRepository.ListMostSoldCategoriesAsync(
             req.Count, CategoryMappingSelectors.ToDto, ct);
     }
 }

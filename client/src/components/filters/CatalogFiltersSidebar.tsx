@@ -4,6 +4,7 @@ import CatalogCategoryFilter from "./CatalogCategoryFilter"
 import CatalogAvailabilityFilter from "./CatalogAvailabilityFilter"
 import CatalogPriceRangeFilter from "./CatalogPriceRangeFilter"
 import CatalogOptionsFilter from "./CatalogOptionsFilter"
+import { TextButton } from "@components/buttons"
 
 interface CatalogFiltersSidebarProps extends CatalogFilters {
   exclude?: (keyof CatalogFilters)[]
@@ -23,9 +24,7 @@ const CatalogFiltersSidebar = ({
 
   return (
     <div className="min-w-62 sticky top-22">
-      <button className="text-sm text-lime-800 font-medium">
-        Clear filters
-      </button>
+      <TextButton>Clear filters</TextButton>
       {!isHidden("categories") && (
         <CatalogCategoryFilter categories={categories} />
       )}

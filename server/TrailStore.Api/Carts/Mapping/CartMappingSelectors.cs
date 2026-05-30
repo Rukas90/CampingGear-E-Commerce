@@ -6,17 +6,20 @@ namespace TrailStore.Api.Carts.Mapping;
 
 public static class CartMappingSelectors
 {
-    public static Expression<Func<Sku, CartSkusDto>> ToCartSkuDto()
+    public static Expression<Func<CartItem, CartItemDto>> ToItemDto()
     {
-        return sku => new CartSkusDto
+        return item => new CartItemDto
         {
-            Code         = sku.Code,
-            ProductName  = sku.Product.Name,
-            ProductSlug  = sku.Product.Slug,
-            UnitPrice    = sku.UnitPrice,
-            Stock        = sku.Stock,
-            ThumbnailUrl = sku.Product.ThumbnailUrl ?? "",
-            Options      = sku.Options.Select(option => new CartSkuOptionDto 
+            Code         = item.Sku.Code,
+            Quantity     = item.Quantity,
+            BrandName    = item.Sku.Product.Brand.Name,
+            BrandSlug    = item.Sku.Product.Brand.Slug,
+            ProductName  = item.Sku.Product.Name,
+            ProductSlug  = item.Sku.Product.Slug,
+            UnitPrice    = item.Sku.UnitPrice,
+            Stock        = item.Sku.Stock,
+            ThumbnailUrl = item.Sku.Product.ThumbnailUrl ?? "",
+            Options      = item.Sku.Options.Select(option => new CartItemOptionDto 
                 { GroupName = option.OptionGroup.Name, ValueName = option.Name}).ToArray()
         };
     }

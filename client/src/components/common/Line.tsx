@@ -1,11 +1,18 @@
+import clsx from "clsx"
 import { twMerge } from "tailwind-merge"
 
-interface LineProps extends Omit<React.ComponentProps<"div">, "children"> {}
+interface LineProps extends Omit<React.ComponentProps<"div">, "children"> {
+  vertical?: boolean
+}
 
-const Line = ({ className, ...props }: LineProps) => {
+const Line = ({ vertical, className, ...props }: LineProps) => {
   return (
     <div
-      className={twMerge("w-full h-px bg-neutral-300", className)}
+      className={twMerge(
+        clsx(vertical && "w-px h-full", !vertical && "w-full h-px"),
+        "bg-neutral-300",
+        className,
+      )}
       {...props}
     />
   )

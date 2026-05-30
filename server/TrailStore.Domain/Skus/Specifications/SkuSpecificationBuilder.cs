@@ -7,6 +7,10 @@ public static class SkuSpecificationBuilder
 {
     public static Specification<Sku> BuildFromCodes(params string[] codes)
     {
+        foreach (var code in codes)
+        {
+            Console.WriteLine(code);
+        }
         return codes.Aggregate(
             Specification<Sku>.None,
             (spec, code) => spec.Or(SkuSpecifications.Code(code.ToUpper()))

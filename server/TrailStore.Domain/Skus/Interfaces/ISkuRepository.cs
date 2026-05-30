@@ -8,4 +8,6 @@ public interface ISkuRepository
 {
     Task<List<TResult>> ListAllAsync<TResult>(
         Specification<Sku> specification, Expression<Func<Sku, TResult>> selector, CancellationToken ct);
+    
+    Task<Sku?> FindByCodeAsync(string code, CancellationToken ct);
 }

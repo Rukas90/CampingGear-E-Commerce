@@ -1,4 +1,5 @@
-﻿using TrailStore.Domain.Reviews.Models;
+﻿using TrailStore.Domain.Reviews.Enums;
+using TrailStore.Domain.Reviews.Models;
 using TrailStore.Domain.Shared.Enums;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Shared.Common;
