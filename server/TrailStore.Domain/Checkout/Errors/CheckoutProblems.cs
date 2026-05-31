@@ -9,4 +9,13 @@ public class CheckoutProblems
     
     public static readonly Problem EmptyCart
         = new("Checkout Failed", "checkout.empty_cart", "Your cart is empty. Add items before checking out.");
+    
+    public static readonly Problem IncompleteShippingAddress
+        = new("Checkout Failed", "checkout.incomplete_shipping_address", "Please complete your shipping address before proceeding.");
+
+    public static readonly Problem NoShippingMethodAvailable
+        = new("Checkout Failed", "checkout.no_shipping_method", "No shipping methods are available for your address.");
+
+    public static readonly Problem InvalidShippingMethod
+        = new("Checkout Failed", "checkout.invalid_shipping_method", "The selected shipping method is not available for your address.");
 }

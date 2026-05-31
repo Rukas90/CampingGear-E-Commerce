@@ -4,7 +4,7 @@ import checkoutApi from "../api/checkoutApi"
 const useCheckout = (options?: QueryOptions) => {
   return useQueryHandler({
     key: ["checkout"],
-    func: () => checkoutApi.checkout(),
+    func: () => checkoutApi.init(),
     options,
   })
 }

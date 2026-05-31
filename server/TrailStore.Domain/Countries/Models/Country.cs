@@ -14,4 +14,5 @@ public class Country
     public bool HasRegion { get; init; }
 
     public required string PhoneCode { get; init; }
+    public decimal TaxRate { get; init; } = 0m;
 }

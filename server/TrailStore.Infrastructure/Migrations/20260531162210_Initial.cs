@@ -42,42 +42,6 @@ namespace TrailStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CheckoutSessions",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    SessionId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Status = table.Column<int>(type: "integer", nullable: false),
-                    EmailAddress = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    ShippingAddress_CountryCode = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: true),
-                    ShippingAddress_RecipientFirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    ShippingAddress_RecipientLastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    ShippingAddress_Company = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    ShippingAddress_AddressLine = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: true),
-                    ShippingAddress_ApartmentSuite = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
-                    ShippingAddress_City = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    ShippingAddress_Region = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    ShippingAddress_PostalCode = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
-                    ShippingAddress_PhoneNumber = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    BillingAddress_CountryCode = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: true),
-                    BillingAddress_RecipientFirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    BillingAddress_RecipientLastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    BillingAddress_Company = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    BillingAddress_AddressLine = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: true),
-                    BillingAddress_ApartmentSuite = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
-                    BillingAddress_City = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    BillingAddress_Region = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    BillingAddress_PostalCode = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
-                    BillingAddress_PhoneNumber = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    ShippingAddressAsBillingAddress = table.Column<bool>(type: "boolean", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CheckoutSessions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
@@ -105,6 +69,19 @@ namespace TrailStore.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OptionGroups", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShippingZones",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    CountryCodes = table.Column<string[]>(type: "text[]", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShippingZones", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -269,6 +246,29 @@ namespace TrailStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ShippingMethods",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    ZoneId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Code = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    FlatFee = table.Column<decimal>(type: "numeric", nullable: false),
+                    FreeShippingThreshold = table.Column<decimal>(type: "numeric", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShippingMethods", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShippingMethods_ShippingZones_ZoneId",
+                        column: x => x.ZoneId,
+                        principalTable: "ShippingZones",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -319,6 +319,48 @@ namespace TrailStore.Infrastructure.Migrations
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CheckoutSessions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SessionId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    EmailAddress = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    ShippingAddress_CountryCode = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: true),
+                    ShippingAddress_RecipientFirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    ShippingAddress_RecipientLastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    ShippingAddress_Company = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    ShippingAddress_AddressLine = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: true),
+                    ShippingAddress_ApartmentSuite = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
+                    ShippingAddress_City = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    ShippingAddress_Region = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    ShippingAddress_PostalCode = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
+                    ShippingAddress_PhoneNumber = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
+                    BillingAddress_CountryCode = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: true),
+                    BillingAddress_RecipientFirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    BillingAddress_RecipientLastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    BillingAddress_Company = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    BillingAddress_AddressLine = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: true),
+                    BillingAddress_ApartmentSuite = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
+                    BillingAddress_City = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    BillingAddress_Region = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    BillingAddress_PostalCode = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
+                    BillingAddress_PhoneNumber = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
+                    ShippingAddressAsBillingAddress = table.Column<bool>(type: "boolean", nullable: false),
+                    ShippingMethodId = table.Column<Guid>(type: "uuid", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CheckoutSessions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CheckoutSessions_ShippingMethods_ShippingMethodId",
+                        column: x => x.ShippingMethodId,
+                        principalTable: "ShippingMethods",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -572,6 +614,11 @@ namespace TrailStore.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_CheckoutSessions_ShippingMethodId",
+                table: "CheckoutSessions",
+                column: "ShippingMethodId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Customers_Email",
                 table: "Customers",
                 column: "Email",
@@ -668,6 +715,11 @@ namespace TrailStore.Infrastructure.Migrations
                 column: "ReviewId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ShippingMethods_ZoneId",
+                table: "ShippingMethods",
+                column: "ZoneId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ShoppingSessions_CustomerId",
                 table: "ShoppingSessions",
                 column: "CustomerId");
@@ -726,6 +778,9 @@ namespace TrailStore.Infrastructure.Migrations
                 name: "ShoppingSessions");
 
             migrationBuilder.DropTable(
+                name: "ShippingMethods");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
@@ -736,6 +791,9 @@ namespace TrailStore.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Skus");
+
+            migrationBuilder.DropTable(
+                name: "ShippingZones");
 
             migrationBuilder.DropTable(
                 name: "Options");

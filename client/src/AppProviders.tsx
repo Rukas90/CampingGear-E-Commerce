@@ -4,6 +4,7 @@ import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client
 import { BrowserRouter } from "react-router-dom"
 import { get, set, del } from "idb-keyval"
 import { CartProvider } from "@features"
+import "react-loading-skeleton/dist/skeleton.css"
 
 const queryClient = new QueryClient({
   defaultOptions: {

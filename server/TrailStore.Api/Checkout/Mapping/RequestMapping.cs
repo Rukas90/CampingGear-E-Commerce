@@ -6,13 +6,13 @@ namespace TrailStore.Api.Checkout.Mapping;
 
 public static class RequestMapping
 {
-    public static CheckoutContact ToContact(this CheckoutContactRequest request)
+    public static CheckoutContact ToContact(this UpdateContactRequest request)
         => new()
         {
             EmailAddress = request.EmailAddress
         };
     
-    public static CheckoutBilling ToBilling(this CheckoutBillingRequest request)
+    public static CheckoutBilling ToBilling(this UpdateBillingRequest request)
         => new()
         {
             Address = request.Address?.ToPostalAddress(),

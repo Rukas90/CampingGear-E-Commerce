@@ -20,4 +20,6 @@ public interface ICartItemRepository
     Task DeleteBySessionAndCodeAsync(Id<ShoppingSession> sessionId, string code, CancellationToken ct);
 
     Task<int> CountBySessionAsync(Id<ShoppingSession> sessionId, CancellationToken ct);
+    
+    Task<decimal> CalculateSubtotalBySessionAsync(Id<ShoppingSession> sessionId, CancellationToken ct);
 }

@@ -242,10 +242,15 @@ namespace TrailStore.Infrastructure.Migrations
                     b.Property<bool>("ShippingAddressAsBillingAddress")
                         .HasColumnType("boolean");
 
+                    b.Property<Guid?>("ShippingMethodId")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ShippingMethodId");
 
                     b.ToTable("CheckoutSessions");
                 });
@@ -671,6 +676,57 @@ namespace TrailStore.Infrastructure.Migrations
                     b.ToTable("ReviewVotes");
                 });
 
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.ShippingMethod", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("FlatFee")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("FreeShippingThreshold")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("ZoneId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ZoneId");
+
+                    b.ToTable("ShippingMethods");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.ShippingZone", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.PrimitiveCollection<string[]>("CountryCodes")
+                        .IsRequired()
+                        .HasColumnType("text[]");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShippingZones");
+                });
+
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.ShoppingSession", b =>
                 {
                     b.Property<Guid>("Id")
@@ -780,6 +836,11 @@ namespace TrailStore.Infrastructure.Migrations
 
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.CheckoutSession", b =>
                 {
+                    b.HasOne("TrailStore.Domain.Shared.Models.ShippingMethod", "ShippingMethod")
+                        .WithMany()
+                        .HasForeignKey("ShippingMethodId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.OwnsOne("TrailStore.Domain.Shared.Models.PostalAddress", "BillingAddress", b1 =>
                         {
                             b1.Property<Guid>("CheckoutSessionId")
@@ -901,6 +962,8 @@ namespace TrailStore.Infrastructure.Migrations
                     b.Navigation("BillingAddress");
 
                     b.Navigation("ShippingAddress");
+
+                    b.Navigation("ShippingMethod");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Discount", b =>
@@ -919,7 +982,7 @@ namespace TrailStore.Infrastructure.Migrations
                     b.HasOne("TrailStore.Domain.Shared.Models.OptionGroup", "OptionGroup")
                         .WithMany("Options")
                         .HasForeignKey("OptionGroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("OptionGroup");
@@ -1172,6 +1235,17 @@ namespace TrailStore.Infrastructure.Migrations
                     b.Navigation("Review");
                 });
 
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.ShippingMethod", b =>
+                {
+                    b.HasOne("TrailStore.Domain.Shared.Models.ShippingZone", "Zone")
+                        .WithMany("Methods")
+                        .HasForeignKey("ZoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Zone");
+                });
+
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.ShoppingSession", b =>
                 {
                     b.HasOne("TrailStore.Domain.Shared.Models.Customer", "Customer")
@@ -1245,6 +1319,11 @@ namespace TrailStore.Infrastructure.Migrations
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.Review", b =>
                 {
                     b.Navigation("Votes");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.ShippingZone", b =>
+                {
+                    b.Navigation("Methods");
                 });
 
             modelBuilder.Entity("TrailStore.Domain.Shared.Models.ShoppingSession", b =>

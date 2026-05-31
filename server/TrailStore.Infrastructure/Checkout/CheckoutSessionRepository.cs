@@ -9,14 +9,11 @@ namespace TrailStore.Infrastructure.Checkout;
 [AppService<ICheckoutSessionRepository>]
 public class CheckoutSessionRepository(AppDbContext context) : ICheckoutSessionRepository
 {
-    public async Task<CheckoutSession?> FindByIdAsync(Id<CheckoutSession> id, CancellationToken ct)
-    {
-        return await context.CheckoutSessions.FirstOrDefaultAsync(session => session.Id == id, ct);
-    }
-    
     public async Task<CheckoutSession?> FindByShoppingSessionIdAsync(Id<ShoppingSession> id, CancellationToken ct)
     {
-        return await context.CheckoutSessions.FirstOrDefaultAsync(session => session.SessionId == id, ct);
+        return await context.CheckoutSessions
+            .Include(session => session.ShippingMethod)
+            .FirstOrDefaultAsync(session => session.SessionId == id, ct);
     }
 
     public async Task DeleteAsync(Id<CheckoutSession> id, CancellationToken ct)

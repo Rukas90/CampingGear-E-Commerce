@@ -5,7 +5,7 @@ using TrailStore.Api.Common.Extensions;
 
 namespace TrailStore.Api.Checkout.Validators;
 
-public class CheckoutBillingRequestValidator : Validator<CheckoutBillingRequest>
+public class CheckoutBillingRequestValidator : Validator<UpdateBillingRequest>
 {
     public CheckoutBillingRequestValidator()
     {

@@ -1,6 +1,7 @@
 import { IconArrow, IconFlag } from "@components"
 import { useCountries } from "@features"
 import type { Country } from "@types"
+import clsx from "clsx"
 import {
   Select,
   SelectValue,
@@ -13,15 +14,18 @@ import {
 
 interface CountrySelectionProps {
   selectedCode?: string
+  error?: string
   onChange?: (country: Country) => void
   disabled?: boolean
 }
 const CountrySelection = ({
   selectedCode,
+  error,
   onChange,
   disabled,
 }: CountrySelectionProps) => {
   const { data, findByCode } = useCountries()
+  const hasError = !!error
 
   return (
     <Select
@@ -35,7 +39,11 @@ const CountrySelection = ({
       isDisabled={disabled}
     >
       <Button
-        className="group relative flex flex-col items-start px-3 py-2 w-full rounded-lg border border-neutral-300"
+        className={clsx(
+          "group relative flex flex-col items-start px-3 py-2 w-full rounded-lg border",
+          hasError && "outline-2 outline-red-700 border-transparent",
+          !hasError && "border-neutral-300",
+        )}
         isDisabled={disabled}
       >
         <Label className="text-xs text-neutral-500 group-disabled:text-neutral-400">
@@ -62,6 +70,7 @@ const CountrySelection = ({
           ))}
         </ListBox>
       </Popover>
+      {hasError && <p className="text-red-800 text-xs mt-2">{error}</p>}
     </Select>
   )
 }

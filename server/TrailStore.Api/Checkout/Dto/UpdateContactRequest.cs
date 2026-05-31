@@ -1,6 +1,6 @@
 ﻿namespace TrailStore.Api.Checkout.Dto;
 
-public class CheckoutContactRequest
+public class UpdateContactRequest
 {
     public string? EmailAddress { get; set; }
 }

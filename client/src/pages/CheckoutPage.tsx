@@ -24,7 +24,7 @@ const CheckoutPage = () => {
     <div className="flex flex-col w-full min-h-dvh">
       <TopNav className="relative" />
       <Line className="bg-neutral-200" />
-      <div className="flex lg:flex-row flex-col flex-1">
+      <div className="flex lg:flex-row flex-col-reverse flex-1">
         <div className="relative flex flex-col flex-1 basis-[54%] bg-white">
           <CheckoutForm />
           <Line vertical className="absolute top-0 right-0 text-neutral-200" />

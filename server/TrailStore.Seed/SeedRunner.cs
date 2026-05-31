@@ -40,6 +40,8 @@ public static class SeedRunner
         await context.Products.AddRangeAsync(Discover<Product>(assembly));
         await context.ProductImages.AddRangeAsync(Discover<ProductImage>(assembly));
         await context.Skus.AddRangeAsync(Discover<Sku>(assembly));
+        await context.ShippingZones.AddRangeAsync(Discover<ShippingZone>(assembly));
+        await context.ShippingMethods.AddRangeAsync(Discover<ShippingMethod>(assembly));
         await context.Orders.AddRangeAsync(Discover<Order>(assembly));
         await context.Reviews.AddRangeAsync(Discover<Review>(assembly));
 
@@ -52,6 +54,8 @@ public static class SeedRunner
     {
         context.ReviewVotes.RemoveRange(context.ReviewVotes);
         context.Reviews.RemoveRange(context.Reviews);
+        context.ShippingMethods.RemoveRange(context.ShippingMethods);
+        context.ShippingZones.RemoveRange(context.ShippingZones);
         context.Orders.RemoveRange(context.Orders.Where(order =>
             context.Customers.Any(customer =>
                 customer.PasswordHash == SeedDefaults.NO_LOGIN_HASH && customer.Email == order.EmailAddress)));

@@ -1,24 +1,50 @@
-import { useData } from "@features"
+import { useCheckoutStats, useCountryShippingMethods, useData } from "@features"
 import useCheckoutForm from "./useCheckoutForm"
-import type { PostalAddress } from "@types"
+import type { CheckoutShipping, PostalAddress, ShippingMethodId } from "@types"
 import { DEFAULT_ADDRESS } from "@lib"
 import checkoutApi from "../api/checkoutApi"
 
 const useCheckoutShipping = () => {
   const { form, isPending } = useCheckoutForm()
+  const { invalidate } = useCheckoutStats()
 
-  const data = useData<PostalAddress>({
-    data: form?.shippingAddress,
+  const address = useData<PostalAddress, CheckoutShipping>({
+    data: form?.shipping.address,
     defaultData: DEFAULT_ADDRESS,
-    mutationKey: ["checkout-shipping"],
-    requestFunc: checkoutApi.updateShipping,
+    mutationKey: ["checkout-shipping-address"],
+    requestFunc: checkoutApi.updateShippingAddress,
+    onMutationSuccess: (checkoutShipping) => {
+      if (checkoutShipping) {
+        method.overrideData(checkoutShipping.selectedMethodId)
+        invalidate()
+      }
+    },
+  })
+
+  const countryCode =
+    address.cachedResponse?.address?.countryCode ??
+    form?.shipping?.address?.countryCode
+
+  const { availableMethods } = useCountryShippingMethods(countryCode, {
+    enabled: !!countryCode,
+  })
+
+  const method = useData<ShippingMethodId | undefined>({
+    data: form?.shipping.selectedMethodId,
+    defaultData: undefined,
+    mutationKey: ["checkout-shipping-method"],
+    requestFunc: checkoutApi.updateShippingMethod,
+    onMutationSuccess: () => {
+      invalidate()
+    },
   })
 
   return {
-    data,
+    address,
+    availableMethods,
+    method,
     isPending,
-    isMutating: data.isMutating,
-    isBusy: isPending || data.isMutating,
+    isBusy: isPending || address.isMutating || method.isMutating,
   }
 }
 export default useCheckoutShipping

@@ -18,13 +18,36 @@ public class CheckoutSessionService(
     public async Task<Result<CheckoutSession>> 
         GetCreateCheckoutSession(ShoppingContext ctx, CancellationToken ct)
     {
+        var result = await FindCheckoutSession(ctx, ct);
+        
+        if (!result.IsSuccess)
+        {
+            return result.Problem;
+        }
+        
+        var (checkoutSession, shoppingSession) = result.Value;
+
+        if (checkoutSession is not null)
+        {
+            return checkoutSession;
+        }
+        
+        var newCheckoutSession = await checkoutSessionRepository.CreateAsync(
+            CheckoutSession.Create(shoppingSession.Id), ct);
+
+        return newCheckoutSession;
+    }
+
+    public async Task<Result<(CheckoutSession? checkoutSession, ShoppingSession shoppingSession)>> 
+        FindCheckoutSession(ShoppingContext ctx, CancellationToken ct)
+    {
         var shoppingSessionResult = await shoppingSessionService.FindSession(ctx, ct);
 
         if (!shoppingSessionResult.IsSuccess)
         {
             return CheckoutProblems.NoSession;
         }
-
+        
         var shoppingSession = shoppingSessionResult.Value;
         
         var cartCount = await cartItemRepository.CountBySessionAsync(shoppingSession.Id, ct);
@@ -38,12 +61,9 @@ public class CheckoutSessionService(
 
         if (checkoutSession is not null)
         {
-            return checkoutSession;
+            return (checkoutSession, shoppingSession);
         }
-
-        var newCheckoutSession = await checkoutSessionRepository.CreateAsync(
-            CheckoutSession.Create(shoppingSession.Id), ct);
-
-        return newCheckoutSession;
+        
+        return (null, shoppingSession);
     }
 }

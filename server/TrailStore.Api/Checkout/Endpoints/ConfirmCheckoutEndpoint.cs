@@ -1,8 +1,9 @@
 ﻿using FastEndpoints;
+using TrailStore.Api.Checkout.Dto;
 
 namespace TrailStore.Api.Checkout.Endpoints;
 
-public class ConfirmCheckoutEndpoint : EndpointWithoutRequest
+public class ConfirmCheckoutEndpoint : EndpointWithoutRequest<CheckoutConfirmDto>
 {
     public override void Configure()
     {

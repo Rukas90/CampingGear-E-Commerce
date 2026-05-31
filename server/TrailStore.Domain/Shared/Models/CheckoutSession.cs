@@ -15,7 +15,11 @@ public class CheckoutSession : IModel<CheckoutSession>
     public PostalAddress? BillingAddress { get; set; }
     public required bool ShippingAddressAsBillingAddress { get; set; }
     
+    public Id<ShippingMethod>? ShippingMethodId { get; set; }
+    
     public required DateTime CreatedAt { get; init; }
+
+    public ShippingMethod? ShippingMethod { get; private set; } = null;
     
     public static CheckoutSession Create(Id<ShoppingSession> sessionId)
         => new()

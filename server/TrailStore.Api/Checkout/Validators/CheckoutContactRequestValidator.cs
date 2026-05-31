@@ -4,7 +4,7 @@ using TrailStore.Api.Checkout.Dto;
 
 namespace TrailStore.Api.Checkout.Validators;
 
-public class CheckoutContactRequestValidator : Validator<CheckoutContactRequest>
+public class CheckoutContactRequestValidator : Validator<UpdateContactRequest>
 {
     public CheckoutContactRequestValidator()
     {

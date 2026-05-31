@@ -24,8 +24,13 @@ public class CheckoutSessionConfiguration : IEntityTypeConfiguration<CheckoutSes
             .IsRequired()
             .HasDefaultValueSql("NOW()");
         
-        builder.OwnsOne(order => order.ShippingAddress, PostalAddressConfigBuilder.ConfigureAddress);
+        builder.OwnsOne(session => session.ShippingAddress, PostalAddressConfigBuilder.ConfigureAddress);
         
-        builder.OwnsOne(order => order.BillingAddress, PostalAddressConfigBuilder.ConfigureAddress);
+        builder.OwnsOne(session => session.BillingAddress, PostalAddressConfigBuilder.ConfigureAddress);
+        
+        builder.HasOne(session => session.ShippingMethod)
+            .WithMany()
+            .HasForeignKey(session => session.ShippingMethodId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

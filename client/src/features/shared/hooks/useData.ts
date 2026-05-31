@@ -33,6 +33,7 @@ export interface UseDataProps<TData, TResponse> {
   defaultData: TData
   mutationKey: string[]
   requestFunc: (data: TData) => Promise<ApiResult<TResponse>>
+  onMutationSuccess?: (response: TResponse | undefined) => void
 }
 
 export const useData = <TData, TResponse = unknown>({
@@ -40,9 +41,11 @@ export const useData = <TData, TResponse = unknown>({
   defaultData,
   mutationKey,
   requestFunc,
+  onMutationSuccess,
 }: UseDataProps<TData, TResponse>) => {
   const [internalData, setInternalData] = useState<TData>(data ?? defaultData)
   const [isEditing, setEditing] = useState(false)
+  const [cachedResponse, setCachedResponse] = useState<TResponse | undefined>()
 
   const snapshot = useRef<TData>(undefined)
 
@@ -54,18 +57,24 @@ export const useData = <TData, TResponse = unknown>({
   >({
     mutationKey,
     requestFunc,
-    onSuccess: () => {
+    onSuccess: (response) => {
       formState.reset()
       setEditing(false)
+      onMutationSuccess?.(response)
+      setCachedResponse(response)
     },
   })
 
   useEffect(() => {
     if (data) {
-      setInternalData(data)
-      formState.reset()
+      overrideData(data)
     }
   }, [data])
+
+  const overrideData = (data: TData) => {
+    setInternalData(data)
+    formState.reset()
+  }
 
   const commit = () => {
     if (!formState.isAnyDirty()) {
@@ -145,6 +154,19 @@ export const useData = <TData, TResponse = unknown>({
     } satisfies ValueInterface<TData[TField]>
   }
 
+  const self = (): ValueInterface<TData> => ({
+    value: () => internalData,
+    update: (val: TData) => {
+      formState.markRootDirty("self" as keyof TData, val)
+      setInternalData(val)
+    },
+    error: () => errors.getError("self" as keyof TData),
+    hasError: () => !!errors.getError("self" as keyof TData),
+    isTouched: () => formState.isTouched("self"),
+    isDirty: () => formState.isDirty("self"),
+    commit,
+  })
+
   const edit = () => {
     snapshot.current = internalData
     setEditing(true)
@@ -169,7 +191,10 @@ export const useData = <TData, TResponse = unknown>({
 
   return {
     data: internalData,
+    overrideData,
+    cachedResponse,
     value,
+    self,
     field,
     asField,
     isMutating: isPending,

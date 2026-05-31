@@ -5,7 +5,7 @@ import { useFormErrors } from "./useFormErrors"
 interface UseManagedMutationProps<TData, TResponse> {
   mutationKey: string[]
   requestFunc: (data: TData) => Promise<ApiResult<TResponse>>
-  onSuccess?: (snapshot: TData) => void
+  onSuccess?: (response: TResponse | undefined) => void
   onError?: () => void
 }
 
@@ -27,9 +27,9 @@ export const useManagedMutation = <TData, TResponse = unknown>({
       errors.setFromProblemDetails(problemDetails.errors)
       onError?.()
     },
-    onSuccess: (_, snapshot) => {
+    onSuccess: (response) => {
       errors.clear()
-      onSuccess?.(snapshot)
+      onSuccess?.(response)
     },
   })
 

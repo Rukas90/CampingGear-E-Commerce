@@ -23,10 +23,5 @@ public class OptionGroupConfiguration : IEntityTypeConfiguration<OptionGroup>
 
         builder.Property(group => group.SortOrder)
             .IsRequired();
-
-        builder.HasMany(group => group.Options)
-            .WithOne(option => option.OptionGroup)
-            .HasForeignKey(option => option.OptionGroupId)
-            .OnDelete(DeleteBehavior.Restrict);
     }
 }

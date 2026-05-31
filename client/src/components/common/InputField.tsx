@@ -37,7 +37,7 @@ const InputField = ({
   const hasError = indicateError || !!error
 
   return (
-    <div>
+    <div className="w-full">
       <div className="relative flex w-full">
         <div
           className={twMerge(

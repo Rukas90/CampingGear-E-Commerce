@@ -7,19 +7,19 @@ using TrailStore.Domain.Checkout.Interfaces;
 
 namespace TrailStore.Api.Checkout.Endpoints;
 
-public class CheckoutUpdateBillingEndpoint(ICheckoutService checkoutService) 
-    : Endpoint<CheckoutBillingRequest, string>
+public class UpdateContactEndpoint(ICheckoutService checkoutService)
+    : Endpoint<UpdateContactRequest, string>
 {
     public override void Configure()
     {
-        Patch("/api/v1/checkout/billing");
+        Patch("/api/v1/checkout/contact");
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(CheckoutBillingRequest req, CancellationToken ct)
+    public override async Task HandleAsync(UpdateContactRequest req, CancellationToken ct)
     {
-        var result = await checkoutService.UpdateCheckoutBilling(
-            HttpContext.GetShoppingContext(User), req.ToBilling(), ct);
+        var result = await checkoutService.UpdateCheckoutContact(
+            HttpContext.GetShoppingContext(User), req.ToContact(), ct);
 
         if (!result.IsSuccess)
         {

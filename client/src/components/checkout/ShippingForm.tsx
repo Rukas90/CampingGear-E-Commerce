@@ -2,30 +2,55 @@ import { AddressForm } from "@components"
 import { useCheckoutShipping } from "@features"
 import FormHeader from "./FormHeader"
 import FormEditNav from "./FormEditNav"
+import ShippingMethodSelection from "./ShippingMethodSelection"
 
 const ShippingForm = () => {
-  const { data, isBusy } = useCheckoutShipping()
+  const { address, method, availableMethods, isBusy } = useCheckoutShipping()
 
   return (
     <div>
       <FormHeader
         isLoading={isBusy}
-        onEdit={data.edit}
-        isEditing={data.isEditing}
+        onEdit={address.edit}
+        isEditing={address.isEditing}
       >
-        Shipping address
+        Delivery
       </FormHeader>
       <AddressForm
-        field={data.asField()}
-        disabled={!data.isEditing || isBusy}
+        field={address.asField()}
+        disabled={!address.isEditing || isBusy}
       />
       <FormEditNav
         isBusy={isBusy}
-        isEditing={data.isEditing}
-        isDirty={data.isDirty()}
-        onCancel={data.cancel}
-        onCommit={data.commit}
+        isEditing={address.isEditing}
+        isDirty={address.isDirty()}
+        onCancel={address.cancel}
+        onCommit={address.commit}
       />
+      <div className="mt-6">
+        <FormHeader
+          isLoading={isBusy}
+          onEdit={method.edit}
+          isEditing={method.isEditing}
+          className="text-base font-semibold"
+        >
+          Shipping method
+        </FormHeader>
+        <ShippingMethodSelection
+          selectedId={method.data}
+          methods={availableMethods}
+          onSelected={(methodId) => method.self().update(methodId)}
+          disabled={isBusy}
+          isEditing={method.isEditing}
+        />
+        <FormEditNav
+          isBusy={isBusy}
+          isEditing={method.isEditing}
+          isDirty={method.isDirty()}
+          onCancel={method.cancel}
+          onCommit={method.commit}
+        />
+      </div>
     </div>
   )
 }

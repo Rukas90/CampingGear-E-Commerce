@@ -63,4 +63,11 @@ public class CartItemRepository(AppDbContext context) : ICartItemRepository
             .Where(item => item.SessionId == sessionId)
             .SumAsync(item => item.Quantity, ct);
     }
+
+    public async Task<decimal> CalculateSubtotalBySessionAsync(Id<ShoppingSession> sessionId, CancellationToken ct)
+    {
+        return await context.CartItems
+            .Where(item => item.SessionId == sessionId)
+            .SumAsync(item => item.Sku.UnitPrice * item.Quantity, ct);
+    }
 }

@@ -1,23 +1,26 @@
 ﻿using TrailStore.Api.Checkout.Dto;
 using TrailStore.Api.Common.Mapping;
 using TrailStore.Domain.Checkout.Models;
-using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Api.Checkout.Mapping;
 
 public static class CheckoutMapping
 {
-    public static CheckoutDto ToDto(this CheckoutSession session)
+    public static CheckoutStatsDto ToDto(this CheckoutStats stats)
         => new()
         {
-            Status = session.Status
+            Status = stats.Status,
+            Subtotal = stats.Subtotal,
+            Tax = stats.Tax,
+            Total = stats.Total,
+            ShippingCost = stats.ShippingCost
         };
 
     public static CheckoutFormDto ToDto(this CheckoutForm form)
         => new()
         {
             Contact = form.Contact.ToDto(),
-            ShippingAddress = form.ShippingAddress?.ToDto(),
+            Shipping = form.Shipping.ToDto(),
             Billing = form.Billing.ToDto()
         };
 
@@ -25,6 +28,13 @@ public static class CheckoutMapping
         => new()
         {
             EmailAddress = contact.EmailAddress
+        };
+
+    public static CheckoutShippingDto ToDto(this CheckoutShipping shipping)
+        => new()
+        {
+            Address = shipping.Address?.ToDto(),
+            SelectedMethodId = shipping.SelectedMethodId
         };
     
     public static CheckoutBillingDto ToDto(this CheckoutBilling billing)

@@ -37,6 +37,7 @@ const AddressForm = <T extends React.ElementType = "div">({
     <Component className={twMerge(className, "flex flex-col gap-4")}>
       <CountrySelection
         selectedCode={countryCode}
+        error={field.error("countryCode")}
         onChange={(c) => field.update("countryCode", c.code)}
         disabled={disabled}
       />
@@ -86,7 +87,7 @@ const AddressForm = <T extends React.ElementType = "div">({
         onChange={(e) => field.update("apartmentSuite", e.currentTarget.value)}
         disabled={disabled}
       />
-      <RowContainer className="gap-4">
+      <RowContainer className="gap-4 w-full">
         <InputField
           placeholder="City"
           persistentLabel
@@ -106,7 +107,7 @@ const AddressForm = <T extends React.ElementType = "div">({
             disabled={disabled}
           />
         )}
-        {country?.postalCode !== PostalCodeRequirement.None && (
+        {country && country.postalCode !== PostalCodeRequirement.None && (
           <InputField
             key={country?.postalCodeLabel ?? ""}
             placeholder={country?.postalCodeLabel}
