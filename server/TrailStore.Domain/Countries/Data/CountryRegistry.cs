@@ -22,13 +22,8 @@ public static class CountryRegistry
         var json = File.ReadAllText(
             Path.Combine(basePath, "Countries/Data", "Countries.json"));
         
-        var list = JsonSerializer.Deserialize<List<Country>>(json, JsonSerializerOptions) ?? [];
-        Countries = new Dictionary<string, Country>(StringComparer.OrdinalIgnoreCase);
-
-        foreach (var country in list)
-        {
-            Countries[country.Code] = country;
-        }
+        Countries = JsonSerializer.Deserialize<Dictionary<string, Country>>(
+            json, JsonSerializerOptions) ?? [];
     }
     
     public static Country? For(string countryCode)

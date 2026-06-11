@@ -37,7 +37,7 @@ public static class AddressValidator
 
         if (country is null)
         {
-            state.FailedWith(ValidationFailure.New(nameof(address.CountryCode), "Unsupported country."));
+            state.FailedWith(ValidationFailure.New(nameof(address.CountryCode), "Please select a valid country."));
         }
         else
         {

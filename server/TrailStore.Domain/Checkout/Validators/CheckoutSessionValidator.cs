@@ -71,11 +71,6 @@ public static class CheckoutSessionValidator
         });
         
         AddressValidator.Validate(session.ShippingAddress, state);
-        
-        if (state.IsValid && CountryRegistry.For(session.ShippingAddress!.CountryCode) is null)
-        {
-            state.FailedWith(ValidationFailure.New("countryCode", "Please select a valid country."));
-        }
 
         return state;
     }

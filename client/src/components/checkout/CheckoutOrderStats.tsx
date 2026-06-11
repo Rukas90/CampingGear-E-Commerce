@@ -29,7 +29,7 @@ const CheckoutOrderStats = () => {
       <p className="flex justify-between text-xm">
         <span>Shipping</span>
         <span className="text-neutral-600">
-          {!!stats.shippingCost
+          {!!stats.shippingCost || stats.shippingCost === 0
             ? formatPrice(stats.shippingCost)
             : "Enter shipping address"}
         </span>
