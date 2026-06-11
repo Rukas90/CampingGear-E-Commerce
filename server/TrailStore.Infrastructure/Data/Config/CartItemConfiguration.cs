@@ -13,7 +13,7 @@ public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
         builder.Property(i => i.Quantity)
             .IsRequired();
 
-        builder.Property(i => i.AddedAt)
+        builder.Property(i => i.CreatedAt)
             .HasDefaultValueSql("NOW()")
             .IsRequired();
 

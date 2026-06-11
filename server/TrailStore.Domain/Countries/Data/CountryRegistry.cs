@@ -20,7 +20,7 @@ public static class CountryRegistry
         var basePath = Path.GetDirectoryName(DomainAssembly.Reference.Location)!;
 
         var json = File.ReadAllText(
-            Path.Combine(basePath, "Data", "Countries.json"));
+            Path.Combine(basePath, "Countries/Data", "Countries.json"));
         
         var list = JsonSerializer.Deserialize<List<Country>>(json, JsonSerializerOptions) ?? [];
         Countries = new Dictionary<string, Country>(StringComparer.OrdinalIgnoreCase);

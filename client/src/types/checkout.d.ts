@@ -32,7 +32,7 @@ export type CheckoutBilling = {
 export type CheckoutStats = {
   status: CheckoutStatus
   subtotal: number
-  total: number
+  total?: number
   tax?: number
   shippingCost?: number
 }

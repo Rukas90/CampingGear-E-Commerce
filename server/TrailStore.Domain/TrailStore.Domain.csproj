@@ -11,9 +11,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="Data\countries.json">
+        <Content Include="Countries/Data/Countries.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
+        </Content>
     </ItemGroup>
     
     <ItemGroup>

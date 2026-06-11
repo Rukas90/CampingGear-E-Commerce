@@ -1,37 +1,33 @@
-﻿using TrailStore.Shared.Common;
+﻿using TrailStore.Domain.Shared.Interfaces;
+using TrailStore.Shared.Common;
 
 namespace TrailStore.Domain.Shared.Models;
 
-public class ShoppingSession : IModel<ShoppingSession>
+public class ShoppingSession : IModel<ShoppingSession>, IEntityCreatable, IEntityExpirable
 {
     public required Id<ShoppingSession> Id { get; init; }
     
     public Id<Customer>? CustomerId { get; init; }
     
-    public DateTime CreatedAt { get; init; }
-    
-    public DateTime? ExpiresAt { get; set; }
-    
     public Customer Customer { get; private set; } = null!;
+    
+    public DateTime CreatedAt { get; set; }
+    public DateTime? ExpiresAt { get; set; }
 
     public ICollection<CartItem> CartItems { get; private set; } = null!;
-    
+
     public static ShoppingSession Create(Id<Customer>? customerId, TimeSpan expireTime)
         => new()
         {
             Id = Id<ShoppingSession>.New(),
-            CreatedAt = DateTime.UtcNow,
-            ExpiresAt = customerId != null ? null : DateTime.UtcNow.Add(expireTime),
+            ExpiresAt = customerId == null ? DateTime.UtcNow.Add(expireTime) : null,
             CustomerId = customerId,
         };
-
-    public void Extend(TimeSpan expireTime)
+    
+    public void Extend(TimeSpan duration)
     {
-        if (CustomerId is not null)
-        {
-            return;
-        }
+        if (CustomerId != null) return;
         
-        ExpiresAt = DateTime.UtcNow.Add(expireTime);
+        ExpiresAt = DateTime.UtcNow.Add(duration);
     }
 }

@@ -29,7 +29,7 @@ const CheckoutOrderStats = () => {
       <p className="flex justify-between text-xm">
         <span>Shipping</span>
         <span className="text-neutral-600">
-          {stats.shippingCost !== undefined
+          {!!stats.shippingCost
             ? formatPrice(stats.shippingCost)
             : "Enter shipping address"}
         </span>
@@ -40,7 +40,9 @@ const CheckoutOrderStats = () => {
           <span className="text-xm font-light text-neutral-600 mr-0.5 tracking-normal">
             EUR
           </span>{" "}
-          {formatPrice(stats.total)}
+          {!!stats.total
+            ? formatPrice(stats.total)
+            : formatPrice(stats.subtotal)}
         </span>
       </p>
     </div>

@@ -1,5 +1,4 @@
 ﻿using TrailStore.Domain.Countries.Enums;
-using TrailStore.Domain.Shared.Financials;
 
 namespace TrailStore.Domain.Countries.Models;
 
@@ -16,6 +15,4 @@ public class Country
 
     public required string PhoneCode { get; init; }
     public decimal TaxRate { get; init; } = 0m;
-    
-    public required Currency Currency { get; init; }
 }

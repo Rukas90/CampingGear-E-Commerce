@@ -1,9 +1,10 @@
 ﻿using TrailStore.Domain.Payments.Enums;
+using TrailStore.Domain.Shared.Interfaces;
 using TrailStore.Shared.Common;
 
 namespace TrailStore.Domain.Shared.Models;
 
-public class Payment : IModel<Payment>
+public class Payment : IModel<Payment>, IEntityCreatable
 {
     public required Id<Payment> Id { get; init; }
     public required Id<Order> OrderId { get; init; }
@@ -11,11 +12,12 @@ public class Payment : IModel<Payment>
     public required decimal Amount { get; init; }
     public required string CurrencyCode { get; init; }
     public required PaymentStatus Status { get; init; }
-    public required DateTime CreatedAt { get; init; }
     public required DateTime UpdatedStatusAt { get; init; }
 
     public Order Order { get; private set; } = null!;
 
+    public DateTime CreatedAt { get; set; }
+    
     public static Payment Create(Id<Order> orderId, string intentId, decimal amount)
         => new()
         {

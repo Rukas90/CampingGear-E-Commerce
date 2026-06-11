@@ -18,9 +18,9 @@ public class CheckoutSession : IModel<CheckoutSession>, IEntityCreatable, IEntit
     
     public Id<ShippingMethod>? ShippingMethodId { get; set; }
     
-    public required DateTime CreatedAt { get; set; }
-    public required DateTime UpdatedAt { get; set; }
-    public required DateTime ExpiresAt { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+    public DateTime? ExpiresAt { get; set; }
 
     public ShippingMethod? ShippingMethod { get; private set; } = null;
     
@@ -30,9 +30,7 @@ public class CheckoutSession : IModel<CheckoutSession>, IEntityCreatable, IEntit
             Id = Id<CheckoutSession>.New(),
             SessionId = sessionId,
             Status = CheckoutStatus.Form,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow,
-            ExpiresAt = DateTime.Today.Add(expireTime),
+            ExpiresAt = DateTime.UtcNow.Add(expireTime),
             ShippingAddressAsBillingAddress = true
         };
     

@@ -107,7 +107,7 @@ public class OrderService(
             sku.Reserve(reserveAmount);
             
             stockReservationRepository.Add(
-                StockReservation.Create(skuId, reserveAmount, orderId.ToString(), DateTime.UtcNow.AddMinutes(15)));
+                StockReservation.Create(skuId, reserveAmount, orderId.ToString(), TimeSpan.FromMinutes(15)));
         }
     }
 

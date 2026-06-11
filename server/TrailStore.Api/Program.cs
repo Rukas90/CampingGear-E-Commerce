@@ -7,6 +7,7 @@ using TrailStore.Api;
 using TrailStore.Api.Auth.Extensions;
 using TrailStore.Api.Auth.Middleware;
 using TrailStore.Api.Common.Converters;
+using TrailStore.Api.Common.Middlewares;
 using TrailStore.Infrastructure;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Infrastructure.Extensions;
@@ -53,6 +54,9 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddResponseCompression(options => { options.EnableForHttps = true; });
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
 if (args.Contains("seed"))
@@ -68,12 +72,7 @@ if (args.Contains("seed"))
     return;
 }
 
-/*using (var scope = app.Services.CreateScope())
-{
-    var orderRepository = scope.ServiceProvider.GetRequiredService<IOrderRepository>();
-    await orderRepository.DeleteExpiredAsync(CancellationToken.None);
-}*/
-
+app.UseExceptionHandler();
 app.UseCors("AllowClient");
 app.UseHttpsRedirection();
 app.UseResponseCompression();

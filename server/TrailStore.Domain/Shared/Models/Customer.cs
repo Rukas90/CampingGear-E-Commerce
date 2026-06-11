@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TrailStore.Domain.Shared.Interfaces;
 using TrailStore.Shared.Common;
 
 namespace TrailStore.Domain.Shared.Models;
@@ -9,7 +10,7 @@ public enum Privileges
     Admin
 }
 
-public class Customer : IModel<Customer>
+public class Customer : IModel<Customer>, IEntityCreatable
 {
     public required Id<Customer> Id { get; init; }
     public string? FirstName { get; init; }
@@ -20,6 +21,8 @@ public class Customer : IModel<Customer>
 
     public required string PasswordHash { get; init; }
     public Privileges Privileges { get; init; } = Privileges.User;
+
+    public DateTime CreatedAt { get; set; }
 
     public ICollection<Review> Reviews { get; private set; } = [];
     public ICollection<Address> Addresses { get; private set; } = [];
