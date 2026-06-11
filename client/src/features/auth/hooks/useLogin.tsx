@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
 import type { LoginData } from "../schemas"
 import { authApi } from "../api"
-import { handleQueryFn } from "@lib"
+import { HandleReqFn } from "@lib"
 import type { CustomerAccount, ProblemDetails } from "@types"
 import useAccount from "./useAccount"
 
@@ -11,7 +11,7 @@ const useLogin = () => {
   const { setAccount } = useAccount()
 
   return useMutation<CustomerAccount, ProblemDetails, LoginData>({
-    mutationFn: (data: LoginData) => handleQueryFn(() => authApi.login(data)),
+    mutationFn: (data: LoginData) => HandleReqFn(() => authApi.login(data)),
     onSuccess: (account) => {
       setAccount(account)
       navigate("/")

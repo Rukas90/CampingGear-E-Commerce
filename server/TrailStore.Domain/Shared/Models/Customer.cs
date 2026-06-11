@@ -24,4 +24,12 @@ public class Customer : IModel<Customer>
     public ICollection<Review> Reviews { get; private set; } = [];
     public ICollection<Address> Addresses { get; private set; } = [];
     public ICollection<RefreshToken>? RefreshTokens { get; private set; } = [];
+
+    public static Customer Create(string email, string passwordHash)
+        => new()
+        {
+            Id = Id<Customer>.New(),
+            Email = email,
+            PasswordHash = passwordHash,
+        };
 }

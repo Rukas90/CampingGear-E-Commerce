@@ -1,0 +1,84 @@
+import { useErrorPool, useQueryHandler, type ErrorPool } from "@features"
+import { createContext, useContext, useRef } from "react"
+import useCheckoutForm from "../hooks/useCheckoutForm"
+import type { CheckoutForm } from "@types"
+import checkoutApi from "../api/checkoutApi"
+import { useNavigate } from "react-router-dom"
+import useCheckoutConfirm from "../hooks/useCheckoutConfirm"
+
+interface CheckoutContextData {
+  form?: CheckoutForm
+  isPending: boolean
+  errors: ErrorPool
+  registerSection: (name: string, activate: () => void) => void
+  confirm: () => void
+}
+
+const CheckoutContext = createContext<CheckoutContextData | undefined>(
+  undefined,
+)
+
+const CheckoutProvider = ({ children }: React.PropsWithChildren) => {
+  const query = useQueryHandler({
+    key: ["checkout"],
+    func: () => checkoutApi.init(),
+  })
+  const { form, isPending } = useCheckoutForm({
+    enabled: !query.isPending,
+  })
+  const errors = useErrorPool()
+  const navigate = useNavigate()
+
+  const sections = useRef<Map<string, () => void>>(new Map())
+
+  const confirm = useCheckoutConfirm({
+    onError: (problem) => {
+      errors.setErrors(problem.errors)
+      const firstScope = problem.errors[0]?.name.split(".")[0]
+      sections.current.get(firstScope)?.()
+    },
+  })
+
+  const registerSection = (name: string, activate: () => void) => {
+    sections.current.set(name, activate)
+    return () => sections.current.delete(name)
+  }
+
+  const handleConfirm = async () => {
+    if (!confirm.isPending) {
+      await confirm.mutateAsync()
+    }
+  }
+
+  if (isPending) {
+    return
+  }
+  if (!isPending && !query.data) {
+    navigate("/")
+    return
+  }
+
+  return (
+    <CheckoutContext.Provider
+      value={{
+        form,
+        isPending,
+        errors,
+        registerSection,
+        confirm: handleConfirm,
+      }}
+    >
+      {children}
+    </CheckoutContext.Provider>
+  )
+}
+export default CheckoutProvider
+
+export const useCheckoutContext = () => {
+  const context = useContext(CheckoutContext)
+
+  if (!context) {
+    throw new Error("useCheckoutContext must be used within CheckoutProvider.")
+  }
+  return context
+}

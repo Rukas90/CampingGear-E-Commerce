@@ -1,9 +1,13 @@
 ﻿using FastEndpoints;
 using TrailStore.Api.Checkout.Dto;
+using TrailStore.Api.Common.Extensions;
+using TrailStore.Api.Common.Mapping;
+using TrailStore.Domain.Checkout.Interfaces;
 
 namespace TrailStore.Api.Checkout.Endpoints;
 
-public class ConfirmCheckoutEndpoint : EndpointWithoutRequest<CheckoutConfirmDto>
+public class ConfirmCheckoutEndpoint(ICheckoutService checkoutService) 
+    : EndpointWithoutRequest<CheckoutConfirmDto>
 {
     public override void Configure()
     {
@@ -13,6 +17,16 @@ public class ConfirmCheckoutEndpoint : EndpointWithoutRequest<CheckoutConfirmDto
 
     public override async Task HandleAsync(CancellationToken ct)
     {
+        var result = await checkoutService.ConfirmCheckout(HttpContext.GetShoppingContext(User), ct);
+
+        if (!result.IsSuccess)
+        {
+            await this.SendProblemAsync(result.Problem);
+            
+            return;
+        }
+
+        var orderId = result.Value;
         
     }
 }

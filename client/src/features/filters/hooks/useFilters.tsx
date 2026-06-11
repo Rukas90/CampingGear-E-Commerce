@@ -1,4 +1,4 @@
-import { handleQueryFn } from "@lib"
+import { HandleReqFn } from "@lib"
 import { useQuery } from "@tanstack/react-query"
 import type { FiltersQueryRequest } from "@types"
 import filtersApi from "../api/filtersApi"
@@ -12,7 +12,7 @@ const useFilters = (queryData: ParseQueryData<FiltersQueryRequest>) => {
 
   const query = useQuery({
     queryKey: ["catalog-filters", request],
-    queryFn: () => handleQueryFn(() => filtersApi.queryFilters(request)),
+    queryFn: () => HandleReqFn(() => filtersApi.queryFilters(request)),
   })
 
   return { catalogFilters: query.data, ...query }

@@ -11,12 +11,14 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Update="Data\countries.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
+    <ItemGroup>
         <PackageReference Include="libphonenumber-csharp" Version="9.0.31" />
         <PackageReference Include="Stripe.net" Version="51.1.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Orders\Models\" />
     </ItemGroup>
 
 </Project>

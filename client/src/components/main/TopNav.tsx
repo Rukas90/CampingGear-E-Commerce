@@ -2,7 +2,6 @@ import {
   IconAccount,
   IconArrow,
   IconSearch,
-  InputField,
   LogoWithText,
   PageWrapper,
   ProductCategoryListing,
@@ -14,16 +13,23 @@ import { useEffect, useState } from "react"
 import clsx from "clsx"
 import { useCart } from "@features"
 import { twMerge } from "tailwind-merge"
+import type { TopNavVariant } from "@types"
 
-const TopNav = ({
-  className,
-  ...props
-}: Omit<React.ComponentProps<"nav">, "children" | "onMouseLeave">) => {
+interface TopNavProps extends Omit<
+  React.ComponentProps<"nav">,
+  "children" | "onMouseLeave"
+> {
+  variant?: TopNavVariant
+}
+const TopNav = ({ variant = "default", className, ...props }: TopNavProps) => {
   const { openCartPanel } = useCart()
   const [showListing, setShowListing] = useState(false)
   const location = useLocation()
 
   useEffect(() => setShowListing(false), [location.pathname])
+
+  const hasMenuItems = variant === "default"
+  const hasCart = variant !== "functionless"
 
   return (
     <nav
@@ -37,32 +43,34 @@ const TopNav = ({
       <div className="relative">
         <PageWrapper className="z-65 bg-white">
           <div className="flex items-center justify-between w-full">
-            <ul className="flex gap-5 w-1/3 dark:text-stone-200">
-              <li
-                className="font-normal text-sm flex gap-1.5 items-center"
-                onMouseOver={() => setShowListing(true)}
-              >
-                Products <IconArrow className="rotate-90 size-3" />
-              </li>
-              <li className="font-normal text-sm">Help</li>
-              <li className="font-normal text-sm">About</li>
-            </ul>
+            <div className="w-1/3">
+              {hasMenuItems && (
+                <ul className="flex gap-5 dark:text-stone-200">
+                  <li
+                    className="font-normal text-sm flex gap-1.5 items-center"
+                    onMouseOver={() => setShowListing(true)}
+                  >
+                    Products <IconArrow className="rotate-90 size-3" />
+                  </li>
+                  <li className="font-normal text-sm">Help</li>
+                  <li className="font-normal text-sm">About</li>
+                </ul>
+              )}
+            </div>
             <div className="flex items-center justify-center w-1/3">
               <Link to="/">
                 <LogoWithText />
               </Link>
             </div>
             <div className="flex gap-5 items-center justify-end w-1/3">
-              <div className="relative size-5">
-                <IconSearch className="size-full dark:text-stone-100 text-stone-800 z-1 relative " />
-                <InputField
-                  className="rounded-xl absolute right-full translate-x-7.5 top-1/2 -translate-y-1/2"
-                  placeholder="Search ..."
-                />
-              </div>
-              <IconAccount className="size-5 dark:text-stone-100 text-stone-800" />
-              <WishlistBadge />
-              <CartBadge onClicked={openCartPanel} />
+              {hasMenuItems && (
+                <>
+                  <IconSearch className="size-5 dark:text-stone-100 text-stone-800 z-1 relative " />
+                  <IconAccount className="size-5 dark:text-stone-100 text-stone-800" />
+                  <WishlistBadge />
+                </>
+              )}
+              {hasCart && <CartBadge onClicked={openCartPanel} />}
             </div>
           </div>
         </PageWrapper>

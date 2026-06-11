@@ -394,10 +394,6 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("NOW()");
 
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("uuid");
 
@@ -415,6 +411,9 @@ namespace TrailStore.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("NOW()");
+
+                    b.Property<decimal>("TaxAmount")
+                        .HasColumnType("numeric");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("numeric");
@@ -439,9 +438,6 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.Property<Guid>("SkuId")
                         .HasColumnType("uuid");
-
-                    b.Property<decimal>("TaxAmount")
-                        .HasColumnType("numeric");
 
                     b.Property<decimal>("UnitPrice")
                         .HasPrecision(18, 2)
@@ -469,7 +465,7 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("NOW()");
 
-                    b.Property<string>("Currency")
+                    b.Property<string>("CurrencyCode")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -761,6 +757,9 @@ namespace TrailStore.Infrastructure.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Reserved")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Stock")
                         .HasColumnType("integer");
 
@@ -776,6 +775,29 @@ namespace TrailStore.Infrastructure.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Skus");
+                });
+
+            modelBuilder.Entity("TrailStore.Domain.Shared.Models.StockReservation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ReferenceId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("SkuId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StockReservations");
                 });
 
             modelBuilder.Entity("OptionSku", b =>

@@ -45,6 +45,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<ProductImageUrl> ProductImageUrls { get; set; }
 
     public DbSet<Sku> Skus { get; set; }
+    
+    public DbSet<StockReservation> StockReservations { get; set; }
 
     public DbSet<Review> Reviews { get; set; }
     

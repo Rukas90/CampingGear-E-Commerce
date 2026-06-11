@@ -27,4 +27,9 @@ public sealed class ShippingMethodRepository(AppDbContext context) : IShippingMe
             .Where(m => m.Zone.Name == "Worldwide")
             .ToListAsync(ct);
     }
+
+    public Task<ShippingMethod?> FindByIdAsync(Id<ShippingMethod> id, CancellationToken ct)
+    {
+        return context.ShippingMethods.FirstOrDefaultAsync(method => method.Id == id, ct);
+    }
 }

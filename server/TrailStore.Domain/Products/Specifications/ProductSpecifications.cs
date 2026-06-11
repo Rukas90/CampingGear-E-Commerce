@@ -32,12 +32,12 @@ public static class ProductSpecifications
 
     public static Specification<Product> InStock()
     {
-        return Specification<Product>.Where(p => p.Skus.Any(s => s.Stock > 0));
+        return Specification<Product>.Where(p => p.Skus.Any(s => s.Stock - s.Reserved > 0));
     }
 
     public static Specification<Product> OutOfStock()
     {
-        return Specification<Product>.Where(p => p.Skus.All(s => s.Stock <= 0));
+        return Specification<Product>.Where(p => p.Skus.All(s => s.Stock - s.Reserved <= 0));
     }
 
     public static Specification<Product> Options(OptionSelection[] options)

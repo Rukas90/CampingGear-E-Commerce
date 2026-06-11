@@ -1,7 +1,7 @@
 import type { CustomerAccount, ProblemDetails } from "@types"
 import { useCallback, useRef } from "react"
 import { authApi } from "../api"
-import { handleQueryFn } from "@lib"
+import { HandleReqFn } from "@lib"
 import { useMutation } from "@tanstack/react-query"
 import useAccount from "./useAccount"
 
@@ -11,7 +11,7 @@ const useAuthRefresh = () => {
   const refreshPromiseRef = useRef<Promise<CustomerAccount> | null>(null)
 
   const { mutateAsync } = useMutation<CustomerAccount, ProblemDetails>({
-    mutationFn: () => handleQueryFn(() => authApi.refresh()),
+    mutationFn: () => HandleReqFn(() => authApi.refresh()),
     onSuccess: (account) => {
       setAccount(account)
     },

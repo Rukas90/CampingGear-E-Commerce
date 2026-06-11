@@ -6,9 +6,9 @@ namespace TrailStore.Domain.Carts.Interfaces;
 
 public interface ICartItemRepository
 {
-    Task<CartItem> UpdateAsync(CartItem item, CancellationToken ct);
+    void Update(CartItem item);
 
-    Task<CartItem> CreateAsync(CartItem item, CancellationToken ct);
+    CartItem Add(CartItem item);
 
     Task<CartItem?> FindBySessionAndCodeAsync(Id<ShoppingSession> sessionId, string code, CancellationToken ct);
 
@@ -17,6 +17,8 @@ public interface ICartItemRepository
     
     Task DeleteAllBySessionAsync(Id<ShoppingSession> sessionId, CancellationToken ct);
 
+    void Remove(CartItem item);
+    
     Task DeleteBySessionAndCodeAsync(Id<ShoppingSession> sessionId, string code, CancellationToken ct);
 
     Task<int> CountBySessionAsync(Id<ShoppingSession> sessionId, CancellationToken ct);

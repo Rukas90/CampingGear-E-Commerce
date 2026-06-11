@@ -3,6 +3,7 @@ using TrailStore.Domain.Auth.Errors;
 using TrailStore.Domain.Auth.Interfaces;
 using TrailStore.Domain.Auth.Models;
 using TrailStore.Domain.Customers.Interfaces;
+using TrailStore.Domain.Shared.Interfaces;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Shared;
 using TrailStore.Shared.Common;
@@ -18,10 +19,12 @@ public class LoginService(
 {
     public async Task<Result<AuthResult>> Login(LoginCommand command, CancellationToken ct)
     {
-        var customer = await customerRepository.GetByEmailAsync(command.Email, ct);
+        var customer = await customerRepository.FindByEmailAsync(command.Email, ct);
 
         if (customer is null || !passwordHasher.Verify(command.Password, customer.PasswordHash))
+        {
             return AuthProblems.InvalidCredentials;
+        }
 
         return new AuthResult(customer, await CreateAuthTokens(customer, ct));
     }

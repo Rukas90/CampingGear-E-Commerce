@@ -16,7 +16,7 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
         builder.Property(payment => payment.Amount)
             .IsRequired();
         
-        builder.Property(payment => payment.Currency)
+        builder.Property(payment => payment.CurrencyCode)
             .IsRequired();
         
         builder.Property(payment => payment.Status)

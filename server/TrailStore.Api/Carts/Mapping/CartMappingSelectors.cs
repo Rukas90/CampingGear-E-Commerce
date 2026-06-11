@@ -17,7 +17,7 @@ public static class CartMappingSelectors
             ProductName  = item.Sku.Product.Name,
             ProductSlug  = item.Sku.Product.Slug,
             UnitPrice    = item.Sku.UnitPrice,
-            Stock        = item.Sku.Stock,
+            Stock        = item.Sku.Stock - item.Sku.Reserved,
             ThumbnailUrl = item.Sku.Product.ThumbnailUrl ?? "",
             Options      = item.Sku.Options.Select(option => new CartItemOptionDto 
                 { GroupName = option.OptionGroup.Name, ValueName = option.Name}).ToArray()

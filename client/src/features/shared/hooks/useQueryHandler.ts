@@ -1,4 +1,4 @@
-import { handleQueryFn } from "@lib"
+import { HandleReqFn } from "@lib"
 import { useQuery } from "@tanstack/react-query"
 import type { ApiResult } from "@types"
 
@@ -19,7 +19,7 @@ const useQueryHandler = <TQueryKey, TResult>({
 }: QueryHandlerData<TQueryKey, TResult>) => {
   return useQuery({
     queryKey: key,
-    queryFn: () => handleQueryFn(() => func()),
+    queryFn: () => HandleReqFn(() => func()),
     enabled: options?.enabled ?? true,
     select,
   })

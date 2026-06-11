@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using TrailStore.Domain.Products.Enums;
 using TrailStore.Domain.Products.Interfaces;
 using TrailStore.Domain.Products.Models;
-using TrailStore.Domain.Shared.Enums;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Shared.Common;

@@ -38,8 +38,11 @@ export const ProductViewProvider = ({ slug, children }: ProductViewProps) => {
     return
   }
 
-  const sku = getSku(searchParams.get("variant"))
-  const selectedOptions = sku?.optionIds ?? []
+  const sku = useMemo(
+    () => getSku(searchParams.get("variant")),
+    [data, searchParams],
+  )
+  const selectedOptions = useMemo(() => sku?.optionIds ?? [], [sku])
 
   const images = useMemo(
     () =>
@@ -55,6 +58,10 @@ export const ProductViewProvider = ({ slug, children }: ProductViewProps) => {
   )
 
   useEffect(() => {
+    if (!data) {
+      return
+    }
+
     const variantParam = searchParams.get("variant")
     const currentSku = getSku(variantParam)
 

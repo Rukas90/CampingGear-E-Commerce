@@ -10,31 +10,24 @@ namespace TrailStore.Infrastructure.Auth.Refresh;
 [AppService<IRefreshRepository>]
 public class RefreshRepository(AppDbContext context) : IRefreshRepository
 {
-    public async Task<RefreshToken> CreateAsync(RefreshToken token, CancellationToken ct)
+    public RefreshToken Add(RefreshToken token)
     {
-        await context.RefreshTokens.AddAsync(token, ct);
-        await context.SaveChangesAsync(ct);
+        context.RefreshTokens.Add(token);
 
         return token;
     }
 
-    public Task<RefreshToken?> GetByLookupHashAsync(string lookupHash, CancellationToken ct)
+    public Task<RefreshToken?> FindByLookupHashAsync(string lookupHash, CancellationToken ct)
     {
         return context.RefreshTokens.Include(token => token.Customer).FirstOrDefaultAsync(
             token => token.LookupHash == lookupHash, ct);
     }
 
-    public Task RevokeFamily(Id<RefreshTokenFamily> familyId, CancellationToken ct)
+    public async Task RevokeFamily(Id<RefreshTokenFamily> familyId, CancellationToken ct)
     {
-        return context.RefreshTokens
-            .Where(token => token.FamilyId == familyId)
-            .ExecuteUpdateAsync(s => s.SetProperty(token => token.RevokedAt, DateTime.UtcNow), ct);
-    }
+        var refreshToken 
+            = await context.RefreshTokens.Where(token => token.FamilyId == familyId).FirstOrDefaultAsync(ct);
 
-    public Task RevokeToken(Id<RefreshToken> id, CancellationToken ct)
-    {
-        return context.RefreshTokens
-            .Where(token => token.Id == id)
-            .ExecuteUpdateAsync(s => s.SetProperty(token => token.RevokedAt, DateTime.UtcNow), ct);
+        refreshToken?.Revoke();
     }
 }

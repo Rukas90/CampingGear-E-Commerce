@@ -1,3 +1,3 @@
 export * from "./Api"
-export { default as handleQueryFn } from "./HandleQueryFn"
+export { default as HandleReqFn } from "./HandleReqFn"
 export * from "./Defaults"

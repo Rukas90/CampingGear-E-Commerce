@@ -1,12 +1,11 @@
 import { useMutation } from "@tanstack/react-query"
-import type { ApiResult, ProblemDetails } from "@types"
-import { useFormErrors } from "./useFormErrors"
+import type { ApiResult, ProblemDetails, ProblemDetailsError } from "@types"
 
 interface UseManagedMutationProps<TData, TResponse> {
   mutationKey: string[]
   requestFunc: (data: TData) => Promise<ApiResult<TResponse>>
   onSuccess?: (response: TResponse | undefined) => void
-  onError?: () => void
+  onError?: (errors: ProblemDetailsError[]) => void
 }
 
 export const useManagedMutation = <TData, TResponse = unknown>({
@@ -15,7 +14,6 @@ export const useManagedMutation = <TData, TResponse = unknown>({
   onSuccess,
   onError,
 }: UseManagedMutationProps<TData, TResponse>) => {
-  const errors = useFormErrors()
   const mutation = useMutation<TResponse | undefined, ProblemDetails, TData>({
     mutationKey,
     mutationFn: async (payload) => {
@@ -24,11 +22,9 @@ export const useManagedMutation = <TData, TResponse = unknown>({
       throw result.error
     },
     onError: (problemDetails) => {
-      errors.setFromProblemDetails(problemDetails.errors)
-      onError?.()
+      onError?.(problemDetails.errors)
     },
     onSuccess: (response) => {
-      errors.clear()
       onSuccess?.(response)
     },
   })
@@ -38,5 +34,5 @@ export const useManagedMutation = <TData, TResponse = unknown>({
     mutation.mutateAsync(snapshot)
   }
 
-  return { commitWith, isPending: mutation.isPending, errors }
+  return { commitWith, isPending: mutation.isPending }
 }

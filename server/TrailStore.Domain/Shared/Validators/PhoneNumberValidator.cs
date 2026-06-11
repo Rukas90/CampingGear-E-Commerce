@@ -10,13 +10,13 @@ public static class PhoneNumberValidator
     private static readonly PhoneNumberUtil PhoneUtil 
         = PhoneNumberUtil.GetInstance();
     
-    public static ValidationState Validate(string phoneNumber, string countryCode, ValidationState? state = null, string? prefix = null)
+    public static ValidationState Validate(string? phoneNumber, string? countryCode, ValidationState? state = null, ValidationScope? scope = null)
     {
-        state ??= ValidationState.Ok();
+        state ??= ValidationState.Ok(scope);
         
         if (string.IsNullOrEmpty(phoneNumber) || string.IsNullOrEmpty(countryCode))
         {
-            return state.FailedWith(ValidationFailure.New(Field("PhoneNumber"), "Phone number is required."));
+            return state.FailedWith(ValidationFailure.New("PhoneNumber", "Phone number is required."));
         }
             
         try
@@ -26,16 +26,14 @@ public static class PhoneNumberValidator
 
             if (!isValid)
             {
-                return state.FailedWith(ValidationFailure.New(Field("PhoneNumber"), "Phone number is invalid."));
+                return state.FailedWith(ValidationFailure.New("PhoneNumber", "Phone number is invalid."));
             }
             
             return state;
         }
         catch (NumberParseException)
         {
-            return state.FailedWith(ValidationFailure.New(Field("PhoneNumber"), "Phone number is invalid."));
+            return state.FailedWith(ValidationFailure.New("PhoneNumber", "Phone number is invalid."));
         }
-        
-        string Field(string field) => prefix is null ? field : $"{prefix}.{field}";
     }
 }

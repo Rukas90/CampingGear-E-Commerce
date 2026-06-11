@@ -8,7 +8,7 @@ import {
 import { useCart } from "@features"
 import { Outlet } from "react-router-dom"
 
-const Page = () => {
+const ContentPage = () => {
   const {} = useCart()
 
   return (
@@ -29,7 +29,7 @@ const Page = () => {
         <Feed />
       </ContentContainer>
       <main className="relative flex flex-col flex-1">
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 justify-center">
           <Outlet />
         </div>
       </main>
@@ -38,4 +38,4 @@ const Page = () => {
     </div>
   )
 }
-export default Page
+export default ContentPage

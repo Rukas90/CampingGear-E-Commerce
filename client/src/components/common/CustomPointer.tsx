@@ -69,7 +69,7 @@ const CustomPointer = ({
       elm.removeEventListener("mouseleave", handleMouseLeave)
       elm.removeEventListener("click", handleClick)
     }
-  }, [containerRef.current])
+  }, [containerRef.current, onClick])
 
   if (!cursor.visible) {
     return null

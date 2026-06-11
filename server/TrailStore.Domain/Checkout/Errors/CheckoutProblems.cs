@@ -1,4 +1,5 @@
 ﻿using TrailStore.Shared.Common;
+using TrailStore.Shared.Validation;
 
 namespace TrailStore.Domain.Checkout.Errors;
 
@@ -18,4 +19,7 @@ public class CheckoutProblems
 
     public static readonly Problem InvalidShippingMethod
         = new("Checkout Failed", "checkout.invalid_shipping_method", "The selected shipping method is not available for your address.");
+    
+    public static Problem IncompleteCheckout(ValidationState state)
+        => new ValidationProblem(state, "checkout.incomplete");
 }

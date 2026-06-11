@@ -8,7 +8,7 @@ public class CartItem : IModel<CartItem>
     public Id<ShoppingSession> SessionId { get; init; }
     public Id<Sku> SkuId { get; init; }
     public DateTime AddedAt { get; init; }
-    public int Quantity { get; set; }
+    public int Quantity { get; private set; }
 
     public ShoppingSession ShoppingSession { get; private set; } = null!;
     public Sku Sku { get; private set; } = null!;
@@ -23,4 +23,14 @@ public class CartItem : IModel<CartItem>
             AddedAt = DateTime.UtcNow,
             Quantity = quantity
         };
+    
+    public void SetQuantity(int quantity)
+    {
+        if (quantity < 1)
+        {
+            throw new ArgumentOutOfRangeException(nameof(quantity), "Quantity must be at least 1.");
+        }
+        
+        Quantity = quantity;
+    }
 }

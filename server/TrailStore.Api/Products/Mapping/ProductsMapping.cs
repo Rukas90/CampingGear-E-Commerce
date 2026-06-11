@@ -24,55 +24,76 @@ public static class ProductsMapping
             MaxPrice = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
             AverageRating = product.Reviews.Average(r => (double?)r.Rating) ?? 0.0,
             ReviewCount = product.Reviews.Count,
-            InStock = product.Skus.Any(sku => sku.Stock > 0),
+            InStock = product.Skus.Any(sku => sku.AvailableStock > 0),
             HasVariants = product.Skus.Count > 1,
             ThumbnailUrl = product.ThumbnailUrl,
             RecommendedCount = product.Reviews.Count(review => review.Recommended),
-            StarCounts = Enumerable.Range(1, 5)
-                .ToDictionary(star => star, star => product.Reviews.Count(r => r.Rating == star)),
+            StarCounts = MapStarCounts(product.Reviews),
             Description = product.Description,
-            Skus = product.Skus.Select(sku => new ProductSkuDto
-            {
-                Code = sku.Code.ToLower(),
-                UnitPrice = sku.UnitPrice,
-                Stock = sku.Stock,
-                OptionIds = sku.Options.Select(option => option.Id).ToArray()
-            }).ToArray(),
-            Options = product.Skus
-                .SelectMany(sku => sku.Options)
-                .GroupBy(option => new
-                {
-                    option.OptionGroup.Slug, option.OptionGroup.Name, option.OptionGroup.SortOrder
-                })
-                .Select(group => new ProductOptionGroupDto
-                {
-                    Name = group.Key.Name,
-                    SortOrder = group.Key.SortOrder,
-                    Options = group
-                        .GroupBy(o => o.Id)
-                        .Select(g => g.First())
-                        .Select(option => new ProductOptionDto
-                        {
-                            Id = option.Id,
-                            Name = option.Name,
-                            SortOrder = option.SortOrder,
-                            InStock = product.Skus
-                                .Where(sku => sku.Options.Any(o => o.Id == option.Id)).Any(sku => sku.Stock > 0),
-                            PreviewType = option.PreviewType,
-                            PreviewValue = option.PreviewValue
-                        }).ToHashSet().ToArray()
-                }).ToArray(),
-            Images = product.Images.Select(image => new ProductImageDto
-            {
-                OptionId = image.OptionId,
-                Urls = image.Urls.Select(url => new ProductImageUrlDto
-                {
-                    Url = url.Url,
-                    SortOrder = url.SortOrder
-                }).ToArray()
-            }).ToArray()
+            Skus = MapSkus(product.Skus),
+            Options = MapOptionGroups(product),
+            Images = MapImages(product.Images)
         };
     }
+    
+    private static Dictionary<int, int> MapStarCounts(IEnumerable<Review> reviews)
+        => Enumerable.Range(1, 5)
+            .ToDictionary(star => star, star => reviews.Count(r => r.Rating == star));
+    
+    private static ProductSkuDto[] MapSkus(IEnumerable<Sku> skus)
+        => skus.Select(sku => new ProductSkuDto
+        {
+            Code = sku.Code.ToLower(),
+            UnitPrice = sku.UnitPrice,
+            Stock = sku.AvailableStock,
+            OptionIds = sku.Options.Select(option => option.Id).ToArray()
+        }).ToArray();
+    
+    private static ProductOptionGroupDto[] MapOptionGroups(Product product)
+        => product.Skus
+            .SelectMany(sku => sku.Options)
+            .GroupBy(option => new
+            {
+                option.OptionGroup.Slug,
+                option.OptionGroup.Name,
+                option.OptionGroup.SortOrder
+            })
+            .Select(group => new ProductOptionGroupDto
+            {
+                Name = group.Key.Name,
+                SortOrder = group.Key.SortOrder,
+                Options = MapOptions(group, product.Skus)
+            })
+            .ToArray();
+    
+    private static ProductOptionDto[] MapOptions(
+        IEnumerable<Option> options, ICollection<Sku> skus)
+        => options
+            .GroupBy(o => o.Id)
+            .Select(g => g.First())
+            .Select(option => new ProductOptionDto
+            {
+                Id = option.Id,
+                Name = option.Name,
+                SortOrder = option.SortOrder,
+                InStock = skus.Any(sku =>
+                    sku.Options.Any(o => o.Id == option.Id) && sku.AvailableStock > 0),
+                PreviewType = option.PreviewType,
+                PreviewValue = option.PreviewValue
+            })
+            .ToHashSet()
+            .ToArray();
+    
+    private static ProductImageDto[] MapImages(IEnumerable<ProductImage> images)
+        => images.Select(image => new ProductImageDto
+        {
+            OptionId = image.OptionId,
+            Urls = image.Urls.Select(url => new ProductImageUrlDto
+            {
+                Url = url.Url,
+                SortOrder = url.SortOrder
+            }).ToArray()
+        }).ToArray();
 
     public static ProductsFilter MapToFilter(this ProductsRequest request)
     {

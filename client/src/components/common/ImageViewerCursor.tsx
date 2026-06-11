@@ -1,5 +1,6 @@
-import { CustomPointer, IconArrow } from "@components"
+import { CustomPointer, IconArrow, type CursorData } from "@components"
 import clsx from "clsx"
+import { useCallback } from "react"
 
 interface ImageViewerCursorProps {
   containerRef: React.RefObject<HTMLDivElement | null>
@@ -11,11 +12,15 @@ const ImageViewerCursor = ({
   onPrev,
   onNext,
 }: ImageViewerCursorProps) => {
+  const handleClick = useCallback(
+    (data: CursorData) => (data.isLeft ? onPrev?.() : onNext?.()),
+    [onPrev, onNext],
+  )
   return (
     <CustomPointer
       className="size-12 rounded-full bg-white shadow-md z-2"
       containerRef={containerRef}
-      onClick={(data) => (data.isLeft ? onPrev?.() : onNext?.())}
+      onClick={handleClick}
       innerRender={(data) => (
         <IconArrow
           className={clsx(

@@ -31,9 +31,8 @@ public class StripeWebhookEndpoint(
             if (stripeEvent.Type == EventTypes.PaymentIntentSucceeded)
             {
                 var intent = (PaymentIntent)stripeEvent.Data.Object;
-                var entries = JsonSerializer.Deserialize<CartLineItem[]>(intent.Metadata["cart"]);
 
-                await orderService.ConfirmOrder(intent, entries!, ct);
+                //await orderService.ConfirmOrder(intent, entries!, ct);
             }
 
             await Send.OkAsync("Success.", ct);

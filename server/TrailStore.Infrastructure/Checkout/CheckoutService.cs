@@ -2,8 +2,14 @@
 using TrailStore.Domain.Checkout.Errors;
 using TrailStore.Domain.Checkout.Interfaces;
 using TrailStore.Domain.Checkout.Models;
+using TrailStore.Domain.Checkout.Validators;
 using TrailStore.Domain.Countries.Data;
+using TrailStore.Domain.Orders.Interfaces;
+using TrailStore.Domain.Orders.Models;
+using TrailStore.Domain.Orders.Requests;
 using TrailStore.Domain.Shared.Extensions;
+using TrailStore.Domain.Shared.Financials;
+using TrailStore.Domain.Shared.Interfaces;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Domain.Shipping.Interfaces;
 using TrailStore.Domain.ShoppingSessions.Models;
@@ -16,7 +22,9 @@ public class CheckoutService(
     ICheckoutSessionService checkoutSessionService,
     ICheckoutSessionRepository checkoutSessionRepository,
     ICartItemRepository cartItemRepository,
-    IShippingMethodRepository shippingMethodRepository) 
+    IShippingMethodRepository shippingMethodRepository,
+    IOrderService orderService,
+    IUnitOfWork unitOfWork) 
     : ICheckoutService
 {
     public async Task<Result<CheckoutForm>> GetCheckoutForm(ShoppingContext ctx, CancellationToken ct)
@@ -77,29 +85,43 @@ public class CheckoutService(
         var selectedShippingMethod = checkoutSession.ShippingMethod;
         
         var subtotal = await cartItemRepository.CalculateSubtotalBySessionAsync(shoppingSession.Id, ct);
-        
-        var tax = subtotal * country?.TaxRate ?? null;
 
-        var eligibleForFreeShipping = selectedShippingMethod is not null 
-                                      && subtotal >= selectedShippingMethod.FreeShippingThreshold;
+        if (country is null || selectedShippingMethod is null)
+        {
+            return new CheckoutStats
+            {
+                Status = checkoutSession.Status,
+                Subtotal = subtotal,
+                Tax = null,
+                Total = null,
+                ShippingCost = null,
+                EligibleForFreeShipping = false
+            };
+        }
         
-        var shippingCost = eligibleForFreeShipping ? 0m : selectedShippingMethod?.FlatFee;
+        var financials = FinancialsCalculator.Calculate(input: new FinancialsCalculationsInput
+        {
+            Subtotal = subtotal,
+            TaxRate = country.TaxRate,
+            ShippingFlatFee = selectedShippingMethod.FlatFee,
+            FreeShippingThreshold = selectedShippingMethod.FreeShippingThreshold
+        });
         
-        var Total = subtotal + (tax ?? 0m) + (shippingCost ?? 0m);
-
         return new CheckoutStats
         {
             Status = checkoutSession.Status,
             Subtotal = subtotal,
-            Tax = tax,
-            Total = Total,
-            ShippingCost = shippingCost,
-            EligibleForFreeShipping = eligibleForFreeShipping
+            Tax = financials.Tax,
+            Total = financials.Total,
+            ShippingCost = financials.ShippingCost,
+            EligibleForFreeShipping = financials.EligibleForFreeShipping
         };
     }
     
     public async Task<Result> UpdateCheckoutContact(ShoppingContext ctx, CheckoutContact contact, CancellationToken ct)
     {
+        await using var scope = await unitOfWork.BeginScope(ct);
+        
         var result = await checkoutSessionService.GetCreateCheckoutSession(ctx, ct);
 
         if (!result.IsSuccess)
@@ -110,14 +132,16 @@ public class CheckoutService(
         var session = result.Value;
         
         session.EmailAddress = contact.EmailAddress;
-
-        await checkoutSessionRepository.UpdateAsync(session, ct);
+        
+        await scope.CompleteAsync();
         
         return Result.Ok();
     }
     
     public async Task<Result<CheckoutShipping>> UpdateCheckoutShippingAddress(ShoppingContext ctx, PostalAddress address, CancellationToken ct)
     {
+        await using var scope = await unitOfWork.BeginScope(ct);
+        
         var result = await checkoutSessionService.GetCreateCheckoutSession(ctx, ct);
 
         if (!result.IsSuccess)
@@ -128,10 +152,10 @@ public class CheckoutService(
         var session = result.Value;
         
         session.ShippingAddress = address;
-
-        await checkoutSessionRepository.UpdateAsync(session, ct);
         
         var selectedMethod = await ValidateCheckoutShipping(session, ct);
+
+        await scope.CompleteAsync();
         
         return new CheckoutShipping
         {
@@ -143,6 +167,8 @@ public class CheckoutService(
     public async Task<Result> UpdateCheckoutShippingMethod(
         ShoppingContext ctx, Id<ShippingMethod> selectedMethodId, CancellationToken ct)
     {
+        await using var scope = await unitOfWork.BeginScope(ct);
+        
         var result = await checkoutSessionService.GetCreateCheckoutSession(ctx, ct);
 
         if (!result.IsSuccess)
@@ -159,14 +185,16 @@ public class CheckoutService(
         }
         
         session.ShippingMethodId = selectedMethodId;
-
-        await checkoutSessionRepository.UpdateAsync(session, ct);
+        
+        await scope.CompleteAsync();
         
         return Result.Ok();
     }
     
     public async Task<Result> UpdateCheckoutBilling(ShoppingContext ctx, CheckoutBilling billing, CancellationToken ct)
     {
+        await using var scope = await unitOfWork.BeginScope(ct);
+        
         var result = await checkoutSessionService.GetCreateCheckoutSession(ctx, ct);
 
         if (!result.IsSuccess)
@@ -178,8 +206,8 @@ public class CheckoutService(
         
         session.ShippingAddressAsBillingAddress = billing.AsShippingAddress;
         session.BillingAddress = billing.Address;
-
-        await checkoutSessionRepository.UpdateAsync(session, ct);
+        
+        await scope.CompleteAsync();
         
         return Result.Ok();
     }
@@ -193,7 +221,6 @@ public class CheckoutService(
         if (checkoutSession.ShippingMethodId != selectedMethod?.Id)
         {
             checkoutSession.ShippingMethodId = selectedMethod?.Id;
-            await checkoutSessionRepository.UpdateAsync(checkoutSession, ct);
         }
         
         return selectedMethod;
@@ -215,8 +242,81 @@ public class CheckoutService(
         return selectedMethod;
     }
 
-    public async Task ConfirmCheckout(ShoppingContext ctx)
+    public async Task<Result<Id<Order>>> ConfirmCheckout(ShoppingContext ctx, CancellationToken ct)
     {
-        // TODO
+        var result = await checkoutSessionService.FindCheckoutSession(ctx, ct);
+
+        if (!result.IsSuccess)
+        {
+            return result.Problem;
+        }
+
+        var (checkoutSession, shoppingSession) = result.Value;
+
+        if (checkoutSession is null)
+        {
+            return CheckoutProblems.NoSession;
+        }
+        
+        var cartItems = await cartItemRepository.FindAllBySessionAsync(shoppingSession.Id, item => new
+        {
+            item.Quantity,
+            item.Sku.AvailableStock,
+            SkuCode = item.Sku.Code,
+            item.Sku.UnitPrice,
+            SkuId = item.Sku.Id
+        }, ct);
+
+        if (cartItems.Count == 0)
+        {
+            return CheckoutProblems.EmptyCart; 
+        }
+
+        var validationResult = CheckoutSessionValidator.Validate(checkoutSession);
+
+        if (!validationResult.IsSuccess)
+        {
+            return validationResult.Problem;
+        }
+
+        var validated = validationResult.Value;
+        
+        var shippingMethod = await shippingMethodRepository.FindByIdAsync(validated.ShippingMethodId, ct);
+
+        if (shippingMethod is null)
+        {
+            return CheckoutProblems.InvalidShippingMethod;
+        }
+        
+        await using var scope = await unitOfWork.BeginScope(ct);
+
+        var request = new CreateOrderRequest(
+            CustomerId: ctx.CustomerId,
+            EmailAddress: validated.EmailAddress,
+            ShippingAddress: validated.ShippingAddress,
+            BillingAddress: validated.BillingAddress,
+            ShippingMethod: shippingMethod,
+            Country: validated.Country,
+            Items: cartItems.Select(i => new OrderLineItem(
+                SkuId: i.SkuId,
+                SkuCode: i.SkuCode,
+                UnitPrice: i.UnitPrice,
+                Quantity: i.Quantity
+            )).ToList()
+        );
+
+        var orderResult = await orderService.CreateOrder(request, ct);
+
+        if (!orderResult.IsSuccess)
+        {
+            return orderResult.Problem;
+        }
+        
+        await cartItemRepository.DeleteAllBySessionAsync(shoppingSession.Id, ct);
+        checkoutSessionRepository.Remove(checkoutSession);
+
+        await scope.CompleteAsync();
+        
+        return orderResult.Value.Id;
     }
 }

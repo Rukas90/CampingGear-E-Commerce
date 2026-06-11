@@ -1,4 +1,4 @@
-import { handleQueryFn } from "@lib"
+import { HandleReqFn } from "@lib"
 import type { ReviewsRequest } from "@types"
 import reviewsApi from "../api/reviewsApi"
 import { useQuery } from "@tanstack/react-query"
@@ -9,7 +9,7 @@ const useReviews = ({
 }: ReviewsRequest & { slug: string }) => {
   const query = useQuery({
     queryKey: ["reviews", slug, request],
-    queryFn: () => handleQueryFn(() => reviewsApi.queryReviews(slug, request)),
+    queryFn: () => HandleReqFn(() => reviewsApi.queryReviews(slug, request)),
   })
 
   return { reviews: query.data, ...query }

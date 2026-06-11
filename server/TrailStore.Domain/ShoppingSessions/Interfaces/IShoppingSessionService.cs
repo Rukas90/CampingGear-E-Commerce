@@ -6,11 +6,9 @@ namespace TrailStore.Domain.ShoppingSessions.Interfaces;
 
 public interface IShoppingSessionService
 {
-    Task<ShoppingSession> GetOrCreateSession(ShoppingContext ctx, CancellationToken ct);
+    Task<ShoppingSession> FindOrCreateSession(ShoppingContext ctx, CancellationToken ct);
     
     Task<Result<ShoppingSession>> FindSession(ShoppingContext ctx, CancellationToken ct);
 
     Task<ShoppingSessionSummary> GetSessionSummary(ShoppingContext ctx, CancellationToken ct);
-
-    Task ExtendSession(ShoppingSession session, CancellationToken ct);
 }

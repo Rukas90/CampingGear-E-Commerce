@@ -1,10 +1,9 @@
-import useCheckoutForm from "./useCheckoutForm"
 import type { CheckoutBilling } from "@types"
 import checkoutApi from "../api/checkoutApi"
-import { useData } from "@features"
+import { useCheckoutContext, useData } from "@features"
 
 const useCheckoutBilling = () => {
-  const { form, isPending } = useCheckoutForm()
+  const { form, isPending, errors } = useCheckoutContext()
 
   const data = useData<CheckoutBilling>({
     data: form?.billing,
@@ -14,6 +13,8 @@ const useCheckoutBilling = () => {
     },
     mutationKey: ["checkout-billing"],
     requestFunc: checkoutApi.updateBilling,
+    errorKeyMappers: [(key) => key, (key) => `billing_address.${key}`],
+    errorPool: errors,
   })
 
   return {

@@ -1,9 +1,16 @@
 ﻿using Microsoft.Extensions.Logging;
 using Stripe;
-using TrailStore.Domain.Carts.Models;
-using TrailStore.Domain.Orders.Errors;
 using TrailStore.Domain.Orders.Interfaces;
+using TrailStore.Domain.Orders.Models;
+using TrailStore.Domain.Orders.Requests;
+using TrailStore.Domain.Payments.Interfaces;
+using TrailStore.Domain.Payments.Models;
+using TrailStore.Domain.Shared.Financials;
+using TrailStore.Domain.Shared.Interfaces;
 using TrailStore.Domain.Shared.Models;
+using TrailStore.Domain.Skus.Errors;
+using TrailStore.Domain.Skus.Exceptions;
+using TrailStore.Domain.Skus.Interfaces;
 using TrailStore.Shared.Common;
 
 namespace TrailStore.Infrastructure.Orders;
@@ -11,49 +18,108 @@ namespace TrailStore.Infrastructure.Orders;
 [AppService<IOrderService>]
 public class OrderService(
     IOrderRepository orderRepository,
-    IOrderItemsService orderItemsService,
-    RefundService refundService, 
-    ILogger<IOrderService> logger) 
+    IOrderItemRepository orderItemRepository,
+    IPaymentService paymentService, 
+    IStockReservationRepository stockReservationRepository,
+    ISkuRepository skuRepository,
+    IPaymentRepository paymentRepository,
+    ILogger<IOrderService> logger,
+    IUnitOfWork unitOfWork) 
     : IOrderService
 {
-    public async Task<Result<Order>> ConfirmOrder(PaymentIntent intent, CartLineItem[] entries, CancellationToken ct)
-    {
-        Order order = null; //await orderRepository.GetByIntentIdAsync(intent.Id, ct);
-
-        if (order is null)
-        {
-            logger.LogCritical(
-                "Payment succeeded for intent {IntentId} but no matching order was found. Issuing refund.",
-                intent.Id);
-
-            await IssueRefund(intent, ct);
-            
-            return OrderProblems.IntentNotFound;
-        }
-        
-        await orderItemsService.CreateOrderItems(order.Id, entries, ct);
-
-        return order;
-
-    }
-
-    public async Task IssueRefund(PaymentIntent intent, CancellationToken ct)
+    public async Task<Result<Order>> CreateOrder(CreateOrderRequest request, CancellationToken ct)
     {
         try
         {
-            await refundService.CreateAsync(new RefundCreateOptions
+            await using var scope = await unitOfWork.BeginScope(ct);
+            
+            var subtotal = request.Items.Sum(item => item.UnitPrice * item.Quantity);
+            var financials = FinancialsCalculator.Calculate(input: new FinancialsCalculationsInput
             {
-                PaymentIntent = intent.Id,
-                Reason = RefundReasons.Fraudulent
-            }, cancellationToken: ct);
+                Subtotal = subtotal,
+                TaxRate = request.Country.TaxRate,
+                ShippingFlatFee = request.ShippingMethod.FlatFee,
+                FreeShippingThreshold = request.ShippingMethod.FreeShippingThreshold,
+            });
+            
+            var order = orderRepository.Add(Order.Create(
+                request.EmailAddress, 
+                financials.Total,
+                financials.Tax,
+                request.ShippingAddress, 
+                request.BillingAddress,
+                request.CustomerId));
+            
+             CreateOrderItems(order.Id, request.Items);
+             
+             await ReserveItemsStock(order.Id, request.Items, ct);
+             await AddNewOrderPayment(order, ct);
 
-            logger.LogInformation("Automatic refund issued for intent {IntentId}", intent.Id);
+             await scope.CompleteAsync();
+             
+             return order;
+        }
+        catch (InsufficientStockException e)
+        {
+            logger.LogWarning("Sku by id {SkuId} could not reserve stock due to insufficient available stock.", e.SkuId.Value);
+            
+            return SkuProblems.InsufficientStock;
+        }
+        catch (SkuNotFoundException e)
+        {
+            logger.LogWarning("Sku by id {SkuId} was not found when trying to reserve stock.", e.SkuId.Value);
+            
+            return SkuProblems.InvalidSku;
         }
         catch (StripeException e)
         {
-            logger.LogCritical(
-                "Automatic refund FAILED for intent {IntentId}. Manual intervention required. Error: {Error}",
-                intent.Id, e.Message);
+            logger.LogError(e, "Stripe payment intent initialization failed during order creation.");
+
+            //TODO Stripe error/problem
+            return SkuProblems.InvalidSku; 
         }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Unexpected error during order creation.");
+            
+            //TODO Unexpected error/problem
+            return SkuProblems.InvalidSku;
+        }
+    }
+
+    private void CreateOrderItems(Id<Order> orderId, IReadOnlyList<OrderLineItem> items)
+    {
+        orderItemRepository.AddRange(
+            items.Select(item => OrderItem.Create(orderId, item.SkuId, item.Quantity, item.UnitPrice)));
+    }
+
+    private async Task ReserveItemsStock(Id<Order> orderId, IReadOnlyList<OrderLineItem> items, CancellationToken ct)
+    {
+        foreach (var (skuId, skuCode, _, reserveAmount) in items)
+        {
+            var sku = await skuRepository.FindByCodeAsync(skuCode, ct);
+
+            if (sku == null)
+            {
+                throw new SkuNotFoundException(skuId);
+            }
+
+            sku.Reserve(reserveAmount);
+            
+            stockReservationRepository.Add(
+                StockReservation.Create(skuId, reserveAmount, orderId.ToString(), DateTime.UtcNow.AddMinutes(15)));
+        }
+    }
+
+    private async Task AddNewOrderPayment(Order order, CancellationToken ct)
+    {
+        var intent = await paymentService.CreateIntent(new PaymentIntentCreateData
+        {
+            OrderId = order.Id,
+            Amount = order.TotalPrice
+        }, ct);
+        
+        paymentRepository.Add(
+            Payment.Create(order.Id, intent.Id, order.TotalPrice));
     }
 }

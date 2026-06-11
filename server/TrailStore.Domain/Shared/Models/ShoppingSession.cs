@@ -24,4 +24,14 @@ public class ShoppingSession : IModel<ShoppingSession>
             ExpiresAt = customerId != null ? null : DateTime.UtcNow.Add(expireTime),
             CustomerId = customerId,
         };
+
+    public void Extend(TimeSpan expireTime)
+    {
+        if (CustomerId is not null)
+        {
+            return;
+        }
+        
+        ExpiresAt = DateTime.UtcNow.Add(expireTime);
+    }
 }

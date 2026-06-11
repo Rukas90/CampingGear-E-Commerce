@@ -9,55 +9,53 @@ namespace TrailStore.Domain.Shared.Validators;
 
 public static class AddressValidator
 {
-    public static ValidationState Validate(PostalAddress address, ValidationState? state = null, string? prefix = null)
+    public static ValidationState Validate(PostalAddress? address, ValidationState? state = null, ValidationScope? scope = null)
     {
-        state ??= ValidationState.Ok();
+        state ??= ValidationState.Ok(scope);
         
-        if (string.IsNullOrWhiteSpace(address.RecipientFirstName))
+        if (address is null || string.IsNullOrWhiteSpace(address.RecipientFirstName))
         {
-            state.FailedWith(ValidationFailure.New(Field(nameof(address.RecipientFirstName)), "First name is required."));
+            state.FailedWith(ValidationFailure.New(nameof(address.RecipientFirstName), "First name is required."));
         }
         
-        if (string.IsNullOrWhiteSpace(address.RecipientLastName))
+        if (address is null || string.IsNullOrWhiteSpace(address.RecipientLastName))
         {
-            state.FailedWith(ValidationFailure.New(Field(nameof(address.RecipientLastName)), "Last name is required."));
+            state.FailedWith(ValidationFailure.New(nameof(address.RecipientLastName), "Last name is required."));
         }
         
-        if (string.IsNullOrWhiteSpace(address.AddressLine))
+        if (address is null || string.IsNullOrWhiteSpace(address.AddressLine))
         {
-            state.FailedWith(ValidationFailure.New(Field(nameof(address.AddressLine)), "Address line is required."));
+            state.FailedWith(ValidationFailure.New(nameof(address.AddressLine), "Address line is required."));
         }
         
-        if (string.IsNullOrWhiteSpace(address.City))
+        if (address is null || string.IsNullOrWhiteSpace(address.City))
         {
-            state.FailedWith(ValidationFailure.New(Field(nameof(address.City)), "City is required."));
+            state.FailedWith(ValidationFailure.New(nameof(address.City), "City is required."));
         }
         
-        var country = CountryRegistry.For(address.CountryCode);
+        var country = address is not null ? CountryRegistry.For(address.CountryCode) : null;
 
         if (country is null)
         {
-            state.FailedWith(ValidationFailure.New(Field(nameof(address.CountryCode)), "Unsupported country."));
+            state.FailedWith(ValidationFailure.New(nameof(address.CountryCode), "Unsupported country."));
         }
         else
         {
-            if (country.PostalCode is PostalCodeRequirement.Required
+            if (address is null ||country.PostalCode is PostalCodeRequirement.Required
                 && string.IsNullOrWhiteSpace(address.PostalCode))
             {
-                state.FailedWith(ValidationFailure.New(Field(nameof(address.PostalCode)), $"{country.PostalCodeLabel} is required."));
+                state.FailedWith(ValidationFailure.New(nameof(address.PostalCode), $"{country.PostalCodeLabel} is required."));
             }
         
-            if (country.HasRegion
+            if (address is null || country.HasRegion
                 && string.IsNullOrWhiteSpace(address.Region))
             {
-                state.FailedWith(ValidationFailure.New(Field(nameof(address.Region)), $"{country.RegionLabel} is required."));
+                state.FailedWith(ValidationFailure.New(nameof(address.Region), $"{country.RegionLabel} is required."));
             }
         }
 
-        PhoneNumberValidator.Validate(address.PhoneNumber, address.CountryCode, state, prefix);
+        PhoneNumberValidator.Validate(address?.PhoneNumber, address?.CountryCode, state, scope);
 
         return state;
-
-        string Field(string field) => prefix is null ? field : $"{prefix}.{field}";
     }
 }

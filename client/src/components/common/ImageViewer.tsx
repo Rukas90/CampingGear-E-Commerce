@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import ImagePickerCarousel from "./ImagePickerCarousel"
 import ImageViewerCursor from "./ImageViewerCursor"
 
@@ -18,8 +18,11 @@ const ImageViewer = ({ imagePaths }: ImageViewerProps) => {
   }
 
   const handlePrev = () => setViewingIndex((i) => Math.max(0, i - 1))
-  const handleNext = () =>
-    setViewingIndex((i) => Math.min(imagePaths.length - 1, i + 1))
+
+  const handleNext = useCallback(
+    () => setViewingIndex((i) => Math.min(imagePaths.length - 1, i + 1)),
+    [imagePaths],
+  )
 
   useEffect(() => setViewingIndex(0), [imagePaths])
 
@@ -39,7 +42,7 @@ const ImageViewer = ({ imagePaths }: ImageViewerProps) => {
           {imagePaths.map((path, index) => (
             <img
               key={path}
-              className="w-full h-full object-contain shrink-0"
+              className="w-full h-full object-contain shrink-0 select-none pointer-events-none"
               src={path}
               onLoad={index === viewingIndex ? handleImageLoad : undefined}
             />

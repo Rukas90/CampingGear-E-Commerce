@@ -1,50 +1,76 @@
-import { useCheckoutStats, useCountryShippingMethods, useData } from "@features"
-import useCheckoutForm from "./useCheckoutForm"
+import {
+  useCheckoutContext,
+  useCheckoutSection,
+  useCheckoutStats,
+  useCountryShippingMethods,
+  useData,
+} from "@features"
 import type { CheckoutShipping, PostalAddress, ShippingMethodId } from "@types"
 import { DEFAULT_ADDRESS } from "@lib"
 import checkoutApi from "../api/checkoutApi"
 
 const useCheckoutShipping = () => {
-  const { form, isPending } = useCheckoutForm()
+  const { form, isPending, errors } = useCheckoutContext()
   const { invalidate } = useCheckoutStats()
 
-  const address = useData<PostalAddress, CheckoutShipping>({
+  const addressData = useData<PostalAddress, CheckoutShipping>({
     data: form?.shipping.address,
     defaultData: DEFAULT_ADDRESS,
     mutationKey: ["checkout-shipping-address"],
     requestFunc: checkoutApi.updateShippingAddress,
     onMutationSuccess: (checkoutShipping) => {
+      addressSection.close()
+
       if (checkoutShipping) {
-        method.overrideData(checkoutShipping.selectedMethodId)
+        methodData.overrideData(checkoutShipping.selectedMethodId)
         invalidate()
       }
     },
+    errorKeyMappers: [(key) => key, (key) => `shipping_address.${key}`],
+    errorPool: errors,
+  })
+  const addressSection = useCheckoutSection({
+    name: "shipping_address",
+    data: addressData,
+  })
+
+  const methodData = useData<ShippingMethodId | undefined>({
+    data: form?.shipping.selectedMethodId,
+    defaultData: undefined,
+    mutationKey: ["checkout-shipping-method"],
+    requestFunc: checkoutApi.updateShippingMethod,
+    onMutationSuccess: () => {
+      methodSection.close()
+      invalidate()
+    },
+    errorKeyMappers: [(key) => key, (key) => `shipping_method.${key}`],
+    errorPool: errors,
+  })
+  const methodSection = useCheckoutSection({
+    name: "shipping_method",
+    data: methodData,
   })
 
   const countryCode =
-    address.cachedResponse?.address?.countryCode ??
+    addressData.cachedResponse?.address?.countryCode ??
     form?.shipping?.address?.countryCode
 
   const { availableMethods } = useCountryShippingMethods(countryCode, {
     enabled: !!countryCode,
   })
 
-  const method = useData<ShippingMethodId | undefined>({
-    data: form?.shipping.selectedMethodId,
-    defaultData: undefined,
-    mutationKey: ["checkout-shipping-method"],
-    requestFunc: checkoutApi.updateShippingMethod,
-    onMutationSuccess: () => {
-      invalidate()
-    },
-  })
-
   return {
-    address,
+    address: {
+      ...addressData,
+      ...addressSection,
+    },
     availableMethods,
-    method,
+    method: {
+      ...methodData,
+      ...methodSection,
+    },
     isPending,
-    isBusy: isPending || address.isMutating || method.isMutating,
+    isBusy: isPending || addressData.isMutating || methodData.isMutating,
   }
 }
 export default useCheckoutShipping

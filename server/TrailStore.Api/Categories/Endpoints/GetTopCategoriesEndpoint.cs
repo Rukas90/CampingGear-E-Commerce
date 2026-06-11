@@ -1,11 +1,12 @@
 ﻿using FastEndpoints;
 using TrailStore.Api.Categories.Dto;
 using TrailStore.Api.Categories.Mapping;
+using TrailStore.Domain.Categories.Interfaces;
 using TrailStore.Domain.Orders.Interfaces;
 
 namespace TrailStore.Api.Categories.Endpoints;
 
-public class GetTopCategoriesEndpoint(IOrderItemRepository orderItemRepository)
+public class GetTopCategoriesEndpoint(ICategoriesRepository categoriesRepository)
     : Endpoint<TopCategoriesRequest, IEnumerable<CategoryDto>>
 {
     public override void Configure()
@@ -17,7 +18,7 @@ public class GetTopCategoriesEndpoint(IOrderItemRepository orderItemRepository)
     public override async Task<IEnumerable<CategoryDto>> ExecuteAsync(
         TopCategoriesRequest req, CancellationToken ct)
     {
-        return await orderItemRepository.ListMostSoldCategoriesAsync(
+        return await categoriesRepository.ListMostSoldCategoriesAsync(
             req.Count, CategoryMappingSelectors.ToDto, ct);
     }
 }

@@ -4,9 +4,9 @@ namespace TrailStore.Domain.Customers.Interfaces;
 
 public interface ICustomerRepository
 {
-    Task<Customer> CreateAsync(Customer customer, CancellationToken ct);
+    Customer Add(Customer customer);
 
-    Task<Customer?> GetByEmailAsync(string email, CancellationToken ct);
+    Task<Customer?> FindByEmailAsync(string email, CancellationToken ct);
 
     Task<bool> ExistsByEmailAsync(string email, CancellationToken ct);
 }

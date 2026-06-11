@@ -23,7 +23,10 @@ public class CsrfService(IOptions<CsrfOptions> options) : ICsrfService
     {
         var parts = token.Split('.');
 
-        if (parts.Length != 2) return false;
+        if (parts.Length != 2)
+        {
+            return false;
+        }
 
         var expectedSignature = GenerateSignature(parts[0]);
 

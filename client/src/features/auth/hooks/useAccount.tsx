@@ -1,4 +1,4 @@
-import { handleQueryFn } from "@lib"
+import { HandleReqFn } from "@lib"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import type { CustomerAccount, ProblemDetails } from "@types"
 import { authApi } from "../api"
@@ -8,7 +8,7 @@ const useAccount = () => {
 
   const query = useQuery<CustomerAccount | null, ProblemDetails>({
     queryKey: ["account"],
-    queryFn: () => handleQueryFn(() => authApi.me()),
+    queryFn: () => HandleReqFn(() => authApi.me()),
     retry: false,
     staleTime: 5 * 60 * 1000,
   })

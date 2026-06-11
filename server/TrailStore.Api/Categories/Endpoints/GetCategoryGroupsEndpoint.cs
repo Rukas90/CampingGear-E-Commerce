@@ -5,7 +5,7 @@ using TrailStore.Domain.Categories.Interfaces;
 
 namespace TrailStore.Api.Categories.Endpoints;
 
-public class GetCategoryGroupsEndpoint(ICategoriesRepository categoriesRepository)
+public class GetCategoryGroupsEndpoint(ICategoryGroupsRepository categoryGroupsRepository)
     : EndpointWithoutRequest<IEnumerable<CategoryGroupDto>>
 {
     public override void Configure()
@@ -16,6 +16,6 @@ public class GetCategoryGroupsEndpoint(ICategoriesRepository categoriesRepositor
 
     public override async Task<IEnumerable<CategoryGroupDto>> ExecuteAsync(CancellationToken ct)
     {
-        return (await categoriesRepository.ListAllCategoryGroupsAsync(ct)).ToDto();
+        return (await categoryGroupsRepository.ListAsync(ct)).ToDto();
     }
 }

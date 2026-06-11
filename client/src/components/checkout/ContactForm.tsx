@@ -4,7 +4,7 @@ import FormHeader from "./FormHeader"
 import FormEditNav from "./FormEditNav"
 
 const ContactForm = () => {
-  const { data, isBusy } = useCheckoutContact()
+  const { data, section, isBusy } = useCheckoutContact()
 
   const emailAddress = data.value("emailAddress")
 
@@ -12,8 +12,8 @@ const ContactForm = () => {
     <div>
       <FormHeader
         isLoading={isBusy}
-        isEditing={data.isEditing}
-        onEdit={data.edit}
+        isEditing={section.isEditing}
+        onEdit={section.edit}
       >
         Contact information
       </FormHeader>
@@ -23,14 +23,14 @@ const ContactForm = () => {
         persistentLabel
         value={emailAddress.value()}
         onChange={(e) => emailAddress.update(e.currentTarget.value)}
-        disabled={!data.isEditing || isBusy}
+        disabled={!section.isEditing || isBusy}
         error={emailAddress.error()}
       />
       <FormEditNav
         isBusy={isBusy}
-        isEditing={data.isEditing}
+        isEditing={section.isEditing}
         isDirty={data.isDirty()}
-        onCancel={data.cancel}
+        onCancel={section.cancel}
         onCommit={data.commit}
       />
     </div>

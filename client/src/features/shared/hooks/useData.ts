@@ -2,6 +2,9 @@ import type { ApiResult } from "@types"
 import { useEffect, useRef, useState } from "react"
 import { useFormState } from "./useFormState"
 import { useManagedMutation } from "./useManagedMutation"
+import type { ErrorPool } from "./useErrorPool"
+
+export type ErrorKeyMapper = (key: string) => string
 
 export type FieldInterface<TFieldType> = {
   value: <TKey extends keyof TFieldType>(
@@ -34,6 +37,13 @@ export interface UseDataProps<TData, TResponse> {
   mutationKey: string[]
   requestFunc: (data: TData) => Promise<ApiResult<TResponse>>
   onMutationSuccess?: (response: TResponse | undefined) => void
+  errorPool: ErrorPool
+  errorKeyMappers?: ErrorKeyMapper[]
+}
+
+export interface UseDataSnapshot {
+  makeSnapshot: () => void
+  revertToSnapshot: () => void
 }
 
 export const useData = <TData, TResponse = unknown>({
@@ -42,26 +52,25 @@ export const useData = <TData, TResponse = unknown>({
   mutationKey,
   requestFunc,
   onMutationSuccess,
+  errorPool,
+  errorKeyMappers,
 }: UseDataProps<TData, TResponse>) => {
   const [internalData, setInternalData] = useState<TData>(data ?? defaultData)
-  const [isEditing, setEditing] = useState(false)
   const [cachedResponse, setCachedResponse] = useState<TResponse | undefined>()
 
   const snapshot = useRef<TData>(undefined)
-
   const formState = useFormState(internalData)
 
-  const { commitWith, errors, isPending } = useManagedMutation<
-    TData,
-    TResponse
-  >({
+  const { commitWith, isPending } = useManagedMutation<TData, TResponse>({
     mutationKey,
     requestFunc,
     onSuccess: (response) => {
       formState.reset()
-      setEditing(false)
       onMutationSuccess?.(response)
       setCachedResponse(response)
+    },
+    onError: (errors) => {
+      errorPool.setErrors(errors)
     },
   })
 
@@ -83,17 +92,45 @@ export const useData = <TData, TResponse = unknown>({
     commitWith(internalData)
   }
 
+  const findError = (key: string | number | symbol): string | undefined => {
+    const errorKey = String(key)
+
+    if (!errorKeyMappers) {
+      return errorPool.getError(errorKey)
+    }
+
+    for (const mapper of errorKeyMappers) {
+      const error = errorPool.getError(mapper(errorKey))
+      if (error) return error
+    }
+
+    return undefined
+  }
+
+  const clearError = (key: string | number | symbol) => {
+    const errorKey = String(key)
+
+    if (!errorKeyMappers) {
+      errorPool.clearError(errorKey)
+      return
+    }
+
+    errorKeyMappers.forEach((mapper) => {
+      errorPool.clearError(mapper(errorKey))
+    })
+  }
+
   const asField = (): FieldInterface<TData> => ({
     value: (key) => internalData[key],
-    error: (key) => errors.getError(key),
-    hasError: (key) => !!errors.getError(key),
-    isTouched: (key) => formState.isTouched(errors.errorKey(key)),
-    isDirty: (key) => formState.isDirty(errors.errorKey(key)),
+    error: (key) => findError(key),
+    hasError: (key) => !!findError(key),
+    isTouched: (key) => formState.isTouched(String(key)),
+    isDirty: (key) => formState.isDirty(String(key)),
     update: (key, val) => {
-      formState.markTouched(errors.errorKey(key))
+      formState.markTouched(String(key))
       formState.markRootDirty(key, val)
-      errors.clearError(errors.errorKey(key))
 
+      clearError(key)
       setInternalData((prev) => ({ ...prev, [key]: val }))
     },
     commit,
@@ -112,8 +149,8 @@ export const useData = <TData, TResponse = unknown>({
           ? (fieldData as FieldType)[key]
           : undefined
       },
-      error: (key: keyof FieldType) => errors.getNestedError(fk, key),
-      hasError: (key: keyof FieldType) => !!errors.getNestedError(fk, key),
+      error: (key: keyof FieldType) => findError(key),
+      hasError: (key: keyof FieldType) => !!findError(key),
       isTouched: (key: keyof FieldType) =>
         formState.isTouched(formState.toKey(fk, String(key))),
       isDirty: (key: keyof FieldType) =>
@@ -124,8 +161,8 @@ export const useData = <TData, TResponse = unknown>({
       ) => {
         formState.markKeyTouched(fk, String(key))
         formState.markKeyDirty(fieldKey, String(key), val)
-        errors.clearError(errors.errorKey(key))
 
+        clearError(key)
         setInternalData((prev) => ({
           ...prev,
           [fieldKey]: { ...(prev[fieldKey] as object), [key]: val },
@@ -137,17 +174,18 @@ export const useData = <TData, TResponse = unknown>({
 
   const value = <TField extends keyof TData>(fieldKey: TField) => {
     const fk = String(fieldKey)
+
     return {
       value: () => internalData[fieldKey],
-      error: () => errors.getError(fieldKey),
-      hasError: () => !!errors.getError(fieldKey),
+      error: () => findError(fk),
+      hasError: () => !!findError(fk),
       isTouched: () => formState.isTouched(fk),
       isDirty: () => formState.isDirty(fk),
       update: (val: TData[TField]) => {
         formState.markTouched(fk)
         formState.markRootDirty(fieldKey, val)
-        errors.clearError(errors.errorKey(fieldKey))
 
+        clearError(fk)
         setInternalData((prev) => ({ ...prev, [fieldKey]: val }))
       },
       commit,
@@ -160,37 +198,29 @@ export const useData = <TData, TResponse = unknown>({
       formState.markRootDirty("self" as keyof TData, val)
       setInternalData(val)
     },
-    error: () => errors.getError("self" as keyof TData),
-    hasError: () => !!errors.getError("self" as keyof TData),
+    error: () => findError("self" as keyof TData),
+    hasError: () => !!findError("self" as keyof TData),
     isTouched: () => formState.isTouched("self"),
     isDirty: () => formState.isDirty("self"),
     commit,
   })
 
-  const edit = () => {
+  const makeSnapshot = () => {
     snapshot.current = internalData
-    setEditing(true)
   }
 
-  const cancel = () => {
+  const revertToSnapshot = () => {
     if (snapshot.current) {
       setInternalData(snapshot.current)
     }
     formState.reset()
-    errors.clear()
-    setEditing(false)
-  }
-
-  const toggleEdit = () => {
-    if (isEditing) {
-      cancel()
-      return
-    }
-    edit()
+    errorPool.clear()
   }
 
   return {
     data: internalData,
+    makeSnapshot,
+    revertToSnapshot,
     overrideData,
     cachedResponse,
     value,
@@ -198,10 +228,6 @@ export const useData = <TData, TResponse = unknown>({
     field,
     asField,
     isMutating: isPending,
-    isEditing,
-    edit,
-    cancel,
-    toggleEdit,
     commit,
     isDirty: formState.isAnyDirty,
   }

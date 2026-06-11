@@ -7,6 +7,7 @@ export interface ToggleProps {
   knobClassName?: (checked: boolean) => string
   style?: CSSProperties
   knobStyle?: CSSProperties
+  defaultValue?: boolean
   checked?: boolean
   onChange?: (checked: boolean) => void
   disabled?: boolean
@@ -17,11 +18,12 @@ const Toggle = ({
   knobClassName,
   style,
   knobStyle,
+  defaultValue,
   checked,
   onChange,
   disabled,
 }: ToggleProps) => {
-  const [isChecked, setChecked] = useState(checked ?? false)
+  const [isChecked, setChecked] = useState(checked ?? defaultValue ?? false)
 
   const isControlled = checked !== undefined
   const effectiveChecked = isControlled ? checked : isChecked

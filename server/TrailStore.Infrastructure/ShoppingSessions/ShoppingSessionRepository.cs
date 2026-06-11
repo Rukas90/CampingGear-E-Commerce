@@ -19,19 +19,10 @@ public class ShoppingSessionRepository(AppDbContext context) : IShoppingSessionR
         return await context.ShoppingSessions.FirstOrDefaultAsync(session => session.CustomerId == id, ct);
     }
 
-    public async Task<ShoppingSession> CreateAsync(ShoppingSession shoppingSession, CancellationToken ct)
+    public ShoppingSession Add(ShoppingSession shoppingSession)
     {
-        await context.ShoppingSessions.AddAsync(shoppingSession, ct);
-        await context.SaveChangesAsync(ct);
+        context.ShoppingSessions.Add(shoppingSession);
         
         return shoppingSession;
-    }
-
-    public async Task ExtendAsync(Id<ShoppingSession> id, TimeSpan expireTime, CancellationToken ct)
-    {
-        await context.ShoppingSessions
-            .Where(s => s.Id == id)
-            .ExecuteUpdateAsync(s => s
-                .SetProperty(x => x.ExpiresAt, DateTime.UtcNow.Add(expireTime)), ct);
     }
 }

@@ -15,4 +15,26 @@ public class RefreshToken : IModel<RefreshToken>
     public DateTime? RevokedAt { get; set; } = null;
 
     public Customer Customer { get; private set; } = null!;
+
+    public static RefreshToken Create(
+        Id<Customer> customerId,
+        string tokenHash,
+        string lookupHash,
+        Id<RefreshTokenFamily>? familyId,
+        TimeSpan expireTime)
+        => new()
+        {
+            Id = Id<RefreshToken>.New(),
+            CustomerId = customerId,
+            TokenHash = tokenHash,
+            LookupHash = lookupHash,
+            FamilyId = familyId ?? Id<RefreshTokenFamily>.New(),
+            CreatedAt = DateTime.UtcNow,
+            ExpiresAt = DateTime.UtcNow.Add(expireTime)
+        };
+
+    public void Revoke()
+    {
+        RevokedAt = DateTime.UtcNow;
+    }
 }

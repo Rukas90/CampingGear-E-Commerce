@@ -1,4 +1,6 @@
-﻿using TrailStore.Domain.Carts.Interfaces;
+﻿using Microsoft.Extensions.Options;
+using TrailStore.Domain.Carts.Interfaces;
+using TrailStore.Domain.Shared.Interfaces;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Domain.ShoppingSessions.Errors;
 using TrailStore.Domain.ShoppingSessions.Interfaces;
@@ -9,12 +11,13 @@ namespace TrailStore.Infrastructure.ShoppingSessions;
 
 [AppService<IShoppingSessionService>]
 public class ShoppingSessionService(
-    IShoppingSessionRepository sessionRepository, ICartItemRepository cartItemRepository) 
+    IShoppingSessionRepository sessionRepository, 
+    ICartItemRepository cartItemRepository, 
+    IOptions<ShoppingSessionOptions> options,
+    IUnitOfWork unitOfWork) 
     : IShoppingSessionService
 {
-    private readonly TimeSpan ExpireTime = TimeSpan.FromDays(30);
-    
-    public async Task<ShoppingSession> GetOrCreateSession(ShoppingContext ctx, CancellationToken ct)
+    public async Task<ShoppingSession> FindOrCreateSession(ShoppingContext ctx, CancellationToken ct)
     {
         var result = await FindSession(ctx, ct);
 
@@ -23,7 +26,11 @@ public class ShoppingSessionService(
             return result.Value;
         }
         
-        return await CreateSession(customerId: null, ct);
+        var newSession = CreateSession(ctx.CustomerId);
+
+        await unitOfWork.SaveAsync(ct);
+        
+        return newSession;
     }
 
     public async Task<Result<ShoppingSession>> FindSession(ShoppingContext ctx, CancellationToken ct)
@@ -55,8 +62,8 @@ public class ShoppingSessionService(
         return ShoppingSessionsProblems.SessionNotFound;
     }
 
-    public async Task<ShoppingSession> CreateSession(Id<Customer>? customerId, CancellationToken ct)
-        => await sessionRepository.CreateAsync(ShoppingSession.Create(customerId, ExpireTime), ct);
+    public ShoppingSession CreateSession(Id<Customer>? customerId)
+        => sessionRepository.Add(ShoppingSession.Create(customerId, options.Value.ExpiryTime));
 
     public async Task<ShoppingSessionSummary> GetSessionSummary(ShoppingContext ctx, CancellationToken ct)
     {
@@ -71,15 +78,5 @@ public class ShoppingSessionService(
             Id: result.Value.Id,
             CartCount: await cartItemRepository.CountBySessionAsync(result.Value.Id, ct),
             WishlistCount: 0);
-    }
-
-    public async Task ExtendSession(ShoppingSession session, CancellationToken ct)
-    {
-        if (session.CustomerId is not null)
-        {
-            return;
-        }
-
-        await sessionRepository.ExtendAsync(session.Id, ExpireTime, ct);
     }
 }

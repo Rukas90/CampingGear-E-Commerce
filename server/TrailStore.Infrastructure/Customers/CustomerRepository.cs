@@ -9,14 +9,14 @@ namespace TrailStore.Infrastructure.Customers;
 [AppService<ICustomerRepository>]
 public class CustomerRepository(AppDbContext context) : ICustomerRepository
 {
-    public async Task<Customer> CreateAsync(Customer customer, CancellationToken ct)
+    public Customer Add(Customer customer)
     {
         context.Customers.Add(customer);
-        await context.SaveChangesAsync(ct);
+
         return customer;
     }
 
-    public Task<Customer?> GetByEmailAsync(string email, CancellationToken ct)
+    public Task<Customer?> FindByEmailAsync(string email, CancellationToken ct)
     {
         return context.Customers
             .FirstOrDefaultAsync(customer => customer.Email == email, ct);

@@ -9,10 +9,11 @@ import {
   SubmitButton,
   Toggle,
 } from "@components"
-import { useAccount } from "@features"
+import { useAccount, useCheckoutContext } from "@features"
 
 const CheckoutForm = () => {
   const { isLoggedIn } = useAccount()
+  const { confirm } = useCheckoutContext()
 
   return (
     <CheckoutSection className="flex gap-6 lg:ml-auto lg:mr-0 mx-auto">
@@ -34,7 +35,7 @@ const CheckoutForm = () => {
       </div>
       <Line className="text-neutral-200" />
       <div className="flex gap-2.5">
-        <Toggle className={(_) => "mt-0.5"} />
+        <Toggle defaultValue className={(_) => "mt-0.5"} />
         <div className="text-start">
           <p className="text-sm text-accent">
             Save my information for a faster checkout
@@ -45,7 +46,7 @@ const CheckoutForm = () => {
           </p>
         </div>
       </div>
-      <SubmitButton>Proceed to Payment</SubmitButton>
+      <SubmitButton onClick={confirm}>Place your Order</SubmitButton>
     </CheckoutSection>
   )
 }

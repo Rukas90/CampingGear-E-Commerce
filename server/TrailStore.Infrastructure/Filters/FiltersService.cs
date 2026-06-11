@@ -25,7 +25,7 @@ public sealed class FiltersService(ISkuRepository skuRepository) : IFiltersServi
         var specification = FiltersSpecificationBuilder.FromQuery(query);
 
         return await skuRepository.ListAllAsync(specification, sku => new SkuProjection(
-            sku.ProductId, sku.UnitPrice, sku.Stock,
+            sku.ProductId, sku.UnitPrice, sku.Stock - sku.Reserved,
             new BrandProjection(sku.Product.BrandId, sku.Product.Brand.Name, sku.Product.Brand.Slug),
             new CategoryProjection(sku.Product.CategoryId, sku.Product.Category.Name, sku.Product.Category.Slug),
             sku.Options.Select(o => new OptionProjection(

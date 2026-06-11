@@ -21,7 +21,7 @@ public static class ProductMappingSelectors
             MaxPrice = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
             AverageRating = product.Reviews.Average(r => (double?)r.Rating) ?? 0.0,
             ReviewCount = product.Reviews.Count,
-            InStock = product.Skus.Any(sku => sku.Stock > 0),
+            InStock = product.Skus.Any(sku => sku.Stock - sku.Reserved > 0),
             HasVariants = product.Skus.Count > 1,
             ThumbnailUrl = product.ThumbnailUrl
         };

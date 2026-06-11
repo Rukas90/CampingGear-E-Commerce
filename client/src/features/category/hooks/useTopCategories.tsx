@@ -1,4 +1,4 @@
-import { handleQueryFn } from "@lib"
+import { HandleReqFn } from "@lib"
 import { useQuery } from "@tanstack/react-query"
 import categoryApi from "../api/CategoryApi"
 
@@ -8,7 +8,7 @@ interface TopCategoriesProps {
 const useTopCategories = ({ count }: TopCategoriesProps) => {
   const { data } = useQuery({
     queryKey: ["top-categories"],
-    queryFn: () => handleQueryFn(() => categoryApi.getTopCategories(count)),
+    queryFn: () => HandleReqFn(() => categoryApi.getTopCategories(count)),
   })
   return { data }
 }

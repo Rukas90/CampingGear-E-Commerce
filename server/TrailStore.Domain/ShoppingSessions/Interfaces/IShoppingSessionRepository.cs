@@ -8,8 +8,6 @@ public interface IShoppingSessionRepository
     Task<ShoppingSession?> FindByIdAsync(Id<ShoppingSession> id, CancellationToken ct);
     
     Task<ShoppingSession?> FindByCustomerIdAsync(Id<Customer> id, CancellationToken ct);
-    
-    Task<ShoppingSession> CreateAsync(ShoppingSession shoppingSession, CancellationToken ct);
 
-    Task ExtendAsync(Id<ShoppingSession> id, TimeSpan expireTime, CancellationToken ct);
+    ShoppingSession Add(ShoppingSession shoppingSession);
 }

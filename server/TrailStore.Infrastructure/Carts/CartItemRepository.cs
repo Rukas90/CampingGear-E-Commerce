@@ -10,18 +10,14 @@ namespace TrailStore.Infrastructure.Carts;
 [AppService<ICartItemRepository>]
 public class CartItemRepository(AppDbContext context) : ICartItemRepository
 {
-    public async Task<CartItem> UpdateAsync(CartItem item, CancellationToken ct)
+    public void Update(CartItem item)
     {
         context.CartItems.Update(item);
-        await context.SaveChangesAsync(ct);
-
-        return item;
     }
 
-    public async Task<CartItem> CreateAsync(CartItem item, CancellationToken ct)
+    public CartItem Add(CartItem item)
     {
-        await context.CartItems.AddAsync(item, ct);
-        await context.SaveChangesAsync(ct);
+        context.CartItems.Add(item);
 
         return item;
     }
@@ -36,25 +32,33 @@ public class CartItemRepository(AppDbContext context) : ICartItemRepository
         Id<ShoppingSession> sessionId, Expression<Func<CartItem, TResult>> selector, CancellationToken ct)
     {
         return await context.CartItems
-            .Where(item => item.ShoppingSession.Id == sessionId)
+            .Where(item => item.SessionId == sessionId)
             .Select(selector)
             .ToListAsync(ct);
     }
 
-    public Task DeleteAllBySessionAsync(Id<ShoppingSession> sessionId, CancellationToken ct)
+    public async Task DeleteAllBySessionAsync(Id<ShoppingSession> sessionId, CancellationToken ct)
     {
-        return context.CartItems
+        var items = await context.CartItems
             .Where(item => item.SessionId == sessionId)
-            .ExecuteDeleteAsync(ct);
+            .ToArrayAsync(ct);
+        
+        context.CartItems.RemoveRange(items);
     }
+    
+    public void Remove(CartItem item)
+        => context.CartItems.Remove(item);
 
-    public Task DeleteBySessionAndCodeAsync(Id<ShoppingSession> sessionId, string code, CancellationToken ct)
+    public async Task DeleteBySessionAndCodeAsync(Id<ShoppingSession> sessionId, string code, CancellationToken ct)
     {
-        return context.CartItems
-            .Include(item => item.Sku)
-            .Where(item => item.SessionId == sessionId 
-                           && item.Sku.Code == code)
-            .ExecuteDeleteAsync(ct);
+        var item = await context.CartItems
+            .Where(item => item.SessionId == sessionId && item.Sku.Code == code)
+            .FirstOrDefaultAsync(ct);
+
+        if (item is not null)
+        {
+            context.CartItems.Remove(item);
+        }
     }
 
     public async Task<int> CountBySessionAsync(Id<ShoppingSession> sessionId, CancellationToken ct)

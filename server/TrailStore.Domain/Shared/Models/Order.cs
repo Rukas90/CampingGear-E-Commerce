@@ -1,6 +1,5 @@
 ﻿using TrailStore.Domain.Orders.Enums;
 using TrailStore.Domain.Payments.Enums;
-using TrailStore.Domain.Shared.Enums;
 using TrailStore.Shared.Common;
 
 namespace TrailStore.Domain.Shared.Models;
@@ -14,7 +13,7 @@ public class Order : IModel<Order>
     public required DateTime CreatedAt { get; init; }
     public required DateTime StatusUpdatedAt { get; init; }
     public required decimal TotalPrice { get; init; }
-    public required string Currency { get; init; }
+    public required decimal TaxAmount { get; init; }
     public required int MaxPaymentAttempts { get; init; }
     public required PostalAddress ShippingAddress { get; init; }
     public required PostalAddress BillingAddress { get; init; }
@@ -30,7 +29,7 @@ public class Order : IModel<Order>
     public static Order Create(
         string emailAddress, 
         decimal totalPrice, 
-        string currency,
+        decimal taxAmount,
         PostalAddress shippingAddress,
         PostalAddress billingAddress,
         Id<Customer>? customerId = null)
@@ -42,10 +41,10 @@ public class Order : IModel<Order>
             CreatedAt = DateTime.UtcNow,
             StatusUpdatedAt = DateTime.UtcNow,
             EmailAddress = emailAddress,
-            Currency = currency,
-            MaxPaymentAttempts = 3,
+            MaxPaymentAttempts = 1,
             ShippingAddress = shippingAddress,
             BillingAddress = billingAddress,
-            TotalPrice = totalPrice
+            TotalPrice = totalPrice,
+            TaxAmount = taxAmount
         };
 }

@@ -14,7 +14,7 @@ public static class ProblemMapper
             {
                 Status = 400,
                 Detail = problem.Reason,
-                Errors = validationProblem.Failures.Select(failure => new ProblemDetails.Error
+                Errors = validationProblem.State.Map(failure => new ProblemDetails.Error
                 {
                     Name = failure.Field,
                     Code = "validation",

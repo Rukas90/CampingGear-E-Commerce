@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using TrailStore.Domain.Auth.Errors;
 using TrailStore.Domain.Auth.Interfaces;
 using TrailStore.Domain.Auth.Models;
+using TrailStore.Domain.Shared.Interfaces;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Shared;
 using TrailStore.Shared.Common;
@@ -12,6 +13,7 @@ namespace TrailStore.Infrastructure.Auth.Refresh;
 
 [AppService<IRefreshService>]
 public class RefreshService(
+    IUnitOfWork unitOfWork,
     IOptions<RefreshOptions> options,
     IRefreshRepository refreshRepository,
     IPasswordHasher passwordHasher) : IRefreshService
@@ -23,43 +25,50 @@ public class RefreshService(
     {
         var token = CreateTokenValue();
         var lookupHash = GenerateLookupHash(token);
+        
+        refreshRepository.Add(RefreshToken.Create(
+            customerId, passwordHasher.Hash(token), lookupHash, familyId, TimeSpan.FromDays(30)));
 
-        await refreshRepository.CreateAsync(new RefreshToken
-        {
-            Id = Id<RefreshToken>.New(),
-            CustomerId = customerId,
-            FamilyId = familyId ?? Id<RefreshTokenFamily>.New(),
-            TokenHash = passwordHasher.Hash(token),
-            LookupHash = lookupHash,
-            CreatedAt = DateTime.UtcNow,
-            ExpiresAt = DateTime.UtcNow.AddDays(30)
-        }, ct);
+        await unitOfWork.SaveAsync(ct);
 
         return token;
     }
 
     public async Task<Result<RefreshToken>> ValidateToken(string? token, CancellationToken ct)
     {
-        if (string.IsNullOrEmpty(token)) return AuthProblems.RefreshTokenInvalid;
+        if (string.IsNullOrEmpty(token))
+        {
+            return AuthProblems.RefreshTokenInvalid;
+        }
 
         var result = await FindRefreshToken(token, ct);
 
-        if (!result.IsSuccess) return AuthProblems.RefreshTokenInvalid;
+        if (!result.IsSuccess)
+        {
+            return AuthProblems.RefreshTokenInvalid;
+        }
 
-        var refreshToken = result.Value!;
+        var refreshToken = result.Value;
 
         if (refreshToken.RevokedAt is not null)
         {
             await refreshRepository.RevokeFamily(refreshToken.FamilyId, ct);
-
+            await unitOfWork.SaveAsync(ct);
+            
             return AuthProblems.RefreshTokenReused;
         }
 
-        if (DateTime.UtcNow > refreshToken.ExpiresAt) return AuthProblems.RefreshTokenExpired;
+        if (DateTime.UtcNow > refreshToken.ExpiresAt)
+        {
+            return AuthProblems.RefreshTokenExpired;
+        }
 
         var isValid = passwordHasher.Verify(token, refreshToken.TokenHash);
 
-        if (!isValid) return AuthProblems.RefreshTokenInvalid;
+        if (!isValid)
+        {
+            return AuthProblems.RefreshTokenInvalid;
+        }
 
         return refreshToken;
     }
@@ -67,7 +76,7 @@ public class RefreshService(
     public async Task<Result<RefreshToken>> FindRefreshToken(string token, CancellationToken ct)
     {
         var lookingHash = GenerateLookupHash(token);
-        var refreshToken = await refreshRepository.GetByLookupHashAsync(lookingHash, ct);
+        var refreshToken = await refreshRepository.FindByLookupHashAsync(lookingHash, ct);
 
         if (refreshToken is null) return AuthProblems.RefreshTokenNotFound;
 

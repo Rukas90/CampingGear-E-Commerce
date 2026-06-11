@@ -19,4 +19,6 @@ public interface ICheckoutService
         ShoppingContext ctx, Id<ShippingMethod> selectedMethodId, CancellationToken ct);
     
     Task<Result> UpdateCheckoutBilling(ShoppingContext ctx, CheckoutBilling billing, CancellationToken ct);
+
+    Task<Result<Id<Order>>> ConfirmCheckout(ShoppingContext ctx, CancellationToken ct);
 }

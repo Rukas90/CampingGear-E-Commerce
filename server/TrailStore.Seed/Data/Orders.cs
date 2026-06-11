@@ -1,6 +1,5 @@
 ﻿using Bogus;
 using TrailStore.Domain.Orders.Enums;
-using TrailStore.Domain.Shared.Enums;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Shared.Common;
 
@@ -37,8 +36,6 @@ public static class Orders
         faker.RuleFor(order => order.CreatedAt, f => f.Date.Past().ToUniversalTime());
         
         faker.RuleFor(order => order.Status, _ => OrderStatus.Completed);
-
-        faker.RuleFor(order => order.Currency, _ => "USD");
         
         faker.RuleFor(order => order.ShippingAddress, f => new PostalAddress
         {
@@ -79,7 +76,6 @@ public static class Orders
                     SkuId = sku.Id,
                     Quantity = f.Random.Int(1, 3),
                     UnitPrice = sku.UnitPrice,
-                    TaxAmount = 0
                 };
             });
         });
@@ -87,8 +83,13 @@ public static class Orders
         faker.RuleFor(order => order.StatusUpdatedAt, (f, o) =>
             o.CreatedAt.AddMinutes(f.Random.Int(1, 60)));
         
+        var usTaxRate = 1.08m;
+
+        faker.RuleFor(order => order.TaxAmount, (f, o) 
+            => o.Items.Sum(item => item.UnitPrice * item.Quantity) * usTaxRate);
+        
         faker.RuleFor(order => order.TotalPrice, (f, o) =>
-            o.Items.Sum(item => item.UnitPrice * item.Quantity));
+            o.Items.Sum(item => item.UnitPrice * item.Quantity) + o.TaxAmount);
         
         return faker.Generate(50);
     }

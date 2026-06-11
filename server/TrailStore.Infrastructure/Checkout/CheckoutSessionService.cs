@@ -1,6 +1,8 @@
-﻿using TrailStore.Domain.Carts.Interfaces;
+﻿using Microsoft.Extensions.Options;
+using TrailStore.Domain.Carts.Interfaces;
 using TrailStore.Domain.Checkout.Errors;
 using TrailStore.Domain.Checkout.Interfaces;
+using TrailStore.Domain.Shared.Interfaces;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Domain.ShoppingSessions.Interfaces;
 using TrailStore.Domain.ShoppingSessions.Models;
@@ -12,7 +14,9 @@ namespace TrailStore.Infrastructure.Checkout;
 public class CheckoutSessionService(
     IShoppingSessionService shoppingSessionService,
     ICartItemRepository cartItemRepository,
-    ICheckoutSessionRepository checkoutSessionRepository) 
+    ICheckoutSessionRepository checkoutSessionRepository,
+    IUnitOfWork unitOfWork,
+    IOptions<CheckoutSessionOptions> options) 
     : ICheckoutSessionService
 {
     public async Task<Result<CheckoutSession>> 
@@ -31,10 +35,14 @@ public class CheckoutSessionService(
         {
             return checkoutSession;
         }
-        
-        var newCheckoutSession = await checkoutSessionRepository.CreateAsync(
-            CheckoutSession.Create(shoppingSession.Id), ct);
 
+        var isAuthenticated = shoppingSession.CustomerId is not null;
+        
+        var newCheckoutSession = checkoutSessionRepository.Add(
+            CheckoutSession.Create(shoppingSession.Id, isAuthenticated ? options.Value.ExpiresForCustomer : options.Value.ExpiresForGuest));
+
+        await unitOfWork.SaveAsync(ct);
+        
         return newCheckoutSession;
     }
 

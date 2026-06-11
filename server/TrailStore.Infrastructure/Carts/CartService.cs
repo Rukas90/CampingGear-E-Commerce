@@ -1,11 +1,14 @@
 ﻿using System.Linq.Expressions;
+using Microsoft.Extensions.Options;
 using TrailStore.Domain.Carts.Errors;
 using TrailStore.Domain.Carts.Interfaces;
 using TrailStore.Domain.Carts.Models;
+using TrailStore.Domain.Shared.Interfaces;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Domain.ShoppingSessions.Interfaces;
 using TrailStore.Domain.ShoppingSessions.Models;
 using TrailStore.Domain.Skus.Interfaces;
+using TrailStore.Infrastructure.ShoppingSessions;
 using TrailStore.Shared.Common;
 
 namespace TrailStore.Infrastructure.Carts;
@@ -14,13 +17,17 @@ namespace TrailStore.Infrastructure.Carts;
 public class CartService(
     IShoppingSessionService shoppingSessionService,
     ISkuRepository skuRepository,
-    ICartItemRepository cartItemRepository) : ICartService
+    ICartItemRepository cartItemRepository,
+    IOptions<ShoppingSessionOptions> shoppingSessionOptions,
+    IUnitOfWork unitOfWork) : ICartService
 {
     public async Task<Result<Id<ShoppingSession>>> AddItemToCart(
         CartLineItem lineItem, ShoppingContext ctx, CancellationToken ct)
     {
-        var session = await shoppingSessionService.GetOrCreateSession(ctx, ct);
-
+        await using var scope = await unitOfWork.BeginScope(ct);
+        
+        var session = await shoppingSessionService.FindOrCreateSession(ctx, ct);
+        
         var result = await AddItemQuantity(
             session.Id, lineItem.Code, lineItem.Quantity, ct);
         
@@ -29,7 +36,9 @@ public class CartService(
             return result.Problem;
         }
 
-        await shoppingSessionService.ExtendSession(session, ct);
+        session.Extend(shoppingSessionOptions.Value.ExpiryTime);
+        
+        await scope.CompleteAsync();
         
         return session.Id;
     }
@@ -46,8 +55,13 @@ public class CartService(
         
         var session = result.Value;
         
+        await using var scope = await unitOfWork.BeginScope(ct);
+        
         await cartItemRepository.DeleteBySessionAndCodeAsync(session.Id, code, ct);
-        await shoppingSessionService.ExtendSession(session, ct);
+        
+        session.Extend(shoppingSessionOptions.Value.ExpiryTime);
+        
+        await scope.CompleteAsync();
         
         return session.Id;
     }
@@ -62,9 +76,14 @@ public class CartService(
         }
 
         var session = sessionResult.Value;
-        
+
+        await using var scope = await unitOfWork.BeginScope(ct);
+
         await cartItemRepository.DeleteAllBySessionAsync(session.Id, ct);
-        await shoppingSessionService.ExtendSession(session, ct);
+        
+        session.Extend(shoppingSessionOptions.Value.ExpiryTime);
+
+        await scope.CompleteAsync();
         
         return session.Id;
     }
@@ -79,6 +98,8 @@ public class CartService(
             return sessionResult.Problem;
         }
         
+        await using var scope = await unitOfWork.BeginScope(ct);
+        
         var session = sessionResult.Value;
         
         var result = await SetItemQuantity(
@@ -89,7 +110,9 @@ public class CartService(
             return result.Problem;
         }
         
-        await shoppingSessionService.ExtendSession(session, ct);
+        session.Extend(shoppingSessionOptions.Value.ExpiryTime);
+
+        await scope.CompleteAsync();
         
         return session.Id;
     }
@@ -101,7 +124,7 @@ public class CartService(
 
         if (item is not null)
         {
-            await SetNewQuantity(sessionId, item, newQuantity: item.Quantity + amount, ct);
+            SetNewQuantity(item, newQuantity: item.Quantity + amount);
             
             return item;
         }
@@ -113,14 +136,12 @@ public class CartService(
             return CartItemProblems.SkuNotFound;
         }
         
-        if (amount < 1 || amount > sku.Stock)
+        if (amount < 1 || amount > sku.AvailableStock)
         {
             return CartItemProblems.InsufficientStock;
         }
         
-        var newItem = CartItem.Create(sessionId, sku.Id, amount);
-        
-        return await cartItemRepository.CreateAsync(newItem, ct);
+        return cartItemRepository.Add(CartItem.Create(sessionId, sku.Id, amount));
     }
 
     private async Task<Result<CartItem>> SetItemQuantity(
@@ -133,19 +154,19 @@ public class CartService(
             return CartItemProblems.ItemNotFound;
         }
 
-        await SetNewQuantity(sessionId, item, quantity, ct);
+        SetNewQuantity(item, quantity);
         
         return item;
     }
 
-    private async Task SetNewQuantity(Id<ShoppingSession> sessionId, CartItem item, int newQuantity, CancellationToken ct)
+    private void SetNewQuantity(CartItem item, int newQuantity)
     {
         var sku = item.Sku;
-        var clampedQuantity = Math.Clamp(newQuantity, 0, sku.Stock);
+        var clampedQuantity = Math.Clamp(newQuantity, 0, sku.AvailableStock);
         
         if (clampedQuantity <= 0)
         {
-            await cartItemRepository.DeleteBySessionAndCodeAsync(sessionId, sku.Code, ct);
+            cartItemRepository.Remove(item);
             
             return;
         }
@@ -155,9 +176,7 @@ public class CartService(
             return;
         }
 
-        item.Quantity = clampedQuantity;
-        
-        await cartItemRepository.UpdateAsync(item, ct);
+        item.SetQuantity(clampedQuantity);
     }
 
     public async Task<CartBag<TResult>> GetBag<TResult>(

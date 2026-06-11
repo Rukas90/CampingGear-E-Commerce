@@ -22,12 +22,12 @@ public static class SkuSpecifications
 
     public static Specification<Sku> InStock()
     {
-        return Specification<Sku>.Where(p => p.Product.Skus.Any(s => s.Stock > 0));
+        return Specification<Sku>.Where(p => p.Product.Skus.Any(s => s.Stock - s.Reserved > 0));
     }
 
     public static Specification<Sku> OutOfStock()
     {
-        return Specification<Sku>.Where(p => p.Product.Skus.All(s => s.Stock <= 0));
+        return Specification<Sku>.Where(p => p.Product.Skus.All(s => s.Stock - s.Reserved <= 0));
     }
     
     public static Specification<Sku> Code(string code)
