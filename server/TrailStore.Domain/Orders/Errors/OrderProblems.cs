@@ -4,6 +4,6 @@ namespace TrailStore.Domain.Orders.Errors;
 
 public static class OrderProblems
 {
-    public static readonly Problem IntentNotFound
-        = new("Order Error", "order.intent_not_found", "Intent not found.");
+    public static readonly Problem NotFound
+        = new("Order Error", "order.not_found", "Order not found.");
 }

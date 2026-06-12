@@ -7,6 +7,7 @@ using TrailStore.Domain.Countries.Data;
 using TrailStore.Domain.Orders.Interfaces;
 using TrailStore.Domain.Orders.Models;
 using TrailStore.Domain.Orders.Requests;
+using TrailStore.Domain.Orders.Results;
 using TrailStore.Domain.Shared.Extensions;
 using TrailStore.Domain.Shared.Financials;
 using TrailStore.Domain.Shared.Interfaces;
@@ -244,7 +245,7 @@ public class CheckoutService(
         return selectedMethod;
     }
 
-    public async Task<Result<Id<Order>>> ConfirmCheckout(ShoppingContext ctx, CancellationToken ct)
+    public async Task<Result<CreateOrderResult>> ConfirmCheckout(ShoppingContext ctx, CancellationToken ct)
     {
         var result = await checkoutSessionService.FindCheckoutSession(ctx, ct);
 
@@ -319,6 +320,6 @@ public class CheckoutService(
 
         await scope.CompleteAsync();
         
-        return orderResult.Value.Id;
+        return orderResult.Value;
     }
 }

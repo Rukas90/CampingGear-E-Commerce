@@ -2,6 +2,7 @@
 using TrailStore.Api.Checkout.Dto;
 using TrailStore.Api.Common.Extensions;
 using TrailStore.Api.Common.Mapping;
+using TrailStore.Api.Orders.Endpoints;
 using TrailStore.Domain.Checkout.Interfaces;
 
 namespace TrailStore.Api.Checkout.Endpoints;
@@ -26,7 +27,10 @@ public class ConfirmCheckoutEndpoint(ICheckoutService checkoutService)
             return;
         }
 
-        var orderId = result.Value;
+        var token = result.Value.Token;
         
+        await Send.CreatedAtAsync<GetOrderByTokenEndpoint>(
+            routeValues: new { token },
+            responseBody: new CheckoutConfirmDto { Token = result.Value.Token }, cancellation: ct);
     }
 }

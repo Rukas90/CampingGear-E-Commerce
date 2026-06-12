@@ -1,4 +1,6 @@
-﻿using TrailStore.Domain.Orders.Interfaces;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using TrailStore.Domain.Orders.Interfaces;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Infrastructure.Data;
 using TrailStore.Shared.Common;
@@ -14,4 +16,8 @@ public class OrderRepository(AppDbContext context) : IOrderRepository
 
         return order;
     }
+
+    public Task<TResult?> FindByTokenAsync<TResult>(
+        string token, Expression<Func<Order, TResult>> selector, CancellationToken ct)
+        => context.Orders.Where(order => order.Token == token).Select(selector).FirstOrDefaultAsync(ct);
 }

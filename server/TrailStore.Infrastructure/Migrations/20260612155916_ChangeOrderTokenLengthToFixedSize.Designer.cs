@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TrailStore.Infrastructure.Data;
@@ -11,9 +12,11 @@ using TrailStore.Infrastructure.Data;
 namespace TrailStore.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260612155916_ChangeOrderTokenLengthToFixedSize")]
+    partial class ChangeOrderTokenLengthToFixedSize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -429,8 +432,8 @@ namespace TrailStore.Infrastructure.Migrations
 
                     b.Property<string>("Token")
                         .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("character(32)")
+                        .HasMaxLength(22)
+                        .HasColumnType("character(22)")
                         .IsFixedLength();
 
                     b.Property<decimal>("TotalPrice")

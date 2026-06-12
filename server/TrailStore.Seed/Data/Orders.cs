@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using TrailStore.Domain.Orders.Enums;
+using TrailStore.Domain.Orders.Models;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Shared.Common;
 
@@ -37,7 +38,7 @@ public static class Orders
         
         faker.RuleFor(order => order.Status, _ => OrderStatus.Completed);
         
-        faker.RuleFor(order => order.ShippingAddress, f => new PostalAddress
+        faker.RuleFor(order => order.ShippingAddress, f => new ShippingAddress()
         {
             RecipientFirstName = f.Name.FirstName(),
             RecipientLastName = f.Name.LastName(),
@@ -49,7 +50,7 @@ public static class Orders
             PhoneNumber = f.Phone.PhoneNumber()
         });
         
-        faker.RuleFor(order => order.BillingAddress, f => new PostalAddress
+        faker.RuleFor(order => order.BillingAddress, f => new BillingAddress()
         {
             RecipientFirstName = f.Name.FirstName(),
             RecipientLastName = f.Name.LastName(),
@@ -91,6 +92,8 @@ public static class Orders
         faker.RuleFor(order => order.TotalPrice, (f, o) =>
             o.Items.Sum(item => item.UnitPrice * item.Quantity) + o.TaxAmount);
         
+        faker.RuleFor(order => order.Token, f => f.Random.AlphaNumeric(22));
+            
         return faker.Generate(50);
     }
 }

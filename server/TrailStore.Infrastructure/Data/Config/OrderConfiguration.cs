@@ -9,6 +9,14 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
     public void Configure(EntityTypeBuilder<Order> builder)
     {
         builder.HasKey(order => order.Id);
+
+        builder.Property(order => order.Token)
+            .IsRequired()
+            .HasMaxLength(32)
+            .IsFixedLength();
+        
+        builder.HasIndex(order => order.Token)
+            .IsUnique();
         
         builder.Property(order => order.Status)
             .IsRequired();

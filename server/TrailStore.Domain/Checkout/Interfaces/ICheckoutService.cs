@@ -1,5 +1,6 @@
 ﻿using TrailStore.Domain.Checkout.Models;
 using TrailStore.Domain.Orders.Models;
+using TrailStore.Domain.Orders.Results;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Domain.ShoppingSessions.Models;
 using TrailStore.Shared.Common;
@@ -21,5 +22,5 @@ public interface ICheckoutService
     
     Task<Result> UpdateCheckoutBilling(ShoppingContext ctx, CheckoutBilling billing, CancellationToken ct);
 
-    Task<Result<Id<Order>>> ConfirmCheckout(ShoppingContext ctx, CancellationToken ct);
+    Task<Result<CreateOrderResult>> ConfirmCheckout(ShoppingContext ctx, CancellationToken ct);
 }

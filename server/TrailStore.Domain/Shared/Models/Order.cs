@@ -9,6 +9,7 @@ namespace TrailStore.Domain.Shared.Models;
 public class Order : IModel<Order>, IEntityCreatable
 {
     public required Id<Order> Id { get; init; }
+    public required string Token { get; init; }
     public Id<Customer>? CustomerId { get; init; }
     public required string EmailAddress { get; init; }
     public required OrderStatus Status { get; init; }
@@ -30,6 +31,8 @@ public class Order : IModel<Order>, IEntityCreatable
     public Payment? ActivePayment => Payments.FirstOrDefault(payment => payment.Status == PaymentStatus.Pending);
     
     public static Order Create(
+        Id<Order> id,
+        string token,
         string emailAddress, 
         decimal totalPrice, 
         decimal taxAmount,
@@ -38,7 +41,8 @@ public class Order : IModel<Order>, IEntityCreatable
         Id<Customer>? customerId = null)
         => new()
         {
-            Id = Id<Order>.New(),
+            Id = id,
+            Token = token,
             CustomerId = customerId,
             Status = OrderStatus.Confirmed,
             StatusUpdatedAt = DateTime.UtcNow,

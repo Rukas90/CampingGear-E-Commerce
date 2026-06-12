@@ -1,8 +1,15 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Linq.Expressions;
+using System.Security.Cryptography;
+using System.Text;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Stripe;
+using TrailStore.Domain.Orders.Errors;
 using TrailStore.Domain.Orders.Interfaces;
 using TrailStore.Domain.Orders.Models;
 using TrailStore.Domain.Orders.Requests;
+using TrailStore.Domain.Orders.Results;
 using TrailStore.Domain.Payments.Interfaces;
 using TrailStore.Domain.Payments.Models;
 using TrailStore.Domain.Shared.Financials;
@@ -24,10 +31,26 @@ public class OrderService(
     ISkuRepository skuRepository,
     IPaymentRepository paymentRepository,
     ILogger<IOrderService> logger,
+    IOptions<OrderSettings> settings,
     IUnitOfWork unitOfWork) 
     : IOrderService
 {
-    public async Task<Result<Order>> CreateOrder(CreateOrderRequest request, CancellationToken ct)
+    private readonly string TokenSecretKey = settings.Value.TokenSecretKey;
+
+    public async Task<Result<TResult>> GetOrder<TResult>(
+        string token, Expression<Func<Order, TResult>> selector, CancellationToken ct)
+    {
+        var order = await orderRepository.FindByTokenAsync(token, selector, ct);
+
+        if (order is null)
+        {
+            return OrderProblems.NotFound;
+        }
+
+        return order;
+    }
+    
+    public async Task<Result<CreateOrderResult>> CreateOrder(CreateOrderRequest request, CancellationToken ct)
     {
         try
         {
@@ -41,8 +64,11 @@ public class OrderService(
                 ShippingFlatFee = request.ShippingMethod.FlatFee,
                 FreeShippingThreshold = request.ShippingMethod.FreeShippingThreshold,
             });
-            
+
+            var orderId = Id<Order>.New();
             var order = orderRepository.Add(Order.Create(
+                id: orderId,
+                token: GenerateToken(orderId),
                 request.EmailAddress, 
                 financials.Total,
                 financials.Tax,
@@ -56,8 +82,8 @@ public class OrderService(
              await AddNewOrderPayment(order, ct);
 
              await scope.CompleteAsync();
-             
-             return order;
+
+             return new CreateOrderResult(orderId, order.Token);
         }
         catch (InsufficientStockException e)
         {
@@ -121,5 +147,15 @@ public class OrderService(
         
         paymentRepository.Add(
             Payment.Create(order.Id, intent.Id, order.TotalPrice));
+    }
+    
+    private string GenerateToken(Id<Order> orderId)
+    {
+        var key = Encoding.UTF8.GetBytes(TokenSecretKey);
+        var data = Encoding.UTF8.GetBytes(orderId.ToString());
+        
+        var hash = HMACSHA256.HashData(key, data);
+        
+        return Convert.ToHexString(hash[..16]).ToLower();
     }
 }
