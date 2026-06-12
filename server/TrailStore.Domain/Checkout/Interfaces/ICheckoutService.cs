@@ -1,4 +1,5 @@
 ﻿using TrailStore.Domain.Checkout.Models;
+using TrailStore.Domain.Orders.Models;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Domain.ShoppingSessions.Models;
 using TrailStore.Shared.Common;

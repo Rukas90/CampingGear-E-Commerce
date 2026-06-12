@@ -1,4 +1,5 @@
 ﻿using TrailStore.Domain.Orders.Enums;
+using TrailStore.Domain.Orders.Models;
 using TrailStore.Domain.Payments.Enums;
 using TrailStore.Domain.Shared.Interfaces;
 using TrailStore.Shared.Common;

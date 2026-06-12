@@ -881,7 +881,7 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasForeignKey("ShippingMethodId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.OwnsOne("TrailStore.Domain.Shared.Models.PostalAddress", "BillingAddress", b1 =>
+                    b.OwnsOne("TrailStore.Domain.Orders.Models.BillingAddress", "BillingAddress", b1 =>
                         {
                             b1.Property<Guid>("CheckoutSessionId")
                                 .HasColumnType("uuid");
@@ -940,7 +940,7 @@ namespace TrailStore.Infrastructure.Migrations
                                 .HasForeignKey("CheckoutSessionId");
                         });
 
-                    b.OwnsOne("TrailStore.Domain.Shared.Models.PostalAddress", "ShippingAddress", b1 =>
+                    b.OwnsOne("TrailStore.Domain.Orders.Models.ShippingAddress", "ShippingAddress", b1 =>
                         {
                             b1.Property<Guid>("CheckoutSessionId")
                                 .HasColumnType("uuid");
@@ -1035,7 +1035,7 @@ namespace TrailStore.Infrastructure.Migrations
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.OwnsOne("TrailStore.Domain.Shared.Models.PostalAddress", "BillingAddress", b1 =>
+                    b.OwnsOne("TrailStore.Domain.Orders.Models.BillingAddress", "BillingAddress", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
                                 .HasColumnType("uuid");
@@ -1094,7 +1094,7 @@ namespace TrailStore.Infrastructure.Migrations
                                 .HasForeignKey("OrderId");
                         });
 
-                    b.OwnsOne("TrailStore.Domain.Shared.Models.PostalAddress", "ShippingAddress", b1 =>
+                    b.OwnsOne("TrailStore.Domain.Orders.Models.ShippingAddress", "ShippingAddress", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
                                 .HasColumnType("uuid");

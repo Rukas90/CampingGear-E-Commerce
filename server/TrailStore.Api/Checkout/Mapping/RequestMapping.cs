@@ -1,6 +1,7 @@
 ﻿using TrailStore.Api.Checkout.Dto;
 using TrailStore.Api.Common.Mapping;
 using TrailStore.Domain.Checkout.Models;
+using TrailStore.Domain.Orders.Models;
 using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Api.Checkout.Mapping;

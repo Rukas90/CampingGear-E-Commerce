@@ -1,4 +1,5 @@
 ﻿using TrailStore.Domain.Checkout.Enums;
+using TrailStore.Domain.Orders.Models;
 using TrailStore.Domain.Shared.Interfaces;
 using TrailStore.Shared.Common;
 

@@ -1,4 +1,5 @@
-﻿using TrailStore.Domain.Shared.Models;
+﻿using TrailStore.Domain.Orders.Models;
+using TrailStore.Domain.Shared.Models;
 
 namespace TrailStore.Domain.Checkout.Models;
 

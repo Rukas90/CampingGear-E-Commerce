@@ -2,7 +2,7 @@
 
 namespace TrailStore.Domain.Shared.Models;
 
-public record PostalAddress
+public class PostalAddress
 {
     public required string CountryCode { get; init; }
     public required string RecipientFirstName { get; init; }
@@ -15,6 +15,23 @@ public record PostalAddress
     public required string PostalCode { get; init; }
     public required string PhoneNumber { get; init; }
 
+    public PostalAddress() { }
+
+    [SetsRequiredMembers]
+    protected PostalAddress(PostalAddress source)
+    {
+        CountryCode = source.CountryCode;
+        RecipientFirstName = source.RecipientFirstName;
+        RecipientLastName = source.RecipientLastName;
+        Company = source.Company;
+        AddressLine = source.AddressLine;
+        ApartmentSuite = source.ApartmentSuite;
+        City = source.City;
+        Region = source.Region;
+        PostalCode = source.PostalCode;
+        PhoneNumber = source.PhoneNumber;
+    }
+    
     public static PostalAddress Empty => new()
     {
         CountryCode = "",
@@ -25,16 +42,4 @@ public record PostalAddress
         PostalCode = "",
         PhoneNumber = ""
     };
-}
-
-public record ShippingAddress : PostalAddress
-{
-    [SetsRequiredMembers]
-    public ShippingAddress(PostalAddress source) : base(source) { }
-}
-
-public record BillingAddress : PostalAddress
-{
-    [SetsRequiredMembers]
-    public BillingAddress(PostalAddress source) : base(source) { }
 }

@@ -5,7 +5,7 @@ using TrailStore.Api.Common.Dto;
 using TrailStore.Api.Common.Extensions;
 using TrailStore.Api.Common.Mapping;
 using TrailStore.Domain.Checkout.Interfaces;
-using TrailStore.Domain.Shared.Models;
+using TrailStore.Domain.Orders.Models;
 
 namespace TrailStore.Api.Checkout.Endpoints;
 

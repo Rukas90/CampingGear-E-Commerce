@@ -2,6 +2,7 @@
 using TrailStore.Domain.Checkout.Errors;
 using TrailStore.Domain.Countries.Data;
 using TrailStore.Domain.Countries.Models;
+using TrailStore.Domain.Orders.Models;
 using TrailStore.Domain.Shared.Models;
 using TrailStore.Domain.Shared.Validators;
 using TrailStore.Shared.Common;
