@@ -19,6 +19,7 @@ public static class FinancialsCalculator
             Tax: tax,
             ShippingCost: shippingCost,
             Total: total,
+            AddCostForFreeShipping: eligibleForFreeShipping ? 0m : input.FreeShippingThreshold - subtotal,
             EligibleForFreeShipping: eligibleForFreeShipping
         );
     }

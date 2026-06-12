@@ -5,7 +5,7 @@ import ShippingMethodItem from "./ShippingMethodItem"
 interface ShippingMethodSelectionProps {
   selectedId?: ShippingMethodId
   methods?: ShippingMethod[]
-  subtotal?: number
+  eligibleForFreeShipping?: boolean
   onSelected?: (methodId: ShippingMethodId) => void
   disabled?: boolean
   isEditing?: boolean
@@ -13,7 +13,7 @@ interface ShippingMethodSelectionProps {
 const ShippingMethodSelection = ({
   selectedId,
   methods,
-  subtotal,
+  eligibleForFreeShipping,
   onSelected,
   disabled,
   isEditing,
@@ -40,7 +40,7 @@ const ShippingMethodSelection = ({
     return (
       <ShippingMethodItem
         method={currentMethod}
-        isFree={!!subtotal && subtotal >= currentMethod.freeShippingThreshold}
+        isFree={eligibleForFreeShipping}
         selected
       />
     )
@@ -54,7 +54,6 @@ const ShippingMethodSelection = ({
         const isLast = index === methods.length - 1
         const prevSelected = !isFirst && methods[index - 1].id === selectedId
         const topBorderAccent = isSelected || prevSelected
-        const isFree = !!subtotal && subtotal >= method.freeShippingThreshold
 
         return (
           <button
@@ -65,7 +64,7 @@ const ShippingMethodSelection = ({
             <ShippingMethodItem
               method={method}
               selected={isSelected}
-              isFree={isFree}
+              isFree={eligibleForFreeShipping}
               disabled={disabled}
               className={clsx(
                 isFirst && "rounded-t-lg rounded-b-none border-b-0",

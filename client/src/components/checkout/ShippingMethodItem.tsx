@@ -28,7 +28,7 @@ const ShippingMethodItem = ({
         <p className="text-xm font-semibold">{method.name}</p>
         <p className="text-xs text-neutral-600">{method.description}</p>
       </div>
-      <CostLabel cost={method.flatFee} isFree={isFree} className="text-xm" />
+      <CostLabel cost={method.flatFee} noCost={isFree} className="text-xm" />
     </li>
   )
 }

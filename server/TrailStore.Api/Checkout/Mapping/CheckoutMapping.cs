@@ -13,7 +13,9 @@ public static class CheckoutMapping
             Subtotal = stats.Subtotal,
             Tax = stats.Tax,
             Total = stats.Total,
-            ShippingCost = stats.ShippingCost
+            ShippingCost = stats.ShippingCost,
+            AddCostForFreeShipping = stats.AddCostForFreeShipping,
+            EligibleForFreeShipping = stats.EligibleForFreeShipping
         };
 
     public static CheckoutFormDto ToDto(this CheckoutForm form)

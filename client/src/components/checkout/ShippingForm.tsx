@@ -40,7 +40,7 @@ const ShippingForm = () => {
         <ShippingMethodSelection
           selectedId={method.data}
           methods={availableMethods}
-          subtotal={stats?.subtotal}
+          eligibleForFreeShipping={stats?.eligibleForFreeShipping}
           onSelected={(methodId) => method.self().update(methodId)}
           disabled={isBusy}
           isEditing={method.isEditing}

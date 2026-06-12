@@ -5,4 +5,5 @@ public readonly record struct Financials(
     decimal Tax,
     decimal ShippingCost,
     decimal Total,
+    decimal AddCostForFreeShipping,
     bool EligibleForFreeShipping);

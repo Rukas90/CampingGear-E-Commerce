@@ -1,4 +1,4 @@
-import { CostLabel } from "@components"
+import { CostLabel, FreeShippingQualifyLabel } from "@components"
 import { useCheckoutStats, useSessionSummary } from "@features"
 
 const CheckoutOrderStats = () => {
@@ -11,6 +11,12 @@ const CheckoutOrderStats = () => {
 
   return (
     <div className="flex flex-col gap-1.5 mt-6">
+      <div className="mb-2">
+        <FreeShippingQualifyLabel
+          subtotal={stats.subtotal}
+          freeShippingThreshold={stats.addCostForFreeShipping}
+        />
+      </div>
       <p className="flex justify-between text-xm">
         <span>Subtotal · {summary.cartCount} items</span>
         <CostLabel

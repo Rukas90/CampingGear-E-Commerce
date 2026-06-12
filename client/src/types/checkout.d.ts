@@ -21,7 +21,6 @@ export type ShippingMethod = {
   name: string
   description: string
   flatFee: number
-  freeShippingThreshold: number
 }
 
 export type CheckoutBilling = {
@@ -35,4 +34,6 @@ export type CheckoutStats = {
   total?: number
   tax?: number
   shippingCost?: number
+  addCostForFreeShipping?: number
+  eligibleForFreeShipping: boolean
 }

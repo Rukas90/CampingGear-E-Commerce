@@ -9,4 +9,6 @@ public class CheckoutStatsDto
     public decimal? Total { get; init; }
     public decimal? Tax { get; init; }
     public decimal? ShippingCost { get; init; }
+    public decimal? AddCostForFreeShipping { get; init; }
+    public bool EligibleForFreeShipping { get; init; }
 }

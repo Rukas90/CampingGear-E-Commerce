@@ -95,6 +95,7 @@ public class CheckoutService(
                 Tax = null,
                 Total = null,
                 ShippingCost = null,
+                AddCostForFreeShipping = null,
                 EligibleForFreeShipping = false
             };
         }
@@ -114,6 +115,7 @@ public class CheckoutService(
             Tax = financials.Tax,
             Total = financials.Total,
             ShippingCost = financials.ShippingCost,
+            AddCostForFreeShipping = financials.AddCostForFreeShipping,
             EligibleForFreeShipping = financials.EligibleForFreeShipping
         };
     }

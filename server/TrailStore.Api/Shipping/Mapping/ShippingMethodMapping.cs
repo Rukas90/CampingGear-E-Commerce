@@ -14,7 +14,6 @@ public static class ShippingMethodMapping
             Id = shippingMethod.Id,
             Name = shippingMethod.Name,
             Description = shippingMethod.Description,
-            FlatFee = shippingMethod.FlatFee,
-            FreeShippingThreshold = shippingMethod.FreeShippingThreshold
+            FlatFee = shippingMethod.FlatFee
         };
 }

@@ -9,5 +9,4 @@ public class ShippingMethodDto
     public required string Name { get; set; }
     public required string Description { get; set; }
     public required decimal FlatFee { get; set; }
-    public required decimal FreeShippingThreshold { get; set; }
 }

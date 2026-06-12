@@ -4,14 +4,14 @@ import SkeletonLine from "./SkeletonLine"
 
 interface CostLabelProps extends Omit<React.ComponentProps<"p">, "children"> {
   cost?: number
-  isFree?: boolean
+  noCost?: boolean
   noCostLabel?: string
   isLoading?: boolean
   suffix?: string
 }
 const CostLabel = ({
   cost,
-  isFree,
+  noCost,
   noCostLabel,
   className,
   isLoading,
@@ -27,12 +27,12 @@ const CostLabel = ({
       className={twMerge("relative flex shrink-0 font-medium", className)}
       {...props}
     >
-      <span className={isFree ? "line-through scale-95 -translate-y-px" : ""}>
+      <span className={noCost ? "line-through scale-95 -translate-y-px" : ""}>
         {!!cost || cost === 0
           ? formatPrice(cost)
           : (noCostLabel ?? "No cost specified")}
       </span>
-      {isFree && (
+      {noCost && (
         <span className="ml-0.5 font-semibold text-red-700">
           {formatPrice(0)}
         </span>
