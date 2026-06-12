@@ -1,11 +1,11 @@
+import { CostLabel } from "@components/common"
 import { useCartItems } from "@features"
-import { formatPrice } from "@utils"
 import { twMerge } from "tailwind-merge"
 
 const CartSubtotal = ({
   className,
   ...props
-}: Omit<React.ComponentProps<"span">, "children">) => {
+}: Omit<React.ComponentProps<"p">, "children">) => {
   const items = useCartItems()
 
   const totalCartCost = items.reduce(
@@ -13,12 +13,12 @@ const CartSubtotal = ({
     0,
   )
   return (
-    <span
+    <CostLabel
+      cost={totalCartCost}
       className={twMerge("text-2xl font-medium text-neutral-800", className)}
+      suffix="EUR"
       {...props}
-    >
-      {formatPrice(totalCartCost)} EUR
-    </span>
+    />
   )
 }
 export default CartSubtotal

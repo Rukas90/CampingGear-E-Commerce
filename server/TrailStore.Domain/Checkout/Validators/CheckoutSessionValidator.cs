@@ -14,8 +14,8 @@ public static class CheckoutSessionValidator
     public record ValidatedCheckout(
         string EmailAddress,
         Country Country,
-        PostalAddress ShippingAddress,
-        PostalAddress BillingAddress,
+        ShippingAddress ShippingAddress,
+        BillingAddress BillingAddress,
         Id<ShippingMethod> ShippingMethodId
     ); 
     
@@ -36,7 +36,7 @@ public static class CheckoutSessionValidator
         if (!state.IsValid) return CheckoutProblems.IncompleteCheckout(state);
         
         var billingAddress = session.ShippingAddressAsBillingAddress
-            ? session.ShippingAddress!
+            ? new BillingAddress(session.ShippingAddress!)
             : session.BillingAddress!;
         
         return new ValidatedCheckout(

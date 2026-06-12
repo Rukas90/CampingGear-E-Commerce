@@ -1,6 +1,5 @@
-import { SkeletonLine } from "@components"
+import { CostLabel } from "@components"
 import { useCheckoutStats, useSessionSummary } from "@features"
-import { formatPrice } from "@utils"
 
 const CheckoutOrderStats = () => {
   const { summary } = useSessionSummary()
@@ -14,37 +13,42 @@ const CheckoutOrderStats = () => {
     <div className="flex flex-col gap-1.5 mt-6">
       <p className="flex justify-between text-xm">
         <span>Subtotal · {summary.cartCount} items</span>
-        <span>{formatPrice(stats.subtotal)}</span>
+        <CostLabel
+          className="font-normal"
+          cost={stats.subtotal}
+          isLoading={isPending}
+        />
       </p>
       <p className="flex justify-between text-xm">
         <span>Tax</span>
-        {isPending ? (
-          <SkeletonLine />
-        ) : (
-          <span className="text-neutral-600">
-            {!!stats.tax ? formatPrice(stats.tax) : "Enter shipping address"}
-          </span>
-        )}
+        <CostLabel
+          className="text-neutral-700 font-normal"
+          cost={stats.tax}
+          noCostLabel="Enter shipping address"
+          isLoading={isPending}
+        />
       </p>
       <p className="flex justify-between text-xm">
         <span>Shipping</span>
-        <span className="text-neutral-600">
-          {!!stats.shippingCost || stats.shippingCost === 0
-            ? formatPrice(stats.shippingCost)
-            : "Enter shipping address"}
-        </span>
+        <CostLabel
+          className="text-neutral-700 font-normal"
+          cost={stats.shippingCost}
+          noCostLabel="Enter shipping address"
+          isLoading={isPending}
+        />
       </p>
-      <p className="flex justify-between text-lg mt-4 font-medium">
+      <div className="flex justify-between text-lg mt-4 font-medium">
         <span>Total</span>
-        <span>
+        <div className="flex items-center gap-1.5">
           <span className="text-xm font-light text-neutral-600 mr-0.5 tracking-normal">
             EUR
           </span>{" "}
-          {!!stats.total
-            ? formatPrice(stats.total)
-            : formatPrice(stats.subtotal)}
-        </span>
-      </p>
+          <CostLabel
+            cost={stats.total ?? stats.subtotal}
+            isLoading={isPending}
+          />
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,7 +1,5 @@
-import { Toggle } from "@components"
+import { CostLabel, Toggle } from "@components"
 import type { ShippingMethod } from "@types"
-import { formatPrice } from "@utils"
-import clsx from "clsx"
 import { twMerge } from "tailwind-merge"
 
 interface ShippingMethodItemProps {
@@ -30,14 +28,7 @@ const ShippingMethodItem = ({
         <p className="text-xm font-semibold">{method.name}</p>
         <p className="text-xs text-neutral-600">{method.description}</p>
       </div>
-      <p
-        className={clsx(
-          "relative flex text-xm shrink-0 font-medium",
-          isFree && "line-through text-red-700",
-        )}
-      >
-        {formatPrice(method.flatFee)}
-      </p>
+      <CostLabel cost={method.flatFee} isFree={isFree} className="text-xm" />
     </li>
   )
 }

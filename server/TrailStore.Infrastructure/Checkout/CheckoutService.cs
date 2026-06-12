@@ -138,7 +138,7 @@ public class CheckoutService(
         return Result.Ok();
     }
     
-    public async Task<Result<CheckoutShipping>> UpdateCheckoutShippingAddress(ShoppingContext ctx, PostalAddress address, CancellationToken ct)
+    public async Task<Result<CheckoutShipping>> UpdateCheckoutShippingAddress(ShoppingContext ctx, ShippingAddress address, CancellationToken ct)
     {
         await using var scope = await unitOfWork.BeginScope(ct);
         

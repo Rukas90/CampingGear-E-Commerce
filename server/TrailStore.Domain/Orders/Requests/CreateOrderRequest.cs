@@ -9,8 +9,8 @@ namespace TrailStore.Domain.Orders.Requests;
 public record CreateOrderRequest(
     Id<Customer>? CustomerId,
     string EmailAddress,
-    PostalAddress ShippingAddress,
-    PostalAddress BillingAddress,
+    ShippingAddress ShippingAddress,
+    BillingAddress BillingAddress,
     ShippingMethod ShippingMethod,
     Country Country,
     IReadOnlyList<OrderLineItem> Items);

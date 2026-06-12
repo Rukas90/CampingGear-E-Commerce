@@ -15,8 +15,8 @@ public class Order : IModel<Order>, IEntityCreatable
     public required decimal TotalPrice { get; init; }
     public required decimal TaxAmount { get; init; }
     public required int MaxPaymentAttempts { get; init; }
-    public required PostalAddress ShippingAddress { get; init; }
-    public required PostalAddress BillingAddress { get; init; }
+    public required ShippingAddress ShippingAddress { get; init; }
+    public required BillingAddress BillingAddress { get; init; }
     
     public DateTime CreatedAt { get; set; }
     
@@ -32,8 +32,8 @@ public class Order : IModel<Order>, IEntityCreatable
         string emailAddress, 
         decimal totalPrice, 
         decimal taxAmount,
-        PostalAddress shippingAddress,
-        PostalAddress billingAddress,
+        ShippingAddress shippingAddress,
+        BillingAddress billingAddress,
         Id<Customer>? customerId = null)
         => new()
         {

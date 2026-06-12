@@ -13,7 +13,7 @@ public interface ICheckoutService
     
     Task<Result> UpdateCheckoutContact(ShoppingContext ctx, CheckoutContact contact, CancellationToken ct);
     
-    Task<Result<CheckoutShipping>> UpdateCheckoutShippingAddress(ShoppingContext ctx, PostalAddress address, CancellationToken ct);
+    Task<Result<CheckoutShipping>> UpdateCheckoutShippingAddress(ShoppingContext ctx, ShippingAddress address, CancellationToken ct);
 
     Task<Result> UpdateCheckoutShippingMethod(
         ShoppingContext ctx, Id<ShippingMethod> selectedMethodId, CancellationToken ct);

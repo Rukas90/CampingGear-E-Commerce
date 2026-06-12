@@ -1,11 +1,12 @@
 import { AddressForm } from "@components"
-import { useCheckoutShipping } from "@features"
+import { useCheckoutShipping, useCheckoutStats } from "@features"
 import FormHeader from "./FormHeader"
 import FormEditNav from "./FormEditNav"
 import ShippingMethodSelection from "./ShippingMethodSelection"
 
 const ShippingForm = () => {
   const { address, method, availableMethods, isBusy } = useCheckoutShipping()
+  const { stats } = useCheckoutStats()
 
   return (
     <div>
@@ -39,6 +40,7 @@ const ShippingForm = () => {
         <ShippingMethodSelection
           selectedId={method.data}
           methods={availableMethods}
+          subtotal={stats?.subtotal}
           onSelected={(methodId) => method.self().update(methodId)}
           disabled={isBusy}
           isEditing={method.isEditing}

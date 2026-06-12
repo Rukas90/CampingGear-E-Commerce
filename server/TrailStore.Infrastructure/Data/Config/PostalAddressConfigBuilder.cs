@@ -7,7 +7,7 @@ namespace TrailStore.Infrastructure.Data.Config;
 
 public static class PostalAddressConfigBuilder
 {
-    public static void ConfigureAddress<T>(OwnedNavigationBuilder<T, PostalAddress> b) where T : class, IModel<T>
+    public static void ConfigureAddress<T, A>(OwnedNavigationBuilder<T, A> b) where T : class, IModel<T> where A : PostalAddress
     {
         Configure(b.Property(a => a.CountryCode), AddressConstraints.CountryCode);
         Configure(b.Property(a => a.RecipientFirstName), AddressConstraints.FirstName);

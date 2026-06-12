@@ -1,6 +1,5 @@
-import { DotCount } from "@components"
+import { CostLabel, DotCount } from "@components"
 import type { CartItem } from "@types"
-import { formatPrice } from "@utils"
 
 const CheckoutCartItem = ({ item }: { item: CartItem }) => {
   return (
@@ -20,9 +19,10 @@ const CheckoutCartItem = ({ item }: { item: CartItem }) => {
       <div className="flex gap-0.5 flex-col py-3 pl-3 w-full">
         <div className="flex justify-between w-full">
           <p className="text-xs text-accent">{item.brandName}</p>
-          <p className="ml-auto text-xs font-medium">
-            {formatPrice(item.unitPrice * item.quantity)}
-          </p>
+          <CostLabel
+            className="ml-auto text-xs font-medium"
+            cost={item.unitPrice * item.quantity}
+          />
         </div>
         <p className="text-[0.8rem]">{item.productName}</p>
         <p className="text-xs text-neutral-500">

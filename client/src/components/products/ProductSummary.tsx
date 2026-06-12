@@ -8,7 +8,7 @@ const ProductSummary = () => {
     <div className="flex flex-col gap-1">
       <p className="text-lg text-neutral-400">{data?.brandName}</p>
       <p className="text-3xl font-semibold mb-2">{data?.name}</p>
-      <p className="text-xl text-lime-800 font-semibold">{sku?.unitPrice}€</p>
+      <p className="text-xl text-accent font-semibold">{sku?.unitPrice}€</p>
       <p className="italic text-neutral-400">Tax included</p>
       <a href="#customer-reviews">
         <RatingBadge

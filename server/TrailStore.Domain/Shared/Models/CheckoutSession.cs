@@ -12,8 +12,8 @@ public class CheckoutSession : IModel<CheckoutSession>, IEntityCreatable, IEntit
     public required CheckoutStatus Status { get; set; }
     public string? EmailAddress { get; set; }
     
-    public PostalAddress? ShippingAddress { get; set; }
-    public PostalAddress? BillingAddress { get; set; }
+    public ShippingAddress? ShippingAddress { get; set; }
+    public BillingAddress? BillingAddress { get; set; }
     public required bool ShippingAddressAsBillingAddress { get; set; }
     
     public Id<ShippingMethod>? ShippingMethodId { get; set; }

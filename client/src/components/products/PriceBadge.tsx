@@ -5,7 +5,7 @@ interface PriceBadgeProps {
 const PriceBadge = ({ minPrice, maxPrice }: PriceBadgeProps) => {
   const isRange = minPrice !== maxPrice
 
-  const classes = "text-lime-800 text-sm font-semibold"
+  const classes = "text-accent text-sm font-semibold"
 
   if (!isRange) {
     return <p className={classes}>€{minPrice}</p>
