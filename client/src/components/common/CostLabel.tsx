@@ -27,12 +27,16 @@ const CostLabel = ({
       className={twMerge("relative flex shrink-0 font-medium", className)}
       {...props}
     >
-      <span className={isFree ? "line-through text-red-700" : ""}>
+      <span className={isFree ? "line-through scale-95 -translate-y-px" : ""}>
         {!!cost || cost === 0
           ? formatPrice(cost)
           : (noCostLabel ?? "No cost specified")}
       </span>
-      {isFree && <span className="ml-0.5 font-semibold">{formatPrice(0)}</span>}
+      {isFree && (
+        <span className="ml-0.5 font-semibold text-red-700">
+          {formatPrice(0)}
+        </span>
+      )}
       {!!suffix && <div className="ml-1">{suffix}</div>}
     </p>
   )
