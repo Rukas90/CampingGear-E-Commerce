@@ -7,6 +7,7 @@ import type {
   ShippingMethodId,
   CheckoutShipping,
   CheckoutStats,
+  CheckoutConfirmation,
 } from "@types"
 
 const checkoutApi = {
@@ -37,6 +38,6 @@ const checkoutApi = {
     await makeRequest<CheckoutStats>(`api/v1/checkout/stats`),
 
   confirmCheckout: async () =>
-    await makeRequest(`api/v1/checkout/confirm`, "post"),
+    await makeRequest<CheckoutConfirmation>(`api/v1/checkout/confirm`, "post"),
 }
 export default checkoutApi

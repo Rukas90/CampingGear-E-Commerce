@@ -4,7 +4,7 @@ using TrailStore.Shared.Common;
 
 namespace TrailStore.Domain.Shared.Models;
 
-public class Payment : IModel<Payment>, IEntityCreatable
+public class Payment : IModel<Payment>, IEntityCreatable, IEntityExpirable
 {
     public required Id<Payment> Id { get; init; }
     public required Id<Order> OrderId { get; init; }
@@ -17,6 +17,7 @@ public class Payment : IModel<Payment>, IEntityCreatable
     public Order Order { get; private set; } = null!;
 
     public DateTime CreatedAt { get; set; }
+    public DateTime? ExpiresAt { get; set; }
     
     public static Payment Create(Id<Order> orderId, string intentId, decimal amount)
         => new()
@@ -30,4 +31,5 @@ public class Payment : IModel<Payment>, IEntityCreatable
             CreatedAt = DateTime.UtcNow,
             UpdatedStatusAt =  DateTime.UtcNow
         };
+    
 }

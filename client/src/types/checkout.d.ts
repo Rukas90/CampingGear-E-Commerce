@@ -1,5 +1,6 @@
 import type { PostalAddress } from "./common"
 import type { CheckoutStatus } from "./enums"
+import type { OrderToken } from "./id"
 
 export type CheckoutForm = {
   contact: CheckoutContact
@@ -36,4 +37,8 @@ export type CheckoutStats = {
   shippingCost?: number
   addCostForFreeShipping?: number
   eligibleForFreeShipping: boolean
+}
+
+export type CheckoutConfirmation = {
+  orderToken: OrderToken
 }

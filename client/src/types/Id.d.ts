@@ -8,5 +8,6 @@ export type CartItemId = Brand<string, "CartItem">
 export type SkuId = Brand<string, "Sku">
 export type OptionId = Brand<string, "Option">
 export type ShippingMethodId = Brand<string, "ShippingMethod">
+export type OrderToken = Brand<string, "OrderToken">
 
 export type SkuCode = Brand<string, "SkuCode">

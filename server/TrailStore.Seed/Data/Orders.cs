@@ -38,18 +38,6 @@ public static class Orders
         
         faker.RuleFor(order => order.Status, _ => OrderStatus.Completed);
         
-        faker.RuleFor(order => order.ShippingAddress, f => new ShippingAddress()
-        {
-            RecipientFirstName = f.Name.FirstName(),
-            RecipientLastName = f.Name.LastName(),
-            AddressLine = f.Address.StreetAddress(),
-            City = f.Address.City(),
-            Region = f.Address.State(),
-            PostalCode = f.Address.ZipCode(),
-            CountryCode = "US",
-            PhoneNumber = f.Phone.PhoneNumber()
-        });
-        
         faker.RuleFor(order => order.BillingAddress, f => new BillingAddress()
         {
             RecipientFirstName = f.Name.FirstName(),

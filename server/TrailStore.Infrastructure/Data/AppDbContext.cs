@@ -26,6 +26,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
     public DbSet<OrderItem> OrderItems { get; set; }
     
+    public DbSet<OrderShipping> OrderShippings { get; set; }
+    
     public DbSet<Payment> Payments { get; set; }
     
     public DbSet<CategoryGroup> CategoryGroups { get; set; }

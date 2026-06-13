@@ -17,12 +17,12 @@ public class Order : IModel<Order>, IEntityCreatable
     public required decimal TotalPrice { get; init; }
     public required decimal TaxAmount { get; init; }
     public required int MaxPaymentAttempts { get; init; }
-    public required ShippingAddress ShippingAddress { get; init; }
     public required BillingAddress BillingAddress { get; init; }
     
     public DateTime CreatedAt { get; set; }
     
     public Customer? Customer { get; private set; } = null;
+    public OrderShipping Shipping { get; private set; } = null!;
     public ICollection<OrderItem> Items { get; private set; } = [];
     public ICollection<Payment> Payments { get; private set; } = [];
 
@@ -36,7 +36,6 @@ public class Order : IModel<Order>, IEntityCreatable
         string emailAddress, 
         decimal totalPrice, 
         decimal taxAmount,
-        ShippingAddress shippingAddress,
         BillingAddress billingAddress,
         Id<Customer>? customerId = null)
         => new()
@@ -48,7 +47,6 @@ public class Order : IModel<Order>, IEntityCreatable
             StatusUpdatedAt = DateTime.UtcNow,
             EmailAddress = emailAddress,
             MaxPaymentAttempts = 1,
-            ShippingAddress = shippingAddress,
             BillingAddress = billingAddress,
             TotalPrice = totalPrice,
             TaxAmount = taxAmount

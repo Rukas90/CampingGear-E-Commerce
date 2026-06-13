@@ -34,6 +34,12 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
             .HasForeignKey(o => o.CustomerId)
             .IsRequired(false)
             .OnDelete(DeleteBehavior.SetNull);
+        
+        builder.HasOne(o => o.Shipping)
+            .WithOne()
+            .HasForeignKey<OrderShipping>(s => s.OrderId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder.Property(order => order.TotalPrice)
             .IsRequired();
@@ -42,8 +48,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
             .WithOne(payment => payment.Order)
             .HasForeignKey(payment => payment.OrderId)
             .OnDelete(DeleteBehavior.Restrict);
-
-        builder.OwnsOne(order => order.ShippingAddress, PostalAddressConfigBuilder.ConfigureAddress);
         
         builder.OwnsOne(order => order.BillingAddress, PostalAddressConfigBuilder.ConfigureAddress);
     }

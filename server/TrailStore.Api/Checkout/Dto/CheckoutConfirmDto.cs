@@ -2,5 +2,5 @@
 
 public class CheckoutConfirmDto
 {
-    public required string Token { get; set; }
+    public required string OrderToken { get; set; }
 }

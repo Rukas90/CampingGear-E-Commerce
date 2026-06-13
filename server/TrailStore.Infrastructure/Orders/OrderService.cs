@@ -1,9 +1,7 @@
-﻿using System.Linq.Expressions;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using Stripe;
 using TrailStore.Domain.Orders.Errors;
 using TrailStore.Domain.Orders.Interfaces;
@@ -30,6 +28,7 @@ public class OrderService(
     IStockReservationRepository stockReservationRepository,
     ISkuRepository skuRepository,
     IPaymentRepository paymentRepository,
+    IOrderShippingRepository orderShippingRepository,
     ILogger<IOrderService> logger,
     IOptions<OrderSettings> settings,
     IUnitOfWork unitOfWork) 
@@ -37,17 +36,38 @@ public class OrderService(
 {
     private readonly string TokenSecretKey = settings.Value.TokenSecretKey;
 
-    public async Task<Result<TResult>> GetOrder<TResult>(
-        string token, Expression<Func<Order, TResult>> selector, CancellationToken ct)
+    public async Task<Result<OrderSummary>> GetOrderSummary(string token, CancellationToken ct)
     {
-        var order = await orderRepository.FindByTokenAsync(token, selector, ct);
+        var summary = await orderRepository.FindByTokenAsync(token, order => new OrderSummary
+        {
+            TotalPrice = order.TotalPrice,
+            Subtotal = order.Items.Sum(item => item.UnitPrice * item.Quantity),
+            TaxAmount = order.TaxAmount,
+            Status = order.Status,
+            ShippingAmount = 69_420,
+            ShippingMethod = "lol",
+            ExhaustedPaymentAttempts = order.PaymentAttempts >= order.MaxPaymentAttempts,
+            HasPendingPayment = order.ActivePayment != null && order.ActivePayment.ExpiresAt< DateTimeOffset.UtcNow,
+            Items = order.Items.Select(item => new OrderItemSummary
+            {
+                SkuCode = item.Sku.Code,
+                ProductName = item.Sku.Product.Name,
+                VariantLine = string.Join(", ", item.Sku.Options.Select(option => option.Name)),
+                Quantity = item.Quantity,
+                UnitPrice = item.UnitPrice,
+                ImageUrl = item.Sku.Product.ThumbnailUrl
+            })
+            
+        }, ct);
 
-        if (order is null)
+        if (summary is null)
         {
             return OrderProblems.NotFound;
         }
+        
+        
 
-        return order;
+        return summary;
     }
     
     public async Task<Result<CreateOrderResult>> CreateOrder(CreateOrderRequest request, CancellationToken ct)
@@ -72,7 +92,6 @@ public class OrderService(
                 request.EmailAddress, 
                 financials.Total,
                 financials.Tax,
-                request.ShippingAddress, 
                 request.BillingAddress,
                 request.CustomerId));
             
@@ -80,6 +99,13 @@ public class OrderService(
              
              await ReserveItemsStock(order.Id, request.Items, ct);
              await AddNewOrderPayment(order, ct);
+
+             orderShippingRepository.Add(OrderShipping.Create(
+                 order.Id,
+                 request.ShippingMethod.Code,
+                 request.ShippingMethod.Name,
+                 financials.ShippingCost,
+                 request.ShippingAddress));
 
              await scope.CompleteAsync();
 

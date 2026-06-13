@@ -1,6 +1,9 @@
+import type { AxiosResponseHeaders } from "axios"
+
 export type ApiResult<T> = {
   isSuccess: boolean
   data?: T
+  headers?: Record<string, string>
   error?: ProblemDetails
 }
 

@@ -16,7 +16,7 @@ public class GetOrderByTokenEndpoint(IOrderService orderService) : Endpoint<GetO
 
     public override async Task HandleAsync(GetOrderRequest req, CancellationToken ct)
     {
-        var result = await orderService.GetOrder(req.Token, selector: OrderMappingSelectors.ToDto(), ct);
+        var result = await orderService.GetOrderSummary(req.Token, ct);
 
         if (!result.IsSuccess)
         {
@@ -25,6 +25,7 @@ public class GetOrderByTokenEndpoint(IOrderService orderService) : Endpoint<GetO
             return;
         }
 
-        await Send.OkAsync(result.Value, ct);
+        // bro... fix
+        //await Send.OkAsync(result.Value, ct);
     }
 }

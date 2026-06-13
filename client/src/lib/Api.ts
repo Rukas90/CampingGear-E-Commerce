@@ -28,10 +28,10 @@ export const makeRequest = async <T>(
 ): Promise<ApiResult<T>> => {
   try {
     const response = await client.request<T>({ url: path, method, data: body })
-
     return {
       isSuccess: true,
       data: response.data,
+      headers: response.headers as Record<string, string>,
     }
   } catch (error) {
     if (axios.isAxiosError(error) && error.response?.status === 429) {
