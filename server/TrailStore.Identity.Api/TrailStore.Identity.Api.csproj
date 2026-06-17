@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>TrailStore.Identity.Api</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FastEndpoints" Version="8.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TrailStore.Identity.Application\TrailStore.Identity.Application.csproj" />
+      <ProjectReference Include="..\TrailStore.Identity.Infrastructure\TrailStore.Identity.Infrastructure.csproj" />
+      <ProjectReference Include="..\TrailStore.Shared.Api\TrailStore.Shared.Api.csproj" />
+      <ProjectReference Include="..\TrailStore.Shared.DependencyInjection\TrailStore.Shared.DependencyInjection.csproj" />
+      <ProjectReference Include="..\TrailStore.Shared.Infrastructure\TrailStore.Shared.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>

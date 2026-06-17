@@ -1,0 +1,21 @@
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using TrailStore.Shared.Domain.Common;
+
+namespace TrailStore.Shared.Api.Converters;
+
+public class IdJsonConverterFactory : JsonConverterFactory
+{
+    public override bool CanConvert(Type type)
+    {
+        return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Id<>);
+    }
+
+    public override JsonConverter CreateConverter(Type type, JsonSerializerOptions options)
+    {
+        var innerType = type.GetGenericArguments()[0];
+        var converterType = typeof(IdJsonConverter<>).MakeGenericType(innerType);
+
+        return (JsonConverter)Activator.CreateInstance(converterType)!;
+    }
+}

@@ -2,6 +2,7 @@ using FastEndpoints;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using StackExchange.Redis;
 using Stripe;
 using TrailStore.Api;
 using TrailStore.Api.Auth.Extensions;
@@ -20,6 +21,9 @@ var defaultConnectionString = configuration.GetConnectionString("DefaultConnecti
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(defaultConnectionString).WithExpressionExpanding());
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(
+    ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis")!));
 
 builder.Services.AddCors(options =>
 {
