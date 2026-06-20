@@ -1,6 +1,6 @@
 using FastEndpoints;
 using Scalar.AspNetCore;
-using TrailStore.Identity.Api.Registration;
+using TrailStore.Identity.Api;
 using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Registrations;
 

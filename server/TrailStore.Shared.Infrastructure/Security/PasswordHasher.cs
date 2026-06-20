@@ -1,6 +1,6 @@
 ﻿using Isopoh.Cryptography.Argon2;
-using TrailStore.Shared.DependencyInjection;
 using TrailStore.Shared.Domain.Abstractions;
+using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Shared.Infrastructure.Security;
 

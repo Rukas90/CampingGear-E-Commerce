@@ -1,4 +1,4 @@
-using TrailStore.Identity.Seed;
+using TrailStore.Identity.Api.Seed;
 using TrailStore.Shared.Seeding;
 
 var builder = Host.CreateApplicationBuilder(args);

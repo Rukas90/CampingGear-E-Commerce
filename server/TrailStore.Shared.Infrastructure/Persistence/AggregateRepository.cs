@@ -12,7 +12,8 @@ public abstract class AggregateRepository<TEntity, TContext>(TContext _context) 
     
     private DbSet<TEntity> set => context.Set<TEntity>();
 
-    protected IQueryable<TEntity> AggregateQuery => BuildAggregateQuery(set);
+    protected IQueryable<TEntity> AggregateWriteQuery => BuildAggregateQuery(set);
+    protected IQueryable<TEntity> AggregateReadQuery => BuildAggregateQuery(set).AsNoTracking();
     protected IQueryable<TEntity> ReadQuery => set.AsNoTracking();
     
     public Task<TEntity?> FindAsync(Id<TEntity> id, CancellationToken ct) 
@@ -24,5 +25,5 @@ public abstract class AggregateRepository<TEntity, TContext>(TContext _context) 
     public void Delete(TEntity entity)
         => set.Remove(entity);
 
-    protected abstract IQueryable<TEntity> BuildAggregateQuery(DbSet<TEntity> set);
+    protected virtual IQueryable<TEntity> BuildAggregateQuery(DbSet<TEntity> set) => set;
 }

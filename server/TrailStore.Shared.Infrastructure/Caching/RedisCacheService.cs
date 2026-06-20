@@ -1,7 +1,7 @@
 ﻿using StackExchange.Redis;
-using TrailStore.Shared.DependencyInjection;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Caching;
+using TrailStore.Shared.Infrastructure.DI;
 using IDatabase = StackExchange.Redis.IDatabase;
 
 namespace TrailStore.Shared.Infrastructure.Caching;

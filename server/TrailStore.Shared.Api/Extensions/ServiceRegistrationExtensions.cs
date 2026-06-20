@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using TrailStore.Shared.DependencyInjection;
+using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Shared.Api.Extensions;
 

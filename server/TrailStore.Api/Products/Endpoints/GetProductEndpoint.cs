@@ -1,5 +1,4 @@
 ﻿using FastEndpoints;
-using TrailStore.Api.Common.Extensions;
 using TrailStore.Api.Common.Mapping;
 using TrailStore.Api.Products.Dto;
 using TrailStore.Api.Products.Mapping;

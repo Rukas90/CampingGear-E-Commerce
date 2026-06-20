@@ -19,7 +19,6 @@
       <ProjectReference Include="..\TrailStore.Identity.Application\TrailStore.Identity.Application.csproj" />
       <ProjectReference Include="..\TrailStore.Identity.Domain\TrailStore.Identity.Domain.csproj" />
       <ProjectReference Include="..\TrailStore.Shared.Infrastructure\TrailStore.Shared.Infrastructure.csproj" />
-      <ProjectReference Include="..\TrailStore.Shared.DependencyInjection\TrailStore.Shared.DependencyInjection.csproj" />
     </ItemGroup>
 
 </Project>

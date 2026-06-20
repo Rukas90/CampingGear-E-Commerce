@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TrailStore.Identity.Seed\TrailStore.Identity.Seed.csproj" />
+      <ProjectReference Include="..\TrailStore.Identity\TrailStore.Identity.csproj" />
       <ProjectReference Include="..\TrailStore.Shared.Seeding\TrailStore.Shared.Seeding.csproj" />
     </ItemGroup>
 
