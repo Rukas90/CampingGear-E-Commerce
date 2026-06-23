@@ -1,6 +1,6 @@
 ﻿using TrailStore.Shared.Domain.Common;
 
-namespace TrailStore.Identity.Api.Domain.Users;
+namespace TrailStore.Identity.Domain.Users;
 
 public static class UserProblems
 {

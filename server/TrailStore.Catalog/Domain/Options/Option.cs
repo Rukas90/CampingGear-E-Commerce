@@ -8,7 +8,7 @@ public class Option : IModel<Option>
     public required Id<Option> Id { get; init; }
     public required Id<OptionGroup> OptionGroupId { get; init; }
     public required string Name { get; init; }
-    public required string Slug { get; init; }
+    public required Slug Slug { get; init; }
     public required int SortOrder { get; init; }
     public PreviewType? PreviewType { get; init; }
     public string? PreviewValue { get; init; }
@@ -28,7 +28,7 @@ public class Option : IModel<Option>
             Id = Id<Option>.Part(optionGroupId).Part(slug).Build(),
             OptionGroupId = optionGroupId,
             Name = name,
-            Slug = slug,
+            Slug = Slug.Create(slug),
             SortOrder = sortOrder,
             PreviewValue = previewValue,
             PreviewType = previewType

@@ -1,6 +1,6 @@
 ﻿using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Infrastructure.Auth;
+namespace TrailStore.Identity.Infrastructure.Auth;
 
 [AppOptions("Jwt")]
 public class JwtOptions

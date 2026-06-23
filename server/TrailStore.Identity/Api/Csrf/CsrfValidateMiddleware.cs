@@ -2,10 +2,10 @@
 using System.Text;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http;
-using TrailStore.Identity.Api.Domain.Csrf;
+using TrailStore.Identity.Domain.Csrf;
 using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Api.Csrf;
+namespace TrailStore.Identity.Api.Csrf;
 
 [AppService<CsrfValidateMiddleware>]
 public class CsrfValidateMiddleware(ICsrfService csrfService) : IMiddleware

@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using TrailStore.Identity.Api.Api.Authentication;
-using TrailStore.Identity.Api.Api.Csrf;
-using TrailStore.Identity.Api.Infrastructure.Database;
+using Microsoft.Extensions.DependencyInjection;
+using TrailStore.Identity.Api.Authentication;
+using TrailStore.Identity.Api.Csrf;
+using TrailStore.Identity.Infrastructure.Database;
 using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Registrations;
 
-namespace TrailStore.Identity.Api;
+namespace TrailStore.Identity;
 
 public static class IdentityModuleRegistration
 {
@@ -16,13 +17,14 @@ public static class IdentityModuleRegistration
         
         services.AddIdentityContext(configuration);
         
-        services.AddAppServicesFromAssemblies(IdentityMaker.Reference);
+        services.AddAppServicesFromAssemblies(IdentityMarker.Reference);
 
-        services.ConfigureAppOptionsFromAssemblies(configuration, IdentityMaker.Reference);
+        services.ConfigureAppOptionsFromAssemblies(configuration, IdentityMarker.Reference);
 
         services.AddAppAuthentication(configuration);
+        services.AddAuthorization();
 
-        builder.AddApiAssembly(IdentityMaker.Reference);
+        builder.AddApiAssembly(IdentityMarker.Reference);
         
         return builder;
     }

@@ -8,7 +8,7 @@ public sealed record SkuCode
 
     public static SkuCode Create(string value)
     {
-        return new SkuCode(value.Trim().ToLowerInvariant());
+        return new SkuCode(value.Trim().ToUpperInvariant());
     }
 
     public static implicit operator string(SkuCode code) => code.Value;

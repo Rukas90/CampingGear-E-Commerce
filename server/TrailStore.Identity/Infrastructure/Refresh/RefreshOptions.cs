@@ -1,6 +1,6 @@
 ﻿using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Infrastructure.Refresh;
+namespace TrailStore.Identity.Infrastructure.Refresh;
 
 [AppOptions("Refresh")]
 public class RefreshOptions

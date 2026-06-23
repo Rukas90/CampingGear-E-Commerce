@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Identity.Api.Api.Endpoints.Register;
+﻿namespace TrailStore.Identity.Api.Endpoints.Register;
 
 public class RegisterRequest
 {

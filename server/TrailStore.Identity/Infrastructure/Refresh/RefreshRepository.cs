@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TrailStore.Identity.Api.Domain.RefreshTokens;
-using TrailStore.Identity.Api.Infrastructure.Database;
+using TrailStore.Identity.Domain.RefreshTokens;
+using TrailStore.Identity.Infrastructure.Database;
 using TrailStore.Shared.Infrastructure.DI;
 using TrailStore.Shared.Infrastructure.Persistence;
 
-namespace TrailStore.Identity.Api.Infrastructure.Refresh;
+namespace TrailStore.Identity.Infrastructure.Refresh;
 
 [AppService<IRefreshRepository>]
 public class RefreshRepository(IdentityDbContext context) 

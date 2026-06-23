@@ -1,12 +1,12 @@
 ﻿using System.Linq.Expressions;
-using TrailStore.Catalog.Domain.Filters;
 using TrailStore.Shared.Domain.Abstractions;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Catalog.Domain.Products;
 
 public interface IProductsRepository : IAggregateRepository<Product>
 {
-    Task<Product?> GetFullProductAsync(string slug, CancellationToken ct);
+    Task<Product?> GetFullProductAsync(Slug slug, CancellationToken ct);
 
     Task<List<TResult>> ListAsync<TResult>(
         ProductsQuery query, Expression<Func<Product, TResult>> selector, CancellationToken ct);

@@ -1,11 +1,11 @@
 ﻿using FastEndpoints;
-using TrailStore.Identity.Api.Api.Common;
-using TrailStore.Identity.Api.Api.Cookies;
-using TrailStore.Identity.Api.Api.Extensions;
-using TrailStore.Identity.Api.Application.Commands.Register;
+using TrailStore.Identity.Api.Common;
+using TrailStore.Identity.Api.Cookies;
+using TrailStore.Identity.Api.Extensions;
+using TrailStore.Identity.Application.Commands.Register;
 using TrailStore.Shared.Api.Mappers;
 
-namespace TrailStore.Identity.Api.Api.Endpoints.Register;
+namespace TrailStore.Identity.Api.Endpoints.Register;
 
 public class RegisterEndpoint(RegisterCommandHandler handler, IAuthCookieService authCookieService) 
     : Endpoint<RegisterRequest, AccountResponse>

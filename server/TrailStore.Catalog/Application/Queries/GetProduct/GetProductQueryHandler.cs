@@ -5,9 +5,11 @@ using TrailStore.Catalog.Domain.Reviews;
 using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
+using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Catalog.Application.Queries.GetProduct;
 
+[AppService<GetProductQueryHandler>]
 public class GetProductQueryHandler(
     IProductsRepository productsRepository,
     IReviewRepository reviewRepository) 
@@ -15,7 +17,7 @@ public class GetProductQueryHandler(
 {
     public async Task<Result<ProductDetails>> Handle(GetProductQuery query, CancellationToken ct)
     {
-        var product = await productsRepository.GetFullProductAsync(query.Slug, ct);
+        var product = await productsRepository.GetFullProductAsync(Slug.Create(query.Slug), ct);
 
         if (product is null)
         {

@@ -1,6 +1,7 @@
 ﻿using TrailStore.Catalog.Application.Abstractions;
 using TrailStore.Catalog.Domain.Filters;
 using TrailStore.Catalog.Domain.Products;
+using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
 
@@ -32,8 +33,8 @@ public class ProductsQueryBuilder : IProductsQueryBuilder
             var brandSpec = filter.Brands
                 .Skip(1)
                 .Aggregate(
-                    ProductSpecifications.Brand(filter.Brands[0]),
-                    (specification, id) => specification.Or(ProductSpecifications.Brand(id))
+                    ProductSpecifications.Brand(Slug.Create(filter.Brands[0])),
+                    (specification, slug) => specification.Or(ProductSpecifications.Brand(Slug.Create(slug)))
                 );
 
             spec = spec.And(brandSpec);
@@ -44,8 +45,8 @@ public class ProductsQueryBuilder : IProductsQueryBuilder
             var categorySpec = filter.Categories
                 .Skip(1)
                 .Aggregate(
-                    ProductSpecifications.Category(filter.Categories[0]),
-                    (specification, slug) => specification.Or(ProductSpecifications.Category(slug))
+                    ProductSpecifications.Category(Slug.Create(filter.Categories[0])),
+                    (specification, slug) => specification.Or(ProductSpecifications.Category(Slug.Create(slug)))
                 );
             spec = spec.And(categorySpec);
         }
@@ -72,8 +73,8 @@ public class ProductsQueryBuilder : IProductsQueryBuilder
             var codeSpec = filter.SkuCode
                 .Skip(1)
                 .Aggregate(
-                    ProductSpecifications.SkuCode(filter.SkuCode[0].ToUpper()),
-                    (specification, code) => specification.Or(ProductSpecifications.SkuCode(code.ToUpper()))
+                    ProductSpecifications.SkuCode(SkuCode.Create(filter.SkuCode[0])),
+                    (specification, code) => specification.Or(ProductSpecifications.SkuCode(SkuCode.Create(code)))
                 );
             
             spec = spec.And(codeSpec);

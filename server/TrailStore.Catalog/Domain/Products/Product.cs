@@ -10,7 +10,7 @@ public class Product : AggregateRoot<Product>
 {
     public required string Name { get; init; }
     public string Description { get; init; } = string.Empty;
-    public required string Slug { get; init; }
+    public required Slug Slug { get; init; }
     public required Id<Category> CategoryId { get; init; }
     public required Id<Brand> BrandId { get; init; }
     public string? ThumbnailUrl { get; init; }
@@ -34,7 +34,7 @@ public class Product : AggregateRoot<Product>
         {
             Id = Id<Product>.Part(slug).Build(),
             Name = name,
-            Slug = slug,
+            Slug = Slug.Create(slug),
             Description = description,
             CategoryId = categoryId,
             BrandId = brandId,

@@ -1,4 +1,5 @@
-﻿using FastEndpoints;
+﻿using System.Text.Json.Serialization;
+using FastEndpoints;
 using TrailStore.Shared.Api.Converters;
 
 namespace TrailStore.Shared.Api.Extensions;
@@ -11,6 +12,7 @@ public static class FastEndpointsExtensions
         config.Errors.ProducesMetadataType = typeof(ProblemDetails);
 
         config.Serializer.Options.Converters.Add(new IdJsonConverterFactory());
+        config.Serializer.Options.Converters.Add(new JsonStringEnumConverter());
 
         config.Errors.ResponseBuilder = (failures, _, statusCode) => new ProblemDetails
         {

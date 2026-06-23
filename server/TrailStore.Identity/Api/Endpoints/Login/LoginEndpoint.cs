@@ -1,11 +1,11 @@
 ﻿using FastEndpoints;
-using TrailStore.Identity.Api.Api.Common;
-using TrailStore.Identity.Api.Api.Cookies;
-using TrailStore.Identity.Api.Api.Extensions;
-using TrailStore.Identity.Api.Application.Commands.Login;
+using TrailStore.Identity.Api.Common;
+using TrailStore.Identity.Api.Cookies;
+using TrailStore.Identity.Api.Extensions;
+using TrailStore.Identity.Application.Commands.Login;
 using TrailStore.Shared.Api.Mappers;
 
-namespace TrailStore.Identity.Api.Api.Endpoints.Login;
+namespace TrailStore.Identity.Api.Endpoints.Login;
 
 public class LoginEndpoint(LoginCommandHandler handler, IAuthCookieService authCookieService) 
     : Endpoint<LoginRequest, AccountResponse>

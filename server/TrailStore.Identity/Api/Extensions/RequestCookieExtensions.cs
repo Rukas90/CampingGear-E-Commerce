@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
-using TrailStore.Identity.Api.Api.Cookies;
+using TrailStore.Identity.Api.Cookies;
 
-namespace TrailStore.Identity.Api.Api.Extensions;
+namespace TrailStore.Identity.Api.Extensions;
 
 public static class RequestCookieExtensions
 {

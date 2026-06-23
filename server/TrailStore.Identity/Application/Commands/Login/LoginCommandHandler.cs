@@ -1,10 +1,12 @@
-﻿using TrailStore.Identity.Api.Application.Abstractions;
-using TrailStore.Identity.Api.Application.Contracts;
+﻿using TrailStore.Identity.Application.Abstractions;
+using TrailStore.Identity.Application.Contracts;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
+using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Application.Commands.Login;
+namespace TrailStore.Identity.Application.Commands.Login;
 
+[AppService<LoginCommandHandler>]
 public sealed class LoginCommandHandler(IAuthService authService) 
     : ICommandHandler<LoginCommand, AuthResult>
 {

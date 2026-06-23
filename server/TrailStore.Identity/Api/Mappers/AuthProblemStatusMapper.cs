@@ -2,7 +2,7 @@
 using TrailStore.Shared.Api.Mappers;
 using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Api.Mappers;
+namespace TrailStore.Identity.Api.Mappers;
 
 [AppService<IProblemStatusMapper>(ServiceLifetime.Singleton)]
 public class AuthProblemStatusMapper : IProblemStatusMapper

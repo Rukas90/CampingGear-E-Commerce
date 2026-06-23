@@ -1,8 +1,8 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using TrailStore.Catalog.Domain.Filters;
 using TrailStore.Catalog.Domain.Products;
 using TrailStore.Catalog.Infrastructure.Database;
+using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
 using TrailStore.Shared.Infrastructure.Persistence;
 
@@ -12,7 +12,7 @@ namespace TrailStore.Catalog.Infrastructure.Products;
 public sealed class ProductsRepository(CatalogDbContext _context) 
     : AggregateRepository<Product, CatalogDbContext>(_context), IProductsRepository
 {
-    public async Task<Product?> GetFullProductAsync(string slug, CancellationToken ct)
+    public async Task<Product?> GetFullProductAsync(Slug slug, CancellationToken ct)
     {
         return await AggregateReadQuery 
             .Where(product => product.Slug == slug)

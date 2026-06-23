@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Identity.Api.Api.Cookies;
+﻿namespace TrailStore.Identity.Api.Cookies;
 
 public static class AuthCookies
 {

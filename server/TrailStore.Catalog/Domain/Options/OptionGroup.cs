@@ -5,7 +5,7 @@ namespace TrailStore.Catalog.Domain.Options;
 public class OptionGroup : AggregateRoot<OptionGroup>
 {
     public required string Name { get; init; }
-    public required string Slug { get; init; }
+    public required Slug Slug { get; init; }
     public int SortOrder { get; init; } = 0;
     
     private readonly List<Option> _options = [];
@@ -17,7 +17,7 @@ public class OptionGroup : AggregateRoot<OptionGroup>
         {
             Id = Id<OptionGroup>.Part(slug).Build(),
             Name = name,
-            Slug = slug,
+            Slug = Slug.Create(slug),
             SortOrder = sortOrder
         };
     }

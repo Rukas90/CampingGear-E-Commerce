@@ -1,6 +1,6 @@
 ﻿using TrailStore.Shared.Domain.Abstractions;
 
-namespace TrailStore.Identity.Api.Domain.RefreshTokens;
+namespace TrailStore.Identity.Domain.RefreshTokens;
 
 public interface IRefreshRepository : IAggregateRepository<RefreshFamily>
 {

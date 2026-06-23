@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Identity.Api.Api.Csrf;
+﻿namespace TrailStore.Identity.Api.Csrf;
 
 public class CsrfConstants
 {

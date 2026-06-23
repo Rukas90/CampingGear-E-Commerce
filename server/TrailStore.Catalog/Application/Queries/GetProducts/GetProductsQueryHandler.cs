@@ -4,9 +4,11 @@ using TrailStore.Catalog.Domain.Products;
 using TrailStore.Catalog.Domain.Reviews;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
+using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Catalog.Application.Queries.GetProducts;
 
+[AppService<GetProductsQueryHandler>]
 public class GetProductsQueryHandler(
     IProductsQueryBuilder queryBuilder,
     IReviewRepository reviewRepository,
@@ -28,7 +30,7 @@ public class GetProductsQueryHandler(
                 BrandSlug = product.Brand.Slug,
                 CategoryName = product.Category.Name,
                 CategorySlug = product.Category.Slug,
-                DefaultSkuCode = product.Skus.First().Code,
+                DefaultSkuCode = product.Skus[0].Code,
                 MinPrice = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
                 MaxPrice = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
                 InStock = product.Skus.Any(sku => sku.Stock - sku.Reserved > 0),

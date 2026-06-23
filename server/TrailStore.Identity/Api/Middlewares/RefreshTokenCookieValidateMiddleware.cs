@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
-using TrailStore.Identity.Api.Api.Extensions;
+using TrailStore.Identity.Api.Extensions;
 
-namespace TrailStore.Identity.Api.Api.Middlewares;
+namespace TrailStore.Identity.Api.Middlewares;
 
 public sealed class RefreshTokenCookieValidateMiddleware(RequestDelegate next)
 {

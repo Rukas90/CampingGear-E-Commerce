@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using TrailStore.Identity.Api.Api.Cookies;
-using TrailStore.Identity.Api.Domain.Auth;
+using TrailStore.Identity.Api.Cookies;
+using TrailStore.Identity.Domain.Auth;
 
-namespace TrailStore.Identity.Api.Api.Authentication;
+namespace TrailStore.Identity.Api.Authentication;
 
 public static class AuthenticationExtensions
 {

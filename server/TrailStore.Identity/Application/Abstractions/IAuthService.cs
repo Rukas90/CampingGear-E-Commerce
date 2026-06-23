@@ -1,8 +1,8 @@
-﻿using TrailStore.Identity.Api.Application.Contracts;
-using TrailStore.Identity.Api.Domain.Users;
+﻿using TrailStore.Identity.Application.Contracts;
+using TrailStore.Identity.Domain.Users;
 using TrailStore.Shared.Domain.Common;
 
-namespace TrailStore.Identity.Api.Application.Abstractions;
+namespace TrailStore.Identity.Application.Abstractions;
 
 public interface IAuthService
 {

@@ -1,6 +1,6 @@
 ﻿using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Infrastructure.Csrf;
+namespace TrailStore.Identity.Infrastructure.Csrf;
 
 [AppOptions("CSRF")]
 public class CsrfOptions

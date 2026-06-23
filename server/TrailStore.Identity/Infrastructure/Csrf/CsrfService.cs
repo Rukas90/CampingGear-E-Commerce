@@ -1,10 +1,10 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Options;
-using TrailStore.Identity.Api.Domain.Csrf;
+using TrailStore.Identity.Domain.Csrf;
 using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Infrastructure.Csrf;
+namespace TrailStore.Identity.Infrastructure.Csrf;
 
 [AppService<ICsrfService>]
 public class CsrfService(IOptions<CsrfOptions> options) : ICsrfService

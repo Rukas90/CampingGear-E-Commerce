@@ -7,6 +7,7 @@ internal sealed record OptionProjectionFilter(OptionSelection Option) : IProject
 {
     public bool Filter(SkuProjection projection)
     {
-        return projection.Options.Any(o => o.Group.Slug == Option.GroupSlug && o.Slug == Option.ValueSlug);
+        return projection.Options.Any(
+            o => o.Group.Slug == Option.GroupSlug && o.Slug == Option.ValueSlug);
     }
-}
+} 

@@ -5,15 +5,12 @@ using TrailStore.Shared.Domain.Abstractions;
 
 namespace TrailStore.Catalog.Application.Queries.GetFilters;
 
-public sealed record GetFiltersQuery : IQuery<CatalogFilters>
-{
-    public string? QueryBrand { get; init; }
-    public string? QueryCategory { get; init; }
-
-    public string[] FilterBrandSlugs { get; init; } = [];
-    public string[] FilterCategorySlugs { get; init; } = [];
-    public decimal FilterPriceGte { get; init; } = 0m;
-    public decimal FilterPriceLte { get; init; } = decimal.MaxValue;
-    public Availability FilterAvailability { get; init; } = Availability.All;
-    public OptionSelection[] FilterOption { get; init; } = [];
-}
+public sealed record GetFiltersQuery(
+    string? QueryBrand,
+    string? QueryCategory,
+    string[] FilterBrandSlugs,
+    string[] FilterCategorySlugs,
+    decimal FilterPriceGte,
+    decimal FilterPriceLte,
+    Availability FilterAvailability,
+    OptionSelection[] FilterOption) : IQuery<CatalogFilters>;

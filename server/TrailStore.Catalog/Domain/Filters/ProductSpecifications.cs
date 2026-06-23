@@ -1,5 +1,6 @@
 ﻿using TrailStore.Catalog.Domain.Options;
 using TrailStore.Catalog.Domain.Products;
+using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Catalog.Domain.Filters;
@@ -11,17 +12,17 @@ public static class ProductSpecifications
         return Specification<Product>.Where(p => p.Id == id);
     }
 
-    public static Specification<Product> Slug(string slug)
+    public static Specification<Product> Slug(Slug slug)
     {
         return Specification<Product>.Where(p => p.Slug == slug);
     }
 
-    public static Specification<Product> Brand(string slug)
+    public static Specification<Product> Brand(Slug slug)
     {
         return Specification<Product>.Where(p => p.Slug == slug);
     }
 
-    public static Specification<Product> Category(string slug)
+    public static Specification<Product> Category(Slug slug)
     {
         return Specification<Product>.Where(p => p.Slug == slug);
     }
@@ -48,7 +49,7 @@ public static class ProductSpecifications
                 => specification.And(ByGroup(group.Key, group.Select(filter => filter.ValueSlug))));
     }
 
-    private static Specification<Product> ByGroup(string groupSlug, IEnumerable<string> valueSlugs)
+    private static Specification<Product> ByGroup(Slug groupSlug, IEnumerable<Slug> valueSlugs)
     {
         return Specification<Product>.Where(p => p.Skus.Any(sku =>
             sku.Options.Any(option =>
@@ -56,7 +57,7 @@ public static class ProductSpecifications
                 valueSlugs.Contains(option.Slug))));
     }
 
-    public static Specification<Product> SkuCode(string code)
+    public static Specification<Product> SkuCode(SkuCode code)
     {
         return Specification<Product>.Where(p => p.Skus.Any(s => s.Code == code));
     }

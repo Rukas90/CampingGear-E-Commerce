@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Identity.Api.Domain.Users;
+﻿namespace TrailStore.Identity.Domain.Users;
 
 public enum Privileges
 {

@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Identity.Api.Api.Endpoints.Login;
+﻿namespace TrailStore.Identity.Api.Endpoints.Login;
 
 public class LoginRequest
 {

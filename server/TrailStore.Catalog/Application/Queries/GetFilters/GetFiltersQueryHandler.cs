@@ -5,15 +5,17 @@ using TrailStore.Catalog.Domain.Filters;
 using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
+using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Catalog.Application.Queries.GetFilters;
 
+[AppService<GetFiltersQueryHandler>]
 public class GetFiltersQueryHandler(ISkuRepository skuRepository) : IQueryHandler<GetFiltersQuery, CatalogFilters>
 {
     public async Task<Result<CatalogFilters>> Handle(GetFiltersQuery query, CancellationToken ct)
     {
         var specification = FiltersSpecificationBuilder.FromQuery(query);
-        var skus = await skuRepository.ListAllAsync(specification, SkuProjection, ct);
+        var skus = await skuRepository.ListAllAsync(specification, selector: SkuProjection, ct);
 
         if (skus.Count <= 0 || ct.IsCancellationRequested)
         {

@@ -21,7 +21,7 @@ public class Sku : IModel<Sku>
     
     public static Sku Create(
         Id<Product> productId,
-        SkuCode code,
+        string code,
         decimal price,
         int stock,
         ICollection<Option> options)
@@ -30,7 +30,7 @@ public class Sku : IModel<Sku>
         {
             Id = Id<Sku>.Part(code).Build(),
             ProductId = productId,
-            Code = code,
+            Code = SkuCode.Create(code),
             UnitPrice = price,
             Stock = stock,
             Reserved = 0,

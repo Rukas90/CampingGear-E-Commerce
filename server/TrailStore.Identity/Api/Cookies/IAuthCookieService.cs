@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
-using TrailStore.Identity.Api.Application.Contracts;
+using TrailStore.Identity.Application.Contracts;
 
-namespace TrailStore.Identity.Api.Api.Cookies;
+namespace TrailStore.Identity.Api.Cookies;
 
 public interface IAuthCookieService
 {

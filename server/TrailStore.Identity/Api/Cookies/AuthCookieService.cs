@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
-using TrailStore.Identity.Api.Api.Csrf;
-using TrailStore.Identity.Api.Application.Contracts;
-using TrailStore.Identity.Api.Domain.Csrf;
+using TrailStore.Identity.Api.Csrf;
+using TrailStore.Identity.Application.Contracts;
+using TrailStore.Identity.Domain.Csrf;
 using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Api.Cookies;
+namespace TrailStore.Identity.Api.Cookies;
 
 [AppService<IAuthCookieService>]
 public class AuthCookieService(IWebHostEnvironment env, ICsrfService csrfService) : IAuthCookieService

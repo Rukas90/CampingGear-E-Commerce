@@ -1,6 +1,6 @@
 ﻿using TrailStore.Shared.Domain.Common;
 
-namespace TrailStore.Identity.Api.Domain.RefreshTokens;
+namespace TrailStore.Identity.Domain.RefreshTokens;
 
 public static class RefreshProblems
 {

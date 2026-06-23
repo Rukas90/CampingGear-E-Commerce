@@ -6,7 +6,7 @@ using IDatabase = StackExchange.Redis.IDatabase;
 
 namespace TrailStore.Shared.Infrastructure.Caching;
 
-[AppService<ICacheService>]
+//[AppService<ICacheService>]
 public class RedisCacheService(IConnectionMultiplexer redis) : ICacheService
 {
     private readonly IDatabase database = redis.GetDatabase();

@@ -1,6 +1,6 @@
 ﻿using TrailStore.Shared.Domain.Abstractions;
 
-namespace TrailStore.Identity.Api.Domain.Users;
+namespace TrailStore.Identity.Domain.Users;
 
 public interface IUserRepository : IAggregateRepository<User>
 {

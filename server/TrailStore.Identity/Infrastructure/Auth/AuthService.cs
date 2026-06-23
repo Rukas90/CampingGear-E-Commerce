@@ -1,12 +1,12 @@
-﻿using TrailStore.Identity.Api.Application.Abstractions;
-using TrailStore.Identity.Api.Application.Contracts;
-using TrailStore.Identity.Api.Domain.Auth;
-using TrailStore.Identity.Api.Domain.Users;
+﻿using TrailStore.Identity.Application.Abstractions;
+using TrailStore.Identity.Application.Contracts;
+using TrailStore.Identity.Domain.Auth;
+using TrailStore.Identity.Domain.Users;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Infrastructure.Auth;
+namespace TrailStore.Identity.Infrastructure.Auth;
 
 [AppService<IAuthService>]
 public class AuthService(

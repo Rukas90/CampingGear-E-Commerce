@@ -1,6 +1,6 @@
-﻿using TrailStore.Identity.Api.Domain.Users;
+﻿using TrailStore.Identity.Domain.Users;
 
-namespace TrailStore.Identity.Api.Application.Abstractions;
+namespace TrailStore.Identity.Application.Abstractions;
 
 public interface IJwtService
 {

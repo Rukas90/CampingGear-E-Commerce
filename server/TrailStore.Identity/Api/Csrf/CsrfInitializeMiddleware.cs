@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
-using TrailStore.Identity.Api.Api.Cookies;
+using TrailStore.Identity.Api.Cookies;
 using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Api.Csrf;
+namespace TrailStore.Identity.Api.Csrf;
 
 [AppService<CsrfInitializeMiddleware>]
 public class CsrfInitializeMiddleware(IAuthCookieService cookieService) : IMiddleware

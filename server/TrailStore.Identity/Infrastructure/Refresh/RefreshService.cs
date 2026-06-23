@@ -1,14 +1,14 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Options;
-using TrailStore.Identity.Api.Application.Abstractions;
-using TrailStore.Identity.Api.Domain.RefreshTokens;
-using TrailStore.Identity.Api.Domain.Users;
+using TrailStore.Identity.Application.Abstractions;
+using TrailStore.Identity.Domain.RefreshTokens;
+using TrailStore.Identity.Domain.Users;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Infrastructure.Refresh;
+namespace TrailStore.Identity.Infrastructure.Refresh;
 
 [AppService<IRefreshService>]
 public class RefreshService(

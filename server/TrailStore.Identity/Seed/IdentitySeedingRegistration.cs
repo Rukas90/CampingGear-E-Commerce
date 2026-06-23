@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TrailStore.Identity.Api.Infrastructure.Database;
+using TrailStore.Identity.Infrastructure.Database;
 using TrailStore.Shared.Seeding;
 
-namespace TrailStore.Identity.Api.Seed;
+namespace TrailStore.Identity.Seed;
 
 public static class IdentitySeedingRegistration
 {

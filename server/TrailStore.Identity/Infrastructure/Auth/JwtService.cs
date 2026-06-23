@@ -3,11 +3,11 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using TrailStore.Identity.Api.Application.Abstractions;
-using TrailStore.Identity.Api.Domain.Users;
+using TrailStore.Identity.Application.Abstractions;
+using TrailStore.Identity.Domain.Users;
 using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Infrastructure.Auth;
+namespace TrailStore.Identity.Infrastructure.Auth;
 
 [AppService<IJwtService>]
 internal sealed class JwtService(IOptions<JwtOptions> options) : IJwtService

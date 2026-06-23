@@ -1,7 +1,7 @@
-﻿using TrailStore.Identity.Api.Api.Common;
-using TrailStore.Identity.Api.Application.Contracts;
+﻿using TrailStore.Identity.Api.Common;
+using TrailStore.Identity.Application.Contracts;
 
-namespace TrailStore.Identity.Api.Api.Extensions;
+namespace TrailStore.Identity.Api.Extensions;
 
 public static class ResponseMappingExtensions
 {

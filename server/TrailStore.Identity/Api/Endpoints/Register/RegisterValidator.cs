@@ -1,7 +1,7 @@
 ﻿using FastEndpoints;
 using FluentValidation;
 
-namespace TrailStore.Identity.Api.Api.Endpoints.Register;
+namespace TrailStore.Identity.Api.Endpoints.Register;
 
 public class RegisterValidator : Validator<RegisterRequest>
 {

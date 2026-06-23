@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Identity.Api.Seed;
+﻿namespace TrailStore.Identity.Seed;
 
 public static class SeedDefaults
 {

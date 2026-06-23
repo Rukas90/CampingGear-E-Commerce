@@ -8,7 +8,7 @@ public class Brand : IModel<Brand>
     public required Id<Brand> Id { get; init; }
     public required string Name { get; init; }
     public string? Description { get; init; }
-    public required string Slug { get; init; }
+    public required Slug Slug { get; init; }
     public required string LogoUrl { get; init; }
     public required string WebsiteUrl { get; init; }
     
@@ -18,7 +18,7 @@ public class Brand : IModel<Brand>
         {
             Id = Id<Brand>.Part(slug).Build(),
             Name = name,
-            Slug = slug,
+            Slug = Slug.Create(slug),
             LogoUrl = logoUrl,
             WebsiteUrl = websiteUrl,
             Description = description

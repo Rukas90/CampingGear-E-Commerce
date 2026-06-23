@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TrailStore.Identity.Api.Domain.Users;
-using TrailStore.Identity.Api.Infrastructure.Database;
+using TrailStore.Identity.Domain.Users;
+using TrailStore.Identity.Infrastructure.Database;
 using TrailStore.Shared.Infrastructure.DI;
 using TrailStore.Shared.Seeding;
 
-namespace TrailStore.Identity.Api.Seed;
+namespace TrailStore.Identity.Seed;
 
 [AppService<ISeedRunner>]
 public class IdentitySeedRunner(IdentityDbContext context) : SeedRunner

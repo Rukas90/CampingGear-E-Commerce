@@ -1,9 +1,11 @@
-﻿using TrailStore.Identity.Api.Application.Abstractions;
+﻿using TrailStore.Identity.Application.Abstractions;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
+using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Identity.Api.Application.Commands.Logout;
+namespace TrailStore.Identity.Application.Commands.Logout;
 
+[AppService<LogoutCommandHandler>]
 public sealed class LogoutCommandHandler(
     IRefreshService refreshService,
     IIdentityUnitOfWork unitOfWork) : ICommandHandler<LogoutCommand>

@@ -1,8 +1,8 @@
-﻿using TrailStore.Identity.Api.Domain.Users;
+﻿using TrailStore.Identity.Domain.Users;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 
-namespace TrailStore.Identity.Api.Domain.RefreshTokens;
+namespace TrailStore.Identity.Domain.RefreshTokens;
 
 public class RefreshToken : IModel<RefreshToken>, IEntityCreatable, IEntityExpirable
 {

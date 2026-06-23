@@ -1,0 +1,17 @@
+﻿using TrailStore.Catalog.Domain.Options;
+using TrailStore.Shared.Seeding;
+
+namespace TrailStore.Catalog.Seed.Options;
+
+public static class ZipOption
+{
+    [SeededEntity] public static readonly OptionGroup OptionGroup = OptionGroup.Create("Zip", "zip");
+
+    [SeededEntity] public static readonly Option Left = Option.Create(
+        OptionGroup.Id,
+        "Left", "left");
+
+    [SeededEntity] public static readonly Option Right = Option.Create(
+        OptionGroup.Id,
+        "Right", "right", 1);
+}

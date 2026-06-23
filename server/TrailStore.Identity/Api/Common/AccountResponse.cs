@@ -1,3 +1,3 @@
-﻿namespace TrailStore.Identity.Api.Api.Common;
+﻿namespace TrailStore.Identity.Api.Common;
 
 public record AccountResponse(Guid Id, string Email);

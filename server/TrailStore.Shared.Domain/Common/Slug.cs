@@ -1,0 +1,17 @@
+﻿namespace TrailStore.Shared.Domain.Common;
+
+public class Slug
+{
+    public string Value { get; }
+
+    protected Slug(string value) => Value = value;
+
+    public static Slug Create(string value)
+    {
+        return new Slug(value.Trim().ToLowerInvariant());
+    }
+
+    public static implicit operator string(Slug slug) => slug.Value;
+
+    public override string ToString() => Value;
+}

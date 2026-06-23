@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Identity.Api.Domain.Csrf;
+﻿namespace TrailStore.Identity.Domain.Csrf;
 
 public interface ICsrfService
 {

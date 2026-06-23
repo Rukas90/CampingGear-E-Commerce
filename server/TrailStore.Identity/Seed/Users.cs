@@ -1,9 +1,9 @@
 ﻿using Bogus;
-using TrailStore.Identity.Api.Domain.Users;
+using TrailStore.Identity.Domain.Users;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Seeding;
 
-namespace TrailStore.Identity.Api.Seed;
+namespace TrailStore.Identity.Seed;
 
 // ReSharper disable All
 public static class Users
