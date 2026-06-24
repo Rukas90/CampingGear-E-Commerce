@@ -7,13 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FastEndpoints" Version="8.1.0" />
-        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
+      <Folder Include="Application\Commands\DeleteFromCart\" />
+      <Folder Include="Application\Queries\" />
     </ItemGroup>
-    
+
     <ItemGroup>
+      <ProjectReference Include="..\TrailStore.Shared.Api\TrailStore.Shared.Api.csproj" />
       <ProjectReference Include="..\TrailStore.Shared.Domain\TrailStore.Shared.Domain.csproj" />
-      <ProjectReference Include="..\TrailStore.Shared.Infrastructure\TrailStore.Shared.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

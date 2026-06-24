@@ -13,7 +13,7 @@ using TrailStore.Shared.Infrastructure.Persistence;
 namespace TrailStore.Catalog.Infrastructure.Database;
 
 [AppService<ICatalogUnitOfWork>]
-public class CatalogDbContext(DbContextOptions<CatalogDbContext> options)
+public sealed class CatalogDbContext(DbContextOptions<CatalogDbContext> options)
     : BaseDbContext<CatalogDbContext>(options), ICatalogUnitOfWork
 {
     public DbSet<Product> Products { get; set; }

@@ -9,7 +9,7 @@ using TrailStore.Shared.Infrastructure.Persistence;
 namespace TrailStore.Identity.Infrastructure.Database;
 
 [AppService<IIdentityUnitOfWork>]
-public class IdentityDbContext(DbContextOptions<IdentityDbContext> options) 
+public sealed class IdentityDbContext(DbContextOptions<IdentityDbContext> options) 
     : BaseDbContext<IdentityDbContext>(options), IIdentityUnitOfWork
 {
     public DbSet<User> Users { get; set; }
