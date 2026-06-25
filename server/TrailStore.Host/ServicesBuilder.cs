@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using TrailStore.Basket;
 using TrailStore.Catalog;
 using TrailStore.Identity;
 using TrailStore.Shared.Api.Extensions;
@@ -33,7 +34,8 @@ public static class ServicesBuilder
         var moduleBuilder 
             = new ModuleHostBuilder(builder.Services, builder.Configuration)
                 .AddIdentityModule()
-                .AddCatalogModule();
+                .AddCatalogModule()
+                .AddBasketModule();
 
         builder.Services.AddFastEndpoints(options =>
         {

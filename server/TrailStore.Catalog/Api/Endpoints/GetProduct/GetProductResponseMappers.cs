@@ -1,11 +1,11 @@
 ﻿using TrailStore.Catalog.Api.Endpoints.GetProduct.Responses;
-using TrailStore.Catalog.Application.Contracts;
+using TrailStore.Catalog.Application.Results;
 
 namespace TrailStore.Catalog.Api.Endpoints.GetProduct;
 
 public static class GetProductResponseMappers
 {
-    public static ProductDetailsResponse ToResponse(this ProductDetails details)
+    public static ProductDetailsResponse ToResponse(this ProductDetailsResult details)
         => new()
         {
             Name = details.Name,
@@ -30,7 +30,7 @@ public static class GetProductResponseMappers
             Images = details.Images.Select(MapProductImageResponse).ToArray()
         };
 
-    private static ProductSkuResponse MapSkuResponse(this ProductSku sku)
+    private static ProductSkuResponse MapSkuResponse(this ProductSkuResult sku)
         => new()
         {
             Code = sku.Code,
@@ -39,7 +39,7 @@ public static class GetProductResponseMappers
             OptionIds = sku.OptionIds,
         };
     
-    private static ProductOptionGroupResponse MapOptionGroupResponse(this ProductOptionGroup optionGroup)
+    private static ProductOptionGroupResponse MapOptionGroupResponse(this ProductOptionGroupResult optionGroup)
         => new()
         {
             Name = optionGroup.Name,
@@ -47,7 +47,7 @@ public static class GetProductResponseMappers
             Options = optionGroup.Options.Select(MapOptionResponse).ToArray()
         };
 
-    private static ProductOptionResponse MapOptionResponse(this ProductOption option)
+    private static ProductOptionResponse MapOptionResponse(this ProductOptionResult option)
         => new()
         {
             Id = option.Id,
@@ -58,7 +58,7 @@ public static class GetProductResponseMappers
             PreviewValue = option.PreviewValue,
         };
 
-    private static ProductImageResponse MapProductImageResponse(this ProductDetailsImage image)
+    private static ProductImageResponse MapProductImageResponse(this ProductImageResult image)
         => new()
         {
             OptionId = image.OptionId,

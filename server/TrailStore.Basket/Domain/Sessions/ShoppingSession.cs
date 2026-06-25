@@ -1,4 +1,6 @@
 ﻿using TrailStore.Basket.Domain.Carts;
+using TrailStore.Catalog.Contracts.Skus;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 
@@ -6,7 +8,7 @@ namespace TrailStore.Basket.Domain.Sessions;
 
 public class ShoppingSession : AggregateRoot<ShoppingSession>, IEntityCreatable, IEntityExpirable
 {
-    public Guid? UserId { get; init; }
+    public Id<UserRef>? UserId { get; init; }
     
     public DateTime CreatedAt { get; set; }
     public DateTime? ExpiresAt { get; set; }
@@ -14,7 +16,7 @@ public class ShoppingSession : AggregateRoot<ShoppingSession>, IEntityCreatable,
     private readonly List<CartItem> _cartItems = [];
     public IReadOnlyList<CartItem> CartItems => _cartItems;
 
-    public static ShoppingSession Create(Guid? userId, TimeSpan expireTime)
+    public static ShoppingSession Create(Id<UserRef>? userId, TimeSpan expireTime)
         => new()
         {
             Id = Id<ShoppingSession>.New(),
@@ -22,7 +24,7 @@ public class ShoppingSession : AggregateRoot<ShoppingSession>, IEntityCreatable,
             UserId = userId,
         };
     
-    public void AddCartItem(Guid skuId, int quantity)
+    public void AddCartItem(Id<SkuRef> skuId, int quantity)
     {
         ValidateSession();
 

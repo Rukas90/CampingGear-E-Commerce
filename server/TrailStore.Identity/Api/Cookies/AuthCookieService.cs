@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using TrailStore.Identity.Api.Csrf;
-using TrailStore.Identity.Application.Contracts;
+using TrailStore.Identity.Application.Results;
 using TrailStore.Identity.Domain.Csrf;
 using TrailStore.Shared.Infrastructure.DI;
 
@@ -36,7 +36,7 @@ public class AuthCookieService(IWebHostEnvironment env, ICsrfService csrfService
         Path = "/"
     };
 
-    public void AppendAuthCookies(HttpResponse response, TokenPair tokens)
+    public void AppendAuthCookies(HttpResponse response, TokenPairResult tokens)
     {
         response.Cookies.Append(
             AuthCookies.AccessToken, tokens.AccessToken, AccessTokenOptions);

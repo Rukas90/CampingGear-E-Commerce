@@ -1,4 +1,4 @@
-﻿using TrailStore.Catalog.Application.Contracts;
+﻿using TrailStore.Catalog.Application.Results;
 using TrailStore.Catalog.Domain.Options;
 using TrailStore.Catalog.Domain.Products;
 using TrailStore.Catalog.Domain.Reviews;
@@ -13,9 +13,9 @@ namespace TrailStore.Catalog.Application.Queries.GetProduct;
 public class GetProductQueryHandler(
     IProductsRepository productsRepository,
     IReviewRepository reviewRepository) 
-    : IQueryHandler<GetProductQuery, ProductDetails>
+    : IQueryHandler<GetProductQuery, ProductDetailsResult>
 {
-    public async Task<Result<ProductDetails>> Handle(GetProductQuery query, CancellationToken ct)
+    public async Task<Result<ProductDetailsResult>> Handle(GetProductQuery query, CancellationToken ct)
     {
         var product = await productsRepository.GetFullProductAsync(Slug.Create(query.Slug), ct);
 
@@ -26,7 +26,7 @@ public class GetProductQueryHandler(
         
         var reviews = await reviewRepository.ListAsync(product.Id, ct);
 
-        return new ProductDetails
+        return new ProductDetailsResult
         {
             Name = product.Name,
             Slug = product.Slug,
@@ -55,8 +55,8 @@ public class GetProductQueryHandler(
         => Enumerable.Range(1, 5)
             .ToDictionary(star => star, star => reviews.Count(r => r.Rating == star));
     
-    private static ProductSku[] MapSkus(IEnumerable<Sku> skus)
-        => skus.Select(sku => new ProductSku
+    private static ProductSkuResult[] MapSkus(IEnumerable<Sku> skus)
+        => skus.Select(sku => new ProductSkuResult
         {
             Code = sku.Code,
             UnitPrice = sku.UnitPrice,
@@ -64,7 +64,7 @@ public class GetProductQueryHandler(
             OptionIds = sku.Options.Select(option => option.Id.Value).ToArray()
         }).ToArray();
     
-    private static ProductOptionGroup[] MapOptionGroups(IReadOnlyList<Sku> skus)
+    private static ProductOptionGroupResult[] MapOptionGroups(IReadOnlyList<Sku> skus)
         => skus
             .SelectMany(sku => sku.Options)
             .GroupBy(option => new
@@ -73,7 +73,7 @@ public class GetProductQueryHandler(
                 option.OptionGroup.Name,
                 option.OptionGroup.SortOrder
             })
-            .Select(group => new ProductOptionGroup
+            .Select(group => new ProductOptionGroupResult
             {
                 Name = group.Key.Name,
                 SortOrder = group.Key.SortOrder,
@@ -81,11 +81,11 @@ public class GetProductQueryHandler(
             })
             .ToArray();
     
-    private static ProductOption[] MapOptions(IEnumerable<Option> options, IReadOnlyList<Sku> skus)
+    private static ProductOptionResult[] MapOptions(IEnumerable<Option> options, IReadOnlyList<Sku> skus)
         => options
             .GroupBy(o => o.Id)
             .Select(g => g.First())
-            .Select(option => new ProductOption
+            .Select(option => new ProductOptionResult
             {
                 Name = option.Name,
                 SortOrder = option.SortOrder,
@@ -97,11 +97,11 @@ public class GetProductQueryHandler(
             .ToHashSet()
             .ToArray();
     
-    private static ProductDetailsImage[] MapImages(IEnumerable<ProductImage> images)
-        => images.Select(image => new ProductDetailsImage
+    private static ProductImageResult[] MapImages(IEnumerable<ProductImage> images)
+        => images.Select(image => new ProductImageResult
         {
             OptionId = image.OptionId,
-            Urls = image.Urls.Select(url => new ProductDetailsImageUrl
+            Urls = image.Urls.Select(url => new ProductImageUrlResult
             {
                 Url = url.Url,
                 SortOrder = url.SortOrder

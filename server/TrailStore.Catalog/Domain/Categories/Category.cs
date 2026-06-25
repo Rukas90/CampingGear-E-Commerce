@@ -11,6 +11,8 @@ public sealed class Category : IModel<Category>
     public required Slug Slug { get; init; }
     public string Description { get; init; } = string.Empty;
     public string? ImageUrl { get; init; }
+
+    public CategoryGroup Group { get; private set; } = null!;
     
     public static Category Create(
         Id<CategoryGroup> groupId, string name, string slug, string description = "", string? imageUrl = null)

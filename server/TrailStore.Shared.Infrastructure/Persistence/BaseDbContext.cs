@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
+using TrailStore.Shared.Infrastructure.Configurations;
 
 namespace TrailStore.Shared.Infrastructure.Persistence;
 
 public abstract class BaseDbContext<TContext>(DbContextOptions<TContext> options) 
     : DbContext(options), IUnitOfWork where TContext : DbContext
 {
+    protected abstract string DefaultSchema { get; }
+    
     private sealed class WorkScope(
         IUnitOfWork unitOfWork, ITransaction transaction, bool isOwner, CancellationToken ct) : IWorkScope
     {
@@ -36,8 +39,16 @@ public abstract class BaseDbContext<TContext>(DbContextOptions<TContext> options
         }
     }
     
+    protected override void ConfigureConventions(ModelConfigurationBuilder config)
+    {
+        DatabaseConventionConfiguration.ApplyDefaultConventions<TContext>(config);
+    }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasDefaultSchema(DefaultSchema);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(TContext).Assembly);
+        
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
             var type = entityType.ClrType;

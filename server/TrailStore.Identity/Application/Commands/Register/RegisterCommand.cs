@@ -1,4 +1,4 @@
-﻿using TrailStore.Identity.Application.Contracts;
+﻿using TrailStore.Identity.Application.Results;
 using TrailStore.Shared.Domain.Abstractions;
 
 namespace TrailStore.Identity.Application.Commands.Register;

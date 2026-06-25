@@ -6,7 +6,7 @@ public interface IAggregateRepository<TEntity> where TEntity : AggregateRoot<TEn
 {
     Task<TEntity?> FindAsync(Id<TEntity> id, CancellationToken ct);
 
-    void Add(TEntity entity);
+    TEntity Add(TEntity entity);
 
     void Delete(TEntity entity);
 }

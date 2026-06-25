@@ -16,6 +16,8 @@ namespace TrailStore.Catalog.Infrastructure.Database;
 public sealed class CatalogDbContext(DbContextOptions<CatalogDbContext> options)
     : BaseDbContext<CatalogDbContext>(options), ICatalogUnitOfWork
 {
+    protected override string DefaultSchema => DbDefaults.DefaultSchema;
+    
     public DbSet<Product> Products { get; set; }
     
     public DbSet<ProductImage> ProductImages { get; set; }
@@ -38,13 +40,8 @@ public sealed class CatalogDbContext(DbContextOptions<CatalogDbContext> options)
 
     protected override void ConfigureConventions(ModelConfigurationBuilder config)
     {
-        DatabaseConventionConfiguration.ApplyDefaultConventions<CatalogDbContext>(config);
+        base.ConfigureConventions(config);
+        
         config.Properties<SkuCode>().HaveConversion<SkuCodeConverter>();
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.HasDefaultSchema(DbDefaults.DefaultSchema);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogDbContext).Assembly);
     }
 }

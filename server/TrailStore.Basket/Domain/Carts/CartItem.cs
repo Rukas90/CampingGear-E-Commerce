@@ -1,4 +1,5 @@
 ﻿using TrailStore.Basket.Domain.Sessions;
+using TrailStore.Catalog.Contracts.Skus;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 
@@ -8,7 +9,7 @@ public class CartItem : IModel<CartItem>, IEntityCreatable
 {
     public Id<CartItem> Id { get; init; }
     public Id<ShoppingSession> SessionId { get; init; }
-    public Guid SkuId { get; init; }
+    public Id<SkuRef> SkuId { get; init; }
     public int Quantity { get; private set; }
 
     public DateTime CreatedAt { get; set; }
@@ -16,7 +17,7 @@ public class CartItem : IModel<CartItem>, IEntityCreatable
     public ShoppingSession ShoppingSession { get; private set; } = null!;
 
     public static CartItem Create(
-        Id<ShoppingSession> sessionId, Guid skuId, int quantity)
+        Id<ShoppingSession> sessionId, Id<SkuRef> skuId, int quantity)
         => new()
         {
             Id = Id<CartItem>.New(),

@@ -18,9 +18,13 @@ public abstract class AggregateRepository<TEntity, TContext>(TContext _context) 
     
     public Task<TEntity?> FindAsync(Id<TEntity> id, CancellationToken ct) 
         => BuildAggregateQuery(set).SingleOrDefaultAsync(entity => entity.Id == id, ct);
-    
-    public void Add(TEntity entity)
-        => set.Add(entity);
+
+    public TEntity Add(TEntity entity)
+    {
+        set.Add(entity);
+        
+        return entity;
+    }
     
     public void Delete(TEntity entity)
         => set.Remove(entity);

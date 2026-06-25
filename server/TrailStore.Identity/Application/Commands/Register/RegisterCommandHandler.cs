@@ -1,5 +1,5 @@
 ﻿using TrailStore.Identity.Application.Abstractions;
-using TrailStore.Identity.Application.Contracts;
+using TrailStore.Identity.Application.Results;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
@@ -26,6 +26,6 @@ public class RegisterCommandHandler(
         
         await unitOfWork.SaveAsync(ct);
 
-        return new AuthResult(session, new UserAccount(newUser.Id, newUser.Email));
+        return new AuthResult(session, new UserAccountResult(newUser.Id, newUser.Email));
     }
 }

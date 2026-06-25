@@ -7,7 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Events\" />
+        <Folder Include="Events\" />
+        <Folder Include="Users\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\TrailStore.Shared.Domain\TrailStore.Shared.Domain.csproj" />
     </ItemGroup>
 
 </Project>

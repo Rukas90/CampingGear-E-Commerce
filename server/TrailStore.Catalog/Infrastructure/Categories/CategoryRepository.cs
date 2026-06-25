@@ -16,5 +16,5 @@ public class CategoryRepository(CatalogDbContext context) : ICategoryRepository
     }
 
     public Task<List<Category>> ListAllCategoriesAsync(CancellationToken ct)
-        => context.Categories.ToListAsync(ct);
+        => context.Categories.Include(c => c.Group).ToListAsync(ct);
 }

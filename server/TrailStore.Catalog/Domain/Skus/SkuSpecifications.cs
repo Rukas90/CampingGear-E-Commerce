@@ -4,6 +4,11 @@ namespace TrailStore.Catalog.Domain.Skus;
 
 public static class SkuSpecifications
 {
+    public static Specification<Sku> Id(Id<Sku> id)
+    {
+        return Specification<Sku>.Where(sku => sku.Product.Skus.Any(s => s.Id == id));
+    }
+    
     public static Specification<Sku> Brand(string slug)
     {
         return Specification<Sku>.Where(sku => sku.Product.Brand.Slug == slug);

@@ -14,7 +14,7 @@ public static class CatalogModuleRegistration
         services.AddCatalogContext(configuration);
         
         services.AddAppServicesFromAssemblies(CatalogMarker.Reference);
-
+        
         services.ConfigureAppOptionsFromAssemblies(configuration, CatalogMarker.Reference);
         
         builder.AddApiAssembly(CatalogMarker.Reference);

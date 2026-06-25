@@ -1,4 +1,4 @@
-﻿using TrailStore.Catalog.Application.Contracts;
+﻿using TrailStore.Catalog.Application.Results;
 using TrailStore.Catalog.Domain.Products;
 using TrailStore.Shared.Domain.Abstractions;
 
@@ -15,4 +15,4 @@ public sealed record GetProductsQuery(
     decimal? PriceLte,
     Availability? Availability,
     Dictionary<string, string>? Option,
-    string[]? SkuCode) : IQuery<ProductSummary[]>;
+    string[]? SkuCode) : IQuery<ProductSummaryResult[]>;

@@ -6,4 +6,7 @@ public static class CartProblems
 {
     public static readonly Problem ItemNotFound 
         = new("Item not found", "cart.item_not_found", "Item was not found.");
+
+    public static Problem UnexpectedProblem(string message)
+        => new Problem("Unexpected problem", "cart.unexpected_problem", message);
 }

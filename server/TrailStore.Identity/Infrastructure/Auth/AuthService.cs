@@ -1,5 +1,5 @@
 ﻿using TrailStore.Identity.Application.Abstractions;
-using TrailStore.Identity.Application.Contracts;
+using TrailStore.Identity.Application.Results;
 using TrailStore.Identity.Domain.Auth;
 using TrailStore.Identity.Domain.Users;
 using TrailStore.Shared.Domain.Abstractions;
@@ -48,7 +48,7 @@ public class AuthService(
             return AuthProblems.InvalidCredentials;
         }
 
-        return new AuthResult(CreateSession(user), new UserAccount(user.Id, user.Email));
+        return new AuthResult(CreateSession(user), new UserAccountResult(user.Id, user.Email));
     }
 
     public async Task<Result<AuthResult>> RefreshSession(string token, CancellationToken ct)
@@ -72,19 +72,19 @@ public class AuthService(
 
         refreshService.RevokeToken(family, token);
         
-        return new AuthResult(CreateSession(user), new UserAccount(user.Id, user.Email));
+        return new AuthResult(CreateSession(user), new UserAccountResult(user.Id, user.Email));
     }
 
     private static string CreateBlacklistKey(string jti)
         => $"revoked-jti:{jti}";
 
-    public TokenPair CreateSession(User user)
+    public TokenPairResult CreateSession(User user)
     {
         var family = refreshService.CreateNewFamily(user);
 
         var accessToken = jwtService.GenerateAccessToken(user);
         var refreshToken = refreshService.CreateNewToken(family);
 
-        return new TokenPair(accessToken, refreshToken);
+        return new TokenPairResult(accessToken, refreshToken);
     }
 }

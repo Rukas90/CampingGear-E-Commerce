@@ -26,5 +26,10 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 
         builder.Property(c => c.ImageUrl)
             .HasMaxLength(400);
+
+        builder.HasOne(c => c.Group)
+            .WithMany()
+            .HasForeignKey(c => c.GroupId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

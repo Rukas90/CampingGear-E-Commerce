@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using TrailStore.Basket.Domain.Sessions;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Api.Extensions;
 
 namespace TrailStore.Basket.Api.Sessions;

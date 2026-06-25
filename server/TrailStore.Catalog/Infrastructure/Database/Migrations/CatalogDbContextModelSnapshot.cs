@@ -67,6 +67,8 @@ namespace TrailStore.Catalog.Infrastructure.Database.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GroupId");
+
                     b.HasIndex("Slug")
                         .IsUnique();
 
@@ -386,6 +388,17 @@ namespace TrailStore.Catalog.Infrastructure.Database.Migrations
                         .HasForeignKey("SkuId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TrailStore.Catalog.Domain.Categories.Category", b =>
+                {
+                    b.HasOne("TrailStore.Catalog.Domain.Categories.CategoryGroup", "Group")
+                        .WithMany()
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
                 });
 
             modelBuilder.Entity("TrailStore.Catalog.Domain.Options.Option", b =>

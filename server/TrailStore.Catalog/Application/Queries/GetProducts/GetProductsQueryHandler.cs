@@ -1,5 +1,5 @@
 ﻿using TrailStore.Catalog.Application.Abstractions;
-using TrailStore.Catalog.Application.Contracts;
+using TrailStore.Catalog.Application.Results;
 using TrailStore.Catalog.Domain.Products;
 using TrailStore.Catalog.Domain.Reviews;
 using TrailStore.Shared.Domain.Abstractions;
@@ -13,9 +13,9 @@ public class GetProductsQueryHandler(
     IProductsQueryBuilder queryBuilder,
     IReviewRepository reviewRepository,
     IProductsRepository productsRepository) 
-    : IQueryHandler<GetProductsQuery, ProductSummary[]>
+    : IQueryHandler<GetProductsQuery, ProductSummaryResult[]>
 {
-    public async Task<Result<ProductSummary[]>> Handle(GetProductsQuery query, CancellationToken ct)
+    public async Task<Result<ProductSummaryResult[]>> Handle(GetProductsQuery query, CancellationToken ct)
     {
         var filter = query.ToFilter();
         
@@ -48,7 +48,7 @@ public class GetProductsQueryHandler(
                 var reviewSummary 
                     = reviewSummaries.FirstOrDefault(summary => summary.ProductId == p.Id);
                 
-                return new ProductSummary
+                return new ProductSummaryResult
                 {
                     Name = p.Name,
                     Slug = p.Slug,
