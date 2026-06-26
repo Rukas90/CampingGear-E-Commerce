@@ -4,9 +4,9 @@ using TrailStore.Catalog.Domain.Categories;
 using TrailStore.Catalog.Domain.Options;
 using TrailStore.Catalog.Domain.Products;
 using TrailStore.Catalog.Domain.Reviews;
+using TrailStore.Catalog.Domain.Reviews.Models;
 using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Catalog.Infrastructure.Database.Converters;
-using TrailStore.Shared.Infrastructure.Configurations;
 using TrailStore.Shared.Infrastructure.DI;
 using TrailStore.Shared.Infrastructure.Persistence;
 

@@ -9,10 +9,11 @@ namespace TrailStore.Shared.Infrastructure.Conversions;
 
 public static class IdConfigConversions
 {
-    public static void ConfigureIdConversion(ModelConfigurationBuilder config, Assembly assembly)
+    public static void ConfigureIdConversion(ModelConfigurationBuilder config, Assembly[] assemblies)
     {
-        var types = ReflectionUtils.GetGenericInterfaceArguments(
-            assembly, typeof(IIdentifier<>));
+        var types = assemblies
+            .SelectMany(a => ReflectionUtils.GetGenericInterfaceArguments(a, typeof(IIdentifier<>)))
+            .Distinct();
 
         var conversion = ReflectionUtils.GetPrivateMethod(
             typeof(IdConfigConversions), nameof(ConfigureIdConverter));

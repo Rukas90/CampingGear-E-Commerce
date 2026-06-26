@@ -6,6 +6,8 @@ namespace TrailStore.Catalog.Domain.Products;
 
 public interface IProductsRepository : IAggregateRepository<Product>
 {
+    Task<Id<Product>?> GetIdFromSlug(Slug productSlug, CancellationToken ct);
+    
     Task<Product?> GetFullProductAsync(Slug slug, CancellationToken ct);
 
     Task<List<TResult>> ListAsync<TResult>(

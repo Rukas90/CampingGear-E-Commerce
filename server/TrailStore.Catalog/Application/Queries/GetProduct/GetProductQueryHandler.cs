@@ -2,6 +2,8 @@
 using TrailStore.Catalog.Domain.Options;
 using TrailStore.Catalog.Domain.Products;
 using TrailStore.Catalog.Domain.Reviews;
+using TrailStore.Catalog.Domain.Reviews.Models;
+using TrailStore.Catalog.Domain.Reviews.Repositories;
 using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;

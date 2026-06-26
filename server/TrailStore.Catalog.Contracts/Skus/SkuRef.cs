@@ -1,3 +1,5 @@
-﻿namespace TrailStore.Catalog.Contracts.Skus;
+﻿using TrailStore.Shared.Domain.Abstractions;
 
-public sealed record SkuRef;
+namespace TrailStore.Catalog.Contracts.Skus;
+
+public sealed record SkuRef : IIdentifier<SkuRef>;

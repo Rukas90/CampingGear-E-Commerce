@@ -48,7 +48,9 @@ public class AuthService(
             return AuthProblems.InvalidCredentials;
         }
 
-        return new AuthResult(CreateSession(user), new UserAccountResult(user.Id, user.Email));
+        var tokenPair = CreateSession(user);
+
+        return new AuthResult(tokenPair, new UserAccountResult(user.Id, user.Email));
     }
 
     public async Task<Result<AuthResult>> RefreshSession(string token, CancellationToken ct)
@@ -72,11 +74,10 @@ public class AuthService(
 
         refreshService.RevokeToken(family, token);
         
-        return new AuthResult(CreateSession(user), new UserAccountResult(user.Id, user.Email));
+        var tokenPair = CreateSession(user);
+        
+        return new AuthResult(tokenPair, new UserAccountResult(user.Id, user.Email));
     }
-
-    private static string CreateBlacklistKey(string jti)
-        => $"revoked-jti:{jti}";
 
     public TokenPairResult CreateSession(User user)
     {

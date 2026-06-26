@@ -5,9 +5,20 @@ param(
 )
 
 $modules = @{
-    "identity" = @{ Project = "TrailStore.Identity"; Context = "IdentityDbContext"; MigrationsDir = "Infrastructure/Database/Migrations" }
-    "catalog"  = @{ Project = "TrailStore.Catalog";  Context = "CatalogDbContext";  MigrationsDir = "Infrastructure/Database/Migrations"  }
-    "orders"   = @{ Project = "TrailStore.Orders";   Context = "OrdersDbContext";  MigrationsDir = "Infrastructure/Database/Migrations"   }
+    "basket" = @{
+        Project = "TrailStore.Basket";
+        Context = "BasketDbContext";
+        MigrationsDir = "Infrastructure/Database/Migrations"   }
+    
+    "identity" = @{ 
+        Project = "TrailStore.Identity"; 
+        Context = "IdentityDbContext"; 
+        MigrationsDir = "Infrastructure/Database/Migrations" }
+    
+    "catalog" = @{ 
+        Project = "TrailStore.Catalog";  
+        Context = "CatalogDbContext";  
+        MigrationsDir = "Infrastructure/Database/Migrations"  }
 }
 
 function Run-Migration($mod) {
@@ -38,7 +49,7 @@ $validCommands = @("update", "add", "remove", "list")
 if ($command -notin $validCommands) {
     Write-Host "Unknown command: '$command'. Use: $($validCommands -join ', ')"
     Write-Host "Options:"
-    Write-Host "  -module <name>   Run for specific module only (identity, catalog, orders)"
+    Write-Host "  -module <name>   Run for specific module only ($($modules.Keys -join ', '))"
     Write-Host "  -name <name>     Migration name for 'add' command (default: 'Migration')"
     exit 1
 }

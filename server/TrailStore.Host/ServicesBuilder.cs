@@ -6,6 +6,7 @@ using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Handlers;
 using TrailStore.Shared.Api.Registrations;
 using TrailStore.Shared.Infrastructure;
+using TrailStore.Shared.Infrastructure.Extensions;
 
 namespace TrailStore.Host;
 
@@ -26,8 +27,7 @@ public static class ServicesBuilder
         });
 
         builder.Services.AddHttpContextAccessor();
-
-        builder.Services.AddAppServicesFromAssemblies(SharedInfrastructureMarker.Reference);
+        builder.Services.AddSharedInfrastructure(builder.Configuration);
         
         // TODO STRIPE
         

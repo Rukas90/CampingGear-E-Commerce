@@ -58,7 +58,7 @@ public abstract class SeedRunner : ISeedRunner
     
     protected abstract Task<bool> IsSeededAsync();
 
-    protected static IEnumerable<T> Discover<T>(Assembly assembly) where T : class
+    public static IEnumerable<T> Discover<T>(Assembly assembly) where T : class
     {
         var collectionType = typeof(IEnumerable<T>);
         return assembly

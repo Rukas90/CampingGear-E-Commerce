@@ -1,3 +1,5 @@
-﻿namespace TrailStore.Identity.Contracts.Users;
+﻿using TrailStore.Shared.Domain.Abstractions;
 
-public sealed record UserRef;
+namespace TrailStore.Identity.Contracts.Users;
+
+public sealed record UserRef : IIdentifier<UserRef>;

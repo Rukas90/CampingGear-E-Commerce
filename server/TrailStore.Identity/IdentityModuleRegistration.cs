@@ -5,6 +5,7 @@ using TrailStore.Identity.Api.Csrf;
 using TrailStore.Identity.Infrastructure.Database;
 using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Registrations;
+using TrailStore.Shared.Infrastructure.Extensions;
 
 namespace TrailStore.Identity;
 

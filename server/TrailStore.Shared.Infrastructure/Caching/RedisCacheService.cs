@@ -1,16 +1,18 @@
 ﻿using StackExchange.Redis;
-using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Caching;
 using TrailStore.Shared.Infrastructure.DI;
 using IDatabase = StackExchange.Redis.IDatabase;
 
 namespace TrailStore.Shared.Infrastructure.Caching;
 
-//[AppService<ICacheService>]
-public class RedisCacheService(IConnectionMultiplexer redis) : ICacheService
+[AppService<IRedisCacheService>]
+public class RedisCacheService(IConnectionMultiplexer redis) : IRedisCacheService
 {
     private readonly IDatabase database = redis.GetDatabase();
-    
+
+    public Task<bool> ExistsAsync(string key)
+        => database.KeyExistsAsync(key);
+
     public async Task<string?> GetAsync(string key) 
         => await database.StringGetAsync(key);
 

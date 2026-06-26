@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using TrailStore.Basket.Application.Abstractions;
 using TrailStore.Basket.Domain.Carts;
 using TrailStore.Basket.Domain.Sessions;
-using TrailStore.Shared.Infrastructure.Configurations;
+using TrailStore.Catalog.Contracts.Skus;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Infrastructure.DI;
 using TrailStore.Shared.Infrastructure.Persistence;
 
@@ -17,4 +19,12 @@ public sealed class BasketDbContext(DbContextOptions<BasketDbContext> options)
     public DbSet<ShoppingSession> ShoppingSessions { get; set; }
     
     public DbSet<CartItem> CartItems { get; set; }
+    
+    protected override Assembly[] AdditionalConfigurationAssemblies()
+    {
+        return [
+            typeof(SkuRef).Assembly,
+            typeof(UserRef).Assembly
+        ];
+    }
 }

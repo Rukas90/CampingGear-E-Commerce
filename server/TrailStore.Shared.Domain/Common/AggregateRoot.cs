@@ -4,7 +4,7 @@ namespace TrailStore.Shared.Domain.Common;
 
 public abstract class AggregateRoot<TModel> : IModel<TModel>
 {
-    public Id<TModel> Id { get; protected set; }
+    public Id<TModel> Id { get; set; }
 
     private readonly List<IDomainEvent> domainEvents = [];
     public IReadOnlyList<IDomainEvent> DomainEvents => domainEvents;

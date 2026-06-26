@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.9"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TrailStore.Catalog\TrailStore.Catalog.csproj" />
+      <ProjectReference Include="..\TrailStore.Identity\TrailStore.Identity.csproj" />
+      <ProjectReference Include="..\TrailStore.Shared.Seeding\TrailStore.Shared.Seeding.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="Data\Reviews.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

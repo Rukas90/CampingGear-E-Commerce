@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Host", "TrailSto
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{846992AC-55B1-4EC1-B07A-65776839BE33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Seed.Console", "TrailStore.Seed.Console\TrailStore.Seed.Console.csproj", "{21A3ADF5-045D-4DAA-8A7A-97C1FD304523}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Seed", "TrailStore.Seed\TrailStore.Seed.csproj", "{21A3ADF5-045D-4DAA-8A7A-97C1FD304523}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Shared.Seeding", "TrailStore.Shared.Seeding\TrailStore.Shared.Seeding.csproj", "{05E7203C-8DB1-4C2C-9EAD-1C036219DCE8}"
 EndProject
@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Catalog", "Trail
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Identity.Contracts", "TrailStore.Identity.Contracts\TrailStore.Identity.Contracts.csproj", "{E4C9A08C-FE66-4CCE-8225-1D65E0002609}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{4CE07BB5-FCEB-4318-B12D-C66A8FB9197A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{4CE07BB5-FCEB-4318-B12D-C66A8FB9197A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Basket", "TrailStore.Basket\TrailStore.Basket.csproj", "{5E2DF5B4-B5FC-4080-8DF9-95D141475362}"
 EndProject
@@ -39,6 +39,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Catalog.Contracts", "TrailStore.Catalog.Contracts\TrailStore.Catalog.Contracts.csproj", "{9C4CB7BB-E384-4E0A-BD0D-DE61090273E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Basket.Tests", "TrailStore.Basket.Tests\TrailStore.Basket.Tests.csproj", "{77A1ADD0-A554-4907-B169-B3C85D1CE8D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Ordering", "TrailStore.Ordering\TrailStore.Ordering.csproj", "{B4C0259D-38D7-4B12-B154-BAFD85349AB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,6 +100,10 @@ Global
 		{77A1ADD0-A554-4907-B169-B3C85D1CE8D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77A1ADD0-A554-4907-B169-B3C85D1CE8D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77A1ADD0-A554-4907-B169-B3C85D1CE8D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C0259D-38D7-4B12-B154-BAFD85349AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C0259D-38D7-4B12-B154-BAFD85349AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C0259D-38D7-4B12-B154-BAFD85349AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C0259D-38D7-4B12-B154-BAFD85349AB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8B10F269-9802-408F-899C-069C3FCCD98E} = {823AB02E-1130-44F9-B78E-8103138DBFEA}
@@ -117,5 +123,6 @@ Global
 		{021B1AD8-EB4E-4DB3-82AE-6723A87C6B95} = {05E18A90-4087-419E-9C44-AAD8E9ED3441}
 		{9C4CB7BB-E384-4E0A-BD0D-DE61090273E7} = {32A2EA1D-9353-4813-99BA-2BBFD4E0A0A2}
 		{77A1ADD0-A554-4907-B169-B3C85D1CE8D7} = {05E18A90-4087-419E-9C44-AAD8E9ED3441}
+		{B4C0259D-38D7-4B12-B154-BAFD85349AB9} = {4CE07BB5-FCEB-4318-B12D-C66A8FB9197A}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,6 @@
 ﻿using TrailStore.Basket.Infrastructure.Database;
-using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Registrations;
+using TrailStore.Shared.Infrastructure.Extensions;
 
 namespace TrailStore.Basket;
 

@@ -12,6 +12,12 @@ namespace TrailStore.Catalog.Infrastructure.Products;
 public sealed class ProductsRepository(CatalogDbContext _context) 
     : AggregateRepository<Product, CatalogDbContext>(_context), IProductsRepository
 {
+    public Task<Id<Product>?> GetIdFromSlug(Slug productSlug, CancellationToken ct)
+        => ReadQuery
+            .Where(product => product.Slug == productSlug)
+            .Select(product => (Id<Product>?)product.Id)
+            .SingleOrDefaultAsync(ct);
+
     public async Task<Product?> GetFullProductAsync(Slug slug, CancellationToken ct)
     {
         return await AggregateReadQuery 

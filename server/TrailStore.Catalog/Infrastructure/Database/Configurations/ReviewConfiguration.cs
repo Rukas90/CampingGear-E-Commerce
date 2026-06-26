@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TrailStore.Catalog.Domain.Reviews;
+using TrailStore.Catalog.Domain.Reviews.Models;
 
 namespace TrailStore.Catalog.Infrastructure.Database.Configurations;
 

@@ -2,6 +2,7 @@
 using TrailStore.Catalog.Application.Results;
 using TrailStore.Catalog.Domain.Products;
 using TrailStore.Catalog.Domain.Reviews;
+using TrailStore.Catalog.Domain.Reviews.Repositories;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;

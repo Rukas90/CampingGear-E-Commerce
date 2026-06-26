@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.Configurations;
@@ -41,8 +42,11 @@ public abstract class BaseDbContext<TContext>(DbContextOptions<TContext> options
     
     protected override void ConfigureConventions(ModelConfigurationBuilder config)
     {
-        DatabaseConventionConfiguration.ApplyDefaultConventions<TContext>(config);
+        Assembly[] assemblies = [typeof(TContext).Assembly, ..AdditionalConfigurationAssemblies()];
+        DatabaseConventionConfiguration.ApplyDefaultConventions(config, assemblies);
     }
+
+    protected virtual Assembly[] AdditionalConfigurationAssemblies() => [];
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
