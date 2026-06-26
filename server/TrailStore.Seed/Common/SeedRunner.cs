@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
-using Microsoft.Extensions.Logging;
 
-namespace TrailStore.Shared.Seeding;
+namespace TrailStore.Seed.Common;
 
 public abstract class SeedRunner : ISeedRunner
 {
@@ -9,48 +8,41 @@ public abstract class SeedRunner : ISeedRunner
     
     public async Task RunAsync(SeedOptions options)
     {
-        try
+        var logger = options.Logger;
+        
+        logger?.LogInformation("[{Identifier}] Seeding...", Identifier);
+
+        if (options.Reseed)
         {
-            var logger = options.Logger;
+            await DeleteAsync();
 
-            logger?.LogInformation("[{Identifier}] Seeding...", Identifier);
+            logger?.LogInformation("[{Identifier}] Cleared seeded data.", Identifier);
 
-            if (options.Reseed)
-            {
-                Clear();
-
-                logger?.LogInformation("[{Identifier}] Cleared seeded data.", Identifier);
-
-            }
-            else if (await IsSeededAsync())
-            {
-                logger?.LogInformation("[{Identifier}] Already seeded. Use --reseed to force.", Identifier);
-
-                return;
-            }
-
-            Seed();
-
-            logger?.LogInformation("[{Identifier}] Seeded.", Identifier);
         }
-        finally
+        else if (await IsSeededAsync())
         {
-            await Commit();
+            logger?.LogInformation("[{Identifier}] Already seeded.", Identifier);
+
+            return;
         }
+
+        Seed();
+            
+        await Commit();
+
+        logger?.LogInformation("[{Identifier}] Seeded.", Identifier);
     }
 
     public async Task ClearAsync(ILogger? logger = null)
     {
         logger?.LogInformation("[{Identifier}] Seeding...", Identifier);
-        
-        Clear();
+
+        await DeleteAsync();
 
         logger?.LogInformation("[{Identifier}] Cleared seeded data.", Identifier);
-
-        await Commit();
     }
 
-    protected abstract void Clear();
+    protected abstract Task DeleteAsync();
     
     protected abstract void Seed();
     

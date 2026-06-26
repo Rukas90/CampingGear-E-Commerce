@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using TrailStore.Identity.Domain.Users;
+using TrailStore.Seed.Common;
 using TrailStore.Shared.Domain.Common;
-using TrailStore.Shared.Seeding;
 
 namespace TrailStore.Seed.Data;
 

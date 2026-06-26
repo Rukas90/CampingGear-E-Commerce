@@ -1,5 +1,5 @@
 ﻿using TrailStore.Catalog.Domain.Products;
-using TrailStore.Shared.Seeding;
+using TrailStore.Seed.Common;
 
 namespace TrailStore.Seed.Data;
 

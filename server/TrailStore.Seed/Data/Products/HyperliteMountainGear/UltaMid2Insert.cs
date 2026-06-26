@@ -1,6 +1,6 @@
 ﻿using TrailStore.Catalog.Domain.Products;
 using TrailStore.Catalog.Domain.Skus;
-using TrailStore.Shared.Seeding;
+using TrailStore.Seed.Common;
 
 namespace TrailStore.Seed.Data.Products.HyperliteMountainGear;
 

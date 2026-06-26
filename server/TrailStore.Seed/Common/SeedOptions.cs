@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-
-namespace TrailStore.Shared.Seeding;
+﻿namespace TrailStore.Seed.Common;
 
 public class SeedOptions
 {

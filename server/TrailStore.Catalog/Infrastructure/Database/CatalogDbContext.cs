@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using TrailStore.Catalog.Application.Abstractions;
 using TrailStore.Catalog.Domain.Categories;
 using TrailStore.Catalog.Domain.Options;
@@ -7,6 +8,7 @@ using TrailStore.Catalog.Domain.Reviews;
 using TrailStore.Catalog.Domain.Reviews.Models;
 using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Catalog.Infrastructure.Database.Converters;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Infrastructure.DI;
 using TrailStore.Shared.Infrastructure.Persistence;
 
@@ -44,4 +46,7 @@ public sealed class CatalogDbContext(DbContextOptions<CatalogDbContext> options)
         
         config.Properties<SkuCode>().HaveConversion<SkuCodeConverter>();
     }
+
+    protected override Assembly[] AdditionalConfigurationAssemblies()
+        => [typeof(UserRef).Assembly];
 }

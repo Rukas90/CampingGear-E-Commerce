@@ -1,5 +1,5 @@
+using TrailStore.Seed.Common;
 using TrailStore.Seed.Registrations;
-using TrailStore.Shared.Seeding;
 
 var builder = Host.CreateApplicationBuilder(args);
 

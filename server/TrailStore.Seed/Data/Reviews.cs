@@ -1,11 +1,10 @@
 ﻿using System.Text.Json;
 using Bogus;
-using TrailStore.Catalog;
 using TrailStore.Catalog.Domain.Products;
 using TrailStore.Catalog.Domain.Reviews.Models;
 using TrailStore.Identity.Contracts.Users;
+using TrailStore.Seed.Common;
 using TrailStore.Shared.Domain.Common;
-using TrailStore.Shared.Seeding;
 
 namespace TrailStore.Seed.Data;
 
@@ -20,16 +19,18 @@ public static class Reviews
     private static List<Review> GenerateAll()
     {
         var templates = LoadReviews();
-
-        var products = SeedRunner.Discover<Product>(CatalogMarker.Reference).ToArray();
+        
+        var products = SeedRunner.Discover<Product>(SeedMarker.Reference).ToArray();
 
         var faker = new Faker { Random = new Randomizer(94375185) };
         var reviews = new List<Review>();
 
         foreach (var product in products)
         {
-            if (!templates.TryGetValue(product.Slug, out var productReviews))
+            if (!templates.TryGetValue(product.Slug.Value.ToLowerInvariant(), out var productReviews))
+            {
                 continue;
+            }
 
             foreach (var template in productReviews)
             {

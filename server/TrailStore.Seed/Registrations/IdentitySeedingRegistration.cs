@@ -1,6 +1,6 @@
 ﻿using TrailStore.Identity.Infrastructure.Database;
+using TrailStore.Seed.Common;
 using TrailStore.Seed.Runners;
-using TrailStore.Shared.Seeding;
 
 namespace TrailStore.Seed.Registrations;
 

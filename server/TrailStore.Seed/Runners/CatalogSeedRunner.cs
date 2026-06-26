@@ -5,8 +5,8 @@ using TrailStore.Catalog.Domain.Products;
 using TrailStore.Catalog.Domain.Reviews.Models;
 using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Catalog.Infrastructure.Database;
+using TrailStore.Seed.Common;
 using TrailStore.Shared.Infrastructure.DI;
-using TrailStore.Shared.Seeding;
 
 namespace TrailStore.Seed.Runners;
 
@@ -14,19 +14,19 @@ namespace TrailStore.Seed.Runners;
 public class CatalogSeedRunner(CatalogDbContext context) : SeedRunner
 {
     public override string Identifier => "Catalog";
-    
-    protected override void Clear()
+
+    protected override async Task DeleteAsync()
     {
-        context.ReviewVotes.RemoveRange(context.ReviewVotes);
-        context.Reviews.RemoveRange(context.Reviews);
-        context.Skus.RemoveRange(context.Skus);
-        context.ProductImages.RemoveRange(context.ProductImages);
-        context.Products.RemoveRange(context.Products);
-        context.Options.RemoveRange(context.Options);
-        context.OptionGroups.RemoveRange(context.OptionGroups);
-        context.Categories.RemoveRange(context.Categories);
-        context.CategoryGroups.RemoveRange(context.CategoryGroups);
-        context.Brands.RemoveRange(context.Brands);
+        await context.ReviewVotes.ExecuteDeleteAsync();
+        await context.Reviews.ExecuteDeleteAsync();
+        await context.Skus.ExecuteDeleteAsync();
+        await context.ProductImages.ExecuteDeleteAsync();
+        await context.Products.ExecuteDeleteAsync();
+        await context.Options.ExecuteDeleteAsync();
+        await context.OptionGroups.ExecuteDeleteAsync();
+        await context.Categories.ExecuteDeleteAsync();
+        await context.CategoryGroups.ExecuteDeleteAsync();
+        await context.Brands.ExecuteDeleteAsync();
     }
 
     protected override void Seed()

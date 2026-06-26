@@ -1,7 +1,7 @@
 ﻿using TrailStore.Catalog.Domain.Products;
 using TrailStore.Catalog.Domain.Skus;
+using TrailStore.Seed.Common;
 using TrailStore.Seed.Data.Options;
-using TrailStore.Shared.Seeding;
 
 namespace TrailStore.Seed.Data.Products.Zpacks;
 
