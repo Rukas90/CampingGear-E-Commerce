@@ -20,16 +20,16 @@ export const CartItemProvider = ({
   const { invalidateCart } = useCart()
   const { invalidate: invalidateSession } = useSessionSummary()
 
-  const code = item.code
+  const id = item.id
 
   const updateQuantity = async (quantity: number) => {
-    await cartApi.updateItemQuantity({ code, quantity })
+    await cartApi.updateItemQuantity(id, quantity)
     await invalidateCart()
     await invalidateSession()
   }
 
   const remove = async () => {
-    await cartApi.deleteFromCart(code)
+    await cartApi.deleteFromCart(id)
     await invalidateCart()
     await invalidateSession()
   }

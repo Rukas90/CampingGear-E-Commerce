@@ -5,12 +5,12 @@ export type Cart = {
 }
 
 export type CartLineItem = {
-  code: SkuCode
+  id: CartItemId
   quantity: number
 }
 
 export type CartItem = {
-  code: SkuCode
+  id: CartItemId
   quantity: number
   unitPrice: number
   stock: number

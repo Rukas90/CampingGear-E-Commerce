@@ -1,7 +1,6 @@
 ﻿using TrailStore.Catalog.Application.Results;
 using TrailStore.Catalog.Domain.Options;
 using TrailStore.Catalog.Domain.Products;
-using TrailStore.Catalog.Domain.Reviews;
 using TrailStore.Catalog.Domain.Reviews.Models;
 using TrailStore.Catalog.Domain.Reviews.Repositories;
 using TrailStore.Catalog.Domain.Skus;
@@ -60,6 +59,7 @@ public class GetProductQueryHandler(
     private static ProductSkuResult[] MapSkus(IEnumerable<Sku> skus)
         => skus.Select(sku => new ProductSkuResult
         {
+            Id = sku.Id,
             Code = sku.Code,
             UnitPrice = sku.UnitPrice,
             Stock = sku.AvailableStock,

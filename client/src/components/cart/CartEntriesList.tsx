@@ -42,7 +42,7 @@ const CartEntriesList = ({
         </p>
       )}
       {items?.map((item, index) => (
-        <Fragment key={item.code}>
+        <Fragment key={item.id}>
           {render(item)}
           {index < items.length - 1 && <Line />}
         </Fragment>

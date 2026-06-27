@@ -1,4 +1,4 @@
-import type { CartLineItem } from "@types"
+import type { SkuId } from "@types"
 import { createContext, useContext, useState } from "react"
 import cartApi from "../api/cartApi"
 import { useQueryClient } from "@tanstack/react-query"
@@ -8,7 +8,7 @@ interface CartData {
   isCartPanelOpen: boolean
   openCartPanel: () => void
   closeCartPanel: () => void
-  addItem: (item: CartLineItem) => void
+  addItem: (skuId: SkuId, quantity: number) => void
   invalidateCart: () => Promise<void>
 }
 
@@ -22,8 +22,8 @@ export const CartProvider = ({ children }: React.PropsWithChildren) => {
   const openCartPanel = () => setIsCartOpen(true)
   const closeCartPanel = () => setIsCartOpen(false)
 
-  const addItem = async (item: CartLineItem) => {
-    await cartApi.addToCart(item)
+  const addItem = async (skuId: SkuId, quantity: number) => {
+    await cartApi.addToCart(skuId, quantity)
     await invalidateCart()
     await invalidateSession()
 

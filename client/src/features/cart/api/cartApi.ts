@@ -1,15 +1,15 @@
 import { makeRequest } from "@lib"
-import type { CartItem, CartLineItem, SkuCode } from "@types"
+import type { CartItem, CartItemId, SkuId } from "@types"
 
 const cartApi = {
-  addToCart: async (item: CartLineItem) =>
-    await makeRequest<string>(`api/v1/cart/item`, "post", item),
+  addToCart: async (skuId: SkuId, quantity: number) =>
+    await makeRequest<string>(`api/v1/cart/item`, "post", { skuId, quantity }),
 
-  updateItemQuantity: async (item: CartLineItem) =>
-    await makeRequest<string>(`api/v1/cart/item`, "put", item),
+  updateItemQuantity: async (id: CartItemId, quantity: number) =>
+    await makeRequest<string>(`api/v1/cart/item`, "put", { id, quantity }),
 
-  deleteFromCart: async (code: SkuCode) =>
-    await makeRequest<string>(`api/v1/cart/item`, "delete", { code: code }),
+  deleteFromCart: async (id: CartItemId) =>
+    await makeRequest<string>(`api/v1/cart/item`, "delete", { id: id }),
 
   emptyCart: async () => await makeRequest<string>(`api/v1/cart`, "delete"),
 

@@ -33,6 +33,7 @@ public static class GetProductResponseMappers
     private static ProductSkuResponse MapSkuResponse(this ProductSkuResult sku)
         => new()
         {
+            Id = sku.Id,
             Code = sku.Code,
             UnitPrice = sku.UnitPrice,
             Stock = sku.Stock,

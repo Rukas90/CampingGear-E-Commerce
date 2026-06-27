@@ -17,7 +17,7 @@ const ProductPurchase = () => {
     if (!sku) {
       return
     }
-    addItem({ code: sku.code, quantity })
+    addItem(sku.id, quantity)
   }
 
   const handleAddToWishlist = () => {}
