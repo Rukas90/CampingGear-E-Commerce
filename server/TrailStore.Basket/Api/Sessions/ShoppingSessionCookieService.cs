@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using TrailStore.Basket.Api.Constants;
+using TrailStore.Basket.Contracts.Session;
 using TrailStore.Basket.Domain.Sessions;
 using TrailStore.Basket.Infrastructure.Sessions;
 using TrailStore.Shared.Domain.Common;

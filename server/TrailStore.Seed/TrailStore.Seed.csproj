@@ -14,6 +14,7 @@
     <ItemGroup>
       <ProjectReference Include="..\TrailStore.Catalog\TrailStore.Catalog.csproj" />
       <ProjectReference Include="..\TrailStore.Identity\TrailStore.Identity.csproj" />
+      <ProjectReference Include="..\TrailStore.Ordering\TrailStore.Ordering.csproj" />
     </ItemGroup>
 
     <ItemGroup>

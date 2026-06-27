@@ -14,7 +14,7 @@ public class AddToCartCommandHandler(
 {
     public async Task<Result<Id<ShoppingSession>>> Handle(AddToCartCommand command, CancellationToken ct)
     {
-        var session = await shoppingSessionService.FindOrCreateSession(command.ctx, ct);
+        var session = await shoppingSessionService.FindOrCreateSession(command.Ctx, ct);
 
         try
         {

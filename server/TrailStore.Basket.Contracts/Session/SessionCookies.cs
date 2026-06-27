@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Basket.Api.Constants;
+﻿namespace TrailStore.Basket.Contracts.Session;
 
 public static class SessionCookies
 {

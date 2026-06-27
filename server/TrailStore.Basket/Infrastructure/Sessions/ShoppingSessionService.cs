@@ -20,16 +20,16 @@ public sealed class ShoppingSessionService(
             return result.Value;
         }
         
-        var newSession = CreateSession(ctx.UserId);
+        var newSession = CreateSession(ctx.OwnerId);
         
         return newSession;
     }
 
     public async Task<Result<ShoppingSession>> FindSession(ShoppingContext ctx, CancellationToken ct)
     {
-        if (ctx.UserId is not null)
+        if (ctx.OwnerId is not null)
         {
-            var session = await sessionRepository.FindByUserId(ctx.UserId.Value, ct);
+            var session = await sessionRepository.FindByUserId(ctx.OwnerId.Value, ct);
 
             if (session is null)
             {

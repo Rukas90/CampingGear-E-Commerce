@@ -1,0 +1,1052 @@
+{
+  "US": {
+    "code": "US",
+    "name": "United States",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "ZIP Code",
+    "regionLabel": "State",
+    "phoneCode": "+1",
+    "taxRate": 0.0
+  },
+  "CA": {
+    "code": "CA",
+    "name": "Canada",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "Postal Code",
+    "regionLabel": "Province",
+    "phoneCode": "+1",
+    "taxRate": 0.0
+  },
+  "MX": {
+    "code": "MX",
+    "name": "Mexico",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "Postal Code",
+    "regionLabel": "State",
+    "phoneCode": "+52",
+    "taxRate": 0.16
+  },
+  "GB": {
+    "code": "GB",
+    "name": "United Kingdom",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postcode",
+    "phoneCode": "+44",
+    "taxRate": 0.20
+  },
+  "DE": {
+    "code": "DE",
+    "name": "Germany",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+49",
+    "taxRate": 0.19
+  },
+  "FR": {
+    "code": "FR",
+    "name": "France",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+33",
+    "taxRate": 0.20
+  },
+  "IT": {
+    "code": "IT",
+    "name": "Italy",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+39",
+    "taxRate": 0.22
+  },
+  "ES": {
+    "code": "ES",
+    "name": "Spain",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+34",
+    "taxRate": 0.21
+  },
+  "NL": {
+    "code": "NL",
+    "name": "Netherlands",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+31",
+    "taxRate": 0.21
+  },
+  "BE": {
+    "code": "BE",
+    "name": "Belgium",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+32",
+    "taxRate": 0.21
+  },
+  "CH": {
+    "code": "CH",
+    "name": "Switzerland",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+41",
+    "taxRate": 0.077
+  },
+  "AT": {
+    "code": "AT",
+    "name": "Austria",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+43",
+    "taxRate": 0.20
+  },
+  "PT": {
+    "code": "PT",
+    "name": "Portugal",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+351",
+    "taxRate": 0.23
+  },
+  "IE": {
+    "code": "IE",
+    "name": "Ireland",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Eircode",
+    "phoneCode": "+353",
+    "taxRate": 0.23
+  },
+  "SE": {
+    "code": "SE",
+    "name": "Sweden",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+46",
+    "taxRate": 0.25
+  },
+  "NO": {
+    "code": "NO",
+    "name": "Norway",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+47",
+    "taxRate": 0.25
+  },
+  "DK": {
+    "code": "DK",
+    "name": "Denmark",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+45",
+    "taxRate": 0.25
+  },
+  "FI": {
+    "code": "FI",
+    "name": "Finland",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+358",
+    "taxRate": 0.24
+  },
+  "LU": {
+    "code": "LU",
+    "name": "Luxembourg",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+352",
+    "taxRate": 0.17
+  },
+  "IS": {
+    "code": "IS",
+    "name": "Iceland",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+354",
+    "taxRate": 0.24
+  },
+  "MT": {
+    "code": "MT",
+    "name": "Malta",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+356",
+    "taxRate": 0.18
+  },
+  "CY": {
+    "code": "CY",
+    "name": "Cyprus",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+357",
+    "taxRate": 0.19
+  },
+  "GR": {
+    "code": "GR",
+    "name": "Greece",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+30",
+    "taxRate": 0.24
+  },
+  "MC": {
+    "code": "MC",
+    "name": "Monaco",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+377",
+    "taxRate": 0.20
+  },
+  "LI": {
+    "code": "LI",
+    "name": "Liechtenstein",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+423",
+    "taxRate": 0.077
+  },
+  "AD": {
+    "code": "AD",
+    "name": "Andorra",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+376",
+    "taxRate": 0.045
+  },
+  "PL": {
+    "code": "PL",
+    "name": "Poland",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+48",
+    "taxRate": 0.23
+  },
+  "CZ": {
+    "code": "CZ",
+    "name": "Czech Republic",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+420",
+    "taxRate": 0.21
+  },
+  "SK": {
+    "code": "SK",
+    "name": "Slovakia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+421",
+    "taxRate": 0.20
+  },
+  "HU": {
+    "code": "HU",
+    "name": "Hungary",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+36",
+    "taxRate": 0.27
+  },
+  "RO": {
+    "code": "RO",
+    "name": "Romania",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+40",
+    "taxRate": 0.19
+  },
+  "BG": {
+    "code": "BG",
+    "name": "Bulgaria",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+359",
+    "taxRate": 0.20
+  },
+  "HR": {
+    "code": "HR",
+    "name": "Croatia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+385",
+    "taxRate": 0.25
+  },
+  "SI": {
+    "code": "SI",
+    "name": "Slovenia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+386",
+    "taxRate": 0.22
+  },
+  "EE": {
+    "code": "EE",
+    "name": "Estonia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+372",
+    "taxRate": 0.22
+  },
+  "LV": {
+    "code": "LV",
+    "name": "Latvia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+371",
+    "taxRate": 0.21
+  },
+  "LT": {
+    "code": "LT",
+    "name": "Lithuania",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+370",
+    "taxRate": 0.21
+  },
+  "RS": {
+    "code": "RS",
+    "name": "Serbia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+381",
+    "taxRate": 0.20
+  },
+  "BA": {
+    "code": "BA",
+    "name": "Bosnia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+387",
+    "taxRate": 0.17
+  },
+  "ME": {
+    "code": "ME",
+    "name": "Montenegro",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+382",
+    "taxRate": 0.21
+  },
+  "MK": {
+    "code": "MK",
+    "name": "North Macedonia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+389",
+    "taxRate": 0.18
+  },
+  "AL": {
+    "code": "AL",
+    "name": "Albania",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+355",
+    "taxRate": 0.20
+  },
+  "UA": {
+    "code": "UA",
+    "name": "Ukraine",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+380",
+    "taxRate": 0.20
+  },
+  "MD": {
+    "code": "MD",
+    "name": "Moldova",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+373",
+    "taxRate": 0.20
+  },
+  "BY": {
+    "code": "BY",
+    "name": "Belarus",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+375",
+    "taxRate": 0.20
+  },
+  "CN": {
+    "code": "CN",
+    "name": "China",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "Postal Code",
+    "regionLabel": "Province",
+    "phoneCode": "+86",
+    "taxRate": 0.13
+  },
+  "JP": {
+    "code": "JP",
+    "name": "Japan",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "Postal Code",
+    "regionLabel": "Prefecture",
+    "phoneCode": "+81",
+    "taxRate": 0.10
+  },
+  "KR": {
+    "code": "KR",
+    "name": "South Korea",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+82",
+    "taxRate": 0.10
+  },
+  "AU": {
+    "code": "AU",
+    "name": "Australia",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "Postcode",
+    "regionLabel": "State",
+    "phoneCode": "+61",
+    "taxRate": 0.10
+  },
+  "NZ": {
+    "code": "NZ",
+    "name": "New Zealand",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postcode",
+    "phoneCode": "+64",
+    "taxRate": 0.15
+  },
+  "SG": {
+    "code": "SG",
+    "name": "Singapore",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+65",
+    "taxRate": 0.09
+  },
+  "HK": {
+    "code": "HK",
+    "name": "Hong Kong",
+    "postalCode": 0,
+    "hasRegion": false,
+    "phoneCode": "+852",
+    "taxRate": 0.0
+  },
+  "TW": {
+    "code": "TW",
+    "name": "Taiwan",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+886",
+    "taxRate": 0.05
+  },
+  "IN": {
+    "code": "IN",
+    "name": "India",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "PIN Code",
+    "regionLabel": "State",
+    "phoneCode": "+91",
+    "taxRate": 0.18
+  },
+  "ID": {
+    "code": "ID",
+    "name": "Indonesia",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "Postal Code",
+    "regionLabel": "Province",
+    "phoneCode": "+62",
+    "taxRate": 0.11
+  },
+  "TH": {
+    "code": "TH",
+    "name": "Thailand",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+66",
+    "taxRate": 0.07
+  },
+  "MY": {
+    "code": "MY",
+    "name": "Malaysia",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "Postal Code",
+    "regionLabel": "State",
+    "phoneCode": "+60",
+    "taxRate": 0.08
+  },
+  "PH": {
+    "code": "PH",
+    "name": "Philippines",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "ZIP Code",
+    "phoneCode": "+63",
+    "taxRate": 0.12
+  },
+  "VN": {
+    "code": "VN",
+    "name": "Vietnam",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+84",
+    "taxRate": 0.10
+  },
+  "PK": {
+    "code": "PK",
+    "name": "Pakistan",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "Postal Code",
+    "regionLabel": "Province",
+    "phoneCode": "+92",
+    "taxRate": 0.17
+  },
+  "BD": {
+    "code": "BD",
+    "name": "Bangladesh",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+880",
+    "taxRate": 0.15
+  },
+  "LK": {
+    "code": "LK",
+    "name": "Sri Lanka",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+94",
+    "taxRate": 0.18
+  },
+  "NP": {
+    "code": "NP",
+    "name": "Nepal",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+977",
+    "taxRate": 0.13
+  },
+  "MN": {
+    "code": "MN",
+    "name": "Mongolia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+976",
+    "taxRate": 0.10
+  },
+  "KH": {
+    "code": "KH",
+    "name": "Cambodia",
+    "postalCode": 1,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+855",
+    "taxRate": 0.10
+  },
+  "MM": {
+    "code": "MM",
+    "name": "Myanmar",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+95",
+    "taxRate": 0.05
+  },
+  "MO": {
+    "code": "MO",
+    "name": "Macau",
+    "postalCode": 0,
+    "hasRegion": false,
+    "phoneCode": "+853",
+    "taxRate": 0.0
+  },
+  "AE": {
+    "code": "AE",
+    "name": "United Arab Emirates",
+    "postalCode": 0,
+    "hasRegion": true,
+    "regionLabel": "Emirate",
+    "phoneCode": "+971",
+    "taxRate": 0.05
+  },
+  "SA": {
+    "code": "SA",
+    "name": "Saudi Arabia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+966",
+    "taxRate": 0.15
+  },
+  "IL": {
+    "code": "IL",
+    "name": "Israel",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+972",
+    "taxRate": 0.17
+  },
+  "QA": {
+    "code": "QA",
+    "name": "Qatar",
+    "postalCode": 0,
+    "hasRegion": false,
+    "phoneCode": "+974",
+    "taxRate": 0.0
+  },
+  "KW": {
+    "code": "KW",
+    "name": "Kuwait",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+965",
+    "taxRate": 0.0
+  },
+  "BH": {
+    "code": "BH",
+    "name": "Bahrain",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+973",
+    "taxRate": 0.10
+  },
+  "OM": {
+    "code": "OM",
+    "name": "Oman",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+968",
+    "taxRate": 0.05
+  },
+  "JO": {
+    "code": "JO",
+    "name": "Jordan",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+962",
+    "taxRate": 0.16
+  },
+  "LB": {
+    "code": "LB",
+    "name": "Lebanon",
+    "postalCode": 1,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+961",
+    "taxRate": 0.11
+  },
+  "IQ": {
+    "code": "IQ",
+    "name": "Iraq",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+964",
+    "taxRate": 0.0
+  },
+  "TR": {
+    "code": "TR",
+    "name": "Turkey",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+90",
+    "taxRate": 0.20
+  },
+  "IR": {
+    "code": "IR",
+    "name": "Iran",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+98",
+    "taxRate": 0.09
+  },
+  "BR": {
+    "code": "BR",
+    "name": "Brazil",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "CEP",
+    "regionLabel": "State",
+    "phoneCode": "+55",
+    "taxRate": 0.17
+  },
+  "AR": {
+    "code": "AR",
+    "name": "Argentina",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "Postal Code",
+    "regionLabel": "Province",
+    "phoneCode": "+54",
+    "taxRate": 0.21
+  },
+  "CL": {
+    "code": "CL",
+    "name": "Chile",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+56",
+    "taxRate": 0.19
+  },
+  "CO": {
+    "code": "CO",
+    "name": "Colombia",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "Postal Code",
+    "regionLabel": "Department",
+    "phoneCode": "+57",
+    "taxRate": 0.19
+  },
+  "PE": {
+    "code": "PE",
+    "name": "Peru",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+51",
+    "taxRate": 0.18
+  },
+  "VE": {
+    "code": "VE",
+    "name": "Venezuela",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+58",
+    "taxRate": 0.16
+  },
+  "EC": {
+    "code": "EC",
+    "name": "Ecuador",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+593",
+    "taxRate": 0.12
+  },
+  "BO": {
+    "code": "BO",
+    "name": "Bolivia",
+    "postalCode": 1,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+591",
+    "taxRate": 0.13
+  },
+  "PY": {
+    "code": "PY",
+    "name": "Paraguay",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+595",
+    "taxRate": 0.10
+  },
+  "UY": {
+    "code": "UY",
+    "name": "Uruguay",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+598",
+    "taxRate": 0.22
+  },
+  "ZA": {
+    "code": "ZA",
+    "name": "South Africa",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+27",
+    "taxRate": 0.15
+  },
+  "NG": {
+    "code": "NG",
+    "name": "Nigeria",
+    "postalCode": 2,
+    "hasRegion": true,
+    "postalCodeLabel": "Postal Code",
+    "regionLabel": "State",
+    "phoneCode": "+234",
+    "taxRate": 0.075
+  },
+  "EG": {
+    "code": "EG",
+    "name": "Egypt",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+20",
+    "taxRate": 0.14
+  },
+  "KE": {
+    "code": "KE",
+    "name": "Kenya",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+254",
+    "taxRate": 0.16
+  },
+  "GH": {
+    "code": "GH",
+    "name": "Ghana",
+    "postalCode": 1,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+233",
+    "taxRate": 0.15
+  },
+  "ET": {
+    "code": "ET",
+    "name": "Ethiopia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+251",
+    "taxRate": 0.15
+  },
+  "TZ": {
+    "code": "TZ",
+    "name": "Tanzania",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+255",
+    "taxRate": 0.18
+  },
+  "UG": {
+    "code": "UG",
+    "name": "Uganda",
+    "postalCode": 0,
+    "hasRegion": false,
+    "phoneCode": "+256",
+    "taxRate": 0.18
+  },
+  "MA": {
+    "code": "MA",
+    "name": "Morocco",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+212",
+    "taxRate": 0.20
+  },
+  "DZ": {
+    "code": "DZ",
+    "name": "Algeria",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+213",
+    "taxRate": 0.19
+  },
+  "TN": {
+    "code": "TN",
+    "name": "Tunisia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+216",
+    "taxRate": 0.19
+  },
+  "SN": {
+    "code": "SN",
+    "name": "Senegal",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+221",
+    "taxRate": 0.18
+  },
+  "CI": {
+    "code": "CI",
+    "name": "Ivory Coast",
+    "postalCode": 0,
+    "hasRegion": false,
+    "phoneCode": "+225",
+    "taxRate": 0.18
+  },
+  "CM": {
+    "code": "CM",
+    "name": "Cameroon",
+    "postalCode": 0,
+    "hasRegion": false,
+    "phoneCode": "+237",
+    "taxRate": 0.1925
+  },
+  "AO": {
+    "code": "AO",
+    "name": "Angola",
+    "postalCode": 1,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+244",
+    "taxRate": 0.14
+  },
+  "MZ": {
+    "code": "MZ",
+    "name": "Mozambique",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+258",
+    "taxRate": 0.17
+  },
+  "ZM": {
+    "code": "ZM",
+    "name": "Zambia",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+260",
+    "taxRate": 0.16
+  },
+  "ZW": {
+    "code": "ZW",
+    "name": "Zimbabwe",
+    "postalCode": 0,
+    "hasRegion": false,
+    "phoneCode": "+263",
+    "taxRate": 0.15
+  },
+  "GT": {
+    "code": "GT",
+    "name": "Guatemala",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+502",
+    "taxRate": 0.12
+  },
+  "CR": {
+    "code": "CR",
+    "name": "Costa Rica",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+506",
+    "taxRate": 0.13
+  },
+  "PA": {
+    "code": "PA",
+    "name": "Panama",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+507",
+    "taxRate": 0.07
+  },
+  "DO": {
+    "code": "DO",
+    "name": "Dominican Republic",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+1-809",
+    "taxRate": 0.18
+  },
+  "JM": {
+    "code": "JM",
+    "name": "Jamaica",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+1-876",
+    "taxRate": 0.15
+  },
+  "TT": {
+    "code": "TT",
+    "name": "Trinidad and Tobago",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+1-868",
+    "taxRate": 0.125
+  },
+  "CU": {
+    "code": "CU",
+    "name": "Cuba",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+53",
+    "taxRate": 0.0
+  },
+  "FJ": {
+    "code": "FJ",
+    "name": "Fiji",
+    "postalCode": 0,
+    "hasRegion": false,
+    "phoneCode": "+679",
+    "taxRate": 0.09
+  },
+  "PG": {
+    "code": "PG",
+    "name": "Papua New Guinea",
+    "postalCode": 2,
+    "hasRegion": false,
+    "postalCodeLabel": "Postal Code",
+    "phoneCode": "+675",
+    "taxRate": 0.10
+  }
+}

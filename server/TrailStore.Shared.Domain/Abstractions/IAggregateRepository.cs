@@ -2,10 +2,9 @@
 
 namespace TrailStore.Shared.Domain.Abstractions;
 
-public interface IAggregateRepository<TEntity> where TEntity : AggregateRoot<TEntity>
+public interface IAggregateRepository<TEntity> : IReadRepository<TEntity>
+    where TEntity : AggregateRoot<TEntity>
 {
-    Task<TEntity?> FindAsync(Id<TEntity> id, CancellationToken ct);
-
     TEntity Add(TEntity entity);
 
     void Delete(TEntity entity);
