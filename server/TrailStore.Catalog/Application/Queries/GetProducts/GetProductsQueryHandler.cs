@@ -1,7 +1,6 @@
 ﻿using TrailStore.Catalog.Application.Abstractions;
 using TrailStore.Catalog.Application.Results;
 using TrailStore.Catalog.Domain.Products;
-using TrailStore.Catalog.Domain.Reviews;
 using TrailStore.Catalog.Domain.Reviews.Repositories;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
@@ -19,6 +18,11 @@ public class GetProductsQueryHandler(
     public async Task<Result<ProductSummaryResult[]>> Handle(GetProductsQuery query, CancellationToken ct)
     {
         var filter = query.ToFilter();
+
+        foreach (var category in filter.Categories)
+        {
+            Console.WriteLine(category);
+        }
         
         var products = await productsRepository.ListAsync(
             queryBuilder.Build(filter),
@@ -39,6 +43,8 @@ public class GetProductsQueryHandler(
                 product.ThumbnailUrl
             },
             ct);
+        
+        Console.WriteLine("Products: " + products.Count);
 
         var reviewSummaries = await reviewRepository.GetReviewsSummariesAsync(
             products.Select(p => p.Id), ct);

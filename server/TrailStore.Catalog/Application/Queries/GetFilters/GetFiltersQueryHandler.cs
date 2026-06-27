@@ -16,12 +16,12 @@ public class GetFiltersQueryHandler(ISkuRepository skuRepository) : IQueryHandle
     {
         var specification = FiltersSpecificationBuilder.FromQuery(query);
         var skus = await skuRepository.ListAllAsync(specification, selector: SkuProjection, ct);
-
+        
         if (skus.Count <= 0 || ct.IsCancellationRequested)
         {
             return CatalogFilters.None;
         }
-
+        
         return CatalogBuilder.Build(skus, query);
     }
     

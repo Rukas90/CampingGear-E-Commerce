@@ -1,6 +1,8 @@
-﻿namespace TrailStore.Catalog.Domain.Categories;
+﻿using TrailStore.Shared.Domain.Abstractions;
 
-public interface ICategoryGroupsRepository
+namespace TrailStore.Catalog.Domain.Categories;
+
+public interface ICategoryGroupsRepository : IReadRepository<CategoryGroup>
 {
     Task<List<CategoryGroup>> ListAsync(CancellationToken ct);
 }

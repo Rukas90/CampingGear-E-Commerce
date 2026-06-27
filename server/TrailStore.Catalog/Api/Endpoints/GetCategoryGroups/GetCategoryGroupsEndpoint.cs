@@ -2,14 +2,14 @@
 using TrailStore.Catalog.Application.Queries.GetCategories;
 using TrailStore.Shared.Api.Mappers;
 
-namespace TrailStore.Catalog.Api.Endpoints.GetCategories;
+namespace TrailStore.Catalog.Api.Endpoints.GetCategoryGroups;
 
-public sealed class GetCategoriesEndpoints(GetAllCategoriesQueryHandler query)
-    : EndpointWithoutRequest<CategoryResponse[]>
+public class GetCategoryGroupsEndpoint(GetCategoryGroupsQueryHandler query)
+    : EndpointWithoutRequest<IEnumerable<CategoryGroupResponse>>
 {
     public override void Configure()
     {
-        Get("/api/v1/categories");
+        Get("/api/v1/category/groups");
         AllowAnonymous();
     }
 
@@ -20,12 +20,12 @@ public sealed class GetCategoriesEndpoints(GetAllCategoriesQueryHandler query)
         if (!result.IsSuccess)
         {
             await this.SendProblemAsync(result.Problem);
-
+            
             return;
         }
-
-        var categories = result.Value;
-
-        await Send.OkAsync(categories.ToResponses(), ct);
+        
+        var groups = result.Value;
+        
+        await Send.OkAsync(groups.ToResponses(), ct);
     }
 }

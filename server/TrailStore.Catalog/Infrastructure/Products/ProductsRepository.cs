@@ -36,7 +36,7 @@ public sealed class ProductsRepository(CatalogDbContext _context)
         }
         
         queryable = GetOrderedQueryable(queryable, query.SortBy);
-
+        
         queryable = query.Pagination
             ? queryable.Skip(query.Page * query.PageSize).Take(query.PageSize)
             : queryable;

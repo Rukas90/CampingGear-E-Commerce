@@ -19,12 +19,12 @@ public static class ProductSpecifications
 
     public static Specification<Product> Brand(Slug slug)
     {
-        return Specification<Product>.Where(p => p.Slug == slug);
+        return Specification<Product>.Where(p => p.Brand.Slug == slug);
     }
 
     public static Specification<Product> Category(Slug slug)
     {
-        return Specification<Product>.Where(p => p.Slug == slug);
+        return Specification<Product>.Where(p => p.Category.Slug == slug);
     }
 
     public static Specification<Product> PriceRange(decimal min, decimal max)

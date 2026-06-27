@@ -69,26 +69,27 @@ public class GetProductQueryHandler(
     private static ProductOptionGroupResult[] MapOptionGroups(IReadOnlyList<Sku> skus)
         => skus
             .SelectMany(sku => sku.Options)
-            .GroupBy(option => new
+            .GroupBy(option => option.OptionGroup.Slug)
+            .Select(group =>
             {
-                option.OptionGroup.Slug,
-                option.OptionGroup.Name,
-                option.OptionGroup.SortOrder
-            })
-            .Select(group => new ProductOptionGroupResult
-            {
-                Name = group.Key.Name,
-                SortOrder = group.Key.SortOrder,
-                Options = MapOptions(group, skus)
+                var first = group.First();
+                return new ProductOptionGroupResult
+                {
+                    Name = first.OptionGroup.Name,
+                    SortOrder = first.OptionGroup.SortOrder,
+                    Options = MapOptions(group, skus)
+                };
             })
             .ToArray();
     
-    private static ProductOptionResult[] MapOptions(IEnumerable<Option> options, IReadOnlyList<Sku> skus)
+    private static ProductOptionResult[] MapOptions(
+        IEnumerable<Option> options, IReadOnlyList<Sku> skus)
         => options
             .GroupBy(o => o.Id)
             .Select(g => g.First())
             .Select(option => new ProductOptionResult
             {
+                Id = option.Id,
                 Name = option.Name,
                 SortOrder = option.SortOrder,
                 InStock = skus.Any(sku =>
