@@ -15,7 +15,7 @@ public class GetCartQueryHandler(
 {
     public async Task<Result<CartResult>> Handle(GetCartQuery query, CancellationToken ct)
     {
-        var session = await shoppingSessionService.FindSession(query.ctx, ct);
+        var session = await shoppingSessionService.FindSession(query.Ctx, ct);
 
         if (!session.IsSuccess)
         {

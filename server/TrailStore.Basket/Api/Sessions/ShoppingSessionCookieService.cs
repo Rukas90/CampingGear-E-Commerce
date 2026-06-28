@@ -39,4 +39,9 @@ public sealed class ShoppingSessionCookieService(
             sessionId.ToString(),
             cookieOptions);
     }
+
+    public void ClearShoppingSession()
+    {
+        Http.Response.Cookies.Delete(SessionCookies.ShoppingSessionIdentifier);
+    }
 }

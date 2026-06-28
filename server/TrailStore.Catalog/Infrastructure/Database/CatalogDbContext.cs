@@ -4,17 +4,14 @@ using TrailStore.Catalog.Application.Abstractions;
 using TrailStore.Catalog.Domain.Categories;
 using TrailStore.Catalog.Domain.Options;
 using TrailStore.Catalog.Domain.Products;
-using TrailStore.Catalog.Domain.Reviews;
 using TrailStore.Catalog.Domain.Reviews.Models;
 using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Catalog.Infrastructure.Database.Converters;
 using TrailStore.Identity.Contracts.Users;
-using TrailStore.Shared.Infrastructure.DI;
 using TrailStore.Shared.Infrastructure.Persistence;
 
 namespace TrailStore.Catalog.Infrastructure.Database;
 
-[AppService<ICatalogUnitOfWork>]
 public sealed class CatalogDbContext(DbContextOptions<CatalogDbContext> options)
     : BaseDbContext<CatalogDbContext>(options), ICatalogUnitOfWork
 {

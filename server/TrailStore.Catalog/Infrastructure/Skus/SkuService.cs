@@ -9,7 +9,7 @@ namespace TrailStore.Catalog.Infrastructure.Skus;
 internal sealed class SkuService(ISkuRepository repository) : ISkuService
 {
     public Task<List<SkuSnapshot>> GetSkusFromIds(Id<SkuRef>[] ids, CancellationToken ct)
-        => repository.ListAllAsync(BuildIdsSpecification(ids), sku => sku.ToSnapshot(), ct);
+        => repository.ListAllAsync(BuildIdsSpecification(ids), SkuSnapshotExpressionSelector.ToSnapshot(), ct);
     
     private static Specification<Sku> BuildIdsSpecification(Id<SkuRef>[] ids)
         => ids.Aggregate(Specification<Sku>.None, 

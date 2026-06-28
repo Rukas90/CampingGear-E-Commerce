@@ -17,12 +17,14 @@ public sealed class ShoppingSessionService(
 
         if (result.IsSuccess)
         {
+            Console.WriteLine("FOUND SESSION " + result.Value.Id);
+            
             return result.Value;
         }
         
-        var newSession = CreateSession(ctx.OwnerId);
+        Console.WriteLine("CREATE NEW SESSION");
         
-        return newSession;
+        return CreateSession(ctx.OwnerId);
     }
 
     public async Task<Result<ShoppingSession>> FindSession(ShoppingContext ctx, CancellationToken ct)
@@ -52,23 +54,6 @@ public sealed class ShoppingSessionService(
         }
 
         return ShoppingSessionsProblems.SessionNotFound;
-    }
-
-    public async Task<ShoppingSessionSummary> GetSessionSummary(ShoppingContext ctx, CancellationToken ct)
-    {
-        var result = await FindSession(ctx, ct);
-
-        if (!result.IsSuccess)
-        {
-            return ShoppingSessionSummary.Blank;
-        }
-
-        var session = result.Value;
-        
-        return new ShoppingSessionSummary(
-            Id: session.Id,
-            CartCount: session.CartItems.Count,
-            WishlistCount: 0);
     }
     
     public ShoppingSession CreateSession(Id<UserRef>? userId)

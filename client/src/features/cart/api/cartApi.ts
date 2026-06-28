@@ -6,10 +6,13 @@ const cartApi = {
     await makeRequest<string>(`api/v1/cart/item`, "post", { skuId, quantity }),
 
   updateItemQuantity: async (id: CartItemId, quantity: number) =>
-    await makeRequest<string>(`api/v1/cart/item`, "put", { id, quantity }),
+    await makeRequest<string>(`api/v1/cart/item`, "put", {
+      itemId: id,
+      quantity,
+    }),
 
   deleteFromCart: async (id: CartItemId) =>
-    await makeRequest<string>(`api/v1/cart/item`, "delete", { id: id }),
+    await makeRequest<string>(`api/v1/cart/item`, "delete", { itemId: id }),
 
   emptyCart: async () => await makeRequest<string>(`api/v1/cart`, "delete"),
 

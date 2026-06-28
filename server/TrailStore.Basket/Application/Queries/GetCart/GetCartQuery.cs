@@ -5,4 +5,4 @@ using TrailStore.Shared.Domain.Abstractions;
 
 namespace TrailStore.Basket.Application.Queries.GetCart;
 
-public sealed record GetCartQuery(ShoppingContext ctx) : IQuery<CartResult>;
+public sealed record GetCartQuery(ShoppingContext Ctx) : IQuery<CartResult>;

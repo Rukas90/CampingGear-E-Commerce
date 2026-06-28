@@ -2,12 +2,10 @@
 using TrailStore.Identity.Application.Abstractions;
 using TrailStore.Identity.Domain.RefreshTokens;
 using TrailStore.Identity.Domain.Users;
-using TrailStore.Shared.Infrastructure.DI;
 using TrailStore.Shared.Infrastructure.Persistence;
 
 namespace TrailStore.Identity.Infrastructure.Database;
 
-[AppService<IIdentityUnitOfWork>]
 public sealed class IdentityDbContext(DbContextOptions<IdentityDbContext> options) 
     : BaseDbContext<IdentityDbContext>(options), IIdentityUnitOfWork
 {

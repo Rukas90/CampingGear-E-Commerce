@@ -5,12 +5,10 @@ using TrailStore.Basket.Domain.Carts;
 using TrailStore.Basket.Domain.Sessions;
 using TrailStore.Catalog.Contracts.Skus;
 using TrailStore.Identity.Contracts.Users;
-using TrailStore.Shared.Infrastructure.DI;
 using TrailStore.Shared.Infrastructure.Persistence;
 
 namespace TrailStore.Basket.Infrastructure.Database;
 
-[AppService<IBasketUnitOfWork>]
 public sealed class BasketDbContext(DbContextOptions<BasketDbContext> options) 
     : BaseDbContext<BasketDbContext>(options), IBasketUnitOfWork
 {

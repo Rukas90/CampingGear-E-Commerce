@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TrailStore.Basket.Application.Abstractions;
 using TrailStore.Shared.Infrastructure.Constants;
 using TrailStore.Shared.Infrastructure.Persistence;
 
@@ -14,5 +15,6 @@ public static class BasketContextRegistration
             {
                 npgsql.MigrationsHistoryTable(DatabaseConstants.MigrationsHistoryTable, DbDefaults.DefaultSchema);
             }));
+        services.AddScoped<IBasketUnitOfWork>(sp => sp.GetRequiredService<BasketDbContext>());
     }
 }

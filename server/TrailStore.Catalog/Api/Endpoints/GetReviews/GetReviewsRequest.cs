@@ -5,7 +5,7 @@ namespace TrailStore.Catalog.Api.Endpoints.GetReviews;
 
 public sealed class GetReviewsRequest
 {
-    public required Slug Slug { get; set; }
+    public required string Slug { get; set; }
     public int? Page { get; init; }
     public int? PageSize { get; init; }
     public ReviewsSortBy? SortBy { get; init; }
