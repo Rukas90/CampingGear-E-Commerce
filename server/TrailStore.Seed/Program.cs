@@ -5,7 +5,8 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder
     .AddIdentitySeeding()
-    .AddCatalogSeeding();
+    .AddCatalogSeeding()
+    .AddOrderingSeeding();
 
 var moduleArg = args.FirstOrDefault(a => a.StartsWith("--module="))?.Split('=')[1];
 var clearOnly = args.Contains("clear-only");

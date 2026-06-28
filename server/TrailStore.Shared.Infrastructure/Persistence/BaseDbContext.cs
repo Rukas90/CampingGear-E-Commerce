@@ -96,8 +96,6 @@ public abstract class BaseDbContext<TContext>(DbContextOptions<TContext> options
     {
         UpdateAuditedEntities();
         
-        Console.WriteLine("SAVE CHANGES");
-        
         await SaveChangesAsync(ct);
     }
 

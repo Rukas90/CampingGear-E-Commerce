@@ -1,3 +1,5 @@
-﻿namespace TrailStore.Basket.Contracts.Session;
+﻿using TrailStore.Shared.Domain.Abstractions;
 
-public sealed record ShoppingSessionRef;
+namespace TrailStore.Basket.Contracts.Session;
+
+public sealed record ShoppingSessionRef : IIdentifier<ShoppingSessionRef>;
