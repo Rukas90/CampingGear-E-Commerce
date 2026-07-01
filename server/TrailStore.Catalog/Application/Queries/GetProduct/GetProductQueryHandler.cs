@@ -41,7 +41,7 @@ public class GetProductQueryHandler(
             DefaultSkuCode = product.Skus[0].Code,
             MinPrice = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
             MaxPrice = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
-            InStock = product.Skus.Any(sku => sku.AvailableStock > 0),
+            InStock = product.Skus.Any(sku => sku.Stock > 0),
             HasVariants = product.Skus.Count > 1,
             ThumbnailUrl = product.ThumbnailUrl,
             RecommendedCount = reviews.Count(review => review.Recommended),
@@ -62,7 +62,7 @@ public class GetProductQueryHandler(
             Id = sku.Id,
             Code = sku.Code,
             UnitPrice = sku.UnitPrice,
-            Stock = sku.AvailableStock,
+            Stock = sku.Stock,
             OptionIds = sku.Options.Select(option => option.Id.Value).ToArray()
         }).ToArray();
     
@@ -93,7 +93,7 @@ public class GetProductQueryHandler(
                 Name = option.Name,
                 SortOrder = option.SortOrder,
                 InStock = skus.Any(sku =>
-                    sku.Options.Any(o => o.Id == option.Id) && sku.AvailableStock > 0),
+                    sku.Options.Any(o => o.Id == option.Id) && sku.Stock > 0),
                 PreviewType = option.PreviewType,
                 PreviewValue = option.PreviewValue
             })

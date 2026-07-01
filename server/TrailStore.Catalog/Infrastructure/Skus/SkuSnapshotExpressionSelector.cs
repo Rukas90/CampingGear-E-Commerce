@@ -10,6 +10,7 @@ internal static class SkuSnapshotExpressionSelector
     internal static Expression<Func<Sku, SkuSnapshot>> ToSnapshot() => sku => new SkuSnapshot
     {
         Id = Id<SkuRef>.From(sku.Id),
+        Code = sku.Code,
         Product = new EntityIdentifier(sku.Product.Name, sku.Product.Slug),
         Brand = new EntityIdentifier(sku.Product.Brand.Name, sku.Product.Brand.Slug),
         UnitPrice = sku.UnitPrice,

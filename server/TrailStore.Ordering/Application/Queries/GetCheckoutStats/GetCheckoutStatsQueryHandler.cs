@@ -27,7 +27,7 @@ public sealed class GetCheckoutStatsQueryHandler(
             return result.Problem;
         }
         
-        var (checkoutSession, _) = result.Value;
+        var checkoutSession = result.Value;
 
         if (checkoutSession is null)
         {
@@ -44,19 +44,21 @@ public sealed class GetCheckoutStatsQueryHandler(
         var selectedShippingMethod = checkoutSession.ShippingMethodId is not null 
             ? await shippingMethodRepository.FindAsync(checkoutSession.ShippingMethodId.Value, ct) : null;
         
-        var subtotal = await cartService.CalculateSubtotal(query.Ctx, ct);
+        var items = await cartService.GetCartItems(query.Ctx, ct);
 
-        if (!subtotal.IsSuccess)
+        if (items.Length <= 0)
         {
-            return subtotal.Problem;
+            return CheckoutProblems.EmptyCart;
         }
+        
+        var subtotal = items.Sum(item => item.UnitPrice * item.Quantity);
         
         if (country is null || selectedShippingMethod is null)
         {
             return new CheckoutStats
             {
                 Status = checkoutSession.Status,
-                Subtotal = subtotal.Value,
+                Subtotal = subtotal,
                 Tax = null,
                 Total = null,
                 ShippingCost = null,
@@ -64,24 +66,37 @@ public sealed class GetCheckoutStatsQueryHandler(
                 EligibleForFreeShipping = false
             };
         }
-        
-        var financials = FinancialsCalculator.Calculate(input: new FinancialsCalculationsInput
+
+        var lines = items.Select(
+            item => FinancialsCalculator.CalculateLine(new LineFinancialsCalculationInput
         {
-            Subtotal = subtotal.Value,
+            UnitPrice = item.UnitPrice,
+            TaxRate = country.TaxRate,
+            Quantity = item.Quantity
+        })).ToArray();
+
+        var shipping = FinancialsCalculator.CalculateShipping(new ShippingFinancialsCalculationsInput
+        {
             TaxRate = country.TaxRate,
             ShippingFlatFee = selectedShippingMethod.FlatFee,
             FreeShippingThreshold = selectedShippingMethod.FreeShippingThreshold
+        });
+
+        var order = FinancialsCalculator.CalculateOrder(new OrderFinancialsCalculationsInput
+        {
+            Lines = lines,
+            Shipping = shipping
         });
         
         return new CheckoutStats
         {
             Status = checkoutSession.Status,
-            Subtotal = subtotal.Value,
-            Tax = financials.Tax,
-            Total = financials.Total,
-            ShippingCost = financials.ShippingCost,
-            AddCostForFreeShipping = financials.AddCostForFreeShipping,
-            EligibleForFreeShipping = financials.EligibleForFreeShipping
+            Subtotal = order.Subtotal,
+            Tax = order.TaxAmount,
+            Total = order.TotalPrice,
+            ShippingCost = shipping.CostAfterTaxes,
+            AddCostForFreeShipping = shipping.AddCostForFreeShipping,
+            EligibleForFreeShipping = shipping.EligibleForFreeShipping
         };
     }
 }

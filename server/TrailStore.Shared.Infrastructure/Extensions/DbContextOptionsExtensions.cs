@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
 
-namespace TrailStore.Shared.Infrastructure.Persistence;
+namespace TrailStore.Shared.Infrastructure.Extensions;
 
 public static class DbContextOptionsExtensions
 {

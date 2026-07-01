@@ -28,7 +28,7 @@ public class GetFiltersQueryHandler(ISkuRepository skuRepository) : IQueryHandle
     public static readonly Expression<Func<Sku, SkuProjection>> SkuProjection = sku => new SkuProjection(
         sku.ProductId,
         sku.UnitPrice,
-        sku.Stock - sku.Reserved,
+        sku.Stock,
         new BrandProjection(sku.Product.BrandId, sku.Product.Brand.Name, sku.Product.Brand.Slug),
         new CategoryProjection(sku.Product.CategoryId, sku.Product.Category.Name, sku.Product.Category.Slug),
         sku.Options.Select(o => new OptionProjection(

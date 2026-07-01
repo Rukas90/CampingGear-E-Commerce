@@ -283,7 +283,7 @@ namespace TrailStore.Catalog.Infrastructure.Database.Migrations
                     b.ToTable("ProductImageUrl", "catalog");
                 });
 
-            modelBuilder.Entity("TrailStore.Catalog.Domain.Reviews.Review", b =>
+            modelBuilder.Entity("TrailStore.Catalog.Domain.Reviews.Models.Review", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
@@ -321,7 +321,7 @@ namespace TrailStore.Catalog.Infrastructure.Database.Migrations
                     b.ToTable("Reviews", "catalog");
                 });
 
-            modelBuilder.Entity("TrailStore.Catalog.Domain.Reviews.ReviewVote", b =>
+            modelBuilder.Entity("TrailStore.Catalog.Domain.Reviews.Models.ReviewVote", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
@@ -354,9 +354,6 @@ namespace TrailStore.Catalog.Infrastructure.Database.Migrations
 
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
-
-                    b.Property<int>("Reserved")
-                        .HasColumnType("integer");
 
                     b.Property<int>("Stock")
                         .HasColumnType("integer");
@@ -456,9 +453,9 @@ namespace TrailStore.Catalog.Infrastructure.Database.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TrailStore.Catalog.Domain.Reviews.ReviewVote", b =>
+            modelBuilder.Entity("TrailStore.Catalog.Domain.Reviews.Models.ReviewVote", b =>
                 {
-                    b.HasOne("TrailStore.Catalog.Domain.Reviews.Review", "Review")
+                    b.HasOne("TrailStore.Catalog.Domain.Reviews.Models.Review", "Review")
                         .WithMany("Votes")
                         .HasForeignKey("ReviewId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -495,7 +492,7 @@ namespace TrailStore.Catalog.Infrastructure.Database.Migrations
                     b.Navigation("Urls");
                 });
 
-            modelBuilder.Entity("TrailStore.Catalog.Domain.Reviews.Review", b =>
+            modelBuilder.Entity("TrailStore.Catalog.Domain.Reviews.Models.Review", b =>
                 {
                     b.Navigation("Votes");
                 });

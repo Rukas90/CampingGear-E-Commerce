@@ -8,7 +8,9 @@ public interface ICheckoutSessionService
 {
     Task<Result<CheckoutSession>>
         GetCreateCheckoutSession(ShoppingContextRef ctx, CancellationToken ct);
-    
-    Task<Result<(CheckoutSession? checkoutSession, Id<ShoppingSessionRef> shoppingSessionId)>>
+
+    Task<Result<CheckoutSession>>
         FindCheckoutSession(ShoppingContextRef ctx, CancellationToken ct);
+
+    Task<Result> ValidateSession(ShoppingContextRef ctx, CancellationToken ct);
 }

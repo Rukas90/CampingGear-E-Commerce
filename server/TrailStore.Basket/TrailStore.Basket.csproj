@@ -10,6 +10,7 @@
       <ProjectReference Include="..\TrailStore.Basket.Contracts\TrailStore.Basket.Contracts.csproj" />
       <ProjectReference Include="..\TrailStore.Catalog.Contracts\TrailStore.Catalog.Contracts.csproj" />
       <ProjectReference Include="..\TrailStore.Identity.Contracts\TrailStore.Identity.Contracts.csproj" />
+      <ProjectReference Include="..\TrailStore.Ordering.Contracts\TrailStore.Ordering.Contracts.csproj" />
       <ProjectReference Include="..\TrailStore.Shared.Api\TrailStore.Shared.Api.csproj" />
       <ProjectReference Include="..\TrailStore.Shared.Domain\TrailStore.Shared.Domain.csproj" />
     </ItemGroup>

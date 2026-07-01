@@ -18,30 +18,80 @@ public class CheckoutSessionService(
     public async Task<Result<CheckoutSession>> 
         GetCreateCheckoutSession(ShoppingContextRef ctx, CancellationToken ct)
     {
-        var result = await FindCheckoutSession(ctx, ct);
+        var result = await TryFindCheckoutSession(ctx, ct);
         
         if (!result.IsSuccess)
         {
             return result.Problem;
         }
         
-        var (checkoutSession, shoppingSessionId) = result.Value;
+        var checkoutSession = result.Value;
 
         if (checkoutSession is not null)
         {
             return checkoutSession;
         }
+
+        if (ctx.SessionId is null)
+        {
+            return CheckoutProblems.NoSession;
+        }
         
         var newCheckoutSession = checkoutSessionRepository.Add(
-            CheckoutSession.Create(shoppingSessionId, ctx.OwnerId is not null 
+            CheckoutSession.Create(ctx.SessionId.Value, ctx.OwnerId, 
+                ctx.OwnerId is not null 
                 ? options.Value.ExpiresForCustomer
                 : options.Value.ExpiresForGuest));
         
         return newCheckoutSession;
     }
 
-    public async Task<Result<(CheckoutSession? checkoutSession, Id<ShoppingSessionRef> shoppingSessionId)>> 
-        FindCheckoutSession(ShoppingContextRef ctx, CancellationToken ct)
+    public async Task<Result<CheckoutSession>> FindCheckoutSession(ShoppingContextRef ctx, CancellationToken ct)
+    {
+        var result = await TryFindCheckoutSession(ctx, ct);
+
+        if (!result.IsSuccess)
+        {
+            return result.Problem;
+        }
+        
+        var checkoutSession = result.Value;
+
+        if (checkoutSession is null)
+        {
+            return CheckoutProblems.NoSession;
+        }
+        
+        return checkoutSession;
+    }
+
+    public async Task<Result<CheckoutSession?>> TryFindCheckoutSession(ShoppingContextRef ctx, CancellationToken ct)
+    {
+        if (ctx.SessionId is null && ctx.OwnerId is null)
+        {
+            return CheckoutProblems.NoSession;
+        }
+
+        CheckoutSession? checkoutSession = null;
+        
+        if (ctx.SessionId is not null)
+        {
+            var sessionId = ctx.SessionId.Value;
+            
+            checkoutSession = await checkoutSessionRepository.FindByShoppingSessionIdAsync(sessionId, ct);
+        }
+
+        if (checkoutSession is null && ctx.OwnerId is not null)
+        {
+            var userId = ctx.OwnerId.Value;
+            
+            checkoutSession = await checkoutSessionRepository.FindByUserIdAsync(userId, ct);
+        }
+        
+        return checkoutSession;
+    }
+
+    public async Task<Result> ValidateSession(ShoppingContextRef ctx, CancellationToken ct)
     {
         var result = await cartService.GetCartValidationStatus(ctx, ct);
 
@@ -57,13 +107,6 @@ public class CheckoutSessionService(
             return CheckoutProblems.EmptyCart;
         }
         
-        var checkoutSession = await checkoutSessionRepository.FindByShoppingSessionIdAsync(status.SessionId, ct);
-
-        if (checkoutSession is not null)
-        {
-            return (checkoutSession, status.SessionId);
-        }
-        
-        return (null, status.SessionId);
+        return Result.Ok();
     }
 }

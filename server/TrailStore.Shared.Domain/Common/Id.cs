@@ -12,6 +12,11 @@ public readonly record struct Id<TType>(Guid Value)
     {
         return id.Value;
     }
+    
+    public static implicit operator Id<TType>(Guid guid)
+    {
+        return new Id<TType>(guid);
+    }
 
     public static Id<TType> From(string guid)
     {

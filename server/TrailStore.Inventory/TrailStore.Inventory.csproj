@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.9">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\TrailStore.Inventory.Contracts\TrailStore.Inventory.Contracts.csproj" />
+      <ProjectReference Include="..\TrailStore.Shared.Api\TrailStore.Shared.Api.csproj" />
+      <ProjectReference Include="..\TrailStore.Shared.Domain\TrailStore.Shared.Domain.csproj" />
+      <ProjectReference Include="..\TrailStore.Shared.Infrastructure\TrailStore.Shared.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>

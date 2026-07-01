@@ -18,11 +18,6 @@ public class GetProductsQueryHandler(
     public async Task<Result<ProductSummaryResult[]>> Handle(GetProductsQuery query, CancellationToken ct)
     {
         var filter = query.ToFilter();
-
-        foreach (var category in filter.Categories)
-        {
-            Console.WriteLine(category);
-        }
         
         var products = await productsRepository.ListAsync(
             queryBuilder.Build(filter),
@@ -38,14 +33,12 @@ public class GetProductsQueryHandler(
                 DefaultSkuCode = product.Skus[0].Code,
                 MinPrice = product.Skus.Min(sku => (decimal?)sku.UnitPrice) ?? 0m,
                 MaxPrice = product.Skus.Max(sku => (decimal?)sku.UnitPrice) ?? 0m,
-                InStock = product.Skus.Any(sku => sku.Stock - sku.Reserved > 0),
+                InStock = product.Skus.Any(sku => sku.Stock > 0),
                 HasVariants = product.Skus.Count > 1,
                 product.ThumbnailUrl
             },
             ct);
         
-        Console.WriteLine("Products: " + products.Count);
-
         var reviewSummaries = await reviewRepository.GetReviewsSummariesAsync(
             products.Select(p => p.Id), ct);
         

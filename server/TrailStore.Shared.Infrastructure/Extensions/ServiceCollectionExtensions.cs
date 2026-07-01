@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
-using TrailStore.Shared.Domain.Caching;
-using TrailStore.Shared.Infrastructure.Caching;
 
 // ReSharper disable UnusedMethodReturnValue.Global
 
@@ -17,7 +15,6 @@ public static class ServiceCollectionExtensions
             ConnectionMultiplexer.Connect(config.GetConnectionString("Redis")!));
 
         services.AddAppServicesFromAssemblies(SharedInfrastructureMarker.Reference);
-        services.AddSingleton<IRedisCacheService, RedisCacheService>();
     
         return services;
     }

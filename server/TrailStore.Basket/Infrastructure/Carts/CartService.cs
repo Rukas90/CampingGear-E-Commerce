@@ -30,28 +30,35 @@ internal sealed class CartService(
             CartEmpty: session.CartItems.Count == 0);
     }
 
-    public async Task<Result<decimal>> CalculateSubtotal(ShoppingContextRef ctx, CancellationToken ct)
+    public async Task<CartItemResult[]> GetCartItems(ShoppingContextRef ctx, CancellationToken ct)
     {
         var result = await FindAndValidateSession(ctx, ct);
 
         if (!result.IsSuccess)
         {
-            return result.Problem;
+            return [];
         }
         
         var session = result.Value;
-
+        
         var skus = await skuService.GetSkusFromIds(
             session.CartItems.Select(item => item.SkuId).ToArray(), 
             ct);
 
         return session.CartItems
             .Where(item => skus.Any(sku => sku.Id == item.SkuId))
-            .Sum(item => 
+            .Select(item =>
             {
                 var sku = skus.Single(sku => sku.Id == item.SkuId);
-                return sku.UnitPrice * item.Quantity; 
-            });
+
+                return new CartItemResult
+                {
+                    SkuId = sku.Id,
+                    SkuCode = sku.Code,
+                    UnitPrice = sku.UnitPrice,
+                    Quantity = item.Quantity
+                };
+            }).ToArray();
     }
 
     private async Task<Result<ShoppingSession>> FindAndValidateSession(
