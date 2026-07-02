@@ -31,17 +31,15 @@ public class CatalogSeedRunner(CatalogDbContext context) : SeedRunner
 
     protected override void Seed()
     {
-        var assembly = typeof(CatalogSeedRunner).Assembly;
-        
-        context.Brands.AddRange(Discover<Brand>(assembly));
-        context.CategoryGroups.AddRange(Discover<CategoryGroup>(assembly));
-        context.Categories.AddRange(Discover<Category>(assembly));
-        context.OptionGroups.AddRange(Discover<OptionGroup>(assembly));
-        context.Options.AddRange(Discover<Option>(assembly));
-        context.Products.AddRange(Discover<Product>(assembly));
-        context.ProductImages.AddRange(Discover<ProductImage>(assembly));
-        context.Skus.AddRange(Discover<Sku>(assembly));
-        context.Reviews.AddRange(Discover<Review>(assembly));
+        context.Brands.AddRange(Discover<Brand>(ExecutingAssembly));
+        context.CategoryGroups.AddRange(Discover<CategoryGroup>(ExecutingAssembly));
+        context.Categories.AddRange(Discover<Category>(ExecutingAssembly));
+        context.OptionGroups.AddRange(Discover<OptionGroup>(ExecutingAssembly));
+        context.Options.AddRange(Discover<Option>(ExecutingAssembly));
+        context.Products.AddRange(Discover<Product>(ExecutingAssembly));
+        context.ProductImages.AddRange(Discover<ProductImage>(ExecutingAssembly));
+        context.Skus.AddRange(Discover<Sku>(ExecutingAssembly));
+        context.Reviews.AddRange(Discover<Review>(ExecutingAssembly));
     }
 
     protected override Task Commit()

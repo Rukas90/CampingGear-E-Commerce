@@ -1,19 +1,20 @@
 import { formatPrice } from "@utils"
 
 interface FreeShippingQualifyLabelProps {
-  subtotal: number
-  freeShippingThreshold?: number
+  addCostForFreeShipping?: number
+  eligibleForFreeShipping?: boolean
 }
 const FreeShippingQualifyLabel = ({
-  subtotal,
-  freeShippingThreshold,
+  addCostForFreeShipping,
+  eligibleForFreeShipping,
 }: FreeShippingQualifyLabelProps) => {
-  if (freeShippingThreshold === undefined) {
+  if (
+    eligibleForFreeShipping === undefined ||
+    addCostForFreeShipping === undefined
+  ) {
     return <></>
   }
-  const eligible = subtotal >= freeShippingThreshold
-
-  if (eligible) {
+  if (eligibleForFreeShipping) {
     return (
       <p className="text-xs text-lime-800">
         ✓ Your order qualifies for FREE shipping!
@@ -25,7 +26,7 @@ const FreeShippingQualifyLabel = ({
     <p className="text-xs text-neutral-800">
       Add{" "}
       <span className="text-red-800">
-        {formatPrice(freeShippingThreshold - subtotal)}
+        {formatPrice(addCostForFreeShipping)}
       </span>{" "}
       of eligible items to your order to qualify for FREE Shipping.
     </p>

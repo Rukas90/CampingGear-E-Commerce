@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using TrailStore.Ordering.Application.Abstractions;
 using TrailStore.Ordering.Domain.Orders;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;

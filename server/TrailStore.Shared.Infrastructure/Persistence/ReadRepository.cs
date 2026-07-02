@@ -12,7 +12,7 @@ public abstract class ReadRepository<TEntity, TContext>(TContext _context) : IRe
     
     private DbSet<TEntity> set => context.Set<TEntity>();
     
-    protected IQueryable<TEntity> ReadQuery => set.AsNoTracking();
+    protected IQueryable<TEntity> ReadQuery => BuildAggregateQuery(set).AsNoTracking();
     
     public Task<TEntity?> FindAsync(Id<TEntity> id, CancellationToken ct) 
         => BuildAggregateQuery(set).SingleOrDefaultAsync(entity => entity.Id == id, ct);

@@ -62,9 +62,11 @@ public sealed class ConfirmCheckoutCommandHandler(
         
         var lineItems = items.Select(item => new OrderLineItem(
             item.SkuId, 
-            item.SkuCode,
+            item.ProductName,
+            item.VariantLine,
             item.UnitPrice,
             item.Quantity,
+            item.ThumbnailUrl,
             FinancialsCalculator.CalculateLine(new LineFinancialsCalculationInput
             {
                 UnitPrice = item.UnitPrice,

@@ -17,7 +17,10 @@ public abstract class AggregateRepository<TEntity, TContext>(TContext _context) 
     protected IQueryable<TEntity> ReadQuery => set.AsNoTracking();
     
     public Task<TEntity?> FindAsync(Id<TEntity> id, CancellationToken ct) 
-        => BuildAggregateQuery(set).SingleOrDefaultAsync(entity => entity.Id == id, ct);
+        => AggregateWriteQuery.SingleOrDefaultAsync(entity => entity.Id == id, ct);
+
+    public Task<TEntity?> FindReadOnlyAsync(Id<TEntity> id, CancellationToken ct)
+        => AggregateReadQuery.SingleOrDefaultAsync(entity => entity.Id == id, ct);
 
     public TEntity Add(TEntity entity)
     {

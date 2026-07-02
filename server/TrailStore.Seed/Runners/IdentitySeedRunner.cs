@@ -21,7 +21,7 @@ internal class IdentitySeedRunner(IdentityDbContext context) : SeedRunner
 
     protected override void Seed()
     {
-        context.Users.AddRange(Discover<User>(typeof(Users).Assembly));
+        context.Users.AddRange(Discover<User>(ExecutingAssembly));
     }
 
     protected override Task Commit()

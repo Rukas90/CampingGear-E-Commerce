@@ -22,7 +22,7 @@ public static class DbContextExtensions
             options.UsePostgres(
                 configuration.GetConnectionString(connectionString),
                 npgsql => npgsql.MigrationsHistoryTable(DatabaseConstants.MigrationsHistoryTable, schema));
-
+            
             options.AddInterceptors(sp.GetRequiredService<DomainEventPublishInterceptor>());
         });
 

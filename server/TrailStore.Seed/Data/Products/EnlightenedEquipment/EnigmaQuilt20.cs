@@ -27,7 +27,7 @@ public static class EnigmaQuilt20
             ColorOption.Navy.Id,
             ["/products/enlightened-equipment-enigma-quilt-20-nvy.webp"])
     ];
-
+    
     [SeededEntity] public static readonly IEnumerable<Sku> Skus =
     [
         Sku.Create(

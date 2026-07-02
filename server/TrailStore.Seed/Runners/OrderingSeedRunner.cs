@@ -19,10 +19,8 @@ internal class OrderingSeedRunner(OrderingDbContext context) : SeedRunner
 
     protected override void Seed()
     {
-        var assembly = typeof(OrderingSeedRunner).Assembly;
-        
-        context.ShippingMethods.AddRange(Discover<ShippingMethod>(assembly));
-        context.ShippingZones.AddRange(Discover<ShippingZone>(assembly));
+        context.ShippingMethods.AddRange(Discover<ShippingMethod>(ExecutingAssembly));
+        context.ShippingZones.AddRange(Discover<ShippingZone>(ExecutingAssembly));
     }
 
     protected override Task Commit()

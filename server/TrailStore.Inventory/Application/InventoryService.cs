@@ -2,7 +2,6 @@
 using TrailStore.Inventory.Contracts;
 using TrailStore.Inventory.Domain;
 using TrailStore.Shared.Domain.Common;
-using TrailStore.Shared.Domain.Events;
 using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Inventory.Application;
@@ -10,8 +9,7 @@ namespace TrailStore.Inventory.Application;
 [AppService<IInventoryService>]
 internal sealed class InventoryService(
     IInventoryItemRepository repository,
-    IInventoryUnitOfWork unitOfWork,
-    IEventPublisher eventPublisher)
+    IInventoryUnitOfWork unitOfWork)
     : IInventoryService
 {
     public async Task<Result> ReserveStock(StockReserveItem[] items, CancellationToken ct)

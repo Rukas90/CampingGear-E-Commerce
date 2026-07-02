@@ -16,6 +16,8 @@ public class Sku : IModel<Sku>
     public ICollection<Option> Options { get; init; } = [];
     public Product Product { get; private set; } = null!;
     
+    public string VariantLine => string.Join(", ", Options.Select(option => $"{option.OptionGroup.Name}: {option.Name}"));
+    
     public static Sku Create(
         Id<Product> productId,
         string code,

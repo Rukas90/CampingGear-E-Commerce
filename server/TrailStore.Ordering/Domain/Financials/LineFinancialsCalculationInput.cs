@@ -2,7 +2,7 @@
 
 public readonly record struct LineFinancialsCalculationInput
 {
-    public decimal UnitPrice { get; init; }
-    public decimal TaxRate { get; init; }
-    public int Quantity { get; init; }
+    public required decimal UnitPrice { get; init; }
+    public required decimal TaxRate { get; init; }
+    public required int Quantity { get; init; }
 }

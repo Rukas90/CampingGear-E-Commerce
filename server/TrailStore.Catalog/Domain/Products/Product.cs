@@ -41,4 +41,26 @@ public class Product : AggregateRoot<Product>
             ThumbnailUrl = thumbnailUrl
         };
     }
+
+    public Result UpdateStock(Id<Sku> skuId, int newStock)
+    {
+        var sku = FindSku(skuId);
+
+        if (sku is null)
+        {
+            return ProductProblems.SkuNotFound(Name, skuId);
+        }
+
+        if (newStock < 0)
+        {
+            return ProductProblems.InvalidSkuStock(newStock);
+        }
+        
+        sku.Stock = newStock;
+
+        return Result.Ok();
+    }
+
+    private Sku? FindSku(Id<Sku> skuId)
+        => Skus.FirstOrDefault(sku => sku.Id == skuId);
 }

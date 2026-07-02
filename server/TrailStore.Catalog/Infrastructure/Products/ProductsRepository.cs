@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using TrailStore.Catalog.Domain.Products;
+using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Catalog.Infrastructure.Database;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
@@ -12,6 +13,11 @@ namespace TrailStore.Catalog.Infrastructure.Products;
 public sealed class ProductsRepository(CatalogDbContext _context) 
     : AggregateRepository<Product, CatalogDbContext>(_context), IProductsRepository
 {
+    public Task<Product?> FindBySkuAsync(Id<Sku> skuId, CancellationToken ct)
+        => AggregateWriteQuery
+            .Where(product => product.Skus.Any(sku => sku.Id == skuId))
+            .SingleOrDefaultAsync(ct);
+
     public Task<Id<Product>?> GetIdFromSlug(Slug productSlug, CancellationToken ct)
         => ReadQuery
             .Where(product => product.Slug == productSlug)

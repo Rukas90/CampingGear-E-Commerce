@@ -9,6 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\TrailStore.Catalog.Contracts\TrailStore.Catalog.Contracts.csproj" />
       <ProjectReference Include="..\TrailStore.Identity.Contracts\TrailStore.Identity.Contracts.csproj" />
+      <ProjectReference Include="..\TrailStore.Inventory.Contracts\TrailStore.Inventory.Contracts.csproj" />
       <ProjectReference Include="..\TrailStore.Shared.Api\TrailStore.Shared.Api.csproj" />
       <ProjectReference Include="..\TrailStore.Shared.Domain\TrailStore.Shared.Domain.csproj" />
       <ProjectReference Include="..\TrailStore.Shared.Infrastructure\TrailStore.Shared.Infrastructure.csproj" />
@@ -23,7 +24,6 @@
 
     <ItemGroup>
         <Folder Include="Api\" />
-        <Folder Include="Application\" />
         <Folder Include="Domain\" />
     </ItemGroup>
 

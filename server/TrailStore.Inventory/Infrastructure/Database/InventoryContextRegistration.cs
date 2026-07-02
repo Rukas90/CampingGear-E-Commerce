@@ -8,6 +8,5 @@ namespace TrailStore.Inventory.Infrastructure.Database;
 public static class InventoryContextRegistration
 {
     public static void AddInventoryContext(this IServiceCollection services, IConfiguration configuration)
-        => services.AddModuleDbContext<InventoryDbContext, IInventoryUnitOfWork>(configuration,
-            DbDefaults.DefaultSchema);
+        => services.AddModuleDbContext<InventoryDbContext, IInventoryUnitOfWork>(configuration, DbDefaults.DefaultSchema);
 }

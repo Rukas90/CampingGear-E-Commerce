@@ -1,11 +1,7 @@
-﻿using TrailStore.Catalog.Contracts.Skus;
-using TrailStore.Shared.Domain.Common;
+﻿namespace TrailStore.Ordering.Api.Endpoints.GetOrder;
 
-namespace TrailStore.Basket.Contracts.Carts;
-
-public class CartItemResult
+public class OrderLineItemSummaryResponse
 {
-    public required Id<SkuRef> SkuId { get; init; }
     public required string ProductName { get; init; }
     public required string VariantLine { get; init; }
     public required decimal UnitPrice { get; init; }

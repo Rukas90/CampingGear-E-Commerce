@@ -77,6 +77,7 @@ public sealed class GetCheckoutStatsQueryHandler(
 
         var shipping = FinancialsCalculator.CalculateShipping(new ShippingFinancialsCalculationsInput
         {
+            Lines = lines,
             TaxRate = country.TaxRate,
             ShippingFlatFee = selectedShippingMethod.FlatFee,
             FreeShippingThreshold = selectedShippingMethod.FreeShippingThreshold
@@ -91,10 +92,10 @@ public sealed class GetCheckoutStatsQueryHandler(
         return new CheckoutStats
         {
             Status = checkoutSession.Status,
-            Subtotal = order.Subtotal,
+            Subtotal = subtotal,
             Tax = order.TaxAmount,
             Total = order.TotalPrice,
-            ShippingCost = shipping.CostAfterTaxes,
+            ShippingCost = shipping.CostBeforeTaxes,
             AddCostForFreeShipping = shipping.AddCostForFreeShipping,
             EligibleForFreeShipping = shipping.EligibleForFreeShipping
         };

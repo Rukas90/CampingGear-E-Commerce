@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TrailStore.Ordering.Application.Abstractions;
 using TrailStore.Ordering.Domain.Orders;
 using TrailStore.Ordering.Infrastructure.Database;
 using TrailStore.Shared.Infrastructure.DI;

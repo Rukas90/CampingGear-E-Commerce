@@ -54,9 +54,11 @@ internal sealed class CartService(
                 return new CartItemResult
                 {
                     SkuId = sku.Id,
-                    SkuCode = sku.Code,
+                    ProductName = sku.Product.Name,
+                    VariantLine = sku.VariantLine,
                     UnitPrice = sku.UnitPrice,
-                    Quantity = item.Quantity
+                    Quantity = item.Quantity,
+                    ThumbnailUrl = sku.ThumbnailUrl
                 };
             }).ToArray();
     }

@@ -6,6 +6,7 @@ public class SkuSnapshot
 {
     public required Id<SkuRef> Id { get; init; }
     public required string Code { get; init; }
+    public required string VariantLine { get; init; }
     public required EntityIdentifier Product { get; init; }
     public required EntityIdentifier Brand { get; init; }
     public required decimal UnitPrice { get; init; }

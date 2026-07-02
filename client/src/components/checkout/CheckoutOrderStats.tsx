@@ -13,8 +13,8 @@ const CheckoutOrderStats = () => {
     <div className="flex flex-col gap-1.5 mt-6">
       <div className="mb-2">
         <FreeShippingQualifyLabel
-          subtotal={stats.subtotal}
-          freeShippingThreshold={stats.addCostForFreeShipping}
+          eligibleForFreeShipping={stats.eligibleForFreeShipping}
+          addCostForFreeShipping={stats.addCostForFreeShipping}
         />
       </div>
       <p className="flex justify-between text-xm">

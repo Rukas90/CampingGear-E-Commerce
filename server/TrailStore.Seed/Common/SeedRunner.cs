@@ -6,6 +6,8 @@ public abstract class SeedRunner : ISeedRunner
 {
     public abstract string Identifier { get; }
     
+    protected Assembly ExecutingAssembly => typeof(SeedRunner).Assembly;
+    
     public async Task RunAsync(SeedOptions options)
     {
         var logger = options.Logger;

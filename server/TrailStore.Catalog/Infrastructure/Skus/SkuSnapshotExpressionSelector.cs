@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using TrailStore.Catalog.Contracts.Skus;
+﻿using TrailStore.Catalog.Contracts.Skus;
 using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Shared.Domain.Common;
 
@@ -7,10 +6,11 @@ namespace TrailStore.Catalog.Infrastructure.Skus;
 
 internal static class SkuSnapshotExpressionSelector
 {
-    internal static Expression<Func<Sku, SkuSnapshot>> ToSnapshot() => sku => new SkuSnapshot
+    internal static SkuSnapshot ToSnapshot(this Sku sku) => new()
     {
         Id = Id<SkuRef>.From(sku.Id),
         Code = sku.Code,
+        VariantLine = sku.VariantLine,
         Product = new EntityIdentifier(sku.Product.Name, sku.Product.Slug),
         Brand = new EntityIdentifier(sku.Product.Brand.Name, sku.Product.Brand.Slug),
         UnitPrice = sku.UnitPrice,

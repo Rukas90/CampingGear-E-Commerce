@@ -2,6 +2,6 @@
 
 public readonly record struct OrderFinancialsCalculationsInput
 {
-    public LineFinancials[] Lines { get; init; }
-    public ShippingFinancials Shipping { get; init; }
+    public required LineFinancials[] Lines { get; init; }
+    public required ShippingFinancials Shipping { get; init; }
 }

@@ -1,4 +1,5 @@
 ﻿using TrailStore.Catalog.Contracts.Skus;
+using TrailStore.Ordering.Domain.Financials;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 
@@ -9,12 +10,24 @@ public class OrderItem : IModel<OrderItem>
     public required Id<OrderItem> Id { get; init; }
     public required Id<Order> OrderId { get; init; }
     public required Id<SkuRef> SkuId { get; init; }
+    public required string ProductName { get; init; }
+    public required string VariantLine { get; init; }
+    public string? ThumbnailUrl { get; init; }
     public required int Quantity { get; init; }
     public required decimal UnitPrice { get; init; }
     public required decimal TaxRate { get; init; }
     public required decimal TaxAmount { get; init; }
     public required decimal PriceBeforeTax { get; init; }
     public required decimal PriceAfterTax { get; init; }
+    
+    public LineFinancials Financials
+        => new()
+        {
+            PriceBeforeTax = PriceBeforeTax,
+            TaxRate = TaxRate,
+            TaxAmount = TaxAmount,
+            PriceAfterTax = PriceAfterTax
+        };
     
     public static OrderItem Create(
         Id<Order> orderId, 
@@ -24,6 +37,8 @@ public class OrderItem : IModel<OrderItem>
             Id = Id<OrderItem>.New(),
             OrderId = orderId,
             SkuId = source.SkuId,
+            ProductName = source.ProductName,
+            VariantLine = source.VariantLine,
             Quantity = source.Quantity,
             UnitPrice = source.UnitPrice,
             TaxRate = source.Financials.TaxRate,
@@ -31,4 +46,7 @@ public class OrderItem : IModel<OrderItem>
             PriceBeforeTax = source.Financials.PriceBeforeTax,
             PriceAfterTax = source.Financials.PriceAfterTax
         };
+
+    public OrderLineItem ToLineItem()
+        => new(SkuId, ProductName, VariantLine, UnitPrice, Quantity, ThumbnailUrl, Financials);
 }

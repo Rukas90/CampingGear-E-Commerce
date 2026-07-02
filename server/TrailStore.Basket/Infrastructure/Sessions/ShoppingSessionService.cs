@@ -17,12 +17,8 @@ public sealed class ShoppingSessionService(
 
         if (result.IsSuccess)
         {
-            Console.WriteLine("FOUND SESSION " + result.Value.Id);
-            
             return result.Value;
         }
-        
-        Console.WriteLine("CREATE NEW SESSION");
         
         return CreateSession(ctx.OwnerId);
     }

@@ -9,6 +9,15 @@ public sealed class InventoryItem : AggregateRoot<InventoryItem>
     public required int Reserved { get; set; }
     
     public int AvailableStock => Stock - Reserved;
+
+    public static InventoryItem Create(Guid skuId, int stock, int reserved)
+        => new()
+        {
+            Id = Id<InventoryItem>.New(),
+            SkuId = skuId,
+            Stock = stock,
+            Reserved = reserved
+        };
     
     public Result Reserve(int quantity)
     {
@@ -23,7 +32,7 @@ public sealed class InventoryItem : AggregateRoot<InventoryItem>
         }
         
         Reserved += quantity;
-
+        
         RaiseDomainEvent(new StockReservedDomainEvent(SkuId, AvailableStock));
         
         return Result.Ok();

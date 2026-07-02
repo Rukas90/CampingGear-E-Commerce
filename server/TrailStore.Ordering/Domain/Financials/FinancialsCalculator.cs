@@ -4,12 +4,8 @@ public static class FinancialsCalculator
 {
     public static OrderFinancials CalculateOrder(OrderFinancialsCalculationsInput input)
     {
-        var subtotal = input.Lines.Sum(line => line.PriceBeforeTax) 
-                       + input.Shipping.CostBeforeTaxes;
-    
-        var taxAmount = input.Lines.Sum(line => line.TaxAmount) 
-                        + input.Shipping.TaxAmount;
-    
+        var subtotal = input.Lines.Sum(line => line.PriceBeforeTax);
+        var taxAmount = input.Lines.Sum(line => line.TaxAmount) + input.Shipping.TaxAmount;
         var total = subtotal + taxAmount;
 
         return new OrderFinancials(subtotal, taxAmount, total);
@@ -23,7 +19,7 @@ public static class FinancialsCalculator
             ? 0m
             : input.ShippingFlatFee;
         var taxAmount = shippingCost * input.TaxRate;
-
+        
         return new ShippingFinancials
         {
             CostBeforeTaxes = shippingCost,

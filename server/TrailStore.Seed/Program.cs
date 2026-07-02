@@ -1,12 +1,16 @@
 using TrailStore.Seed.Common;
 using TrailStore.Seed.Registrations;
+using TrailStore.Shared.Infrastructure.Extensions;
 
 var builder = Host.CreateApplicationBuilder(args);
+
+builder.Services.AddSharedInfrastructure(builder.Configuration);
 
 builder
     .AddIdentitySeeding()
     .AddCatalogSeeding()
-    .AddOrderingSeeding();
+    .AddOrderingSeeding()
+    .AddInventorySeeding();
 
 var moduleArg = args.FirstOrDefault(a => a.StartsWith("--module="))?.Split('=')[1];
 var clearOnly = args.Contains("clear-only");
