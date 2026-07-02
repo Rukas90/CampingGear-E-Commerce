@@ -12,5 +12,6 @@ export type * from "./cart"
 export type * from "./checkout"
 export type * from "./session"
 export type * from "./common"
+export type * from "./order"
 
 export * from "./enums"

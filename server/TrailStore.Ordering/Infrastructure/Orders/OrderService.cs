@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using TrailStore.Ordering.Application.Abstractions;
+﻿using TrailStore.Ordering.Application.Abstractions;
 using TrailStore.Ordering.Domain.Orders;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
@@ -31,7 +30,7 @@ public sealed class OrderService(
         return orderRepository.Add(Order.Create(new OrderCreationInput
         {
             Id = orderId,
-            Token = GenerateToken(OrderTokenConfig.RandomPartLength),
+            Token = OrderTokenization.GenerateToken(),
             UserId = request.UserId,
             Status = OrderStatus.Created,
             MaxPaymentAttempts = 1, // Current default
@@ -41,21 +40,5 @@ public sealed class OrderService(
             Shipping = orderShipping,
             Items = items
         }));
-    }
-    
-    private static string GenerateToken(int length)
-    {
-        // ReSharper disable once StringLiteralTypo
-        const string Chars = "23456789ABCDEFGHJKMNPQRSTUVWXYZ";
-        
-        var bytes = RandomNumberGenerator.GetBytes(length);
-        var chars = new char[length];
-        
-        for (var i = 0; i < length; i++)
-        {
-            chars[i] = Chars[bytes[i] % Chars.Length];
-        }
-        
-        return $"{OrderTokenConfig.Prefix}{new string(chars)}";
     }
 }

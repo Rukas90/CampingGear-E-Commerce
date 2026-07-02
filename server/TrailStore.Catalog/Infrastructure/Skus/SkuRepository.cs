@@ -31,6 +31,10 @@ public class SkuRepository(CatalogDbContext _context) : ReadRepository<Sku, Cata
 
     protected override IQueryable<Sku> BuildAggregateQuery(DbSet<Sku> set)
         => set
-            .Include(sku => sku.Options).ThenInclude(option => option.OptionGroup)
-            .Include(sku => sku.Product);
+            .Include(sku => sku.Options)
+            .ThenInclude(option => option.OptionGroup)
+            .Include(sku => sku.Product)
+            .ThenInclude(product => product.Brand)
+            .Include(sku => sku.Product)
+            .ThenInclude(product => product.Category);
 }

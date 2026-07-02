@@ -7,7 +7,5 @@ public interface IAggregateRepository<TEntity> : IReadRepository<TEntity>
 {
     TEntity Add(TEntity entity);
     
-    Task<TEntity?> FindReadOnlyAsync(Id<TEntity> id, CancellationToken ct);
-
     void Delete(TEntity entity);
 }

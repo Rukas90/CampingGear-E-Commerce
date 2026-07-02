@@ -40,6 +40,7 @@ public class OrderItem : IModel<OrderItem>
             ProductName = source.ProductName,
             VariantLine = source.VariantLine,
             Quantity = source.Quantity,
+            ThumbnailUrl = source.ThumbnailUrl,
             UnitPrice = source.UnitPrice,
             TaxRate = source.Financials.TaxRate,
             TaxAmount = source.Financials.TaxAmount,

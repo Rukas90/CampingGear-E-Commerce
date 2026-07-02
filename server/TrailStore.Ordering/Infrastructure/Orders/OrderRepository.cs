@@ -11,8 +11,12 @@ namespace TrailStore.Ordering.Infrastructure.Orders;
 public sealed class OrderRepository(OrderingDbContext _context) 
     : AggregateRepository<Order, OrderingDbContext>(_context), IOrderRepository
 {
+    public Task<Order?> FindByTokenAsync(string token, CancellationToken ct)
+        => AggregateWriteQuery.SingleOrDefaultAsync(order => order.Token == token, ct);
+
     protected override IQueryable<Order> BuildAggregateQuery(DbSet<Order> set)
         => set
             .Include(order => order.Items)
+            .Include(order => order.Shipping)
             .Include(order => order.Payments);
 }

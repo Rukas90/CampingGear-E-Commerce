@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TrailStore.Ordering.Domain.Orders;
+using TrailStore.Ordering.Infrastructure.Orders;
 
 namespace TrailStore.Ordering.Infrastructure.Database.Configurations;
 
@@ -12,7 +13,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 
         builder.Property(order => order.Token)
             .IsRequired()
-            .HasMaxLength(OrderTokenConfig.TotalLength)
+            .HasMaxLength(OrderTokenization.Length)
             .IsFixedLength();
         
         builder.HasIndex(order => order.Token)

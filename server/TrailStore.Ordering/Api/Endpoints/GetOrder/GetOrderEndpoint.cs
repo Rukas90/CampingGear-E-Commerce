@@ -9,13 +9,13 @@ public sealed class GetOrderEndpoint(GetOrderQueryHandler query)
 {
     public override void Configure()
     {
-        Get("api/v1/order/{OrderId}");
+        Get("/api/v1/orders/{token}");
         AllowAnonymous();
     }
 
     public override async Task HandleAsync(GetOrderRequest req, CancellationToken ct)
     {
-        var result = await query.Handle(new GetOrderQuery(req.OrderId), ct);
+        var result = await query.Handle(new GetOrderQuery(req.Token), ct);
 
         if (!result.IsSuccess)
         {
@@ -25,7 +25,7 @@ public sealed class GetOrderEndpoint(GetOrderQueryHandler query)
         }
 
         var summary = result.Value;
-        
-        
+
+        await Send.OkAsync(summary.ToResponse(), ct);
     }
 }

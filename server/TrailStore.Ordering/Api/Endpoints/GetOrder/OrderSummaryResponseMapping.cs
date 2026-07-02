@@ -5,9 +5,10 @@ namespace TrailStore.Ordering.Api.Endpoints.GetOrder;
 
 public static class OrderSummaryResponseMapping
 {
-    public static OrderSummaryResponse ToResponse(OrderSummary summary)
+    public static OrderSummaryResponse ToResponse(this OrderSummary summary)
         => new()
         {
+            Token = summary.Token,
             Subtotal = summary.Subtotal,
             Tax = summary.Tax,
             ShippingCost = summary.ShippingCost,

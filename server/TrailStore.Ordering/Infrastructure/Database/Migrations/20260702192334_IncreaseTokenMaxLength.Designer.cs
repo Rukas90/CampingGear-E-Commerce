@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TrailStore.Ordering.Infrastructure.Database;
@@ -11,9 +12,11 @@ using TrailStore.Ordering.Infrastructure.Database;
 namespace TrailStore.Ordering.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(OrderingDbContext))]
-    partial class OrderingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260702192334_IncreaseTokenMaxLength")]
+    partial class IncreaseTokenMaxLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,8 +101,8 @@ namespace TrailStore.Ordering.Infrastructure.Database.Migrations
 
                     b.Property<string>("Token")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("character(25)")
+                        .HasMaxLength(26)
+                        .HasColumnType("character(26)")
                         .IsFixedLength();
 
                     b.Property<decimal>("TotalPrice")

@@ -19,9 +19,6 @@ public abstract class AggregateRepository<TEntity, TContext>(TContext _context) 
     public Task<TEntity?> FindAsync(Id<TEntity> id, CancellationToken ct) 
         => AggregateWriteQuery.SingleOrDefaultAsync(entity => entity.Id == id, ct);
 
-    public Task<TEntity?> FindReadOnlyAsync(Id<TEntity> id, CancellationToken ct)
-        => AggregateReadQuery.SingleOrDefaultAsync(entity => entity.Id == id, ct);
-
     public TEntity Add(TEntity entity)
     {
         set.Add(entity);

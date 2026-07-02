@@ -3,4 +3,7 @@ using TrailStore.Shared.Domain.Abstractions;
 
 namespace TrailStore.Ordering.Application.Abstractions;
 
-public interface IOrderRepository : IAggregateRepository<Order>;
+public interface IOrderRepository : IAggregateRepository<Order>
+{
+    Task<Order?> FindByTokenAsync(string token, CancellationToken ct);
+}
