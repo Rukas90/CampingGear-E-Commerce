@@ -49,9 +49,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Inventory.Contracts", "TrailStore.Inventory.Contracts\TrailStore.Inventory.Contracts.csproj", "{23933060-54F8-46E9-A92E-F23EC1179964}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{25E9092C-AB56-414D-905E-AA477905EA78}"
-	ProjectSection(SolutionItems) = preProject
-		OrderingMarker.cs = OrderingMarker.cs
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Payments", "TrailStore.Payments\TrailStore.Payments.csproj", "{E88EFF8C-F356-41BC-A744-86995EF54114}"
 EndProject
