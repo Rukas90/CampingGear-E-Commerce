@@ -8,9 +8,10 @@ namespace TrailStore.Shared.Infrastructure.Configurations;
 
 public static class DatabaseConventionConfiguration
 {
-    public static void ApplyDefaultConventions(ModelConfigurationBuilder config, params Assembly[] assemblies) 
+    public static void ApplyDefaultConventions(ModelConfigurationBuilder config, IEnumerable<Assembly> assemblies) 
     {
-        IdConfigConversions.ConfigureIdConversion(config, assemblies);
+        IdConfigConversions.ConfigureIdConversion(config, [..assemblies]);
+        
         config.Properties<Slug>().HaveConversion<SlugConverter>();
     }
 }

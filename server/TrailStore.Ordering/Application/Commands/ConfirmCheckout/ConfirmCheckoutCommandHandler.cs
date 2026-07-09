@@ -6,11 +6,9 @@ using TrailStore.Ordering.Contracts.IntegrationEvents;
 using TrailStore.Ordering.Domain.Checkout;
 using TrailStore.Ordering.Domain.Financials;
 using TrailStore.Ordering.Domain.Orders;
-using TrailStore.Payments.Contracts;
 using TrailStore.Payments.Contracts.Payments;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
-using TrailStore.Shared.Domain.Events;
 using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Ordering.Application.Commands.ConfirmCheckout;
@@ -21,10 +19,10 @@ public sealed class ConfirmCheckoutCommandHandler(
     IShippingMethodRepository shippingMethodRepository,
     ICheckoutSessionService checkoutSessionService,
     IOrderService orderService,
-    IInventoryService inventoryService,
     IOrderingUnitOfWork unitOfWork,
-    IPaymentService paymentService,
-    IEventPublisher eventPublisher)
+    IOrderingOutbox outbox,
+    IInventoryService inventoryService,
+    IPaymentService paymentService)
     : ICommandHandler<ConfirmCheckoutCommand, OrderCreatedResult>
 {
     public async Task<Result<OrderCreatedResult>> Handle(ConfirmCheckoutCommand command, CancellationToken ct)
@@ -126,10 +124,10 @@ public sealed class ConfirmCheckoutCommandHandler(
         
         await paymentService.CreatePayment(
             new PaymentCreationInput(order.Id, order.TotalPrice, CurrencyCode), ct);
+
+        outbox.Enqueue(new OrderCreatedIntegrationEvent(command.Ctx.OwnerId, command.Ctx.SessionId));
         
         await unitOfWork.SaveAsync(ct);
-
-        await eventPublisher.PublishAsync(new OrderCreatedIntegrationEvent(command.Ctx.OwnerId, command.Ctx.SessionId), ct);
         
         return Result.Success(new OrderCreatedResult(order.Token));
     }

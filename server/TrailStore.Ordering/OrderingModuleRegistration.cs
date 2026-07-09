@@ -1,4 +1,5 @@
-﻿using TrailStore.Ordering.Infrastructure.Database;
+﻿using TrailStore.Ordering.Application.Abstractions;
+using TrailStore.Ordering.Infrastructure.Database;
 using TrailStore.Shared.Api.Registrations;
 using TrailStore.Shared.Infrastructure.Extensions;
 
@@ -12,6 +13,8 @@ public static class OrderingModuleRegistration
         var configuration = builder.Configuration;
 
         services.AddOrderingContext(configuration);
+
+        services.AddOutbox<IOrderingOutbox, OrderingDbContext>();
         
         services.AddAppServicesFromAssemblies(OrderingMarker.Reference);
         

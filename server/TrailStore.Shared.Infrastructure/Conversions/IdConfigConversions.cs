@@ -13,6 +13,7 @@ public static class IdConfigConversions
     {
         var types = assemblies
             .SelectMany(a => ReflectionUtils.GetGenericInterfaceArguments(a, typeof(IIdentifier<>)))
+            .Where(t => t is { IsGenericParameter: false, ContainsGenericParameters: false })
             .Distinct();
 
         var conversion = ReflectionUtils.GetPrivateMethod(
