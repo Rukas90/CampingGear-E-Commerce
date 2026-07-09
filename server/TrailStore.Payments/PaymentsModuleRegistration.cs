@@ -8,7 +8,7 @@ namespace TrailStore.Payments;
 
 public static class PaymentsModuleRegistration
 {
-    public static ModuleHostBuilder AddOrderingModule(this ModuleHostBuilder builder)
+    public static ModuleHostBuilder AddPaymentsModule(this ModuleHostBuilder builder)
     {
         var services = builder.Services;
         var configuration = builder.Configuration;

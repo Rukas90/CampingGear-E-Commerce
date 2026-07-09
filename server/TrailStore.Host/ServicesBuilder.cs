@@ -4,6 +4,7 @@ using TrailStore.Catalog;
 using TrailStore.Identity;
 using TrailStore.Inventory;
 using TrailStore.Ordering;
+using TrailStore.Payments;
 using TrailStore.Shared.Api.Handlers;
 using TrailStore.Shared.Api.Registrations;
 using TrailStore.Shared.Infrastructure.Extensions;
@@ -37,7 +38,8 @@ public static class ServicesBuilder
                 .AddCatalogModule()
                 .AddBasketModule()
                 .AddOrderingModule()
-                .AddInventoryModule();
+                .AddInventoryModule()
+                .AddPaymentsModule();
 
         builder.Services.AddFastEndpoints(options =>
         {
