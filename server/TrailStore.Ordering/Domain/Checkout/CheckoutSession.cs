@@ -31,7 +31,7 @@ public class CheckoutSession : AggregateRoot<CheckoutSession>, IEntityCreatable,
             Id = Id<CheckoutSession>.New(),
             UserId = userId,
             SessionId = sessionId,
-            Status = CheckoutStatus.Form,
+            Status = CheckoutStatus.Draft,
             ExpiresAt = DateTime.UtcNow.Add(expireTime),
             ShippingAddressAsBillingAddress = true
         };

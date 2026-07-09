@@ -1,4 +1,5 @@
 ﻿using TrailStore.Ordering.Application.Abstractions;
+using TrailStore.Ordering.Application.Mappings;
 using TrailStore.Ordering.Application.Results;
 using TrailStore.Ordering.Domain.Orders;
 using TrailStore.Ordering.Infrastructure.Orders;
@@ -26,15 +27,6 @@ public sealed class GetOrderQueryHandler(IOrderRepository orderRepository)
             return OrderProblems.NotFound(token);
         }
 
-        return new OrderSummary
-        {
-            Token = OrderTokenization.ToDisplayToken(token),
-            Subtotal = order.Subtotal,
-            Tax = order.TaxAmount,
-            ShippingCost = order.Shipping.PriceBeforeTax,
-            ShippingName = order.Shipping.MethodName,
-            Total = order.TotalPrice,
-            LineItems = order.Items.Select(item => item.ToLineItem()).ToArray()
-        };
+        return order.ToSummary();
     }
 }

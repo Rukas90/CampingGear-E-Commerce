@@ -6,7 +6,6 @@ using TrailStore.Identity.Contracts.Users;
 using TrailStore.Ordering.Application.Abstractions;
 using TrailStore.Ordering.Domain.Checkout;
 using TrailStore.Ordering.Domain.Orders;
-using TrailStore.Ordering.Domain.Payments;
 using TrailStore.Ordering.Domain.Shipping;
 using TrailStore.Shared.Infrastructure.Persistence;
 
@@ -28,8 +27,6 @@ public sealed class OrderingDbContext(DbContextOptions<OrderingDbContext> option
     public DbSet<OrderItem> OrderItems { get; set; }
     
     public DbSet<OrderShipping> OrderShippings { get; set; }
-    
-    public DbSet<Payment> Payments { get; set; }
 
     protected override Assembly[] AdditionalConfigurationAssemblies()
         => [

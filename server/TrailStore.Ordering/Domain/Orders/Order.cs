@@ -1,5 +1,4 @@
 ﻿using TrailStore.Identity.Contracts.Users;
-using TrailStore.Ordering.Domain.Payments;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 
@@ -10,8 +9,8 @@ public class Order : AggregateRoot<Order>, IEntityCreatable, IEntityUpdateable
     public required string Token { get; init; }
     public Id<UserRef>? UserId { get; init; }
     public required string EmailAddress { get; init; }
-    public required OrderStatus Status { get; init; }
-    public required DateTime StatusUpdatedAt { get; init; }
+    public OrderStatus Status { get; private set; }
+    public DateTime StatusUpdatedAt { get; private set; }
     public required decimal Subtotal { get; init; }
     public required decimal TaxAmount { get; init; }
     public required decimal TotalPrice { get; init; }
@@ -23,13 +22,6 @@ public class Order : AggregateRoot<Order>, IEntityCreatable, IEntityUpdateable
 
     private List<OrderItem> _items = [];
     public IReadOnlyList<OrderItem> Items => _items;
-    
-    private readonly List<Payment> _payments = [];
-    public IReadOnlyList<Payment> Payments => _payments;
-
-    public int PaymentAttempts => Payments.Count;
-    public bool CanRetryPayment => PaymentAttempts < MaxPaymentAttempts;
-    public Payment? ActivePayment => Payments.FirstOrDefault(payment => payment.Status == PaymentStatus.Pending);
     
     public OrderShipping Shipping { get; private set; } = null!;
     
@@ -51,16 +43,63 @@ public class Order : AggregateRoot<Order>, IEntityCreatable, IEntityUpdateable
             _items = [..input.Items]
         };
     
-    public Result IssueNewPayment(Payment payment)
+    public Result MarkAsPaid()
     {
-        if (!CanRetryPayment)
+        if (Status == OrderStatus.OnHold)
         {
-            return OrderProblems.MaxPaymentAttempts;
+            return Result.Ok();
         }
         
-        ActivePayment?.Revoke();
-        _payments.Add(payment);
+        return SetStatus(OrderStatus.OnHold);
+    }
+    
+    public Result MarkPaymentFailed()
+    {
+        if (Status == OrderStatus.OnHold)
+        {
+            return Result.Ok();
+        }
+        
+        return SetStatus(OrderStatus.Failed);
+    }
+    
+    public Result MarkAsCanceled()
+    {
+        if (Status is not OrderStatus.Pending)
+        {
+            return OrderProblems.CannotCancel(Status);
+        }
+
+        return SetStatus(OrderStatus.Canceled);
+    }
+
+    public Result MarkAsProcessing()
+    {
+        var result = SetStatus(OrderStatus.Processing);
+
+        if (!result.IsSuccess)
+        {
+            return result;
+        }
         
         return Result.Ok();
     }
+    
+    private Result SetStatus(OrderStatus newStatus)
+    {
+        if (IsTerminalStatus(Status))
+        {
+            return OrderProblems.OrderAlreadyFinalized(Status);
+        }
+        
+        Status = newStatus;
+        StatusUpdatedAt = DateTime.UtcNow;
+
+        return Result.Ok();
+    }
+
+    private static bool IsTerminalStatus(OrderStatus status)
+        => status
+            is OrderStatus.Completed
+            or OrderStatus.Canceled;
 }

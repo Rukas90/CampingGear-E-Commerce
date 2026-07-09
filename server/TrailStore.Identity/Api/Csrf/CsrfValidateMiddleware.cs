@@ -3,6 +3,7 @@ using System.Text;
 using FastEndpoints;
 using Microsoft.AspNetCore.Http;
 using TrailStore.Identity.Domain.Csrf;
+using TrailStore.Shared.Api.Metadata;
 using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Identity.Api.Csrf;
@@ -12,7 +13,9 @@ public class CsrfValidateMiddleware(ICsrfService csrfService) : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        if (!CsrfConstants.SafeMethods.Contains(context.Request.Method))
+        var skipCsrf = context.GetEndpoint()?.Metadata.GetMetadata<IgnoreAntiforgery>() is not null;
+        
+        if (!skipCsrf && !CsrfConstants.SafeMethods.Contains(context.Request.Method))
         {
             var cookieToken = context.Request.Cookies[CsrfConstants.CookieName];
             var headerToken = context.Request.Headers[CsrfConstants.HeaderName].FirstOrDefault();

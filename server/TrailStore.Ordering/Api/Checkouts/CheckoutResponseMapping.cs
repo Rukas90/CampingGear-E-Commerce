@@ -1,7 +1,7 @@
 ﻿using TrailStore.Ordering.Api.Common.PostalAddress;
 using TrailStore.Ordering.Domain.Checkout;
 
-namespace TrailStore.Ordering.Api.Checkout;
+namespace TrailStore.Ordering.Api.Checkouts;
 
 public static class CheckoutResponseMapping
 {

@@ -6,6 +6,8 @@ using TrailStore.Ordering.Contracts.IntegrationEvents;
 using TrailStore.Ordering.Domain.Checkout;
 using TrailStore.Ordering.Domain.Financials;
 using TrailStore.Ordering.Domain.Orders;
+using TrailStore.Payments.Contracts;
+using TrailStore.Payments.Contracts.Payments;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Domain.Events;
@@ -21,6 +23,7 @@ public sealed class ConfirmCheckoutCommandHandler(
     IOrderService orderService,
     IInventoryService inventoryService,
     IOrderingUnitOfWork unitOfWork,
+    IPaymentService paymentService,
     IEventPublisher eventPublisher)
     : ICommandHandler<ConfirmCheckoutCommand, OrderCreatedResult>
 {
@@ -97,6 +100,8 @@ public sealed class ConfirmCheckoutCommandHandler(
             Shipping = shipping.Financials
         });
         
+        const string CurrencyCode = "eur"; // Currently predefined default currency
+        
         var request = new CreateOrderRequest
         {
             UserId = checkoutSession.UserId,
@@ -106,7 +111,7 @@ public sealed class ConfirmCheckoutCommandHandler(
             Items = lineItems,
             ShippingInfo = shipping,
             Financials = financials,
-            CurrencyCode = "eur" // Currently predefined default currency
+            CurrencyCode = CurrencyCode
         };
         
         var order = orderService.CreateOrder(request);
@@ -118,6 +123,9 @@ public sealed class ConfirmCheckoutCommandHandler(
         {
             return reservation.Problem;
         }
+        
+        await paymentService.CreatePayment(
+            new PaymentCreationInput(order.Id, order.TotalPrice, CurrencyCode), ct);
         
         await unitOfWork.SaveAsync(ct);
 

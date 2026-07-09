@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TrailStore.Ordering.Domain.Payments;
+using TrailStore.Payments.Domain;
 
-namespace TrailStore.Ordering.Infrastructure.Database.Configurations;
+namespace TrailStore.Payments.Infrastructure.Database.Configurations;
 
 public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
 {
@@ -20,15 +20,8 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
         builder.Property(payment => payment.CurrencyCode)
             .IsRequired();
         
-        builder.Property(payment => payment.Status)
-            .IsRequired();
-        
         builder.Property(payment => payment.CreatedAt)
             .IsRequired()
             .HasDefaultValueSql("NOW()"); 
-
-        builder.Property(payment => payment.UpdatedStatusAt)
-            .IsRequired()
-            .HasDefaultValueSql("NOW()");
     }
 }

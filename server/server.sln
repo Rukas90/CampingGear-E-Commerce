@@ -48,6 +48,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Inventory", "Tra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Inventory.Contracts", "TrailStore.Inventory.Contracts\TrailStore.Inventory.Contracts.csproj", "{23933060-54F8-46E9-A92E-F23EC1179964}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{25E9092C-AB56-414D-905E-AA477905EA78}"
+	ProjectSection(SolutionItems) = preProject
+		OrderingMarker.cs = OrderingMarker.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Payments", "TrailStore.Payments\TrailStore.Payments.csproj", "{E88EFF8C-F356-41BC-A744-86995EF54114}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrailStore.Payments.Contracts", "TrailStore.Payments.Contracts\TrailStore.Payments.Contracts.csproj", "{FBE0275E-7931-4D98-AED1-91D8AEC41CA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +127,14 @@ Global
 		{23933060-54F8-46E9-A92E-F23EC1179964}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23933060-54F8-46E9-A92E-F23EC1179964}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23933060-54F8-46E9-A92E-F23EC1179964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E88EFF8C-F356-41BC-A744-86995EF54114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E88EFF8C-F356-41BC-A744-86995EF54114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E88EFF8C-F356-41BC-A744-86995EF54114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E88EFF8C-F356-41BC-A744-86995EF54114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBE0275E-7931-4D98-AED1-91D8AEC41CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBE0275E-7931-4D98-AED1-91D8AEC41CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBE0275E-7931-4D98-AED1-91D8AEC41CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBE0275E-7931-4D98-AED1-91D8AEC41CA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8B10F269-9802-408F-899C-069C3FCCD98E} = {823AB02E-1130-44F9-B78E-8103138DBFEA}
@@ -141,5 +158,8 @@ Global
 		{C917A3E3-8F6C-4EA9-8635-19D6F967AF03} = {823AB02E-1130-44F9-B78E-8103138DBFEA}
 		{A75DA9BC-F87E-4862-BC3F-0CB3944958F8} = {C917A3E3-8F6C-4EA9-8635-19D6F967AF03}
 		{23933060-54F8-46E9-A92E-F23EC1179964} = {C917A3E3-8F6C-4EA9-8635-19D6F967AF03}
+		{25E9092C-AB56-414D-905E-AA477905EA78} = {823AB02E-1130-44F9-B78E-8103138DBFEA}
+		{E88EFF8C-F356-41BC-A744-86995EF54114} = {25E9092C-AB56-414D-905E-AA477905EA78}
+		{FBE0275E-7931-4D98-AED1-91D8AEC41CA9} = {25E9092C-AB56-414D-905E-AA477905EA78}
 	EndGlobalSection
 EndGlobal

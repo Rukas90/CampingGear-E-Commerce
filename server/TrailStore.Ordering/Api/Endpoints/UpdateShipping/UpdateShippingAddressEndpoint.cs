@@ -1,5 +1,5 @@
 ﻿using FastEndpoints;
-using TrailStore.Ordering.Api.Checkout;
+using TrailStore.Ordering.Api.Checkouts;
 using TrailStore.Ordering.Api.Common.PostalAddress;
 using TrailStore.Ordering.Api.ShoppingSession;
 using TrailStore.Ordering.Application.Commands.UpdateShipping;

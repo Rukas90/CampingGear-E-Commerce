@@ -37,4 +37,38 @@ public sealed class InventoryItem : AggregateRoot<InventoryItem>
         
         return Result.Ok();
     }
+
+    public Result Revert(int quantity)
+    {
+        if (quantity <= 0)
+        {
+            return InventoryProblems.InvalidQuantity(quantity);
+        }
+        
+        if (Reserved < quantity)
+        {
+            return InventoryProblems.InsufficientStock(SkuId, quantity, Reserved);
+        }
+        
+        Reserved -= quantity;
+        
+        RaiseDomainEvent(new StockReservedDomainEvent(SkuId, AvailableStock));
+        
+        return Result.Ok();
+    }
+
+    public Result Confirm(int quantity)
+    {
+        if (quantity <= 0)
+        {
+            return InventoryProblems.InvalidQuantity(quantity);
+        }
+        
+        Reserved -= quantity;
+        Stock -= quantity;
+        
+        RaiseDomainEvent(new StockReservedDomainEvent(SkuId, AvailableStock));
+        
+        return Result.Ok();
+    }
 }

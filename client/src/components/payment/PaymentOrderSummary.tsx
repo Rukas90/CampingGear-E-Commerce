@@ -1,20 +1,13 @@
 import { Line } from "@components"
 import PaymentCostLabel from "./PaymentCostLabel"
-import { useOrder } from "@features/orders"
 import { formatPrice } from "@utils"
-import type { OrderToken } from "@types"
+import type { OrderSummary } from "@types"
 
 interface PaymentOrderSummaryProps {
-  token: OrderToken
+  order: OrderSummary
 }
 
-const PaymentOrderSummary = ({ token }: PaymentOrderSummaryProps) => {
-  const { order } = useOrder(token)
-
-  if (!order) {
-    return
-  }
-
+const PaymentOrderSummary = ({ order }: PaymentOrderSummaryProps) => {
   return (
     <div>
       <div className="mb-6">

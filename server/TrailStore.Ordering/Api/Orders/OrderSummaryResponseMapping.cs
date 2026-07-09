@@ -1,13 +1,14 @@
 ﻿using TrailStore.Ordering.Application.Results;
 using TrailStore.Ordering.Domain.Orders;
 
-namespace TrailStore.Ordering.Api.Endpoints.GetOrder;
+namespace TrailStore.Ordering.Api.Orders;
 
 public static class OrderSummaryResponseMapping
 {
     public static OrderSummaryResponse ToResponse(this OrderSummary summary)
         => new()
         {
+            EmailAddress = summary.EmailAddress,
             Token = summary.Token,
             Subtotal = summary.Subtotal,
             Tax = summary.Tax,

@@ -1,5 +1,9 @@
+import type { PostalAddress } from "./common"
+import type { OrderToken } from "./id"
+
 export type OrderSummary = {
-  token: string
+  emailAddress: string
+  token: OrderToken
   subtotal: number
   tax: number
   shippingCost: number
@@ -14,4 +18,10 @@ export type OrderLineItem = {
   unitPrice: number
   quantity: number
   thumbnailUrl?: string
+}
+
+export type OrderPayment = {
+  clientSecret: string
+  order: OrderSummary
+  billing: PostalAddress
 }

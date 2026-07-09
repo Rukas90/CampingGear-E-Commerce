@@ -6,8 +6,7 @@ using TrailStore.Shared.Infrastructure.DI;
 namespace TrailStore.Ordering.Infrastructure.Orders;
 
 [AppService<IOrderService>]
-public sealed class OrderService(
-    IOrderRepository orderRepository) : IOrderService
+public sealed class OrderService(IOrderRepository orderRepository) : IOrderService
 {
     public Order CreateOrder(CreateOrderRequest request)
     {
@@ -32,7 +31,7 @@ public sealed class OrderService(
             Id = orderId,
             Token = OrderTokenization.GenerateToken(),
             UserId = request.UserId,
-            Status = OrderStatus.Created,
+            Status = OrderStatus.Pending,
             MaxPaymentAttempts = 1, // Current default
             EmailAddress = request.EmailAddress,
             BillingAddress = request.BillingAddress,

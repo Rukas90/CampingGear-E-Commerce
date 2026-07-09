@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Ordering.Api.Checkout;
+﻿namespace TrailStore.Ordering.Api.Checkouts;
 
 public class CheckoutContactResponse
 {

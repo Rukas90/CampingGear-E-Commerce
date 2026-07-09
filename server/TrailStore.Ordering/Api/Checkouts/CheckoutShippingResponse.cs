@@ -1,6 +1,6 @@
 ﻿using TrailStore.Ordering.Api.Common.PostalAddress;
 
-namespace TrailStore.Ordering.Api.Checkout;
+namespace TrailStore.Ordering.Api.Checkouts;
 
 public class CheckoutShippingResponse
 {

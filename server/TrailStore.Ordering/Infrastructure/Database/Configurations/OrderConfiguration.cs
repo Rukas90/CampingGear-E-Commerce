@@ -53,11 +53,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
             .HasForeignKey(item => item.OrderId)
             .OnDelete(DeleteBehavior.Cascade);
         
-        builder.HasMany(order => order.Payments)
-            .WithOne(payment => payment.Order)
-            .HasForeignKey(payment => payment.OrderId)
-            .OnDelete(DeleteBehavior.Cascade);
-        
         builder.OwnsOne(order => order.BillingAddress, PostalAddressConfigBuilder.ConfigureAddress);
     }
 }

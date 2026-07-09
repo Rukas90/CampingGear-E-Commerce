@@ -1,26 +1,22 @@
-import { loadStripe, type Appearance } from "@stripe/stripe-js"
-import { Elements } from "@stripe/react-stripe-js"
 import { useNavigate, useParams } from "react-router-dom"
 import type { OrderToken } from "@types"
 import { PaymentForm } from "@components"
+import { PaymentProvider } from "@features/payments"
+import { usePayment } from "@features"
+import { loadStripe } from "@stripe/stripe-js"
+import { Elements } from "@stripe/react-stripe-js"
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
 
-const appearance: Appearance = {
-  theme: "flat",
-  labels: "floating",
-  variables: {
-    colorPrimary: "#859277",
-    colorDanger: "#b06363",
-    colorSuccess: "#49ab65",
-  },
-}
-
 const PaymentPage = () => {
   const { orderToken } = useParams<{ orderToken: OrderToken }>()
+  const { payment, isPending } = usePayment(orderToken)
   const navigate = useNavigate()
 
-  if (!orderToken) {
+  if (isPending) {
+    return <p>Loading...</p>
+  }
+  if (!payment) {
     navigate("/")
     return
   }
@@ -29,13 +25,21 @@ const PaymentPage = () => {
     <Elements
       stripe={stripePromise}
       options={{
-        mode: "payment",
-        amount: 1234,
-        currency: "eur",
-        appearance,
+        clientSecret: payment.clientSecret,
+        appearance: {
+          theme: "flat",
+          labels: "floating",
+          variables: {
+            colorPrimary: "#859277",
+            colorDanger: "#b06363",
+            colorSuccess: "#49ab65",
+          },
+        },
       }}
     >
-      <PaymentForm token={orderToken} />
+      <PaymentProvider payment={payment}>
+        <PaymentForm />
+      </PaymentProvider>
     </Elements>
   )
 }

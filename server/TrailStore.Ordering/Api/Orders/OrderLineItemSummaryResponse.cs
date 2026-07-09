@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Ordering.Api.Endpoints.GetOrder;
+﻿namespace TrailStore.Ordering.Api.Orders;
 
 public class OrderLineItemSummaryResponse
 {

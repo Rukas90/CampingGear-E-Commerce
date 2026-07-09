@@ -4,6 +4,7 @@ namespace TrailStore.Ordering.Application.Results;
 
 public class OrderSummary
 {
+    public required string EmailAddress { get; init; }
     public required string Token { get; init; }
     public required decimal Subtotal { get; init; }
     public required decimal Tax { get; init; }

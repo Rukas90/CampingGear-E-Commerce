@@ -1,4 +1,4 @@
-﻿using TrailStore.Ordering.Api.Checkout;
+﻿using TrailStore.Ordering.Api.Checkouts;
 using TrailStore.Ordering.Domain.Checkout;
 
 namespace TrailStore.Ordering.Api.Endpoints.GetCheckoutForm;

@@ -1,5 +1,4 @@
 ﻿using TrailStore.Ordering.Application.Abstractions;
-using TrailStore.Ordering.Domain.Checkout;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;

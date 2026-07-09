@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using TrailStore.Ordering.Api.Orders;
 using TrailStore.Ordering.Application.Queries.GetOrder;
 using TrailStore.Shared.Api.Mappers;
 

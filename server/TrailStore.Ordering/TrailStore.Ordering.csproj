@@ -20,6 +20,7 @@
       <ProjectReference Include="..\TrailStore.Identity.Contracts\TrailStore.Identity.Contracts.csproj" />
       <ProjectReference Include="..\TrailStore.Inventory.Contracts\TrailStore.Inventory.Contracts.csproj" />
       <ProjectReference Include="..\TrailStore.Ordering.Contracts\TrailStore.Ordering.Contracts.csproj" />
+      <ProjectReference Include="..\TrailStore.Payments.Contracts\TrailStore.Payments.Contracts.csproj" />
       <ProjectReference Include="..\TrailStore.Shared.Api\TrailStore.Shared.Api.csproj" />
       <ProjectReference Include="..\TrailStore.Shared.Domain\TrailStore.Shared.Domain.csproj" />
       <ProjectReference Include="..\TrailStore.Shared.Infrastructure\TrailStore.Shared.Infrastructure.csproj" />

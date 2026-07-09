@@ -17,6 +17,5 @@ public sealed class OrderRepository(OrderingDbContext _context)
     protected override IQueryable<Order> BuildAggregateQuery(DbSet<Order> set)
         => set
             .Include(order => order.Items)
-            .Include(order => order.Shipping)
-            .Include(order => order.Payments);
+            .Include(order => order.Shipping);
 }

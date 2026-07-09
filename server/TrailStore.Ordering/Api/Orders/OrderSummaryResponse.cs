@@ -1,7 +1,8 @@
-﻿namespace TrailStore.Ordering.Api.Endpoints.GetOrder;
+﻿namespace TrailStore.Ordering.Api.Orders;
 
 public sealed class OrderSummaryResponse
 {
+    public required string EmailAddress { get; init; }
     public required string Token { get; init; }
     public required decimal Subtotal { get; init; }
     public required decimal Tax { get; init; }
