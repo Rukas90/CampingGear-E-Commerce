@@ -2,7 +2,6 @@
 using TrailStore.Ordering.Application.Mappings;
 using TrailStore.Ordering.Application.Results;
 using TrailStore.Ordering.Domain.Orders;
-using TrailStore.Ordering.Infrastructure.Orders;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
@@ -15,16 +14,11 @@ public sealed class GetOrderQueryHandler(IOrderRepository orderRepository)
 {
     public async Task<Result<OrderSummary>> Handle(GetOrderQuery query, CancellationToken ct)
     {
-        if (!OrderTokenization.TryNormalizeToken(query.Token, out var token))
-        {
-            return OrderProblems.NotFound(query.Token);
-        }
-        
-        var order = await orderRepository.FindByTokenAsync(token, ct);
+        var order = await orderRepository.FindAsync(query.Id, ct);
 
         if (order is null)
         {
-            return OrderProblems.NotFound(token);
+            return OrderProblems.NotFound(query.Id);
         }
 
         return order.ToSummary();

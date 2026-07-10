@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Stripe;
 using TrailStore.Payments.Application.Abstractions;
-using TrailStore.Payments.Contracts;
 using TrailStore.Payments.Contracts.Payments;
 using TrailStore.Payments.Domain;
 using TrailStore.Shared.Infrastructure.DI;

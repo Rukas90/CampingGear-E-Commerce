@@ -10,6 +10,7 @@ export type OrderSummary = {
   shippingName: string
   total: number
   lineItems: OrderLineItem[]
+  billing: PostalAddress
 }
 
 export type OrderLineItem = {
@@ -18,10 +19,4 @@ export type OrderLineItem = {
   unitPrice: number
   quantity: number
   thumbnailUrl?: string
-}
-
-export type OrderPayment = {
-  clientSecret: string
-  order: OrderSummary
-  billing: PostalAddress
 }

@@ -123,12 +123,12 @@ public sealed class ConfirmCheckoutCommandHandler(
         }
         
         await paymentService.CreatePayment(
-            new PaymentCreationInput(order.Id, order.TotalPrice, CurrencyCode), ct);
+            new PaymentCreationInput(order.Id, order.TotalPrice, CurrencyCode, MaxAttempts: 3), ct);
 
         outbox.Enqueue(new OrderCreatedIntegrationEvent(command.Ctx.OwnerId, command.Ctx.SessionId));
         
         await unitOfWork.SaveAsync(ct);
         
-        return Result.Success(new OrderCreatedResult(order.Token));
+        return Result.Success(new OrderCreatedResult(order.Id));
     }
 }

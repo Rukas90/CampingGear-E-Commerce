@@ -27,7 +27,7 @@ public sealed class ConfirmCheckoutEndpoint(ConfirmCheckoutCommandHandler comman
         
         await Send.OkAsync(new ConfirmCheckoutResponse
         {
-            OrderToken = result.Value.OrderToken
+            OrderId = result.Value.OrderId
         }, ct);
     }
 }

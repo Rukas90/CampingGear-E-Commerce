@@ -5,7 +5,7 @@ using TrailStore.Shared.Infrastructure.Extensions;
 
 namespace TrailStore.Payments.Infrastructure.Database;
 
-public static class PaymentsContextRegistration
+public static class PaymentContextRegistration
 {
     public static void AddPaymentsContext(this IServiceCollection services, IConfiguration configuration)
         => services.AddModuleDbContext<PaymentDbContext, IPaymentUnitOfWork>(configuration, DbDefaults.DefaultSchema);

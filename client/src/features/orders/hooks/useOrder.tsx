@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query"
 import ordersApi from "../api/ordersApi"
 import { HandleReqFn } from "@lib"
-import type { OrderToken } from "@types"
+import type { OrderId } from "@types"
 
-const useOrder = (token: OrderToken) => {
+const useOrder = (id: OrderId) => {
   const query = useQuery({
-    queryKey: ["orders", token],
-    queryFn: () => HandleReqFn(() => ordersApi.get(token)),
+    queryKey: ["orders", id],
+    queryFn: () => HandleReqFn(() => ordersApi.get(id)),
+    enabled: !!id,
   })
 
   return { order: query.data, ...query }

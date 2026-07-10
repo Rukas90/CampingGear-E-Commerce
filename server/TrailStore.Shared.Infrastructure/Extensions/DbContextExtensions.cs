@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Infrastructure.Constants;
@@ -21,7 +22,9 @@ public static class DbContextExtensions
         {
             options.UsePostgres(
                 configuration.GetConnectionString(connectionString),
-                npgsql => npgsql.MigrationsHistoryTable(DatabaseConstants.MigrationsHistoryTable, schema));
+                npgsql => npgsql
+                    .MigrationsHistoryTable(DatabaseConstants.MigrationsHistoryTable, schema)
+                    .UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
             
             options.AddInterceptors(sp.GetRequiredService<DomainEventPublishInterceptor>());
         });

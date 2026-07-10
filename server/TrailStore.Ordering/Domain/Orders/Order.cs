@@ -14,7 +14,6 @@ public class Order : AggregateRoot<Order>, IEntityCreatable, IEntityUpdateable
     public required decimal Subtotal { get; init; }
     public required decimal TaxAmount { get; init; }
     public required decimal TotalPrice { get; init; }
-    public required int MaxPaymentAttempts { get; init; }
     public required BillingAddress BillingAddress { get; init; }
     
     public DateTime CreatedAt { get; set; }
@@ -33,7 +32,6 @@ public class Order : AggregateRoot<Order>, IEntityCreatable, IEntityUpdateable
             UserId = input.UserId,
             Status = input.Status,
             StatusUpdatedAt = DateTime.UtcNow,
-            MaxPaymentAttempts = input.MaxPaymentAttempts,
             EmailAddress = input.EmailAddress,
             BillingAddress = input.BillingAddress,
             Subtotal = input.Financials.Subtotal,

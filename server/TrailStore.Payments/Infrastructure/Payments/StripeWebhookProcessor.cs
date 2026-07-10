@@ -11,7 +11,8 @@ namespace TrailStore.Payments.Infrastructure.Payments;
 public sealed class StripeWebhookProcessor(
     IPaymentRepository repository,
     ILogger<StripeWebhookProcessor> logger,
-    IOptions<PaymentIntentOptions> options) : IStripeWebhookProcessor
+    IOptions<PaymentIntentOptions> options,
+    IPaymentUnitOfWork unitOfWork) : IStripeWebhookProcessor
 {
     private readonly string ReferenceKey = options.Value.ReferenceKey;
     
@@ -37,10 +38,12 @@ public sealed class StripeWebhookProcessor(
             return;
         }
         
-        var payment = await repository.GetByReferenceId(referenceId, ct);
+        var payment = await repository.FindByReferenceId(referenceId, ct);
 
         if (payment is null)
         {
+            logger.LogError("No payment by reference id {ReferenceId} was found", referenceId);
+            
             return;
         }
         
@@ -48,16 +51,20 @@ public sealed class StripeWebhookProcessor(
         {
             case EventTypes.PaymentIntentSucceeded:
                 payment.ConfirmAttempt();
-                return;
+                break;
             
             case EventTypes.PaymentIntentPaymentFailed:
                 payment.FailAttempt();
-                return;
+                break;
             
             case EventTypes.PaymentIntentCanceled:
                 payment.CancelAttempt();
-                return;
+                break;
         }
+
+        await unitOfWork.SaveAsync(ct);
+        
+        logger.LogInformation("Payment by reference id {ReferenceId} was processed with event {EventType}", referenceId, eventType);
     }
 
     private bool TryExtractReferenceKey(PaymentIntent intent, out Guid referenceId)

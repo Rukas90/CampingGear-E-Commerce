@@ -2,5 +2,5 @@
 
 public sealed class ConfirmCheckoutResponse
 {
-    public required string OrderToken { get; init; }
+    public required Guid OrderId { get; init; }
 }

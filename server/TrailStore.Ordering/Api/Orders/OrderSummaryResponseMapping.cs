@@ -1,4 +1,5 @@
-﻿using TrailStore.Ordering.Application.Results;
+﻿using TrailStore.Ordering.Api.Common.PostalAddress;
+using TrailStore.Ordering.Application.Results;
 using TrailStore.Ordering.Domain.Orders;
 
 namespace TrailStore.Ordering.Api.Orders;
@@ -15,7 +16,8 @@ public static class OrderSummaryResponseMapping
             ShippingCost = summary.ShippingCost,
             ShippingName = summary.ShippingName,
             Total = summary.Total,
-            LineItems = summary.LineItems.Select(ToLineResponse).ToArray()
+            LineItems = summary.LineItems.Select(ToLineResponse).ToArray(),
+            Billing = summary.BillingAddress.ToResponse()
         };
 
     private static OrderLineItemSummaryResponse ToLineResponse(OrderLineItem lineItem)

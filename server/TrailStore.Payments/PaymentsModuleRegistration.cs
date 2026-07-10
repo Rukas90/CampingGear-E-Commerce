@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Stripe;
+using TrailStore.Payments.Application.Abstractions;
 using TrailStore.Payments.Infrastructure.Database;
 using TrailStore.Shared.Api.Registrations;
 using TrailStore.Shared.Infrastructure.Extensions;
@@ -14,6 +15,8 @@ public static class PaymentsModuleRegistration
         var configuration = builder.Configuration;
 
         services.AddPaymentsContext(configuration);
+
+        services.AddOutbox<IPaymentOutbox, PaymentDbContext>();
         
         services.AddAppServicesFromAssemblies(PaymentsMarker.Reference);
 

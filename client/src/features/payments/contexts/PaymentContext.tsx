@@ -1,11 +1,14 @@
-import { useElements, useStripe } from "@stripe/react-stripe-js"
-import type { OrderPayment, OrderSummary } from "@types"
-import { createContext, useContext, useState } from "react"
+import { useOrder } from "@features/orders"
+import { type Payment, type OrderSummary, type OrderId } from "@types"
+import { createContext, useContext, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import usePaymentConfirmation, {
+  type ConfirmationState,
+} from "../hooks/usePaymentConfirmation"
 
 interface PaymentContextData {
   order: OrderSummary
-  isProcessing: boolean
-  error: string | null
+  state: ConfirmationState
   actions: {
     confirm: () => void
   }
@@ -14,71 +17,42 @@ interface PaymentContextData {
 const PaymentContext = createContext<PaymentContextData | undefined>(undefined)
 
 interface PaymentContextProps {
-  payment: OrderPayment
+  orderId: OrderId
+  payment: Payment
 }
 
 const PaymentProvider = ({
+  orderId,
   payment,
   children,
 }: React.PropsWithChildren<PaymentContextProps>) => {
-  const stripe = useStripe()
-  const elements = useElements()
-  const [error, setError] = useState<string | null>(null)
-  const [isProcessing, setIsProcessing] = useState(false)
+  const { order, isPending } = useOrder(orderId)
+  const { state, confirm } = usePaymentConfirmation({
+    payment,
+    order,
+    redirectUrl: `http://localhost:5173/thank-you/${orderId}`,
+  })
+  const navigate = useNavigate()
 
-  const confirm = async () => {
-    if (!stripe || !elements || isProcessing) {
-      return
-    }
+  useEffect(() => {
+    if (state.phase === "succeeded") navigate(`/thank-you/${orderId}`)
+    if (state.phase === "already_complete") navigate(`/thank-you/${orderId}`)
+  }, [state.phase, orderId, navigate])
 
-    setError(null)
-    setIsProcessing(true)
+  if (isPending) {
+    return <p>Loading...</p>
+  }
 
-    const { error: submitError } = await elements.submit()
-
-    if (submitError) {
-      setError(submitError.message ?? "Invalid payment details")
-      setIsProcessing(false)
-
-      return
-    }
-
-    const { error: confirmError } = await stripe.confirmPayment({
-      elements: elements ?? undefined,
-      clientSecret: payment.clientSecret,
-      confirmParams: {
-        return_url: `http://localhost:5173/thank-you/${payment.order.token}`,
-        payment_method_data: {
-          billing_details: {
-            name: payment.billing.recipientFirstName,
-            email: payment.order.emailAddress,
-            phone: payment.billing.phoneNumber,
-            address: {
-              city: payment.billing.city,
-              country: payment.billing.countryCode,
-              line1: payment.billing.addressLine,
-              line2: payment.billing.apartmentSuite,
-              postal_code: payment.billing.postalCode,
-              state: payment.billing.region,
-            },
-          },
-        },
-      },
-    })
-
-    if (confirmError) {
-      setError(confirmError.message ?? "Payment failed")
-    }
-
-    setIsProcessing(false)
+  if (!order) {
+    navigate("/")
+    return
   }
 
   return (
     <PaymentContext.Provider
       value={{
-        order: payment.order,
-        isProcessing,
-        error,
+        order: order,
+        state,
         actions: {
           confirm,
         },

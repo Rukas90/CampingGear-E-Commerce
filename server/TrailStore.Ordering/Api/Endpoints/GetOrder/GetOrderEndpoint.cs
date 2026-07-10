@@ -10,13 +10,13 @@ public sealed class GetOrderEndpoint(GetOrderQueryHandler query)
 {
     public override void Configure()
     {
-        Get("/api/v1/orders/{token}");
+        Get("/api/v1/orders/{id}");
         AllowAnonymous();
     }
 
     public override async Task HandleAsync(GetOrderRequest req, CancellationToken ct)
     {
-        var result = await query.Handle(new GetOrderQuery(req.Token), ct);
+        var result = await query.Handle(new GetOrderQuery(req.Id), ct);
 
         if (!result.IsSuccess)
         {

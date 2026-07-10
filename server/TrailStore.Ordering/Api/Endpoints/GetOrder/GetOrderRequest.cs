@@ -2,5 +2,5 @@
 
 public class GetOrderRequest
 {
-    public required string Token { get; init; }
+    public required Guid Id { get; init; }
 }

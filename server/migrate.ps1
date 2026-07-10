@@ -29,6 +29,11 @@ $modules = @{
         Project = "TrailStore.Inventory";
         Context = "InventoryDbContext";
         MigrationsDir = "Infrastructure/Database/Migrations"  }
+
+    "payment" = @{
+        Project = "TrailStore.Payments";
+        Context = "PaymentDbContext";
+        MigrationsDir = "Infrastructure/Database/Migrations"  }
 }
 
 function Run-Migration($mod) {

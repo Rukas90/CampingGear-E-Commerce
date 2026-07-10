@@ -12,4 +12,5 @@ public class OrderSummary
     public required string ShippingName { get; init; }
     public required decimal Total { get; init; }
     public required OrderLineItem[] LineItems { get; init; }
+    public required BillingAddress BillingAddress { get; init; }
 }

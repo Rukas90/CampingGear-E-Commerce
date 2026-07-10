@@ -34,7 +34,7 @@ const AppRouter = () => {
         <Route path="/checkout" element={<CheckoutPage />} />
       </Route>
       <Route element={<BlankPage topNavigation="functionless" />}>
-        <Route path="orders/pay/:orderToken" element={<PaymentPage />} />
+        <Route path="orders/pay/:orderId" element={<PaymentPage />} />
       </Route>
     </Routes>
   )

@@ -1,4 +1,6 @@
-﻿namespace TrailStore.Ordering.Api.Orders;
+﻿using TrailStore.Ordering.Api.Common.PostalAddress;
+
+namespace TrailStore.Ordering.Api.Orders;
 
 public sealed class OrderSummaryResponse
 {
@@ -10,4 +12,5 @@ public sealed class OrderSummaryResponse
     public required string ShippingName { get; init; }
     public required decimal Total { get; init; }
     public required OrderLineItemSummaryResponse[] LineItems { get; init; }
+    public required PostalAddressResponse Billing { get; init; }
 }

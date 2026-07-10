@@ -32,7 +32,7 @@ const CheckoutProvider = ({ children }: React.PropsWithChildren) => {
   const sections = useRef<Map<string, () => void>>(new Map())
 
   const confirm = useCheckoutConfirm({
-    onSuccess: (token) => navigate(`/orders/pay/${token}`),
+    onSuccess: (orderId) => navigate(`/orders/pay/${orderId}`),
     onError: (problem) => {
       errors.setErrors(problem.errors)
       const firstScope = problem.errors[0]?.name.split(".")[0]

@@ -10,7 +10,6 @@ public sealed class OrderCreationInput
     public required string Token {  get; init; }
     public Id<UserRef>? UserId { get; init; }
     public required OrderStatus Status { get; init; }
-    public required int MaxPaymentAttempts { get; init; }
     public required string EmailAddress { get; init; }
     public required BillingAddress BillingAddress { get; init; }
     public required OrderFinancials Financials { get; init; }

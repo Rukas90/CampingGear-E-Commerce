@@ -18,7 +18,8 @@ public static class OrderMappingExtensions
                 ShippingCost = order.Shipping.PriceBeforeTax,
                 ShippingName = order.Shipping.MethodName,
                 Total = order.TotalPrice,
-                LineItems = order.Items.Select(item => item.ToLineItem()).ToArray()
+                LineItems = order.Items.Select(item => item.ToLineItem()).ToArray(),
+                BillingAddress = order.BillingAddress,
             };
     }
 }

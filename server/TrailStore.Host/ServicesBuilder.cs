@@ -30,8 +30,6 @@ public static class ServicesBuilder
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddSharedInfrastructure(builder.Configuration);
         
-        // TODO STRIPE
-        
         var moduleBuilder 
             = new ModuleHostBuilder(builder.Services, builder.Configuration)
                 .AddIdentityModule()

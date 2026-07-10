@@ -7,7 +7,10 @@ export type ProductId = Brand<string, "Product">
 export type CartItemId = Brand<string, "CartItem">
 export type SkuId = Brand<string, "Sku">
 export type OptionId = Brand<string, "Option">
+export type PaymentId = Brand<string, "Payment">
+export type PaymentAttemptId = Brand<string, "PaymentAttempt">
 export type ShippingMethodId = Brand<string, "ShippingMethod">
+export type OrderId = Brand<string, "OrderId">
 export type OrderToken = Brand<string, "OrderToken">
 
 export type SkuCode = Brand<string, "SkuCode">

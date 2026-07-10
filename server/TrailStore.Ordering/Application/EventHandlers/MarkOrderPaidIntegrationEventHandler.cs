@@ -13,7 +13,7 @@ public sealed class MarkOrderPaidIntegrationEventHandler(
     IInventoryService inventoryService, 
     IOrderingUnitOfWork unitOfWork,
     ILogger<MarkOrderPaidIntegrationEventHandler> logger,
-    IEventPublisher publisher)
+    IOrderingOutbox outbox)
     : IEventHandler<PaymentSucceededIntegrationEvent>
 {
     public async Task HandleAsync(PaymentSucceededIntegrationEvent evt, CancellationToken ct)
@@ -46,7 +46,9 @@ public sealed class MarkOrderPaidIntegrationEventHandler(
         {
             logger.LogError("Error occurred while marking order as paid. Message: {Message}", e.Message);
             
-            await publisher.PublishAsync(new PaymentRefundedIntegrationEvent(evt.PaymentId), ct);
+            outbox.Enqueue(new PaymentRefundedIntegrationEvent(evt.PaymentId));
+            
+            await outbox.SaveAsync(ct);
         }
     }
 }

@@ -21,7 +21,9 @@ const RegisterPage = () => {
   const { mutate, isPending, error } = useRegister()
 
   const onSubmit = async (data: RegisterData) => {
-    if (isPending) return
+    if (isPending) {
+      return
+    }
     mutate(data)
   }
 

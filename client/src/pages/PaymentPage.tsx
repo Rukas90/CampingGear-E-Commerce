@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom"
-import type { OrderToken } from "@types"
+import type { OrderId } from "@types"
 import { PaymentForm } from "@components"
 import { PaymentProvider } from "@features/payments"
 import { usePayment } from "@features"
@@ -9,14 +9,15 @@ import { Elements } from "@stripe/react-stripe-js"
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
 
 const PaymentPage = () => {
-  const { orderToken } = useParams<{ orderToken: OrderToken }>()
-  const { payment, isPending } = usePayment(orderToken)
+  const { orderId } = useParams<{ orderId: OrderId }>()
+  const { payment, isPending } = usePayment(orderId)
   const navigate = useNavigate()
 
   if (isPending) {
     return <p>Loading...</p>
   }
-  if (!payment) {
+
+  if (!payment || payment.attemptsRemaining <= 0 || payment.isComplete) {
     navigate("/")
     return
   }
@@ -37,7 +38,7 @@ const PaymentPage = () => {
         },
       }}
     >
-      <PaymentProvider payment={payment}>
+      <PaymentProvider orderId={orderId!} payment={payment}>
         <PaymentForm />
       </PaymentProvider>
     </Elements>

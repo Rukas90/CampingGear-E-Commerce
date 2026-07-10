@@ -32,7 +32,6 @@ public sealed class OrderService(IOrderRepository orderRepository) : IOrderServi
             Token = OrderTokenization.GenerateToken(),
             UserId = request.UserId,
             Status = OrderStatus.Pending,
-            MaxPaymentAttempts = 1, // Current default
             EmailAddress = request.EmailAddress,
             BillingAddress = request.BillingAddress,
             Financials = request.Financials,

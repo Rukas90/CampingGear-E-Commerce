@@ -1,3 +1,6 @@
-﻿namespace TrailStore.Ordering.Application.Results;
+﻿using TrailStore.Ordering.Domain.Orders;
+using TrailStore.Shared.Domain.Common;
 
-public sealed record OrderCreatedResult(string OrderToken);
+namespace TrailStore.Ordering.Application.Results;
+
+public sealed record OrderCreatedResult(Id<Order> OrderId);
