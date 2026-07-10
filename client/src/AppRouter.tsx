@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom"
 import ContentPage from "./pages/ContentPage"
 import BlankPage from "./pages/BlankPage"
 import { GuestOnlyGuard, useAuthInterceptor } from "@features"
+import OrderConfirmationPage from "./pages/OrderConfirmationPage"
+import OrderCanceledPage from "./pages/OrderCanceledPage"
 
 const HomePage = lazy(() => import("./pages/HomePage"))
 const ProductsPage = lazy(() => import("./pages/ProductsPage"))
@@ -34,7 +36,12 @@ const AppRouter = () => {
         <Route path="/checkout" element={<CheckoutPage />} />
       </Route>
       <Route element={<BlankPage topNavigation="functionless" />}>
-        <Route path="orders/pay/:orderId" element={<PaymentPage />} />
+        <Route path="/orders/pay/:orderId" element={<PaymentPage />} />
+        <Route
+          path="/orders/confirmation/:orderId"
+          element={<OrderConfirmationPage />}
+        />
+        <Route path="/orders/failed/:orderId" element={<OrderCanceledPage />} />
       </Route>
     </Routes>
   )

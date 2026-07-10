@@ -1,4 +1,4 @@
-﻿namespace TrailStore.Payments.Api.CreateAttempt;
+﻿namespace TrailStore.Payments.Api.IssueAttempt;
 
 public sealed class IssueAttemptRequest
 {

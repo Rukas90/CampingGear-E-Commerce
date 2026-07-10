@@ -4,16 +4,16 @@ import FormHeader from "./FormHeader"
 import FormEditNav from "./FormEditNav"
 
 const ShippingForm = () => {
-  const { data, isBusy } = useCheckoutBilling()
+  const { billing, isBusy } = useCheckoutBilling()
 
-  const asShippingAddress = data.value("asShippingAddress")
+  const asShippingAddress = billing.value("asShippingAddress")
 
   return (
     <div>
       <FormHeader
         isLoading={isBusy}
-        onEdit={data.edit}
-        isEditing={data.isEditing}
+        onEdit={billing.edit}
+        isEditing={billing.isEditing}
       >
         Billing address
       </FormHeader>
@@ -21,23 +21,23 @@ const ShippingForm = () => {
         label="Use shipping address as billing address"
         checked={asShippingAddress.value()}
         onChange={(value) => asShippingAddress.update(value)}
-        disabled={!data.isEditing || isBusy}
+        disabled={!billing.isEditing || isBusy}
       />
       {!asShippingAddress.value() && (
         <>
           <Line className="bg-neutral-200 mt-2.5 mb-5" />
           <AddressForm
-            field={data.field("address")}
-            disabled={!data.isEditing || isBusy}
+            field={billing.field("address")}
+            disabled={!billing.isEditing || isBusy}
           />
         </>
       )}
       <FormEditNav
         isBusy={isBusy}
-        isEditing={data.isEditing}
-        isDirty={data.isDirty()}
-        onCancel={data.cancel}
-        onCommit={data.commit}
+        isEditing={billing.isEditing}
+        isDirty={billing.isDirty()}
+        onCancel={billing.cancel}
+        onCommit={billing.commit}
       />
     </div>
   )

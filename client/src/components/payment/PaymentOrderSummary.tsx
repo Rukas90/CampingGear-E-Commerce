@@ -12,7 +12,7 @@ const PaymentOrderSummary = ({ order }: PaymentOrderSummaryProps) => {
     <div>
       <div className="mb-6">
         <p className="text-4xl font-bold text-center mb-2">
-          {formatPrice(order.total)}
+          {formatPrice(order.financials.total)}
         </p>
         <p className="text-xs text-neutral-400 text-center">
           Order #{order.token}
@@ -23,17 +23,22 @@ const PaymentOrderSummary = ({ order }: PaymentOrderSummaryProps) => {
         <p>Line items ...</p>
         <Line className="my-3" />
         <div className="flex flex-col gap-1.5">
-          <PaymentCostLabel label="Subtotal" price={order.subtotal} />
-          <PaymentCostLabel label="Tax" price={order.tax} />
+          <PaymentCostLabel
+            label="Subtotal"
+            price={order.financials.subtotal}
+          />
+          <PaymentCostLabel label="Tax" price={order.financials.tax} />
           <PaymentCostLabel
             label={`Shipping - ${order.shippingName}`}
-            price={order.shippingCost}
+            price={order.financials.shippingCost}
           />
         </div>
         <Line className="my-3" />
         <p className="flex justify-between text-sm">
           <span className="font-medium">Total</span>
-          <span className="font-medium">{formatPrice(order.total)}</span>
+          <span className="font-medium">
+            {formatPrice(order.financials.total)}
+          </span>
         </p>
       </div>
     </div>

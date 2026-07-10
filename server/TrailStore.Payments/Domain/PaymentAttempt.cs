@@ -6,13 +6,15 @@ namespace TrailStore.Payments.Domain;
 public class PaymentAttempt : IModel<PaymentAttempt>
 {
     public required Id<PaymentAttempt> Id { get; init; }
+    public required Id<Payment> PaymentId { get; init; }
     public PaymentStatus Status { get; private set; }
     public DateTime UpdatedStatusAt { get; private set; }
 
-    public static PaymentAttempt Create()
+    public static PaymentAttempt Create(Id<Payment> paymentId)
         => new()
         {
             Id = Id<PaymentAttempt>.New(),
+            PaymentId = paymentId,
             Status = PaymentStatus.Pending,
             UpdatedStatusAt = DateTime.UtcNow
         };

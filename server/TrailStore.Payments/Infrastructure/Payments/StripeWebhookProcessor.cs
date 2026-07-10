@@ -61,7 +61,7 @@ public sealed class StripeWebhookProcessor(
                 payment.CancelAttempt();
                 break;
         }
-
+        
         await unitOfWork.SaveAsync(ct);
         
         logger.LogInformation("Payment by reference id {ReferenceId} was processed with event {EventType}", referenceId, eventType);

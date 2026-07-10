@@ -63,6 +63,7 @@ public sealed class ConfirmCheckoutCommandHandler(
         
         var lineItems = items.Select(item => new OrderLineItem(
             item.SkuId, 
+            item.BrandName,
             item.ProductName,
             item.VariantLine,
             item.UnitPrice,

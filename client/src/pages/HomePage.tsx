@@ -1,6 +1,5 @@
-import { Button, HeaderText, PageWrapper } from "@components"
+import { Button } from "@components"
 import Banner from "/img/banner.webp"
-import { TopCategories } from "@components/categories"
 
 const HomePage = () => {
   return (
@@ -19,13 +18,6 @@ const HomePage = () => {
         src={Banner}
         className="relative w-full object-cover object-bottom-right -translate-y-6 pointer-events-none"
       />
-      <PageWrapper className="mt-6">
-        <div className="flex justify-between">
-          <HeaderText>Top categories</HeaderText>
-          <p className="text-lg">All categories -</p>
-        </div>
-        <TopCategories />
-      </PageWrapper>
     </>
   )
 }

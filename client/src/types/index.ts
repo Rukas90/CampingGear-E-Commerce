@@ -14,5 +14,6 @@ export type * from "./session"
 export type * from "./common"
 export type * from "./order"
 export type * from "./payment"
+export type * from "./countries"
 
 export * from "./enums"

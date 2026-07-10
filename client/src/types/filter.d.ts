@@ -1,5 +1,5 @@
 import type { NameSlug } from "./base"
-import type { PreviewType } from "./enums"
+import type { Availability, PreviewType } from "./enums"
 
 export type FilterValue = {
   count: number
@@ -25,3 +25,5 @@ export type CatalogFilters = {
   inStock: number
   outOfStock: number
 }
+
+export type AvailabilityType = (typeof Availability)[keyof typeof Availability]

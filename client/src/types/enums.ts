@@ -4,43 +4,33 @@ export const Availability = {
   All: (1 << 0) | (1 << 1),
 } as const
 
-export type Availability = (typeof Availability)[keyof typeof Availability]
-
 export enum PreviewType {
-  None = -1,
-  Color = 0,
-  Image = 1,
+  None = "None",
+  Color = "Color",
+  Image = "Image",
 }
 
 export const ReviewSortBy = {
-  MostRecent: 0,
-  HighestRating: 1,
-  LowestRating: 2,
-  MostHelpful: 3,
+  MostRecent: "MostRecent",
+  HighestRating: "HighestRating",
+  LowestRating: "LowestRating",
+  MostHelpful: "MostHelpful",
 } as const
-
-export type ReviewSortBy = (typeof ReviewSortBy)[keyof typeof ReviewSortBy]
 
 export const CheckoutStatus = {
-  Form: 0,
-  Complete: 1,
+  Draft: "Draft",
+  Complete: "Complete",
 } as const
-
-export type CheckoutStatus =
-  (typeof CheckoutStatus)[keyof typeof CheckoutStatus]
 
 export const PostalCodeRequirement = {
-  None: 0,
-  Optional: 1,
-  Required: 2,
+  None: "None",
+  Optional: "Optional",
+  Required: "Required",
 } as const
 
-export type PostalCodeRequirement =
-  (typeof PostalCodeRequirement)[keyof typeof PostalCodeRequirement]
-
 export const PaymentStatus = {
-  Pending: 0,
-  Succeeded: 1,
-  Failed: 2,
-  Canceled: 3,
+  Pending: "Pending",
+  Succeeded: "Succeeded",
+  Failed: "Failed",
+  Canceled: "Canceled",
 } as const

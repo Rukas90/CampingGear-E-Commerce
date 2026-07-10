@@ -54,6 +54,9 @@ namespace TrailStore.Payments.Infrastructure.Database.Migrations
                     b.Property<Guid>("ReferenceId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.ToTable("Payments", "payments");
@@ -64,7 +67,7 @@ namespace TrailStore.Payments.Infrastructure.Database.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("PaymentId")
+                    b.Property<Guid>("PaymentId")
                         .HasColumnType("uuid");
 
                     b.Property<int>("Status")
@@ -116,7 +119,9 @@ namespace TrailStore.Payments.Infrastructure.Database.Migrations
                 {
                     b.HasOne("TrailStore.Payments.Domain.Payment", null)
                         .WithMany("Attempts")
-                        .HasForeignKey("PaymentId");
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TrailStore.Payments.Domain.Payment", b =>

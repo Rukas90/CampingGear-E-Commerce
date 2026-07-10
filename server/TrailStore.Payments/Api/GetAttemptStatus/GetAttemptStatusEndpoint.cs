@@ -4,7 +4,7 @@ using TrailStore.Shared.Api.Mappers;
 
 namespace TrailStore.Payments.Api.GetAttemptStatus;
 
-public class GetAttemptStatusEndpoint(GetPaymentAttemptStatusQueryHandler query)
+public sealed class GetAttemptStatusEndpoint(GetPaymentAttemptStatusQueryHandler query)
     : Endpoint<GetAttemptStatusRequest, PaymentStatusResponse>
 {
     public override void Configure()

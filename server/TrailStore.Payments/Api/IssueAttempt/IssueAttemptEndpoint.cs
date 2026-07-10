@@ -2,7 +2,7 @@
 using TrailStore.Payments.Application.Commands;
 using TrailStore.Shared.Api.Mappers;
 
-namespace TrailStore.Payments.Api.CreateAttempt;
+namespace TrailStore.Payments.Api.IssueAttempt;
 
 public sealed class IssueAttemptEndpoint(IssuePaymentAttemptCommandHandler command)
     : Endpoint<IssueAttemptRequest, PaymentAttemptResponse>

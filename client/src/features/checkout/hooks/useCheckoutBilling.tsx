@@ -1,6 +1,6 @@
 import type { CheckoutBilling } from "@types"
 import checkoutApi from "../api/checkoutApi"
-import { useCheckoutContext, useData } from "@features"
+import { useCheckoutContext, useCheckoutSection, useData } from "@features"
 
 const useCheckoutBilling = () => {
   const { form, isPending, errors } = useCheckoutContext()
@@ -16,9 +16,16 @@ const useCheckoutBilling = () => {
     errorKeyMappers: [(key) => key, (key) => `billing_address.${key}`],
     errorPool: errors,
   })
+  const section = useCheckoutSection({
+    name: "billing",
+    data: data,
+  })
 
   return {
-    data,
+    billing: {
+      ...data,
+      ...section,
+    },
     isPending,
     isMutating: data.isMutating,
     isBusy: isPending || data.isMutating,

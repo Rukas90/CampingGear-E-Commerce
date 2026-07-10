@@ -1,4 +1,9 @@
-import { useErrorPool, useQueryHandler, type ErrorPool } from "@features"
+import {
+  useCart,
+  useErrorPool,
+  useQueryHandler,
+  type ErrorPool,
+} from "@features"
 import { createContext, useContext, useRef } from "react"
 import useCheckoutForm from "../hooks/useCheckoutForm"
 import type { CheckoutForm } from "@types"
@@ -22,17 +27,23 @@ const CheckoutProvider = ({ children }: React.PropsWithChildren) => {
   const query = useQueryHandler({
     key: ["checkout"],
     func: () => checkoutApi.init(),
+    retry: 4,
+    retryDelay: 2000,
   })
   const { form, isPending } = useCheckoutForm({
     enabled: !query.isPending,
   })
   const errors = useErrorPool()
+  const { invalidateCart } = useCart()
   const navigate = useNavigate()
 
   const sections = useRef<Map<string, () => void>>(new Map())
 
   const confirm = useCheckoutConfirm({
-    onSuccess: (orderId) => navigate(`/orders/pay/${orderId}`),
+    onSuccess: async (orderId) => {
+      await invalidateCart()
+      navigate(`/orders/pay/${orderId}`)
+    },
     onError: (problem) => {
       errors.setErrors(problem.errors)
       const firstScope = problem.errors[0]?.name.split(".")[0]
@@ -54,7 +65,7 @@ const CheckoutProvider = ({ children }: React.PropsWithChildren) => {
   if (isPending) {
     return
   }
-  if (!isPending && !query.data) {
+  if (!query.isPending && !query.data) {
     navigate("/")
     return
   }

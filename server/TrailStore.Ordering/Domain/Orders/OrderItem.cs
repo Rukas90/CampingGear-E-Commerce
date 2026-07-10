@@ -10,6 +10,7 @@ public class OrderItem : IModel<OrderItem>
     public required Id<OrderItem> Id { get; init; }
     public required Id<Order> OrderId { get; init; }
     public required Id<SkuRef> SkuId { get; init; }
+    public required string BrandName { get; init; }
     public required string ProductName { get; init; }
     public required string VariantLine { get; init; }
     public string? ThumbnailUrl { get; init; }
@@ -37,6 +38,7 @@ public class OrderItem : IModel<OrderItem>
             Id = Id<OrderItem>.New(),
             OrderId = orderId,
             SkuId = source.SkuId,
+            BrandName = source.BrandName,
             ProductName = source.ProductName,
             VariantLine = source.VariantLine,
             Quantity = source.Quantity,
@@ -49,5 +51,5 @@ public class OrderItem : IModel<OrderItem>
         };
 
     public OrderLineItem ToLineItem()
-        => new(SkuId, ProductName, VariantLine, UnitPrice, Quantity, ThumbnailUrl, Financials);
+        => new(SkuId, BrandName, ProductName, VariantLine, UnitPrice, Quantity, ThumbnailUrl, Financials);
 }

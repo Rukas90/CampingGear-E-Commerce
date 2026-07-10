@@ -9,7 +9,7 @@ namespace TrailStore.Ordering.Application.EventHandlers;
 
 [AppService<IEventHandler<PaymentSucceededIntegrationEvent>>]
 public sealed class MarkOrderPaidIntegrationEventHandler(
-    IOrderRepository repository, 
+    IOrderRepository orderRepository, 
     IInventoryService inventoryService, 
     IOrderingUnitOfWork unitOfWork,
     ILogger<MarkOrderPaidIntegrationEventHandler> logger,
@@ -20,7 +20,7 @@ public sealed class MarkOrderPaidIntegrationEventHandler(
     {
         try
         {
-            var order = await repository.FindAsync(evt.ReferenceId, ct);
+            var order = await orderRepository.FindAsync(evt.ReferenceId, ct);
 
             if (order is null)
             {
@@ -48,7 +48,7 @@ public sealed class MarkOrderPaidIntegrationEventHandler(
             
             outbox.Enqueue(new PaymentRefundedIntegrationEvent(evt.PaymentId));
             
-            await outbox.SaveAsync(ct);
+            await unitOfWork.SaveAsync(ct);
         }
     }
 }

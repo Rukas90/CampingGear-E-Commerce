@@ -25,9 +25,7 @@ internal sealed class CartService(
         
         var session = result.Value;
         
-        return new CartValidationStatusResult(
-            Id<ShoppingSessionRef>.From(session.Id), 
-            CartEmpty: session.CartItems.Count == 0);
+        return new CartValidationStatusResult(CartEmpty: session.CartItems.Count == 0);
     }
 
     public async Task<CartItemResult[]> GetCartItems(ShoppingContextRef ctx, CancellationToken ct)
@@ -54,6 +52,7 @@ internal sealed class CartService(
                 return new CartItemResult
                 {
                     SkuId = sku.Id,
+                    BrandName = sku.Brand.Name,
                     ProductName = sku.Product.Name,
                     VariantLine = sku.VariantLine,
                     UnitPrice = sku.UnitPrice,

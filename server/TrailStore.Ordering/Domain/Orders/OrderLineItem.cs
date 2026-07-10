@@ -6,6 +6,7 @@ namespace TrailStore.Ordering.Domain.Orders;
 
 public sealed record OrderLineItem(
     Id<SkuRef> SkuId,
+    string BrandName,
     string ProductName,
     string VariantLine,
     decimal UnitPrice,

@@ -8,13 +8,12 @@ import { formatPrice } from "@utils"
 const PaymentForm = () => {
   const { order, actions, state } = usePaymentContext()
 
-  const isBusy = state.phase !== "idle" && state.phase !== "failed"
-  const errorMessage = state.phase === "failed" ? state.message : null
+  const isBusy = state !== "idle"
 
   return (
     <div className="flex flex-col gap-4 w-full justify-center items-center py-12">
       <PaymentOrderSummary order={order} />
-
+      <p>{state}</p>
       <div className="mx-auto min-w-md max-w-full p-6 border-neutral-200 border rounded-lg">
         <p className="text-base font-semibold mb-3">Payment method</p>
         <PaymentElement
@@ -35,14 +34,17 @@ const PaymentForm = () => {
             onClick={actions.confirm}
             isLoading={isBusy}
           >
-            Pay {formatPrice(order.total)}
+            Pay {formatPrice(order.financials.total)}
           </SubmitButton>
-          <CancelButton className="basis-1/2 py-2 text-sm" isLoading={isBusy}>
+          <CancelButton
+            className="basis-1/2 py-2 text-sm"
+            isLoading={isBusy}
+            onClick={actions.cancel}
+          >
             Cancel Payment
           </CancelButton>
           <SecuredBadge />
         </div>
-        <p>{errorMessage}</p>
       </div>
     </div>
   )

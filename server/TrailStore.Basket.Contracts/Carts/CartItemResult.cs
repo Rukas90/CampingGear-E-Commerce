@@ -6,6 +6,7 @@ namespace TrailStore.Basket.Contracts.Carts;
 public class CartItemResult
 {
     public required Id<SkuRef> SkuId { get; init; }
+    public required string BrandName { get; init; }
     public required string ProductName { get; init; }
     public required string VariantLine { get; init; }
     public required decimal UnitPrice { get; init; }

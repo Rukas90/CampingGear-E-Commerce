@@ -23,7 +23,7 @@ const CostLabel = ({
   }
 
   return (
-    <p
+    <span
       className={twMerge("relative flex shrink-0 font-medium", className)}
       {...props}
     >
@@ -38,7 +38,7 @@ const CostLabel = ({
         </span>
       )}
       {!!suffix && <div className="ml-1">{suffix}</div>}
-    </p>
+    </span>
   )
 }
 export default CostLabel

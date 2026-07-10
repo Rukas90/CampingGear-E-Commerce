@@ -10,6 +10,8 @@ public class PaymentAttemptConfiguration : IEntityTypeConfiguration<PaymentAttem
     {
         builder.HasKey(payment => payment.Id);
         
+        builder.Property(a => a.PaymentId).IsRequired();
+        
         builder.Property(payment => payment.Status)
             .IsRequired();
 

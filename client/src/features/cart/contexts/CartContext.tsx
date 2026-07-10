@@ -25,13 +25,14 @@ export const CartProvider = ({ children }: React.PropsWithChildren) => {
   const addItem = async (skuId: SkuId, quantity: number) => {
     await cartApi.addToCart(skuId, quantity)
     await invalidateCart()
-    await invalidateSession()
 
     openCartPanel()
   }
 
-  const invalidateCart = async () =>
+  const invalidateCart = async () => {
     await queryClient.invalidateQueries({ queryKey: ["cart"] })
+    await invalidateSession()
+  }
 
   return (
     <CartContext.Provider

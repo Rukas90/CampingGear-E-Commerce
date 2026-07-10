@@ -12,6 +12,8 @@ public class Payment : AggregateRoot<Payment>, IEntityCreatable, IEntityExpirabl
     public required string CurrencyCode { get; init; }
     public required int MaxAttempts { get; init; }
     
+    public PaymentStatus Status { get; private set; }
+    
     public DateTime CreatedAt { get; set; }
     public DateTime? ExpiresAt { get; set; }
 
@@ -23,8 +25,6 @@ public class Payment : AggregateRoot<Payment>, IEntityCreatable, IEntityExpirabl
     
     public int AttemptsRemaining => Math.Max(MaxAttempts - Attempts.Count, 0);
     
-    public bool IsComplete => Attempts.SingleOrDefault(attempt => attempt.Status is PaymentStatus.Succeeded) is not null;
-    
     public static Payment Create(PaymentCreationInput input, string intentId)
         => new()
         {
@@ -34,12 +34,13 @@ public class Payment : AggregateRoot<Payment>, IEntityCreatable, IEntityExpirabl
             Amount = input.Amount,
             CurrencyCode = input.CurrencyCode,
             MaxAttempts = input.MaxAttempts,
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            Status = PaymentStatus.Pending
         };
 
     public Result<PaymentAttempt> BeginAttempt()
     {
-        if (IsComplete)
+        if (Status is PaymentStatus.Succeeded)
         {
             return PaymentProblems.PaymentAlreadyComplete;
         }
@@ -49,7 +50,17 @@ public class Payment : AggregateRoot<Payment>, IEntityCreatable, IEntityExpirabl
             return PaymentProblems.PaymentAlreadyHasAttempt;
         }
         
-        var newAttempt = PaymentAttempt.Create();
+        if (Status is PaymentStatus.Canceled)
+        {
+            return PaymentProblems.PaymentCanceled;
+        }
+        
+        if (AttemptsRemaining <= 0)
+        {
+            return PaymentProblems.OutOfAttempts;
+        }
+        
+        var newAttempt = PaymentAttempt.Create(Id);
         _attempts.Add(newAttempt);
 
         return newAttempt;
@@ -59,47 +70,39 @@ public class Payment : AggregateRoot<Payment>, IEntityCreatable, IEntityExpirabl
     {
         if (ActiveAttempt is null)
         {
-            Console.WriteLine("No Active attempt");
-
             return;
         }
         
         ActiveAttempt.SetAsSucceeded();
-        
-        Console.WriteLine("Payment confirmed");
+
+        Status = PaymentStatus.Succeeded;
         
         RaiseDomainEvent(new PaymentConfirmedDomainEvent(Id, ReferenceId));
     }
     
     public void CancelAttempt()
     {
-        if (ActiveAttempt is null)
-        {
-            Console.WriteLine("No Active attempt");
-
-            return;
-        }
+        ActiveAttempt?.SetAsCanceled();
         
-        Console.WriteLine("Payment canceled");
+        Status = PaymentStatus.Canceled;
         
-        ActiveAttempt.SetAsCanceled();
-        
-        RaiseDomainEvent(new PaymentCanceledDomainEvent(Id, ReferenceId));
+        RaiseDomainEvent(new PaymentCanceledDomainEvent(ReferenceId));
     }
     
     public void FailAttempt()
     {
         if (ActiveAttempt is null)
         {
-            Console.WriteLine("No Active attempt");
-
             return;
         }
         
-        Console.WriteLine("Payment failed");
-        
         ActiveAttempt.SetAsFailed();
-        
-        RaiseDomainEvent(new PaymentFailedDomainEvent(Id, ReferenceId));
+
+        if (AttemptsRemaining <= 0)
+        {
+            Status = PaymentStatus.Failed;
+            
+            RaiseDomainEvent(new PaymentFailedDomainEvent(ReferenceId));
+        }
     }
 }

@@ -34,7 +34,7 @@ public sealed class GetPaymentQueryHandler(
         {
             Id = payment.Id,
             ClientSecret = intent.ClientSecret,
-            IsComplete = payment.IsComplete,
+            IsComplete = payment.Status is PaymentStatus.Succeeded,
             AttemptsRemaining = payment.AttemptsRemaining
         };
     }

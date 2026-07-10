@@ -1,16 +1,18 @@
 import { useOrder } from "@features/orders"
 import { type Payment, type OrderSummary, type OrderId } from "@types"
-import { createContext, useContext, useEffect } from "react"
+import { createContext, useContext, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import usePaymentConfirmation, {
   type ConfirmationState,
 } from "../hooks/usePaymentConfirmation"
+import paymentsApi from "../api/paymentsApi"
 
 interface PaymentContextData {
   order: OrderSummary
   state: ConfirmationState
   actions: {
     confirm: () => void
+    cancel: () => void
   }
 }
 
@@ -27,17 +29,23 @@ const PaymentProvider = ({
   children,
 }: React.PropsWithChildren<PaymentContextProps>) => {
   const { order, isPending } = useOrder(orderId)
+  const attemptsRemaining = useRef(payment.attemptsRemaining)
+  const [canceling, setCanceling] = useState(false)
+  const navigate = useNavigate()
   const { state, confirm } = usePaymentConfirmation({
     payment,
     order,
-    redirectUrl: `http://localhost:5173/thank-you/${orderId}`,
-  })
-  const navigate = useNavigate()
+    redirectAbsoluteUrl: `${window.location.origin}/orders/confirmation/${orderId}`,
+    onComplete: async () => navigate(`/orders/confirmation/${orderId}`),
+    onFailed: async () => {
+      attemptsRemaining.current--
 
-  useEffect(() => {
-    if (state.phase === "succeeded") navigate(`/thank-you/${orderId}`)
-    if (state.phase === "already_complete") navigate(`/thank-you/${orderId}`)
-  }, [state.phase, orderId, navigate])
+      if (attemptsRemaining.current <= 0) {
+        navigate(`/orders/failed/${orderId}`)
+      }
+    },
+    disabled: canceling,
+  })
 
   if (isPending) {
     return <p>Loading...</p>
@@ -48,13 +56,24 @@ const PaymentProvider = ({
     return
   }
 
+  const cancelPayment = async () => {
+    setCanceling(true)
+    const result = await paymentsApi.cancel(payment.paymentId)
+
+    if (result.isSuccess) {
+      navigate(`/orders/failed/${orderId}`)
+    }
+    setCanceling(false)
+  }
+
   return (
     <PaymentContext.Provider
       value={{
-        order: order,
+        order,
         state,
         actions: {
           confirm,
+          cancel: cancelPayment,
         },
       }}
     >

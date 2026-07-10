@@ -1,6 +1,7 @@
 import type { PostalAddress } from "./common"
 import type { CheckoutStatus } from "./enums"
 import type { OrderId, OrderToken } from "./id"
+import type { Financials, FreeShippingInfo } from "./order"
 
 export type CheckoutForm = {
   contact: CheckoutContact
@@ -31,14 +32,13 @@ export type CheckoutBilling = {
 
 export type CheckoutStats = {
   status: CheckoutStatus
-  subtotal: number
-  total?: number
-  tax?: number
-  shippingCost?: number
-  addCostForFreeShipping?: number
-  eligibleForFreeShipping: boolean
+  financials: Financials
+  freeShippingInfo: FreeShippingInfo
 }
 
 export type CheckoutConfirmation = {
   orderId: OrderId
 }
+
+export type CheckoutStatusType =
+  (typeof CheckoutStatus)[keyof typeof CheckoutStatus]

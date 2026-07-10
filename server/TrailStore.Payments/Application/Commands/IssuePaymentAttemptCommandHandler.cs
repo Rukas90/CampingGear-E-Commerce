@@ -21,7 +21,7 @@ public sealed class IssuePaymentAttemptCommandHandler(
             return PaymentProblems.NotFound;
         }
 
-        if (payment.IsComplete)
+        if (payment.Status is PaymentStatus.Succeeded)
         {
             return PaymentProblems.PaymentAlreadyComplete;
         }

@@ -11,11 +11,14 @@ public static class OrderSummaryResponseMapping
         {
             EmailAddress = summary.EmailAddress,
             Token = summary.Token,
-            Subtotal = summary.Subtotal,
-            Tax = summary.Tax,
-            ShippingCost = summary.ShippingCost,
+            Financials = new FinancialsResponse
+            {
+                Subtotal = summary.Subtotal,
+                Tax = summary.Tax,
+                ShippingCost = summary.ShippingCost,
+                Total = summary.Total
+            },
             ShippingName = summary.ShippingName,
-            Total = summary.Total,
             LineItems = summary.LineItems.Select(ToLineResponse).ToArray(),
             Billing = summary.BillingAddress.ToResponse()
         };
@@ -23,6 +26,7 @@ public static class OrderSummaryResponseMapping
     private static OrderLineItemSummaryResponse ToLineResponse(OrderLineItem lineItem)
         => new()
         {
+            BrandName = lineItem.BrandName,
             ProductName = lineItem.ProductName,
             VariantLine = lineItem.VariantLine,
             UnitPrice = lineItem.UnitPrice,
