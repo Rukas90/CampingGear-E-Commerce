@@ -1,5 +1,6 @@
 ﻿using TrailStore.Identity.Application.Abstractions;
 using TrailStore.Identity.Application.Results;
+using TrailStore.Identity.Domain.RefreshTokens;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
@@ -14,6 +15,11 @@ public sealed class RefreshCommandHandler(
 {
     public async Task<Result<AuthResult>> Handle(RefreshCommand command, CancellationToken ct)
     {
+        if (command.Token is null)
+        {
+            return RefreshProblems.TokenNotFound;
+        }
+        
         var result = await authService.RefreshSession(command.Token, ct);
 
         if (!result.IsSuccess)

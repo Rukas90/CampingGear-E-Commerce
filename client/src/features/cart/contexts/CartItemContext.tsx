@@ -1,7 +1,7 @@
 import type { CartItem } from "@types"
 import { createContext, useContext } from "react"
 import cartApi from "../api/cartApi"
-import { useCart } from "./CartContext"
+import { useCartContext } from "./CartContext"
 import { useSessionSummary } from "@features"
 
 interface CartItemData {
@@ -17,7 +17,7 @@ export const CartItemProvider = ({
   item,
   children,
 }: React.PropsWithChildren<{ item: CartItem }>) => {
-  const { invalidateCart } = useCart()
+  const { invalidateCart } = useCartContext()
   const { invalidate: invalidateSession } = useSessionSummary()
 
   const id = item.id

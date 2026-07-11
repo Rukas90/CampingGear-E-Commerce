@@ -1,5 +1,4 @@
-﻿using TrailStore.Identity.Domain.Users;
-using TrailStore.Shared.Domain.Abstractions;
+﻿using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Identity.Domain.RefreshTokens;
@@ -14,9 +13,7 @@ public class RefreshToken : IModel<RefreshToken>, IEntityCreatable, IEntityExpir
     public DateTime CreatedAt { get; set; }
     public DateTime? ExpiresAt { get; set; }
     public DateTime? RevokedAt { get; set; } = null;
-
-    public User User { get; private set; } = null!;
-
+    
     public bool IsRevoked => RevokedAt is not null;
     public bool IsExpired => DateTime.UtcNow > ExpiresAt;
     

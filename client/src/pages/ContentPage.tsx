@@ -5,12 +5,9 @@ import {
   Footer,
   TopNav,
 } from "@components"
-import { useCart } from "@features"
 import { Outlet } from "react-router-dom"
 
 const ContentPage = () => {
-  const {} = useCart()
-
   return (
     <div className="relative w-full h-full min-h-svh flex flex-col">
       <TopNav />

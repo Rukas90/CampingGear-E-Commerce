@@ -8,7 +8,7 @@ const useCountryShippingMethods = (
   const query = useQueryHandler({
     key: ["country-shipping-methods", countryCode],
     func: () => shippingApi.getCountryShippingMethods(countryCode),
-    options,
+    ...options,
   })
 
   return { availableMethods: query.data ?? [], ...query }

@@ -1,4 +1,4 @@
-import { CartItemsProvider, useCart } from "@features"
+import { CartItemsProvider, useCartContext } from "@features"
 import CartFooter from "./CartFooter"
 import CartEntriesList from "./CartEntriesList"
 import CartHeader from "./CartHeader"
@@ -9,7 +9,7 @@ import { CustomPointer, IconX } from "@components"
 const CART_PATH = "/cart"
 
 const CartSidePanel = () => {
-  const { isCartPanelOpen, closeCartPanel } = useCart()
+  const { isCartPanelOpen, closeCartPanel } = useCartContext()
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   const location = useLocation()

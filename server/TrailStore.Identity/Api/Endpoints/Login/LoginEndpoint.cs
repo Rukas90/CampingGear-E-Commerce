@@ -7,7 +7,7 @@ using TrailStore.Shared.Api.Mappers;
 
 namespace TrailStore.Identity.Api.Endpoints.Login;
 
-public class LoginEndpoint(LoginCommandHandler handler, IAuthCookieService authCookieService) 
+public class LoginEndpoint(LoginCommandHandler command, IAuthCookieService authCookieService) 
     : Endpoint<LoginRequest, AccountResponse>
 {
     public override void Configure()
@@ -19,7 +19,8 @@ public class LoginEndpoint(LoginCommandHandler handler, IAuthCookieService authC
 
     public override async Task HandleAsync(LoginRequest req, CancellationToken ct)
     {
-        var result = await handler.Handle(new LoginCommand(req.Email, req.Password), ct);
+        var result = await command.Handle(
+            new LoginCommand(req.Email, req.Password, HttpContext.GetShoppingContext(User)), ct);
 
         if (!result.IsSuccess)
         {
@@ -31,6 +32,8 @@ public class LoginEndpoint(LoginCommandHandler handler, IAuthCookieService authC
         authCookieService.AppendAuthCookies(
             HttpContext.Response, result.Value.Tokens);
 
+        HttpContext.ClearShoppingContext();
+        
         await Send.OkAsync(result.Value.Account.ToResponse(), ct);
     }
 }

@@ -1,9 +1,9 @@
 import { IconButton, IconX, Line } from "@components"
-import { useCart } from "@features"
+import { useCartContext } from "@features"
 import CartCounter from "./CartCounter"
 
 const CartHeader = () => {
-  const { closeCartPanel } = useCart()
+  const { closeCartPanel } = useCartContext()
 
   return (
     <div id="cart-header" className="px-10">

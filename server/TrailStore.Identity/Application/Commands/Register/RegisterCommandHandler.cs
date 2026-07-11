@@ -1,4 +1,6 @@
-﻿using TrailStore.Identity.Application.Abstractions;
+﻿using Microsoft.Extensions.Logging;
+using TrailStore.Basket.Contracts.Carts;
+using TrailStore.Identity.Application.Abstractions;
 using TrailStore.Identity.Application.Results;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
@@ -9,7 +11,9 @@ namespace TrailStore.Identity.Application.Commands.Register;
 [AppService<RegisterCommandHandler>]
 public class RegisterCommandHandler(
     IAuthService authService,
-    IIdentityUnitOfWork unitOfWork)
+    IIdentityUnitOfWork unitOfWork,
+    ICartService cartService,
+    ILogger<RegisterCommandHandler> logger)
     : ICommandHandler<RegisterCommand, AuthResult>
 {
     public async Task<Result<AuthResult>> Handle(RegisterCommand command, CancellationToken ct)
@@ -26,6 +30,13 @@ public class RegisterCommandHandler(
         
         await unitOfWork.SaveAsync(ct);
 
+        var mergeResult = await cartService.MergeCart(command.Ctx, newUser.Id.Value, ct);
+
+        if (!mergeResult.IsSuccess)
+        {
+            logger.LogError("Failed to merge carts. Reason: {Reason}", mergeResult.Problem.Reason);
+        }
+        
         return new AuthResult(session, new UserAccountResult(newUser.Id, newUser.Email));
     }
 }

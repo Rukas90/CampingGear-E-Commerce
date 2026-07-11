@@ -1,6 +1,7 @@
-﻿using TrailStore.Identity.Application.Results;
+﻿using TrailStore.Basket.Contracts.Session;
+using TrailStore.Identity.Application.Results;
 using TrailStore.Shared.Domain.Abstractions;
 
 namespace TrailStore.Identity.Application.Commands.Register;
 
-public sealed record RegisterCommand(string Email, string Password) : ICommand<AuthResult>;
+public sealed record RegisterCommand(string Email, string Password, ShoppingContextRef Ctx) : ICommand<AuthResult>;

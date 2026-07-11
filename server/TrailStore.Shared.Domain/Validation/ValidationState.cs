@@ -53,4 +53,12 @@ public record ValidationState
             .Select(failure => new MappedFailure(scope.GetScopedField(failure.Field), failure.Message))
             .Select(selector);
     }
+
+    public void Map(Action<MappedFailure> action)
+    {
+        foreach (var failure in Failures)
+        {
+            action.Invoke(new MappedFailure(scope.GetScopedField(failure.Field), failure.Message));
+        }
+    }
 }

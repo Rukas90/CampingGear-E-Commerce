@@ -24,9 +24,14 @@ public class ShoppingSession : AggregateRoot<ShoppingSession>, IEntityCreatable,
             UserId = userId,
         };
     
-    public void AddCartItem(Id<SkuRef> skuId, int quantity)
+    public Result AddCartItem(Id<SkuRef> skuId, int quantity)
     {
-        ValidateSession();
+        var validation = ValidateSession();
+
+        if (!validation.IsSuccess)
+        {
+            return validation;
+        }
 
         var existing = _cartItems.FirstOrDefault(i => i.SkuId == skuId);
 
@@ -38,11 +43,18 @@ public class ShoppingSession : AggregateRoot<ShoppingSession>, IEntityCreatable,
         {
             _cartItems.Add(CartItem.Create(Id, skuId, quantity));
         }
+
+        return Result.Ok();
     }
     
     public Result RemoveCartItem(Id<CartItem> itemId)
     {
-        ValidateSession();
+        var validation = ValidateSession();
+
+        if (!validation.IsSuccess)
+        {
+            return validation;
+        }
         
         var item = _cartItems.FirstOrDefault(i => i.Id == itemId);
 
@@ -58,7 +70,12 @@ public class ShoppingSession : AggregateRoot<ShoppingSession>, IEntityCreatable,
     
     public Result UpdateCartItemQuantity(Id<CartItem> itemId, int quantity)
     {
-        ValidateSession();
+        var validation = ValidateSession();
+
+        if (!validation.IsSuccess)
+        {
+            return validation;
+        }
         
         var item = _cartItems.FirstOrDefault(i => i.Id == itemId);
 
@@ -72,16 +89,55 @@ public class ShoppingSession : AggregateRoot<ShoppingSession>, IEntityCreatable,
         return Result.Ok();
     }
 
-    public void ClearCart()
+    public Result ClearCart()
     {
-        ValidateSession();
+        var validation = ValidateSession();
+
+        if (!validation.IsSuccess)
+        {
+            return validation;
+        }
         
         _cartItems.Clear();
+        
+        return Result.Ok();
+    }
+
+    public Result MergeWith(ShoppingSession shoppingSession)
+    {
+        if (Id == shoppingSession.Id)
+        {
+            return ShoppingSessionsProblems.MergeWithSelf;
+        }
+        
+        if (shoppingSession.UserId is not null)
+        {
+            return ShoppingSessionsProblems.MergeWithUserSession;
+        }
+
+        if (UserId is null)
+        {
+            return ShoppingSessionsProblems.MergeWithAnonymous;
+        }
+
+        MergeCartItems(shoppingSession);
+        
+        return Result.Ok();
+    }
+
+    private void MergeCartItems(ShoppingSession shoppingSession)
+    {
+        foreach (var otherCartItem in shoppingSession.CartItems)
+        {
+            AddCartItem(otherCartItem.SkuId, otherCartItem.Quantity);
+        }
+        
+        shoppingSession.ClearCart();
     }
     
     public void Extend(TimeSpan duration)
     {
-        if (UserId != null || IsExpired())
+        if (IsExpired())
         {
             return;
         }
@@ -89,14 +145,16 @@ public class ShoppingSession : AggregateRoot<ShoppingSession>, IEntityCreatable,
         ExpiresAt = DateTime.UtcNow.Add(duration);
     }
     
-    private void ValidateSession()
+    private Result ValidateSession()
     {
         if (IsExpired())
         {
-            throw new InvalidOperationException("Session has expired.");
+            return ShoppingSessionsProblems.SessionExpired;
         }
+        
+        return Result.Ok();
     }
     
-    public bool IsExpired() =>
+    public bool IsExpired() => UserId is null &&
         (this as IEntityExpirable).IsExpired;
 }

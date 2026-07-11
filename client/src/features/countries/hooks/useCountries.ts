@@ -6,7 +6,7 @@ const useCountries = (options?: QueryOptions) => {
   const query = useQueryHandler({
     key: ["countries"],
     func: () => countriesApi.getCountries(),
-    options,
+    ...options,
     select: (data) => data.toSorted((a, b) => a.name.localeCompare(b.name)),
   })
 

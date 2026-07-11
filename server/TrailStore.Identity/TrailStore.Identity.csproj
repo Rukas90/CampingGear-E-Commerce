@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\TrailStore.Basket.Contracts\TrailStore.Basket.Contracts.csproj" />
         <ProjectReference Include="..\TrailStore.Identity.Contracts\TrailStore.Identity.Contracts.csproj" />
         <ProjectReference Include="..\TrailStore.Shared.Api\TrailStore.Shared.Api.csproj" />
         <ProjectReference Include="..\TrailStore.Shared.Infrastructure\TrailStore.Shared.Infrastructure.csproj" />

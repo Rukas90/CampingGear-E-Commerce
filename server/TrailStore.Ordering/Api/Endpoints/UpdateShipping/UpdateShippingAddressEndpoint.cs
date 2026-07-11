@@ -9,7 +9,7 @@ using TrailStore.Shared.Api.Mappers;
 namespace TrailStore.Ordering.Api.Endpoints.UpdateShipping;
 
 public sealed class UpdateShippingAddressEndpoint(UpdateShippingAddressCommandHandler command)
-    : Endpoint<PostalAddressRequest, CheckoutShippingResponse>
+    : Endpoint<UpdateShippingAddressRequest, CheckoutShippingResponse>
 {
     public override void Configure()
     {
@@ -17,7 +17,7 @@ public sealed class UpdateShippingAddressEndpoint(UpdateShippingAddressCommandHa
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(PostalAddressRequest req, CancellationToken ct)
+    public override async Task HandleAsync(UpdateShippingAddressRequest req, CancellationToken ct)
     {
         var result = await command.Handle
         (new UpdateShippingAddressCommand(

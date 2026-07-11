@@ -1,5 +1,5 @@
 import {
-  useCart,
+  useCartContext,
   useErrorPool,
   useQueryHandler,
   type ErrorPool,
@@ -34,7 +34,7 @@ const CheckoutProvider = ({ children }: React.PropsWithChildren) => {
     enabled: !query.isPending,
   })
   const errors = useErrorPool()
-  const { invalidateCart } = useCart()
+  const { invalidateCart } = useCartContext()
   const navigate = useNavigate()
 
   const sections = useRef<Map<string, () => void>>(new Map())

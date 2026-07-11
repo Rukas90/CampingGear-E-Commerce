@@ -7,7 +7,7 @@ using TrailStore.Shared.Api.Mappers;
 
 namespace TrailStore.Identity.Api.Endpoints.Refresh;
 
-public class RefreshEndpoint(RefreshCommandHandler handler, IAuthCookieService authCookieService) 
+public class RefreshEndpoint(RefreshCommandHandler command, IAuthCookieService authCookieService) 
     : EndpointWithoutRequest<AccountResponse>
 {
     public override void Configure()
@@ -20,7 +20,7 @@ public class RefreshEndpoint(RefreshCommandHandler handler, IAuthCookieService a
     {
         var token = HttpContext.Request.ToRefreshToken();
         
-        var result = await handler.Handle(new RefreshCommand(token), ct);
+        var result = await command.Handle(new RefreshCommand(token), ct);
 
         if (!result.IsSuccess)
         {

@@ -24,7 +24,7 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
             .IsRequired()
             .HasDefaultValueSql("NOW()"); 
         
-        builder.HasMany(order => order.Attempts)
+        builder.HasMany(payment => payment.Attempts)
             .WithOne()
             .HasForeignKey(attempt => attempt.PaymentId)
             .OnDelete(DeleteBehavior.Cascade);

@@ -2,7 +2,6 @@ import type { SkuId } from "@types"
 import { createContext, useContext, useState } from "react"
 import cartApi from "../api/cartApi"
 import { useQueryClient } from "@tanstack/react-query"
-import { useSessionSummary } from "@features"
 
 interface CartData {
   isCartPanelOpen: boolean
@@ -17,7 +16,6 @@ const CartContext = createContext<CartData | undefined>(undefined)
 export const CartProvider = ({ children }: React.PropsWithChildren) => {
   const [isCartPanelOpen, setIsCartOpen] = useState(false)
   const queryClient = useQueryClient()
-  const { invalidate: invalidateSession } = useSessionSummary()
 
   const openCartPanel = () => setIsCartOpen(true)
   const closeCartPanel = () => setIsCartOpen(false)
@@ -30,8 +28,9 @@ export const CartProvider = ({ children }: React.PropsWithChildren) => {
   }
 
   const invalidateCart = async () => {
-    await queryClient.invalidateQueries({ queryKey: ["cart"] })
-    await invalidateSession()
+    await queryClient.invalidateQueries({
+      queryKey: ["cart", "session-summary"],
+    })
   }
 
   return (
@@ -49,7 +48,7 @@ export const CartProvider = ({ children }: React.PropsWithChildren) => {
   )
 }
 
-export const useCart = () => {
+export const useCartContext = () => {
   const context = useContext(CartContext)
 
   if (!context) {

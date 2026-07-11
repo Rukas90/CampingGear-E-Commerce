@@ -11,7 +11,7 @@ import {
 import { Link, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import clsx from "clsx"
-import { useCart } from "@features"
+import { useCartContext } from "@features"
 import { twMerge } from "tailwind-merge"
 import type { TopNavVariant } from "@types"
 
@@ -22,7 +22,7 @@ interface TopNavProps extends Omit<
   variant?: TopNavVariant
 }
 const TopNav = ({ variant = "default", className, ...props }: TopNavProps) => {
-  const { openCartPanel } = useCart()
+  const { openCartPanel } = useCartContext()
   const [showListing, setShowListing] = useState(false)
   const location = useLocation()
 

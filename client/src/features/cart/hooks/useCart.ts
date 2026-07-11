@@ -5,7 +5,7 @@ const useCart = (options?: QueryOptions) => {
   const query = useQueryHandler({
     key: ["cart"],
     func: () => cartApi.getCart(),
-    options,
+    ...options,
   })
 
   return { items: query.data, ...query }

@@ -9,7 +9,7 @@ const useProductsQuery = (
   const query = useQueryHandler({
     key: ["products", request],
     func: () => productsApi.queryProducts(request),
-    options,
+    ...options,
   })
 
   return { products: query.data, ...query }

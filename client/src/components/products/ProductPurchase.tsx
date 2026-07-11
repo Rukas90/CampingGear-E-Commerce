@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import ProductButtons from "./ProductButtons"
 import ProductStockLabel from "./ProductStockLabel"
-import { useCart, useProductView } from "@features"
+import { useCartContext, useProductView } from "@features"
 import { AddToCartQuantity } from "@components"
 
 const ProductPurchase = () => {
   const { sku } = useProductView()
   const [quantity, setQuantity] = useState(1)
-  const { addItem } = useCart()
+  const { addItem } = useCartContext()
 
   const stock = sku?.stock ?? 0
 

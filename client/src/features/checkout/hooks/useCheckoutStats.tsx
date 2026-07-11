@@ -8,7 +8,7 @@ const useCheckoutStats = (options?: QueryOptions) => {
   const query = useQueryHandler({
     key: ["checkout-stats"],
     func: () => checkoutApi.getStats(),
-    options,
+    ...options,
   })
 
   const invalidate = () =>

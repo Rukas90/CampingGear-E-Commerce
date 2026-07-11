@@ -4,6 +4,7 @@ using TrailStore.Basket.Contracts.Session;
 using TrailStore.Basket.Domain.Sessions;
 using TrailStore.Basket.Infrastructure.Sessions;
 using TrailStore.Catalog.Contracts.Skus;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
 
@@ -12,7 +13,9 @@ namespace TrailStore.Basket.Infrastructure.Carts;
 [AppService<ICartService>]
 internal sealed class CartService(
     ISkuService skuService,
-    IShoppingSessionService shoppingSessionService) : ICartService
+    IBasketUnitOfWork unitOfWork,
+    IShoppingSessionService shoppingSessionService,
+    IShoppingSessionRepository shoppingSessionRepository) : ICartService
 {
     public async Task<Result<CartValidationStatusResult>> GetCartValidationStatus(ShoppingContextRef ctx, CancellationToken ct)
     {
@@ -60,6 +63,31 @@ internal sealed class CartService(
                     ThumbnailUrl = sku.ThumbnailUrl
                 };
             }).ToArray();
+    }
+
+    /// <summary>
+    /// Merges guest shopping session with the user shopping session.
+    /// </summary>
+    /// <returns>User shopping session.</returns>
+    public async Task<Result<ShoppingContextRef>> MergeCart(
+        ShoppingContextRef guestCtx, Id<UserRef> userId, CancellationToken ct)
+    {
+        var guestSession = await FindAndValidateSession(guestCtx, ct);
+
+        if (!guestSession.IsSuccess)
+        {
+            return ShoppingSessionsProblems.SessionNotFound;
+        }
+        
+        var userSession = await shoppingSessionService.FindOrCreateUserSession(userId, ct);
+        
+        userSession.MergeWith(guestSession.Value);
+
+        shoppingSessionRepository.Delete(guestSession.Value);
+        
+        await unitOfWork.SaveAsync(ct);
+
+        return new ShoppingContextRef(userSession.UserId, Id<ShoppingSessionRef>.From(userSession.Id));
     }
 
     private async Task<Result<ShoppingSession>> FindAndValidateSession(

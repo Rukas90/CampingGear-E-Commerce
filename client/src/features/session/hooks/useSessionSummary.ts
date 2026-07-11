@@ -8,11 +8,11 @@ const useSessionSummary = (options?: QueryOptions) => {
   const query = useQueryHandler({
     key: ["session-summary"],
     func: () => sessionApi.getSessionSummary(),
-    options,
+    ...options,
   })
 
   const invalidate = () =>
-    queryClient.invalidateQueries({ queryKey: ["session-summary"] })
+    queryClient.invalidateQueries({ queryKey: ["session-summary", "cart"] })
 
   return {
     summary: query.data ?? {

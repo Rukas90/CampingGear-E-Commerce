@@ -27,14 +27,7 @@ public sealed class ShoppingSessionService(
     {
         if (ctx.OwnerId is not null)
         {
-            var session = await sessionRepository.FindByUserId(ctx.OwnerId.Value, ct);
-
-            if (session is null)
-            {
-                return ShoppingSessionsProblems.SessionNotFound;
-            }
-            
-            return session;
+            return await FindUserSession(ctx.OwnerId.Value, ct);
         }
 
         if (ctx.SessionId is not null)
@@ -51,7 +44,31 @@ public sealed class ShoppingSessionService(
 
         return ShoppingSessionsProblems.SessionNotFound;
     }
+
+    public async Task<ShoppingSession> FindOrCreateUserSession(Id<UserRef> userId, CancellationToken ct)
+    {
+        var session = await FindUserSession(userId, ct);
+
+        if (session.IsSuccess)
+        {
+            return session.Value;
+        }
+            
+        return CreateSession(userId);
+    }
     
+    private async Task<Result<ShoppingSession>> FindUserSession(Id<UserRef> userId, CancellationToken ct)
+    {
+        var session = await sessionRepository.FindByUserId(userId, ct);
+
+        if (session is null)
+        {
+            return ShoppingSessionsProblems.SessionNotFound;
+        }
+            
+        return session;
+    }
+
     public ShoppingSession CreateSession(Id<UserRef>? userId)
         => sessionRepository.Add(ShoppingSession.Create(userId, options.Value.ExpiryTime));
 }

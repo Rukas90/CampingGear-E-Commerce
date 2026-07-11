@@ -5,7 +5,7 @@ const useCheckoutForm = (options?: QueryOptions) => {
   const query = useQueryHandler({
     key: ["checkout-form"],
     func: () => checkoutApi.getForm(),
-    options,
+    ...options,
   })
 
   return { form: query.data, ...query }
