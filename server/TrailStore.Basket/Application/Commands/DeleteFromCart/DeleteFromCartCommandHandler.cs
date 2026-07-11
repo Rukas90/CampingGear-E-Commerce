@@ -1,6 +1,5 @@
 ﻿using TrailStore.Basket.Application.Abstractions;
 using TrailStore.Basket.Domain.Carts;
-using TrailStore.Basket.Domain.Sessions;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
@@ -9,34 +8,27 @@ namespace TrailStore.Basket.Application.Commands.DeleteFromCart;
 
 [AppService<DeleteFromCartCommandHandler>]
 public class DeleteFromCartCommandHandler(
-    IShoppingSessionService shoppingSessionService, IBasketUnitOfWork unitOfWork) 
-    : ICommandHandler<DeleteFromCartCommand, Id<ShoppingSession>>
+    ICartSessionService cartSessionService, IBasketUnitOfWork unitOfWork) 
+    : ICommandHandler<DeleteFromCartCommand, Id<Cart>>
 {
-    public async Task<Result<Id<ShoppingSession>>> Handle(DeleteFromCartCommand command, CancellationToken ct)
+    public async Task<Result<Id<Cart>>> Handle(DeleteFromCartCommand command, CancellationToken ct)
     {
-        var session = await shoppingSessionService.FindSession(command.ctx, ct);
+        var cart = await cartSessionService.FindCart(command.cartId, command.userId, ct);
 
-        if (!session.IsSuccess)
+        if (!cart.IsSuccess)
         {
-            return session.Problem;
+            return cart.Problem;
         }
         
-        try
+        var result = cart.Value.RemoveItem(command.ItemId);
+        
+        if (!result.IsSuccess)
         {
-            var result = session.Value.RemoveCartItem(command.ItemId);
-
-            if (!result.IsSuccess)
-            {
-                return result.Problem;
-            }
-
-            await unitOfWork.SaveAsync(ct);
-
-            return session.Value.Id;
+            return result.Problem;
         }
-        catch (Exception e)
-        {
-            return CartProblems.UnexpectedProblem(e.Message);
-        }
+        
+        await unitOfWork.SaveAsync(ct);
+
+        return cart.Value.Id;
     }
 }

@@ -8,13 +8,13 @@ namespace TrailStore.Basket.Application.Queries.GetSessionSummary;
 
 [AppService<GetSessionSummaryQueryHandler>]
 public sealed class GetSessionSummaryQueryHandler(
-    IShoppingSessionService shoppingSessionService)
+    ICartSessionService cartSessionService)
     : IQueryHandler<GetSessionSummaryQuery, ShoppingSessionSummary>
 {
     public async Task<Result<ShoppingSessionSummary>> Handle(
         GetSessionSummaryQuery query, CancellationToken ct)
     {
-        var result = await shoppingSessionService.FindSession(query.Ctx, ct);
+        var result = await cartSessionService.FindCart(query.Ctx.CartId, query.Ctx.UserId, ct);
         
         if (!result.IsSuccess)
         {
@@ -25,7 +25,7 @@ public sealed class GetSessionSummaryQueryHandler(
         
         return new ShoppingSessionSummary(
             Id: session.Id,
-            CartCount: session.CartItems.Count,
+            CartCount: session.Items.Count,
             WishlistCount: 0);
     }
 }

@@ -21,7 +21,7 @@ public sealed class LoginCommandHandler(
 
         if (result.IsSuccess)
         {
-            var mergeResult = await cartService.MergeCart(command.Ctx, result.Value.Account.Id.Value, ct);
+            var mergeResult = await cartService.MergeCart(command.guestCartId, result.Value.Account.Id.Value, ct);
             
             if (!mergeResult.IsSuccess)
             {

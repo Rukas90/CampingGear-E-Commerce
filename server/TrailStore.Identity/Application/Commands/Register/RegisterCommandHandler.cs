@@ -30,7 +30,7 @@ public class RegisterCommandHandler(
         
         await unitOfWork.SaveAsync(ct);
 
-        var mergeResult = await cartService.MergeCart(command.Ctx, newUser.Id.Value, ct);
+        var mergeResult = await cartService.MergeCart(command.guestCartId, newUser.Id.Value, ct);
 
         if (!mergeResult.IsSuccess)
         {

@@ -1,5 +1,6 @@
 ﻿using FastEndpoints;
-using TrailStore.Ordering.Api.ShoppingSession;
+using TrailStore.Ordering.Api.Extensions;
+using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Queries.GetCheckoutStats;
 using TrailStore.Shared.Api.Mappers;
 
@@ -12,13 +13,13 @@ public sealed class GetCheckoutStatsEndpoint(GetCheckoutStatsQueryHandler query)
     {
         Get("/api/v1/checkout/stats");
         AllowAnonymous();
+        PreProcessor<RequireCartId<EmptyRequest>>();
     }
     
     public override async Task HandleAsync(CancellationToken ct)
     {
         var result = await query.Handle(
-            new GetCheckoutStatsQuery(HttpContext.GetShoppingContext(User)), 
-            ct);
+            new GetCheckoutStatsQuery(HttpContext.GetCartId()!.Value), ct);
 
         if (!result.IsSuccess)
         {

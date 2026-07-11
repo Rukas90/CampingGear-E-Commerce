@@ -23,7 +23,7 @@ namespace TrailStore.Basket.Infrastructure.Database.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("TrailStore.Basket.Domain.Carts.CartItem", b =>
+            modelBuilder.Entity("TrailStore.Basket.Domain.Carts.Cart", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
@@ -32,30 +32,6 @@ namespace TrailStore.Basket.Infrastructure.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("NOW()");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("SessionId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("SkuId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SessionId");
-
-                    b.ToTable("CartItems", "basket");
-                });
-
-            modelBuilder.Entity("TrailStore.Basket.Domain.Sessions.ShoppingSession", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("ExpiresAt")
                         .HasColumnType("timestamp with time zone");
@@ -70,18 +46,44 @@ namespace TrailStore.Basket.Infrastructure.Database.Migrations
 
             modelBuilder.Entity("TrailStore.Basket.Domain.Carts.CartItem", b =>
                 {
-                    b.HasOne("TrailStore.Basket.Domain.Sessions.ShoppingSession", "ShoppingSession")
-                        .WithMany("CartItems")
-                        .HasForeignKey("SessionId")
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CartId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("SkuId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.ToTable("CartItems", "basket");
+                });
+
+            modelBuilder.Entity("TrailStore.Basket.Domain.Carts.CartItem", b =>
+                {
+                    b.HasOne("TrailStore.Basket.Domain.Carts.Cart", "Cart")
+                        .WithMany("Items")
+                        .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ShoppingSession");
+                    b.Navigation("Cart");
                 });
 
-            modelBuilder.Entity("TrailStore.Basket.Domain.Sessions.ShoppingSession", b =>
+            modelBuilder.Entity("TrailStore.Basket.Domain.Carts.Cart", b =>
                 {
-                    b.Navigation("CartItems");
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,7 @@
 ﻿using FastEndpoints;
-using TrailStore.Ordering.Api.ShoppingSession;
+using TrailStore.Identity.Contracts.Users;
+using TrailStore.Ordering.Api.Extensions;
+using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Commands.UpdateContact;
 using TrailStore.Ordering.Domain.Checkout;
 using TrailStore.Shared.Api.Mappers;
@@ -13,13 +15,14 @@ public sealed class UpdateContactEndpoint(UpdateContactCommandHandler command)
     {
         Patch("/api/v1/checkout/contact");
         AllowAnonymous();
+        PreProcessor<RequireCartId<UpdateContactRequest>>();
     }
 
     public override async Task HandleAsync(UpdateContactRequest req, CancellationToken ct)
     {
         var result = await command.Handle(
             new UpdateContactCommand(
-                HttpContext.GetShoppingContext(User), 
+                HttpContext.GetCartId()!.Value, User.GetId(),
                 new CheckoutContact
                 {
                     EmailAddress = req.EmailAddress,

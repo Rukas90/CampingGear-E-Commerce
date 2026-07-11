@@ -19,7 +19,8 @@ public class RegisterEndpoint(RegisterCommandHandler handler, IAuthCookieService
 
     public override async Task HandleAsync(RegisterRequest req, CancellationToken ct)
     {
-        var result = await handler.Handle(new RegisterCommand(req.Email, req.Password, HttpContext.GetShoppingContext(User)), ct);
+        var result = await handler.Handle(
+            new RegisterCommand(req.Email, req.Password, HttpContext.GetCartId()), ct);
 
         if (!result.IsSuccess)
         {
@@ -31,7 +32,7 @@ public class RegisterEndpoint(RegisterCommandHandler handler, IAuthCookieService
         authCookieService.AppendAuthCookies(
             HttpContext.Response, result.Value.Tokens);
 
-        HttpContext.ClearShoppingContext();
+        HttpContext.ClearCartSessionCookieId();
         
         await Send.OkAsync(result.Value.Account.ToResponse(), ct);
     }

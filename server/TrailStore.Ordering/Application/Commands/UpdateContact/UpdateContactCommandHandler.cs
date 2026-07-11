@@ -12,7 +12,8 @@ public sealed class UpdateContactCommandHandler(
 {
     public async Task<Result> Handle(UpdateContactCommand command, CancellationToken ct)
     {
-        var result = await checkoutSessionService.GetCreateCheckoutSession(command.Ctx, ct);
+        var result = await checkoutSessionService.GetCreateCheckoutSession(
+            command.CartId, command.UserId, ct);
 
         if (!result.IsSuccess)
         {

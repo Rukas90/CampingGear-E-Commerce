@@ -1,9 +1,11 @@
-﻿using TrailStore.Basket.Contracts.Session;
+﻿using TrailStore.Basket.Contracts.Carts;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Ordering.Domain.Checkout;
 using TrailStore.Ordering.Domain.Orders;
 using TrailStore.Shared.Domain.Abstractions;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Ordering.Application.Commands.UpdateShipping;
 
 public sealed record UpdateShippingAddressCommand(
-    ShoppingContextRef Ctx, ShippingAddress Address): ICommand<CheckoutShipping>;
+    Id<CartRef> CartId, Id<UserRef>? UserId, ShippingAddress Address): ICommand<CheckoutShipping>;

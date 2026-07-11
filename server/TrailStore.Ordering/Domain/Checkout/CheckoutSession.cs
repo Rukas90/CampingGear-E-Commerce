@@ -1,4 +1,4 @@
-﻿using TrailStore.Basket.Contracts.Session;
+﻿using TrailStore.Basket.Contracts.Carts;
 using TrailStore.Identity.Contracts.Users;
 using TrailStore.Ordering.Domain.Orders;
 using TrailStore.Ordering.Domain.Shipping;
@@ -9,8 +9,7 @@ namespace TrailStore.Ordering.Domain.Checkout;
 
 public class CheckoutSession : AggregateRoot<CheckoutSession>, IEntityCreatable, IEntityUpdateable, IEntityExpirable
 {
-    public required Id<ShoppingSessionRef> SessionId { get; init; }
-    public Id<UserRef>? UserId { get; init; }
+    public required Id<CartRef> CartId { get; init; }
     
     public required CheckoutStatus Status { get; set; }
     public string? EmailAddress { get; set; }
@@ -25,12 +24,11 @@ public class CheckoutSession : AggregateRoot<CheckoutSession>, IEntityCreatable,
     public DateTime UpdatedAt { get; set; }
     public DateTime? ExpiresAt { get; set; }
     
-    public static CheckoutSession Create(Id<ShoppingSessionRef> sessionId, Id<UserRef>? userId, TimeSpan expireTime)
+    public static CheckoutSession Create(Id<CartRef> cartId, TimeSpan expireTime)
         => new()
         {
             Id = Id<CheckoutSession>.New(),
-            UserId = userId,
-            SessionId = sessionId,
+            CartId = cartId,
             Status = CheckoutStatus.Draft,
             ExpiresAt = DateTime.UtcNow.Add(expireTime),
             ShippingAddressAsBillingAddress = true

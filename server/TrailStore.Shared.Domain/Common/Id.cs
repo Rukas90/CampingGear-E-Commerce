@@ -2,6 +2,15 @@
 
 namespace TrailStore.Shared.Domain.Common;
 
+public static class Id
+{
+    public static Id<T>? Convert<F, T>(Id<F>? other)
+        => other is { } id ? Id<T>.From(id) : null;
+    
+    public static Id<T> Convert<F, T>(Id<F> other)
+        => Id<T>.From(other);
+}
+
 public readonly record struct Id<TType>(Guid Value)
 {
     [JsonIgnore] public bool IsEmpty => Value == Guid.Empty;
@@ -61,6 +70,9 @@ public readonly record struct Id<TType>(Guid Value)
 
         return success;
     }
+
+    public bool Equals(Guid value)
+        => Value.Equals(value);
 
     public override string ToString()
     {

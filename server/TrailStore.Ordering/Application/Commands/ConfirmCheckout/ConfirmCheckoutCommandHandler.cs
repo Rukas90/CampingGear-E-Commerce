@@ -17,7 +17,7 @@ namespace TrailStore.Ordering.Application.Commands.ConfirmCheckout;
 public sealed class ConfirmCheckoutCommandHandler(
     ICartService cartService,
     IShippingMethodRepository shippingMethodRepository,
-    ICheckoutSessionService checkoutSessionService,
+    ICheckoutSessionRepository checkoutSessionRepository,
     IOrderService orderService,
     IOrderingUnitOfWork unitOfWork,
     IOrderingOutbox outbox,
@@ -27,14 +27,12 @@ public sealed class ConfirmCheckoutCommandHandler(
 {
     public async Task<Result<OrderCreatedResult>> Handle(ConfirmCheckoutCommand command, CancellationToken ct)
     {
-        var result = await checkoutSessionService.FindCheckoutSession(command.Ctx, ct);
+        var checkoutSession = await checkoutSessionRepository.FindByCartIdAsync(command.cartId, ct);
 
-        if (!result.IsSuccess)
+        if (checkoutSession is null)
         {
-            return result.Problem;
+            return CheckoutProblems.NoSession;
         }
-
-        var checkoutSession = result.Value;
         
         var validation = CheckoutSessionValidator.Validate(checkoutSession);
 
@@ -45,9 +43,9 @@ public sealed class ConfirmCheckoutCommandHandler(
 
         var validatedCheckout = validation.Value;
 
-        var items = await cartService.GetCartItems(command.Ctx, ct);
+        var cart = await cartService.GetCart(command.cartId.Value, ct);
 
-        if (items.Length <= 0)
+        if (cart is null or { Items.Length: <= 0 })
         {
             return CheckoutProblems.EmptyCart;
         }
@@ -61,7 +59,7 @@ public sealed class ConfirmCheckoutCommandHandler(
 
         var taxRate = validatedCheckout.Country.TaxRate;
         
-        var lineItems = items.Select(item => new OrderLineItem(
+        var lineItems = cart.Items.Select(item => new OrderLineItem(
             item.SkuId, 
             item.BrandName,
             item.ProductName,
@@ -103,7 +101,7 @@ public sealed class ConfirmCheckoutCommandHandler(
         
         var request = new CreateOrderRequest
         {
-            UserId = checkoutSession.UserId,
+            UserId = cart.UserId,
             EmailAddress = validatedCheckout.EmailAddress,
             BillingAddress = validatedCheckout.BillingAddress,
             Country = validatedCheckout.Country,
@@ -126,7 +124,7 @@ public sealed class ConfirmCheckoutCommandHandler(
         await paymentService.CreatePayment(
             new PaymentCreationInput(order.Id, order.TotalPrice, CurrencyCode, MaxAttempts: 3), ct);
 
-        outbox.Enqueue(new OrderCreatedIntegrationEvent(command.Ctx.OwnerId, command.Ctx.SessionId));
+        outbox.Enqueue(new OrderCreatedIntegrationEvent(cart.UserId, cart.CartId));
         
         await unitOfWork.SaveAsync(ct);
         

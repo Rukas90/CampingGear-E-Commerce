@@ -1,12 +1,13 @@
 ﻿using FastEndpoints;
 using TrailStore.Basket.Api.Sessions;
 using TrailStore.Basket.Application.Commands.DeleteFromCart;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Api.Mappers;
 
 namespace TrailStore.Basket.Api.Endpoints.DeleteFromCart;
 
 public sealed class DeleteFromCartEndpoint(
-    DeleteFromCartCommandHandler command, ShoppingSessionCookieService shoppingSessionCookieService) 
+    DeleteFromCartCommandHandler command, CartCookieService cartCookieService) 
     : Endpoint<DeleteFromCartRequest, string>
 {
     public override void Configure()
@@ -18,9 +19,8 @@ public sealed class DeleteFromCartEndpoint(
     
     public override async Task HandleAsync(DeleteFromCartRequest req, CancellationToken ct)
     {
-        var ctx = HttpContext.GetShoppingContext(User);
-        
-        var result = await command.Handle(new DeleteFromCartCommand(ctx, req.ItemId), ct);
+        var result = await command.Handle(new DeleteFromCartCommand(
+            HttpContext.GetCartId(), User.GetId(), req.ItemId), ct);
 
         if (!result.IsSuccess)
         {
@@ -29,7 +29,7 @@ public sealed class DeleteFromCartEndpoint(
             return;
         }
 
-        shoppingSessionCookieService.SyncShoppingSession(ctx.SessionId, result.Value);
+        cartCookieService.SyncCart(result.Value);
         
         await Send.OkAsync("Cart item removed successfully.", ct);
     }

@@ -1,6 +1,5 @@
 ﻿using TrailStore.Basket.Application.Abstractions;
 using TrailStore.Basket.Domain.Carts;
-using TrailStore.Basket.Domain.Sessions;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
@@ -9,24 +8,22 @@ namespace TrailStore.Basket.Application.Commands.UpdateCartItemQuantity;
 
 [AppService<UpdateCartItemQuantityCommandHandler>]
 public class UpdateCartItemQuantityCommandHandler(
-    IShoppingSessionService shoppingSessionService, IBasketUnitOfWork unitOfWork) 
-    : ICommandHandler<UpdateCartItemQuantityCommand, Id<ShoppingSession>>
+    ICartSessionService cartSessionService, IBasketUnitOfWork unitOfWork) 
+    : ICommandHandler<UpdateCartItemQuantityCommand, Id<Cart>>
 {
-    public async Task<Result<Id<ShoppingSession>>> Handle(UpdateCartItemQuantityCommand command, CancellationToken ct)
+    public async Task<Result<Id<Cart>>> Handle(UpdateCartItemQuantityCommand command, CancellationToken ct)
     {
-        var session = await shoppingSessionService.FindOrCreateSession(command.ctx, ct);
+        var cart = await cartSessionService.FindOrCreateCart(command.cartId, command.userId, ct);
 
-        try
+        var result = cart.UpdateItemQuantity(command.ItemId, command.NewQuantity);
+
+        if (!result.IsSuccess)
         {
-            session.UpdateCartItemQuantity(command.ItemId, command.NewQuantity);
-
-            await unitOfWork.SaveAsync(ct);
-
-            return session.Id;
+            return result.Problem;
         }
-        catch (Exception e)
-        {
-            return CartProblems.UnexpectedProblem(e.Message);
-        }
+
+        await unitOfWork.SaveAsync(ct);
+
+        return cart.Id;
     }
 }

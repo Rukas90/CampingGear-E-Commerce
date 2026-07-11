@@ -1,12 +1,13 @@
 ﻿using FastEndpoints;
 using TrailStore.Basket.Api.Sessions;
 using TrailStore.Basket.Application.Queries.GetCart;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Api.Mappers;
 
 namespace TrailStore.Basket.Api.Endpoints.GetCart;
 
 public class GetCartEndpoint(
-    GetCartQueryHandler query, ShoppingSessionCookieService shoppingSessionCookieService) 
+    GetCartQueryHandler query, CartCookieService cartCookieService) 
     : EndpointWithoutRequest<CartItemResponse[]>
 {
     public override void Configure()
@@ -17,9 +18,7 @@ public class GetCartEndpoint(
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        var ctx = HttpContext.GetShoppingContext(User);
-        
-        var result = await query.Handle(new GetCartQuery(ctx), ct);
+        var result = await query.Handle(new GetCartQuery(HttpContext.GetCartId(), User.GetId()), ct);
         
         if (!result.IsSuccess)
         {
@@ -28,13 +27,13 @@ public class GetCartEndpoint(
             return;
         }
 
-        var bag = result.Value;
+        var cart = result.Value;
         
-        if (bag.SessionId is not null)
+        if (cart.Id is not null)
         {
-            shoppingSessionCookieService.SyncShoppingSession(ctx.SessionId, bag.SessionId.Value);
+            cartCookieService.SyncCart(cart.Id.Value);
         }
 
-        await Send.OkAsync(bag.Items.ToResponses(), ct);
+        await Send.OkAsync(cart.Items.ToResponses(), ct);
     }
 }

@@ -5,7 +5,7 @@ namespace TrailStore.Identity.Contracts.Users;
 
 public static class ClaimsPrincipalExtensions
 {
-    public static Id<UserRef>? GetUserId(this ClaimsPrincipal claims)
+    public static Id<UserRef>? GetId(this ClaimsPrincipal claims)
     {
         var idValue = claims.FindFirst(IdentityClaimNames.Subject)?.Value;
 

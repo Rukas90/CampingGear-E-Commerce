@@ -10,7 +10,7 @@ public class CheckoutSessionConfiguration : IEntityTypeConfiguration<CheckoutSes
     {
         builder.HasKey(session => session.Id);
         
-        builder.Property(session => session.SessionId)
+        builder.Property(session => session.CartId)
             .IsRequired();
 
         builder.Property(session => session.EmailAddress)

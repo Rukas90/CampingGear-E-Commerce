@@ -1,7 +1,9 @@
 ﻿using FastEndpoints;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Ordering.Api.Checkouts;
 using TrailStore.Ordering.Api.Common.PostalAddress;
-using TrailStore.Ordering.Api.ShoppingSession;
+using TrailStore.Ordering.Api.Extensions;
+using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Commands.UpdateShipping;
 using TrailStore.Ordering.Domain.Orders;
 using TrailStore.Shared.Api.Mappers;
@@ -15,13 +17,14 @@ public sealed class UpdateShippingAddressEndpoint(UpdateShippingAddressCommandHa
     {
         Patch("/api/v1/checkout/shipping-address");
         AllowAnonymous();
+        PreProcessor<RequireCartId<UpdateShippingAddressRequest>>();
     }
 
     public override async Task HandleAsync(UpdateShippingAddressRequest req, CancellationToken ct)
     {
         var result = await command.Handle
         (new UpdateShippingAddressCommand(
-            HttpContext.GetShoppingContext(User), 
+            HttpContext.GetCartId()!.Value, User.GetId(),
             new ShippingAddress(req.ToPostalAddress())), ct);
 
         if (!result.IsSuccess)

@@ -1,5 +1,6 @@
 ﻿using FastEndpoints;
-using TrailStore.Ordering.Api.ShoppingSession;
+using TrailStore.Ordering.Api.Extensions;
+using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Commands.ConfirmCheckout;
 using TrailStore.Shared.Api.Mappers;
 
@@ -12,11 +13,13 @@ public sealed class ConfirmCheckoutEndpoint(ConfirmCheckoutCommandHandler comman
     {
         Post("/api/v1/checkout/confirm");
         AllowAnonymous();
+        PreProcessor<RequireCartId<EmptyRequest>>();
     }
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        var result = await command.Handle(new ConfirmCheckoutCommand(HttpContext.GetShoppingContext(User)), ct);
+        var result = await command.Handle(
+            new ConfirmCheckoutCommand(HttpContext.GetCartId()!.Value), ct);
 
         if (!result.IsSuccess)
         {

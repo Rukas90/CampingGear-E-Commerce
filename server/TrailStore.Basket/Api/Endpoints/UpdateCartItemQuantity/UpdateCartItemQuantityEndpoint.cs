@@ -1,12 +1,13 @@
 ﻿using FastEndpoints;
 using TrailStore.Basket.Api.Sessions;
 using TrailStore.Basket.Application.Commands.UpdateCartItemQuantity;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Api.Mappers;
 
 namespace TrailStore.Basket.Api.Endpoints.UpdateCartItemQuantity;
 
 public sealed class UpdateCartItemQuantityEndpoint(
-    UpdateCartItemQuantityCommandHandler command, ShoppingSessionCookieService shoppingSessionCookieService) 
+    UpdateCartItemQuantityCommandHandler command, CartCookieService cartCookieService) 
     : Endpoint<UpdateCartItemQuantityRequest, string>
 {
     public override void Configure()
@@ -17,9 +18,8 @@ public sealed class UpdateCartItemQuantityEndpoint(
 
     public override async Task HandleAsync(UpdateCartItemQuantityRequest req, CancellationToken ct)
     {
-        var ctx = HttpContext.GetShoppingContext(User);
-        
-        var result = await command.Handle(new UpdateCartItemQuantityCommand(ctx, req.ItemId, req.Quantity), ct);
+        var result = await command.Handle(new UpdateCartItemQuantityCommand(
+            HttpContext.GetCartId(), User.GetId(), req.ItemId, req.Quantity), ct);
 
         if (!result.IsSuccess)
         {
@@ -28,7 +28,7 @@ public sealed class UpdateCartItemQuantityEndpoint(
             return;
         }
 
-        shoppingSessionCookieService.SyncShoppingSession(ctx.SessionId, result.Value);
+        cartCookieService.SyncCart(result.Value);
         
         await Send.OkAsync("Cart item updated successfully.", ct);
     }

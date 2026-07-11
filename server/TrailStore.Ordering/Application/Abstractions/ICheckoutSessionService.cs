@@ -1,4 +1,5 @@
-﻿using TrailStore.Basket.Contracts.Session;
+﻿using TrailStore.Basket.Contracts.Carts;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Ordering.Domain.Checkout;
 using TrailStore.Shared.Domain.Common;
 
@@ -6,11 +7,7 @@ namespace TrailStore.Ordering.Application.Abstractions;
 
 public interface ICheckoutSessionService
 {
-    Task<Result<CheckoutSession>>
-        GetCreateCheckoutSession(ShoppingContextRef ctx, CancellationToken ct);
+    Task<Result<CheckoutSession>> GetCreateCheckoutSession(Id<CartRef> cartId, Id<UserRef>? userId, CancellationToken ct);
 
-    Task<Result<CheckoutSession>>
-        FindCheckoutSession(ShoppingContextRef ctx, CancellationToken ct);
-
-    Task<Result> ValidateSession(ShoppingContextRef ctx, CancellationToken ct);
+    Task<Result<CheckoutSession>> FindCheckoutSession(Id<CartRef> cartId, CancellationToken ct);
 }

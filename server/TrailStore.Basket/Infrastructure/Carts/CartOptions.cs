@@ -1,11 +1,11 @@
 ﻿using TrailStore.Shared.Infrastructure.DI;
 
-namespace TrailStore.Basket.Infrastructure.Sessions;
+namespace TrailStore.Basket.Infrastructure.Carts;
 
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
-[AppOptions("ShoppingSession")]
-public class ShoppingSessionOptions
+[AppOptions("Cart")]
+public class CartOptions
 {
     public int ExpiryMinutes { get; init; } = 43_200;
     

@@ -14,7 +14,7 @@ public sealed class BasketDbContext(DbContextOptions<BasketDbContext> options)
 {
     protected override string DefaultSchema => DbDefaults.DefaultSchema;
 
-    public DbSet<ShoppingSession> ShoppingSessions { get; set; }
+    public DbSet<Cart> ShoppingSessions { get; set; }
     
     public DbSet<CartItem> CartItems { get; set; }
     

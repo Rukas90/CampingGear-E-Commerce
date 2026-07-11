@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace TrailStore.Identity.Api.Endpoints.Me;
+namespace TrailStore.Identity.Api.Endpoints.GetAccount;
 
 public static class AccountResponseMapping
 {

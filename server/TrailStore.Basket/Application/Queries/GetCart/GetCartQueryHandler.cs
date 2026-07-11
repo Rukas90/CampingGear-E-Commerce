@@ -1,6 +1,5 @@
 ﻿using TrailStore.Basket.Application.Abstractions;
 using TrailStore.Basket.Application.Results;
-using TrailStore.Basket.Domain.Carts;
 using TrailStore.Catalog.Contracts.Skus;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
@@ -11,34 +10,27 @@ namespace TrailStore.Basket.Application.Queries.GetCart;
 [AppService<GetCartQueryHandler>]
 public class GetCartQueryHandler(
     ISkuService skuService,
-    IShoppingSessionService shoppingSessionService) : IQueryHandler<GetCartQuery, CartResult>
+    ICartSessionService cartSessionService) : IQueryHandler<GetCartQuery, CartResult>
 {
     public async Task<Result<CartResult>> Handle(GetCartQuery query, CancellationToken ct)
     {
-        var session = await shoppingSessionService.FindSession(query.Ctx, ct);
+        var cart = await cartSessionService.FindCart(query.cartId, query.userId, ct);
 
-        if (!session.IsSuccess)
+        if (!cart.IsSuccess)
         {
-            return session.Problem;
+            return cart.Problem;
         }
         
-        try
-        {
-            var items = session.Value.CartItems;
+        var items = cart.Value.Items;
 
-            if (items.Count == 0)
-            {
-                return CartResult.Empty;
-            }
+        if (items.Count == 0)
+        {
+            return CartResult.Empty;
+        }
             
-            var ids = items.Select(i => i.SkuId).ToArray();
-            var skus = await skuService.GetSkusFromIds(ids, ct);
+        var ids = items.Select(i => i.SkuId).ToArray();
+        var skus = await skuService.GetSkusFromIds(ids, ct);
 
-            return new CartResult(session.Value.Id, items.ToResultItems(skus));
-        }
-        catch (Exception e)
-        {
-            return CartProblems.UnexpectedProblem(e.Message);
-        }
+        return new CartResult(cart.Value.Id, items.ToResultItems(skus));
     }
 }

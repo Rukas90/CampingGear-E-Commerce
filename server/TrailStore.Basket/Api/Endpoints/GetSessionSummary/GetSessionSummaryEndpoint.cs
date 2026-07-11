@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using TrailStore.Basket.Api.Extensions;
 using TrailStore.Basket.Api.Sessions;
 using TrailStore.Basket.Application.Queries.GetSessionSummary;
 using TrailStore.Shared.Api.Mappers;
@@ -7,7 +8,7 @@ namespace TrailStore.Basket.Api.Endpoints.GetSessionSummary;
 
 public sealed class GetSessionSummaryEndpoint(
     GetSessionSummaryQueryHandler query,
-    ShoppingSessionCookieService shoppingSessionCookieService)
+    CartCookieService cartCookieService)
     : EndpointWithoutRequest<SessionSummaryResponse>
 {
     public override void Configure()
@@ -18,10 +19,10 @@ public sealed class GetSessionSummaryEndpoint(
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        var ctx = HttpContext.GetShoppingContext(User);
+        var ctx = HttpContext.GetCartSessionContext();
         
         var result = await query.Handle(
-            new GetSessionSummaryQuery(HttpContext.GetShoppingContext(User)), ct);
+            new GetSessionSummaryQuery(HttpContext.GetCartSessionContext()), ct);
 
         if (!result.IsSuccess)
         {
@@ -32,14 +33,14 @@ public sealed class GetSessionSummaryEndpoint(
 
         var summary = result.Value;
         
-        if (summary.Id is not null && !summary.Id.Equals(ctx.SessionId))
+        if (summary.Id is not null && !summary.Id.Equals(ctx.CartId))
         {
-            shoppingSessionCookieService.UpdateShoppingSessionId(summary.Id.Value);
+            cartCookieService.UpdateCartId(summary.Id.Value);
         }
         
         if (summary.Id is null)
         {
-            shoppingSessionCookieService.ClearShoppingSession();
+            cartCookieService.ClearCartId();
         }
 
         await Send.OkAsync(new SessionSummaryResponse

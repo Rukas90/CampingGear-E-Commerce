@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using TrailStore.Basket.Contracts.Session;
+using TrailStore.Basket.Contracts.Carts;
 using TrailStore.Catalog.Contracts.Skus;
 using TrailStore.Identity.Contracts.Users;
 using TrailStore.Ordering.Application.Abstractions;
@@ -35,7 +35,7 @@ public sealed class OrderingDbContext(DbContextOptions<OrderingDbContext> option
     
     protected override Assembly[] AdditionalConfigurationAssemblies()
         => [
-            typeof(ShoppingSessionRef).Assembly,
+            typeof(CartRef).Assembly,
             typeof(UserRef).Assembly,
             typeof(SkuRef).Assembly,
             typeof(OutboxMessage).Assembly

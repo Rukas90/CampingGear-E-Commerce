@@ -1,5 +1,7 @@
 ﻿using FastEndpoints;
-using TrailStore.Ordering.Api.ShoppingSession;
+using TrailStore.Identity.Contracts.Users;
+using TrailStore.Ordering.Api.Extensions;
+using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Commands.UpdateShipping;
 using TrailStore.Shared.Api.Mappers;
 
@@ -12,13 +14,14 @@ public class UpdateShippingMethodEndpoint(UpdateShippingMethodCommandHandler com
     {
         Patch("/api/v1/checkout/shipping-method");
         AllowAnonymous();
+        PreProcessor<RequireCartId<UpdateShippingMethodRequest>>();
     }
     
     public override async Task HandleAsync(UpdateShippingMethodRequest req, CancellationToken ct)
     {
         var result = await command.Handle(
             new UpdateShippingMethodCommand(
-                HttpContext.GetShoppingContext(User), 
+                HttpContext.GetCartId()!.Value, User.GetId(),
                 req.ShippingMethodId), ct);
 
         if (!result.IsSuccess)

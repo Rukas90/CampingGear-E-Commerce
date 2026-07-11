@@ -1,12 +1,13 @@
 ﻿using FastEndpoints;
 using TrailStore.Basket.Api.Sessions;
 using TrailStore.Basket.Application.Commands.AddToCart;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Api.Mappers;
 
 namespace TrailStore.Basket.Api.Endpoints.AddToCart;
 
 public sealed class AddToCartEndpoint(
-    AddToCartCommandHandler command, ShoppingSessionCookieService shoppingSessionCookieService) 
+    AddToCartCommandHandler command, CartCookieService cartCookieService) 
     : Endpoint<AddToCartRequest, string>
 {
     public override void Configure()
@@ -18,9 +19,9 @@ public sealed class AddToCartEndpoint(
 
     public override async Task HandleAsync(AddToCartRequest req, CancellationToken ct)
     {
-        var ctx = HttpContext.GetShoppingContext(User);
         
-        var result = await command.Handle(new AddToCartCommand(ctx, req.SkuId, req.Quantity), ct);
+        var result = await command.Handle(new AddToCartCommand(
+            HttpContext.GetCartId(), User.GetId(), req.SkuId, req.Quantity), ct);
 
         if (!result.IsSuccess)
         {
@@ -29,7 +30,7 @@ public sealed class AddToCartEndpoint(
             return;
         }
 
-        shoppingSessionCookieService.SyncShoppingSession(ctx.SessionId, result.Value);
+        cartCookieService.SyncCart(result.Value);
 
         await Send.OkAsync("Cart item added successfully.", ct);
     }

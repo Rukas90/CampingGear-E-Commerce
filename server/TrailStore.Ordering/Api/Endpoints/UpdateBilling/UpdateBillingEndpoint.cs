@@ -1,6 +1,8 @@
 ﻿using FastEndpoints;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Ordering.Api.Common.PostalAddress;
-using TrailStore.Ordering.Api.ShoppingSession;
+using TrailStore.Ordering.Api.Extensions;
+using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Commands.UpdateBilling;
 using TrailStore.Ordering.Domain.Checkout;
 using TrailStore.Ordering.Domain.Orders;
@@ -15,13 +17,14 @@ public sealed class UpdateBillingEndpoint(UpdateBillingCommandHandler command)
     {
         Patch("/api/v1/checkout/billing");
         AllowAnonymous();
+        PreProcessor<RequireCartId<UpdateBillingRequest>>();
     }
     
     public override async Task HandleAsync(UpdateBillingRequest req, CancellationToken ct)
     {
         var result = await command.Handle(
-            new UpdateBillingCommand(
-                HttpContext.GetShoppingContext(User), new CheckoutBilling
+            new UpdateBillingCommand(HttpContext.GetCartId()!.Value, User.GetId(),
+                new CheckoutBilling
                 {
                     AsShippingAddress = req.AsShippingAddress ?? true,
                     Address = req.Address is not null 

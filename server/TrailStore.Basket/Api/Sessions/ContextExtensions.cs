@@ -1,9 +1,8 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using TrailStore.Basket.Contracts.Session;
-using TrailStore.Basket.Domain.Sessions;
-using TrailStore.Identity.Contracts.Users;
+using TrailStore.Basket.Domain.Carts;
 using TrailStore.Shared.Api.Extensions;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Basket.Api.Sessions;
 
@@ -11,7 +10,7 @@ public static class ContextExtensions
 {
     extension(HttpContext httpContext)
     {
-        public ShoppingContext GetShoppingContext(ClaimsPrincipal user)
-            => new(user.GetUserId(), httpContext.GetId<ShoppingSession>(SessionCookies.ShoppingSessionIdentifier));
+        public Id<Cart>? GetCartId()
+            => httpContext.GetId<Cart>(CartCookies.CartIdentifier);
     }
 }

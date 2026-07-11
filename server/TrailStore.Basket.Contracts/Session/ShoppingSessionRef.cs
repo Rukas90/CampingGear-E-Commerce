@@ -2,4 +2,4 @@
 
 namespace TrailStore.Basket.Contracts.Session;
 
-public sealed record ShoppingSessionRef : IIdentifier<ShoppingSessionRef>;
+/*public sealed record ShoppingSessionRef : IIdentifier<ShoppingSessionRef>;*/

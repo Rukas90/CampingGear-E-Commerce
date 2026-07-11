@@ -1,8 +1,6 @@
 ﻿using TrailStore.Basket.Application.Abstractions;
 using TrailStore.Basket.Contracts.Carts;
-using TrailStore.Basket.Contracts.Session;
-using TrailStore.Basket.Domain.Sessions;
-using TrailStore.Basket.Infrastructure.Sessions;
+using TrailStore.Basket.Domain.Carts;
 using TrailStore.Catalog.Contracts.Skus;
 using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Domain.Common;
@@ -14,39 +12,37 @@ namespace TrailStore.Basket.Infrastructure.Carts;
 internal sealed class CartService(
     ISkuService skuService,
     IBasketUnitOfWork unitOfWork,
-    IShoppingSessionService shoppingSessionService,
-    IShoppingSessionRepository shoppingSessionRepository) : ICartService
+    ICartRepository cartRepository, 
+    ICartSessionService cartSessionService) : ICartService
 {
-    public async Task<Result<CartValidationStatusResult>> GetCartValidationStatus(ShoppingContextRef ctx, CancellationToken ct)
+    public async Task<Result<CartValidationStatusResult>> GetCartValidationStatus(CartSessionContextRef ctx, CancellationToken ct)
     {
-        var result = await FindAndValidateSession(ctx, ct);
+        var result = await cartSessionService.FindCart(Id.Convert<CartRef, Cart>(ctx.CartId), userId: ctx.UserId, ct);
 
         if (!result.IsSuccess)
         {
             return result.Problem;
         }
         
-        var session = result.Value;
+        var cart = result.Value;
         
-        return new CartValidationStatusResult(CartEmpty: session.CartItems.Count == 0);
+        return new CartValidationStatusResult(CartEmpty: cart.Items.Count == 0);
     }
 
-    public async Task<CartItemResult[]> GetCartItems(ShoppingContextRef ctx, CancellationToken ct)
+    public async Task<CartResult?> GetCart(Id<CartRef> cartId, CancellationToken ct)
     {
-        var result = await FindAndValidateSession(ctx, ct);
+        var cart = await cartRepository.FindAsync(Id.Convert<CartRef, Cart>(cartId), ct);
 
-        if (!result.IsSuccess)
+        if (cart is null)
         {
-            return [];
+            return null;
         }
         
-        var session = result.Value;
-        
         var skus = await skuService.GetSkusFromIds(
-            session.CartItems.Select(item => item.SkuId).ToArray(), 
+            cart.Items.Select(item => item.SkuId).ToArray(), 
             ct);
 
-        return session.CartItems
+        return new CartResult(cartId, cart.UserId, cart.Items
             .Where(item => skus.Any(sku => sku.Id == item.SkuId))
             .Select(item =>
             {
@@ -62,51 +58,37 @@ internal sealed class CartService(
                     Quantity = item.Quantity,
                     ThumbnailUrl = sku.ThumbnailUrl
                 };
-            }).ToArray();
+            }).ToArray());
     }
 
     /// <summary>
     /// Merges guest shopping session with the user shopping session.
     /// </summary>
     /// <returns>User shopping session.</returns>
-    public async Task<Result<ShoppingContextRef>> MergeCart(
-        ShoppingContextRef guestCtx, Id<UserRef> userId, CancellationToken ct)
+    public async Task<Result<CartSessionContextRef>> MergeCart(
+        Id<CartRef>? guestCartId, Id<UserRef> userId, CancellationToken ct)
     {
-        var guestSession = await FindAndValidateSession(guestCtx, ct);
-
-        if (!guestSession.IsSuccess)
+        if (guestCartId is null)
         {
-            return ShoppingSessionsProblems.SessionNotFound;
+            return CartProblems.NotFound;
         }
         
-        var userSession = await shoppingSessionService.FindOrCreateUserSession(userId, ct);
+        var result = await cartSessionService.FindCart(Id.Convert<CartRef, Cart>(guestCartId), userId: null, ct);
         
-        userSession.MergeWith(guestSession.Value);
-
-        shoppingSessionRepository.Delete(guestSession.Value);
-        
-        await unitOfWork.SaveAsync(ct);
-
-        return new ShoppingContextRef(userSession.UserId, Id<ShoppingSessionRef>.From(userSession.Id));
-    }
-
-    private async Task<Result<ShoppingSession>> FindAndValidateSession(
-        ShoppingContextRef ctx, CancellationToken ct)
-    {
-        var result = await shoppingSessionService.FindSession(ctx.ToDomain(), ct);
-
         if (!result.IsSuccess)
         {
             return result.Problem;
         }
+        
+        var guestCart = result.Value;
+        
+        var userCart = await cartSessionService.FindOrCreateUserCart(userId, ct);
+        
+        userCart.MergeWith(guestCart);
+        cartRepository.Delete(guestCart);
+        
+        await unitOfWork.SaveAsync(ct);
 
-        var session = result.Value;
-
-        if (session.IsExpired())
-        {
-            return ShoppingSessionsProblems.SessionExpired;
-        }
-
-        return result.Value;
+        return new CartSessionContextRef(Id<CartRef>.From(userCart.Id), userCart.UserId);
     }
 }

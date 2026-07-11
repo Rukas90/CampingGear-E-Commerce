@@ -1,6 +1,5 @@
 ﻿using TrailStore.Basket.Application.Abstractions;
 using TrailStore.Basket.Domain.Carts;
-using TrailStore.Basket.Domain.Sessions;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
@@ -9,24 +8,22 @@ namespace TrailStore.Basket.Application.Commands.AddToCart;
 
 [AppService<AddToCartCommandHandler>]
 public class AddToCartCommandHandler(
-    IShoppingSessionService shoppingSessionService, IBasketUnitOfWork unitOfWork) 
-    : ICommandHandler<AddToCartCommand, Id<ShoppingSession>>
+    ICartSessionService cartSessionService, IBasketUnitOfWork unitOfWork) 
+    : ICommandHandler<AddToCartCommand, Id<Cart>>
 {
-    public async Task<Result<Id<ShoppingSession>>> Handle(AddToCartCommand command, CancellationToken ct)
+    public async Task<Result<Id<Cart>>> Handle(AddToCartCommand command, CancellationToken ct)
     {
-        var session = await shoppingSessionService.FindOrCreateSession(command.Ctx, ct);
+        var cart = await cartSessionService.FindOrCreateCart(command.cartId, command.userId, ct);
+        
+        var result = cart.AddItem(command.SkuId, command.Quantity);
 
-        try
+        if (!result.IsSuccess)
         {
-            session.AddCartItem(command.SkuId, command.Quantity);
-
-            await unitOfWork.SaveAsync(ct);
-
-            return session.Id;
+            return result.Problem;
         }
-        catch (Exception e)
-        {
-            return CartProblems.UnexpectedProblem(e.Message);
-        }
+        
+        await unitOfWork.SaveAsync(ct);
+        
+        return cart.Id;
     }
 }

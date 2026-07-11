@@ -1,15 +1,13 @@
-﻿using TrailStore.Basket.Contracts.Session;
-using TrailStore.Identity.Contracts.Users;
+﻿using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Basket.Contracts.Carts;
 
 public interface ICartService
 {
-    Task<Result<CartValidationStatusResult>> GetCartValidationStatus(
-        ShoppingContextRef ctx, CancellationToken ct);
+    Task<Result<CartValidationStatusResult>> GetCartValidationStatus(CartSessionContextRef ctx, CancellationToken ct);
     
-    Task<CartItemResult[]> GetCartItems(ShoppingContextRef ctx, CancellationToken ct);
+    Task<CartResult?> GetCart(Id<CartRef> cartId, CancellationToken ct);
     
-    Task<Result<ShoppingContextRef>> MergeCart(ShoppingContextRef guestCtx, Id<UserRef> userId, CancellationToken ct);
+    Task<Result<CartSessionContextRef>> MergeCart(Id<CartRef>? guestCartId, Id<UserRef> userId, CancellationToken ct);
 }

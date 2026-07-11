@@ -20,7 +20,7 @@ public sealed class GetCheckoutStatsQueryHandler(
     public async Task<Result<CheckoutStats>> Handle(
         GetCheckoutStatsQuery query, CancellationToken ct)
     {
-        var result = await checkoutSessionService.FindCheckoutSession(query.Ctx, ct);
+        var result = await checkoutSessionService.FindCheckoutSession(query.CartId, ct);
 
         if (!result.IsSuccess)
         {
@@ -44,14 +44,14 @@ public sealed class GetCheckoutStatsQueryHandler(
         var selectedShippingMethod = checkoutSession.ShippingMethodId is not null 
             ? await shippingMethodRepository.FindAsync(checkoutSession.ShippingMethodId.Value, ct) : null;
         
-        var items = await cartService.GetCartItems(query.Ctx, ct);
+        var cart = await cartService.GetCart(query.CartId, ct);
 
-        if (items.Length <= 0)
+        if (cart is null or { Items.Length: <= 0 })
         {
             return CheckoutProblems.EmptyCart;
         }
         
-        var subtotal = items.Sum(item => item.UnitPrice * item.Quantity);
+        var subtotal = cart.Items.Sum(item => item.UnitPrice * item.Quantity);
         
         if (country is null || selectedShippingMethod is null)
         {
@@ -67,7 +67,7 @@ public sealed class GetCheckoutStatsQueryHandler(
             };
         }
 
-        var lines = items.Select(
+        var lines = cart.Items.Select(
             item => FinancialsCalculator.CalculateLine(new LineFinancialsCalculationInput
         {
             UnitPrice = item.UnitPrice,

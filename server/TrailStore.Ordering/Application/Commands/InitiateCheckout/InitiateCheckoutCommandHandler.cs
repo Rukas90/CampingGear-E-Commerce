@@ -15,14 +15,14 @@ public sealed class InitiateCheckoutCommandHandler(
 {
     public async Task<Result> Handle(InitiateCheckoutCommand command, CancellationToken ct)
     {
-        var items = await cartService.GetCartItems(command.Ctx, ct);
+        var cart = await cartService.GetCart(command.CartId, ct);
 
-        if (items.Length <= 0)
+        if (cart is null or { Items.Length: <= 0 })
         {
             return CheckoutProblems.EmptyCart;
         }
         
-        var result = await checkoutSessionService.GetCreateCheckoutSession(command.Ctx, ct);
+        var result = await checkoutSessionService.GetCreateCheckoutSession(command.CartId, command.UserId, ct);
 
         if (!result.IsSuccess)
         {

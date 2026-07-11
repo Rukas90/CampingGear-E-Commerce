@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using TrailStore.Basket.Contracts.Session;
-using TrailStore.Basket.Domain.Sessions;
-using TrailStore.Basket.Infrastructure.Sessions;
+using TrailStore.Basket.Domain.Carts;
+using TrailStore.Basket.Infrastructure.Carts;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Basket.Api.Sessions;
 
-[AppService<ShoppingSessionCookieService>]
-public sealed class ShoppingSessionCookieService(
+[AppService<CartCookieService>]
+public sealed class CartCookieService(
     IHttpContextAccessor httpContextAccessor,
-    IOptions<ShoppingSessionOptions> options)
+    IOptions<CartOptions> options)
 {
     private readonly CookieOptions cookieOptions = new()
     {
@@ -23,25 +23,24 @@ public sealed class ShoppingSessionCookieService(
     
     private HttpContext Http => httpContextAccessor.HttpContext!;
     
-    public void SyncShoppingSession(
-        Id<ShoppingSession>? current, Id<ShoppingSession> next)
+    public void SyncCart(Id<Cart> next)
     {
-        if (!next.Equals(current))
+        if (!next.Equals(Http.GetCartId()))
         {
-            UpdateShoppingSessionId(next);
+            UpdateCartId(next);
         }
     }
     
-    public void UpdateShoppingSessionId(Id<ShoppingSession> sessionId)
+    public void UpdateCartId(Id<Cart> cartId)
     {
         Http.Response.Cookies.Append(
-            SessionCookies.ShoppingSessionIdentifier,
-            sessionId.ToString(),
+            CartCookies.CartIdentifier,
+            cartId.ToString(),
             cookieOptions);
     }
 
-    public void ClearShoppingSession()
+    public void ClearCartId()
     {
-        Http.Response.Cookies.Delete(SessionCookies.ShoppingSessionIdentifier);
+        Http.Response.Cookies.Delete(CartCookies.CartIdentifier);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using FastEndpoints;
-using TrailStore.Ordering.Api.ShoppingSession;
+using TrailStore.Identity.Contracts.Users;
+using TrailStore.Ordering.Api.Extensions;
+using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Queries.GetCheckoutForm;
 using TrailStore.Shared.Api.Mappers;
 
@@ -12,12 +14,13 @@ public sealed class GetCheckoutFormEndpoint(GetCheckoutFormQueryHandler query)
     {
         Get("/api/v1/checkout/form");
         AllowAnonymous();
+        PreProcessor<RequireCartId<EmptyRequest>>();
     }
 
     public override async Task HandleAsync(CancellationToken ct)
     {
         var result = await query.Handle(
-            new GetCheckoutFormQuery(HttpContext.GetShoppingContext(User)), ct);
+            new GetCheckoutFormQuery(HttpContext.GetCartId()!.Value, User.GetId()), ct);
 
         if (!result.IsSuccess)
         {

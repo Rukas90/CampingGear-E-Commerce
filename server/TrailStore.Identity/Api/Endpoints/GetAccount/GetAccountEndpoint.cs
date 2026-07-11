@@ -1,6 +1,6 @@
 ﻿using FastEndpoints;
 
-namespace TrailStore.Identity.Api.Endpoints.Me;
+namespace TrailStore.Identity.Api.Endpoints.GetAccount;
 
 public class GetAccountEndpoint : EndpointWithoutRequest<AccountResponse?>
 {

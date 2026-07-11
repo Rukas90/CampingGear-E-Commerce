@@ -16,7 +16,7 @@ public sealed class UpdateShippingAddressCommandHandler(
     public async Task<Result<CheckoutShipping>> Handle(
         UpdateShippingAddressCommand command, CancellationToken ct)
     {
-        var result = await checkoutSessionService.GetCreateCheckoutSession(command.Ctx, ct);
+        var result = await checkoutSessionService.GetCreateCheckoutSession(command.CartId, command.UserId, ct);
         
         if (!result.IsSuccess)
         {

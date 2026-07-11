@@ -13,7 +13,7 @@ public class GetCheckoutFormQueryHandler(
 {
     public async Task<Result<CheckoutForm>> Handle(GetCheckoutFormQuery query, CancellationToken ct)
     {
-        var result = await checkoutSessionService.GetCreateCheckoutSession(query.Ctx, ct);
+        var result = await checkoutSessionService.GetCreateCheckoutSession(query.CartId, query.UserId, ct);
 
         if (!result.IsSuccess)
         {
