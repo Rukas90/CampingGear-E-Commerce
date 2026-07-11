@@ -24,7 +24,7 @@ public sealed class GetSessionSummaryQueryHandler(
         var session = result.Value;
         
         return new ShoppingSessionSummary(
-            Id: session.Id,
+            CartId: session.Id,
             CartCount: session.Items.Count,
             WishlistCount: 0);
     }

@@ -19,8 +19,6 @@ public sealed class GetSessionSummaryEndpoint(
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        var ctx = HttpContext.GetCartSessionContext();
-        
         var result = await query.Handle(
             new GetSessionSummaryQuery(HttpContext.GetCartSessionContext()), ct);
 
@@ -33,12 +31,13 @@ public sealed class GetSessionSummaryEndpoint(
 
         var summary = result.Value;
         
-        if (summary.Id is not null && !summary.Id.Equals(ctx.CartId))
+        if (summary.CartId is not null 
+            && !summary.CartId.Equals(HttpContext.GetCartId()))
         {
-            cartCookieService.UpdateCartId(summary.Id.Value);
+            cartCookieService.UpdateCartId(summary.CartId.Value);
         }
         
-        if (summary.Id is null)
+        if (summary.CartId is null)
         {
             cartCookieService.ClearCartId();
         }

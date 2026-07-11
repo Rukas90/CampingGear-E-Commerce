@@ -27,36 +27,33 @@ public sealed class CartSessionService(
 
     public async Task<Result<Cart>> FindCart(Id<Cart>? cartId, Id<UserRef>? userId, CancellationToken ct)
     {
-        if (userId is not null)
+        if (cartId is null)
         {
-            var cart = await cartRepository.FindByUserId(userId.Value, ct);
-
-            if (cart is not null)
+            if (userId is not null)
             {
-                return cart;
+                return await FindUserCart(userId.Value, ct);
             }
+            
+            return CartProblems.NotFound;
         }
         
-        if (cartId is not null)
+        var cart = await cartRepository.FindAsync(cartId.Value, ct);
+        
+        if (cart is null || cart.UserId is not null && cart.UserId != userId)
         {
-            var cart = await cartRepository.FindAsync(cartId.Value, ct);
-            
-            if (cart is not null)
-            {
-                return cart;
-            }
+            return CartProblems.NotFound;
         }
-
-        return CartProblems.NotFound;
+        
+        return cart;
     }
 
     public async Task<Cart> FindOrCreateUserCart(Id<UserRef> userId, CancellationToken ct)
     {
-        var session = await FindUserCart(userId, ct);
+        var result = await FindUserCart(userId, ct);
 
-        if (session.IsSuccess)
+        if (result.IsSuccess)
         {
-            return session.Value;
+            return result.Value;
         }
             
         return CreateCart(userId);
@@ -64,14 +61,14 @@ public sealed class CartSessionService(
     
     public async Task<Result<Cart>> FindUserCart(Id<UserRef> userId, CancellationToken ct)
     {
-        var session = await cartRepository.FindByUserId(userId, ct);
+        var cart = await cartRepository.FindByUserId(userId, ct);
 
-        if (session is null)
+        if (cart is null)
         {
-            return ShoppingSessionsProblems.SessionNotFound;
+            return CartProblems.NotFound;
         }
             
-        return session;
+        return cart;
     }
 
     public Cart CreateCart(Id<UserRef>? userId)

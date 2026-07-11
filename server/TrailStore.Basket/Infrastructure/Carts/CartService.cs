@@ -62,10 +62,10 @@ internal sealed class CartService(
     }
 
     /// <summary>
-    /// Merges guest shopping session with the user shopping session.
+    /// Merges guest cart with the user cart.
     /// </summary>
-    /// <returns>User shopping session.</returns>
-    public async Task<Result<CartSessionContextRef>> MergeCart(
+    /// <returns>User cart id.</returns>
+    public async Task<Result<Id<CartRef>>> MergeCart(
         Id<CartRef>? guestCartId, Id<UserRef> userId, CancellationToken ct)
     {
         if (guestCartId is null)
@@ -73,7 +73,8 @@ internal sealed class CartService(
             return CartProblems.NotFound;
         }
         
-        var result = await cartSessionService.FindCart(Id.Convert<CartRef, Cart>(guestCartId), userId: null, ct);
+        var result = await cartSessionService.FindCart(
+            Id.Convert<CartRef, Cart>(guestCartId), userId: null, ct);
         
         if (!result.IsSuccess)
         {
@@ -89,6 +90,6 @@ internal sealed class CartService(
         
         await unitOfWork.SaveAsync(ct);
 
-        return new CartSessionContextRef(Id<CartRef>.From(userCart.Id), userCart.UserId);
+        return Id<CartRef>.From(userCart.Id);
     }
 }

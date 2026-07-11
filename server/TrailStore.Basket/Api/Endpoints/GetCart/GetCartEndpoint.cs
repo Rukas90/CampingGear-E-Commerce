@@ -18,7 +18,8 @@ public class GetCartEndpoint(
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        var result = await query.Handle(new GetCartQuery(HttpContext.GetCartId(), User.GetId()), ct);
+        var result = await query.Handle(
+            new GetCartQuery(HttpContext.GetCartId(), User.GetId()), ct);
         
         if (!result.IsSuccess)
         {

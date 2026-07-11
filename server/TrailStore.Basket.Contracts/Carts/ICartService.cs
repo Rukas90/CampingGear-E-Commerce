@@ -9,5 +9,5 @@ public interface ICartService
     
     Task<CartResult?> GetCart(Id<CartRef> cartId, CancellationToken ct);
     
-    Task<Result<CartSessionContextRef>> MergeCart(Id<CartRef>? guestCartId, Id<UserRef> userId, CancellationToken ct);
+    Task<Result<Id<CartRef>>> MergeCart(Id<CartRef>? guestCartId, Id<UserRef> userId, CancellationToken ct);
 }
