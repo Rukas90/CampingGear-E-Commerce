@@ -18,6 +18,10 @@ public class CheckoutSessionConfiguration : IEntityTypeConfiguration<CheckoutSes
         
         builder.Property(session => session.Status)
             .IsRequired();
+        
+        builder.ToTable(t => t.HasCheckConstraint(
+            "CK_CheckoutSessions_EmailRequiredForUser",
+            "\"UserId\" IS NULL OR \"EmailAddress\" IS NOT NULL"));
 
         builder.Property(review => review.CreatedAt)
             .IsRequired()

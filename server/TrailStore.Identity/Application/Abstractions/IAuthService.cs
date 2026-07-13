@@ -1,4 +1,5 @@
 ﻿using TrailStore.Identity.Application.Results;
+using TrailStore.Identity.Domain.RefreshTokens;
 using TrailStore.Identity.Domain.Users;
 using TrailStore.Shared.Domain.Common;
 
@@ -12,5 +13,5 @@ public interface IAuthService
     
     Task<Result<AuthResult>> RefreshSession(string token, CancellationToken ct);
     
-    TokenPairResult CreateSession(User user);
+    TokenPairResult CreateSession(User user, RefreshFamily? family = null);
 }

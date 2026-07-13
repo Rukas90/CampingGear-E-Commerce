@@ -22,8 +22,13 @@ public sealed class UpdateContactCommandHandler(
 
         var session = result.Value;
         
-        session.EmailAddress = command.Data.EmailAddress;
+        var update = session.UpdateEmailAddress(command.Data.EmailAddress);
 
+        if (!update.IsSuccess)
+        {
+            return update.Problem;
+        }
+        
         await unitOfWork.SaveAsync(ct);
         
         return Result.Ok();

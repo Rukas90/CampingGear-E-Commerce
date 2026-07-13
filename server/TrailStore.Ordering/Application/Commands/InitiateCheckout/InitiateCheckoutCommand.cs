@@ -5,4 +5,5 @@ using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Ordering.Application.Commands.InitiateCheckout;
 
-public sealed record InitiateCheckoutCommand(Id<CartRef> CartId, Id<UserRef>? UserId) : ICommand;
+public sealed record InitiateCheckoutCommand(
+    Id<CartRef> CartId, Id<UserRef>? UserId) : ICommand;

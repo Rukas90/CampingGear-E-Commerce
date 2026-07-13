@@ -1,15 +1,15 @@
 import { useAccount } from "@features"
 import { Navigate, Outlet } from "react-router-dom"
 
-const GuestOnlyGuard = ({ children }: React.PropsWithChildren) => {
+const ProtectedGuard = ({ children }: React.PropsWithChildren) => {
   const { account, isLoggedIn } = useAccount()
 
   if (account === undefined) {
     return
   }
-  if (isLoggedIn) {
+  if (!isLoggedIn) {
     return <Navigate to="/" replace />
   }
   return children ? <>{children}</> : <Outlet />
 }
-export default GuestOnlyGuard
+export default ProtectedGuard

@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom"
 
-interface ProfileNavItemProps {
+interface AccountNavItemProps {
   label: string
   href: string
 }
-const ProfileNavItem = ({ label, href }: ProfileNavItemProps) => (
+const AccountNavItem = ({ label, href }: AccountNavItemProps) => (
   <NavLink
     to={href}
     className={({ isActive }) =>
@@ -16,4 +16,4 @@ const ProfileNavItem = ({ label, href }: ProfileNavItemProps) => (
     <li>{label}</li>
   </NavLink>
 )
-export default ProfileNavItem
+export default AccountNavItem

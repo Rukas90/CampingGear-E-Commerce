@@ -19,7 +19,7 @@ internal sealed class CheckoutService(
         
         if (checkoutSession.ShippingMethodId != selectedMethod?.Id)
         {
-            checkoutSession.ShippingMethodId = selectedMethod?.Id;
+            checkoutSession.UpdateShippingMethodId(selectedMethod?.Id);
         }
         
         return selectedMethod;

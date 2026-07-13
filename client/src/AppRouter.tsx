@@ -2,7 +2,7 @@ import { lazy } from "react"
 import { Route, Routes } from "react-router-dom"
 import ContentPage from "./pages/ContentPage"
 import BlankPage from "./pages/BlankPage"
-import { GuestOnlyGuard, useAuthInterceptor } from "@features"
+import { GuestOnlyGuard, ProtectedGuard, useAuthInterceptor } from "@features"
 import AccountPage from "./pages/AccountPage"
 
 const HomePage = lazy(() => import("./pages/HomePage"))
@@ -20,6 +20,7 @@ const OrderConfirmationPage = lazy(
 const OrderCanceledPage = lazy(() => import("./pages/OrderCanceledPage"))
 const ProfilePage = lazy(() => import("./pages/ProfilePage"))
 const OrdersPage = lazy(() => import("./pages/OrdersPage"))
+const AddressesPage = lazy(() => import("./pages/AddressesPage"))
 
 const AppRouter = () => {
   useAuthInterceptor()
@@ -37,10 +38,13 @@ const AppRouter = () => {
         <Route path="/cart" element={<CartPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
-      <Route element={<BlankPage topNavigation="default" />}>
-        <Route element={<AccountPage />}>
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/orders" element={<OrdersPage />} />
+      <Route element={<ProtectedGuard />}>
+        <Route element={<BlankPage topNavigation="default" />}>
+          <Route element={<AccountPage />}>
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/orders" element={<OrdersPage />} />
+            <Route path="/addresses" element={<AddressesPage />} />
+          </Route>
         </Route>
       </Route>
       <Route element={<BlankPage topNavigation="checkout" />}>

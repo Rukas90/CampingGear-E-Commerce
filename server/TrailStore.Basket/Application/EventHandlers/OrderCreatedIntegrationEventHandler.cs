@@ -18,8 +18,7 @@ internal sealed class OrderCreatedIntegrationEventHandler(
     public async Task HandleAsync(OrderCreatedIntegrationEvent evt, CancellationToken ct)
     {
         var result = await cartSessionService.FindCart(
-            Id<Cart>.FromNullable(evt.CartId), 
-            Id<UserRef>.FromNullable(evt.UserId), ct);
+            Id<Cart>.From(evt.CartId), Id<UserRef>.FromNullable(evt.UserId), ct);
 
         if (!result.IsSuccess)
         {

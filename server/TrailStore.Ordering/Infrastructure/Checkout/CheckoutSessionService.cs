@@ -11,6 +11,7 @@ namespace TrailStore.Ordering.Infrastructure.Checkout;
 [AppService<ICheckoutSessionService>]
 public class CheckoutSessionService(
     ICheckoutSessionRepository checkoutSessionRepository,
+    IUserService userService,
     IOptions<CheckoutSessionOptions> options) 
     : ICheckoutSessionService
 {
@@ -23,12 +24,48 @@ public class CheckoutSessionService(
         {
             return checkoutSession;
         }
+
+        var result = await CreateCheckoutSession(cartId, userId, ct);
+
+        if (!result.IsSuccess)
+        {
+            return result.Problem;
+        }
+
+        var newCheckoutSession = result.Value;
         
-        var newCheckoutSession = checkoutSessionRepository.Add(
-            CheckoutSession.Create(cartId, 
-                userId is not null 
-                ? options.Value.ExpiresForCustomer
-                : options.Value.ExpiresForGuest));
+        checkoutSessionRepository.Add(newCheckoutSession);
+        
+        return newCheckoutSession;
+    }
+
+    private async Task<Result<CheckoutSession>> CreateCheckoutSession(
+        Id<CartRef> cartId, Id<UserRef>? userId, CancellationToken ct)
+    {
+        var expireTime = userId is not null
+            ? options.Value.ExpiresForCustomer
+            : options.Value.ExpiresForGuest;
+
+        var newCheckoutSession = CheckoutSession.Create(cartId, expireTime);
+
+        if (userId is null)
+        {
+            return newCheckoutSession;
+        }
+        
+        var profile = await userService.GetUserProfileAsync(userId.Value, ct);
+
+        if (profile is null)
+        {
+            return CheckoutProblems.UserNotFound;
+        }
+            
+        var result = newCheckoutSession.AssignUser(userId.Value, profile.EmailAddress);
+
+        if (!result.IsSuccess)
+        {
+            return result.Problem;
+        }
         
         return newCheckoutSession;
     }

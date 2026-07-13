@@ -8,7 +8,9 @@ namespace TrailStore.Identity.Infrastructure.Users;
 [AppService<IUserService>]
 public sealed class UserService(IUserRepository userRepository) : IUserService
 {
-    public Task<UserProfileSnapshot[]> GetUserProfilesAsync(
-        Id<UserRef>[] ids, CancellationToken ct) => userRepository.GetProfilesAsync(
-            ids.Select(id => Id<User>.From(id)).ToArray(), ct);
+    public Task<UserProfileSnapshot?> GetUserProfileAsync(Id<UserRef> id, CancellationToken ct)
+        => userRepository.GetProfileAsync(Id<User>.From(id), ct);
+
+    public Task<UserProfileSnapshot[]> GetUserProfilesAsync(Id<UserRef>[] ids, CancellationToken ct) 
+        => userRepository.GetProfilesAsync(ids.Select(id => Id<User>.From(id)).ToArray(), ct);
 }

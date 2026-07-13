@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TrailStore.Ordering.Domain.Addresses;
 using TrailStore.Ordering.Domain.Countries.Data;
-using TrailStore.Ordering.Domain.Countries.Models;
 using TrailStore.Ordering.Domain.Orders;
-using TrailStore.Ordering.Domain.Shipping;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Domain.Validation;
 
@@ -11,17 +9,9 @@ namespace TrailStore.Ordering.Domain.Checkout;
 
 public static class CheckoutSessionValidator
 {
-    public sealed record ValidatedCheckout(
-        string EmailAddress,
-        Country Country,
-        ShippingAddress ShippingAddress,
-        BillingAddress BillingAddress,
-        Id<ShippingMethod> ShippingMethodId
-    ); 
-    
     private static readonly EmailAddressAttribute EmailAttribute = new();
     
-    public static Result<ValidatedCheckout> Validate(CheckoutSession session)
+    public static Result<ValidatedCheckoutInformation> Validate(CheckoutSession session)
     {
         var state = ValidateContact(session);
         if (!state.IsValid) return CheckoutProblems.IncompleteCheckout(state);
@@ -39,7 +29,7 @@ public static class CheckoutSessionValidator
             ? new BillingAddress(session.ShippingAddress!)
             : session.BillingAddress!;
         
-        return new ValidatedCheckout(
+        return new ValidatedCheckoutInformation(
             EmailAddress: session.EmailAddress!,
             Country: CountryRegistry.For(session.ShippingAddress!.CountryCode)!,
             ShippingAddress: session.ShippingAddress!,

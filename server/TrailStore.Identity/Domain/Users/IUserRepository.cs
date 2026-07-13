@@ -6,6 +6,8 @@ namespace TrailStore.Identity.Domain.Users;
 
 public interface IUserRepository : IAggregateRepository<User>
 {
+    Task<UserProfileSnapshot?> GetProfileAsync(Id<User> id, CancellationToken ct);
+    
     Task<UserProfileSnapshot[]> GetProfilesAsync(Id<User>[] ids, CancellationToken ct);
     
     Task<User?> FindByEmailAsync(string email, CancellationToken ct);

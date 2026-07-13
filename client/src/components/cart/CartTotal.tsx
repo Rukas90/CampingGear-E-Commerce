@@ -9,18 +9,21 @@ import {
 const CartTotal = () => {
   return (
     <div className="sticky min-w-90 top-24">
-      <div className="flex flex-col items-center w-full shrink-0 px-8 py-6 rounded-lg border border-neutral-300 bg-stone-100">
-        <p className="uppercase mb-4 text-sm font-medium text-neutral-400">
-          Order summary
-        </p>
-        <div className="flex flex-col gap-1 w-full">
+      <div className="flex flex-col items-center w-full shrink-0 px-8 py-6 rounded-lg border border-neutral-300 bg-[hsl(60,3%,97%)]">
+        <div className="flex flex-col gap-1.5 w-full">
           <div className="flex justify-between text-sm">
-            <span>Subtotal:</span>
-            <CartSubtotal className="text-sm font-normal text-neutral-500" />
+            <span className="font-medium">Subtotal:</span>
+            <CartSubtotal className="text-sm font-normal text-neutral-600" />
           </div>
           <div className="flex justify-between text-sm">
-            <span>Shipping:</span>
-            <span className="text-sm text-neutral-500 my-auto">
+            <span className="font-medium">Tax:</span>
+            <span className="text-sm text-neutral-600 my-auto">
+              *Calculated at checkout
+            </span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="font-medium">Shipping:</span>
+            <span className="text-sm text-neutral-600 my-auto">
               *Calculated at checkout
             </span>
           </div>
@@ -41,9 +44,9 @@ const CartTotal = () => {
             <IconLock className="size-4.5 text-white" />
           </CheckoutButton>
         </a>
-        <p className="my-4 text-neutral-500 text-sm">We accept</p>
-        <PaymentMethods cardClassName="h-6" />
       </div>
+      <p className="my-4 text-neutral-500 text-sm text-center">We accept</p>
+      <PaymentMethods className="justify-center" cardClassName="h-6" />
     </div>
   )
 }

@@ -2,4 +2,4 @@
 
 namespace TrailStore.Ordering.Contracts.IntegrationEvents;
 
-public sealed record OrderCreatedIntegrationEvent(Guid? UserId, Guid? CartId) : IntegrationEvent;
+public sealed record OrderCreatedIntegrationEvent(Guid CartId, Guid? UserId) : IntegrationEvent;

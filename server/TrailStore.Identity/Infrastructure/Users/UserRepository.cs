@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using TrailStore.Identity.Contracts.Users;
 using TrailStore.Identity.Domain.Users;
 using TrailStore.Identity.Infrastructure.Database;
@@ -12,15 +13,25 @@ namespace TrailStore.Identity.Infrastructure.Users;
 public class UserRepository(IdentityDbContext _context) 
     : AggregateRepository<User, IdentityDbContext>(_context), IUserRepository
 {
+    public Task<UserProfileSnapshot?> GetProfileAsync(Id<User> id, CancellationToken ct)
+        => ReadQuery
+            .Where(user => user.Id == id)
+            .Select(ToProfileSnapshot)
+            .SingleOrDefaultAsync(ct);
+
     public Task<UserProfileSnapshot[]> GetProfilesAsync(Id<User>[] ids, CancellationToken ct)
         => ReadQuery
             .Where(user => ids.Any(id => id == user.Id))
-            .Select(user => new UserProfileSnapshot(
-                new Id<UserRef>(user.Id), 
-                user.FirstName ?? string.Empty, 
-                user.LastName ?? string.Empty))
+            .Select(ToProfileSnapshot)
             .ToArrayAsync(ct);
 
+    private static readonly Expression<Func<User, UserProfileSnapshot>> ToProfileSnapshot = user =>
+        new UserProfileSnapshot(
+            new Id<UserRef>(user.Id),
+            user.Email,
+            user.FirstName ?? string.Empty,
+            user.LastName ?? string.Empty); 
+    
     public async Task<User?> FindByEmailAsync(string email, CancellationToken ct)
         => await AggregateWriteQuery.Where(u => u.Email == email).SingleOrDefaultAsync(ct);
 

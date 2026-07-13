@@ -1,4 +1,5 @@
 ﻿using TrailStore.Basket.Contracts.Carts;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Ordering.Domain.Orders;
 using TrailStore.Ordering.Domain.Shipping;
 using TrailStore.Shared.Domain.Abstractions;
@@ -10,14 +11,15 @@ public class CheckoutSession : AggregateRoot<CheckoutSession>, IEntityCreatable,
 {
     public required Id<CartRef> CartId { get; init; }
     
-    public required CheckoutStatus Status { get; set; }
-    public string? EmailAddress { get; set; }
+    public CheckoutStatus Status { get; private set; }
+    public Id<UserRef>? UserId { get; private set; }
+    public string? EmailAddress { get; private set; }
     
-    public ShippingAddress? ShippingAddress { get; set; }
-    public BillingAddress? BillingAddress { get; set; }
-    public required bool ShippingAddressAsBillingAddress { get; set; }
+    public ShippingAddress? ShippingAddress { get; private set; }
+    public BillingAddress? BillingAddress { get; private set; }
+    public bool ShippingAddressAsBillingAddress { get; private set; }
     
-    public Id<ShippingMethod>? ShippingMethodId { get; set; }
+    public Id<ShippingMethod>? ShippingMethodId { get; private set; }
     
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
@@ -33,4 +35,93 @@ public class CheckoutSession : AggregateRoot<CheckoutSession>, IEntityCreatable,
             ShippingAddressAsBillingAddress = true
         };
     
+    public Result AssignUser(Id<UserRef> userId, string emailAddress)
+    {
+        if (string.IsNullOrWhiteSpace(emailAddress))
+        {
+            return CheckoutProblems.EmailRequired;
+        }
+
+        UserId = userId;
+        EmailAddress = emailAddress;
+        
+        return Result.Ok();
+    }
+
+    public Result UpdateEmailAddress(string? emailAddress)
+    {
+        if (Status != CheckoutStatus.Draft)
+        {
+            return CheckoutProblems.CheckoutNotEditable;
+        }
+        
+        if (UserId is not null && string.IsNullOrWhiteSpace(emailAddress))
+        {
+            return CheckoutProblems.EmailRequired;
+        }
+        
+        EmailAddress = emailAddress;
+        
+        return Result.Ok();
+    }
+
+    public Result UpdateShippingAddress(ShippingAddress? address)
+    {
+        if (Status != CheckoutStatus.Draft)
+        {
+            return CheckoutProblems.CheckoutNotEditable;
+        }
+
+        ShippingAddress = address;
+        
+        UpdateBillingAddress(BillingAddress);
+        
+        return Result.Ok();
+    }
+    
+    public Result UpdateShippingMethodId(Id<ShippingMethod>? methodId)
+    {
+        if (Status != CheckoutStatus.Draft)
+        {
+            return CheckoutProblems.CheckoutNotEditable;
+        }
+
+        ShippingMethodId = methodId;
+        
+        return Result.Ok();
+    }
+
+    public Result UpdateBilling(bool shippingAddressAsBillingAddress, BillingAddress? address)
+    {
+        if (Status != CheckoutStatus.Draft)
+        {
+            return CheckoutProblems.CheckoutNotEditable;
+        }
+
+        ShippingAddressAsBillingAddress = shippingAddressAsBillingAddress;
+        
+        UpdateBillingAddress(address);
+        
+        return Result.Ok();
+    }
+
+    private void UpdateBillingAddress(BillingAddress? address)
+    {
+        BillingAddress = ShippingAddressAsBillingAddress 
+            ? ShippingAddress is not null 
+                ? new BillingAddress(ShippingAddress) : null
+            : address;
+    }
+
+    public Result Confirm()
+    {
+        if (Status is CheckoutStatus.Complete)
+        {
+            return CheckoutProblems.AlreadyComplete;
+        }
+
+        Status = CheckoutStatus.Complete;
+        
+        return Result.Ok();
+    }
 }

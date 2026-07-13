@@ -31,7 +31,12 @@ public sealed class UpdateShippingMethodCommandHandler(
             return CheckoutProblems.IncompleteShippingAddress;
         }
         
-        session.ShippingMethodId = command.ShippingMethodId;
+        var update = session.UpdateShippingMethodId(command.ShippingMethodId);
+
+        if (!update.IsSuccess)
+        {
+            return update.Problem;
+        }
         
         await unitOfWork.SaveAsync(ct);
         

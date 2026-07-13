@@ -25,10 +25,21 @@ public sealed class UpdateShippingAddressCommandHandler(
         
         var session = result.Value;
         
-        session.ShippingAddress = command.Address;
-        
-        var selectedMethod = await checkoutService.ValidateCheckoutShipping(session, ct);
+        var update = session.UpdateShippingAddress(command.Address);
 
+        if (!update.IsSuccess)
+        {
+            return update.Problem;
+        }
+        
+        var selectedMethod = await checkoutService.GetShippingMethod(
+            session.ShippingMethodId, session.ShippingAddress, ct);
+        
+        if (session.ShippingMethodId != selectedMethod?.Id)
+        {
+            session.UpdateShippingMethodId(selectedMethod?.Id);
+        }
+        
         await unitOfWork.SaveAsync(ct);
         
         return new CheckoutShipping

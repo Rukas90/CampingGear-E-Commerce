@@ -1,6 +1,7 @@
 ﻿using TrailStore.Identity.Application.Abstractions;
 using TrailStore.Identity.Application.Results;
 using TrailStore.Identity.Domain.Auth;
+using TrailStore.Identity.Domain.RefreshTokens;
 using TrailStore.Identity.Domain.Users;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
@@ -74,14 +75,14 @@ public class AuthService(
 
         refreshService.RevokeToken(family, token);
         
-        var tokenPair = CreateSession(user);
+        var tokenPair = CreateSession(user, family);
         
         return new AuthResult(tokenPair, new UserAccountResult(user.Id, user.Email));
     }
 
-    public TokenPairResult CreateSession(User user)
+    public TokenPairResult CreateSession(User user, RefreshFamily? family = null)
     {
-        var family = refreshService.CreateNewFamily(user);
+        family ??= refreshService.CreateNewFamily(user);
 
         var accessToken = jwtService.GenerateAccessToken(user);
         var refreshToken = refreshService.CreateNewToken(family);

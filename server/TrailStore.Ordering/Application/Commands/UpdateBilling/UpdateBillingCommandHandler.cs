@@ -21,9 +21,8 @@ public sealed class UpdateBillingCommandHandler(
         }
 
         var session = result.Value;
-        
-        session.ShippingAddressAsBillingAddress = command.Data.AsShippingAddress;
-        session.BillingAddress = command.Data.Address;
+
+        session.UpdateBilling(command.Data.AsShippingAddress, command.Data.Address);
 
         await unitOfWork.SaveAsync(ct);
         

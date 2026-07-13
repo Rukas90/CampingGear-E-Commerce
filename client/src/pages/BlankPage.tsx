@@ -10,7 +10,7 @@ const BlankPage = ({ topNavigation = "functionless" }: BlankPageProps) => {
     <div className="flex flex-col w-full min-h-dvh">
       <TopNav className="relative" variant={topNavigation} />
       <Line className="bg-neutral-200" />
-      <div className="flex lg:flex-row flex-col-reverse flex-1">
+      <div className="flex  flex-1">
         <Outlet />
       </div>
       <FooterBottom />
