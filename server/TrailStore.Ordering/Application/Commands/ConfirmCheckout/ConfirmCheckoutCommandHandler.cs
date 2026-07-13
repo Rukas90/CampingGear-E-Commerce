@@ -43,7 +43,7 @@ public sealed class ConfirmCheckoutCommandHandler(
 
         var validatedCheckout = validation.Value;
 
-        var cart = await cartService.GetCart(command.cartId.Value, ct);
+        var cart = await cartService.GetCart(Id<CartRef>.From(command.cartId.Value), ct);
 
         if (cart is null or { Items.Length: <= 0 })
         {

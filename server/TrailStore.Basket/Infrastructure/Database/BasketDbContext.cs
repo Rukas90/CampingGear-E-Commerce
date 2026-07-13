@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using TrailStore.Basket.Application.Abstractions;
 using TrailStore.Basket.Domain.Carts;
-using TrailStore.Basket.Domain.Sessions;
 using TrailStore.Catalog.Contracts.Skus;
 using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Infrastructure.Persistence;
@@ -14,7 +13,7 @@ public sealed class BasketDbContext(DbContextOptions<BasketDbContext> options)
 {
     protected override string DefaultSchema => DbDefaults.DefaultSchema;
 
-    public DbSet<Cart> ShoppingSessions { get; set; }
+    public DbSet<Cart> Carts { get; set; }
     
     public DbSet<CartItem> CartItems { get; set; }
     

@@ -1,13 +1,16 @@
 ﻿using FastEndpoints;
 using TrailStore.Basket.Api.Sessions;
 using TrailStore.Basket.Application.Commands.AddToCart;
+using TrailStore.Basket.Contracts.Session;
 using TrailStore.Identity.Contracts.Users;
+using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Mappers;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Basket.Api.Endpoints.AddToCart;
 
 public sealed class AddToCartEndpoint(
-    AddToCartCommandHandler command, CartCookieService cartCookieService) 
+    AddToCartCommandHandler command, ICartCookieService cartCookieService) 
     : Endpoint<AddToCartRequest, string>
 {
     public override void Configure()
@@ -21,10 +24,12 @@ public sealed class AddToCartEndpoint(
     {
         
         var result = await command.Handle(new AddToCartCommand(
-            HttpContext.GetCartId(), User.GetId(), req.SkuId, req.Quantity), ct);
+            HttpContext.GetCartId(), Id<UserRef>.FromNullable(User.GetSubjectId()), req.SkuId, req.Quantity), ct);
 
         if (!result.IsSuccess)
         {
+            result.OnError("cart.not_found", cartCookieService.ClearCart);
+            
             await this.SendProblemAsync(result.Problem);
             
             return;

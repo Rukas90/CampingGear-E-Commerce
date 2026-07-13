@@ -1,4 +1,4 @@
-import { FooterBottom, Line, TopNav } from "@components"
+import { CartSidePanel, FooterBottom, Line, TopNav } from "@components"
 import type { TopNavVariant } from "@types"
 import { Outlet } from "react-router-dom"
 
@@ -14,6 +14,7 @@ const BlankPage = ({ topNavigation = "functionless" }: BlankPageProps) => {
         <Outlet />
       </div>
       <FooterBottom />
+      <CartSidePanel />
     </div>
   )
 }

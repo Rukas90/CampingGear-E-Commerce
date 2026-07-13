@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using TrailStore.Identity.Api.Authentication;
 using TrailStore.Identity.Api.Csrf;
 using TrailStore.Identity.Infrastructure.Database;
-using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Registrations;
 using TrailStore.Shared.Infrastructure.Extensions;
 
@@ -31,7 +30,10 @@ public static class IdentityModuleRegistration
     }
 
     public static void UseIdentityModule(this WebApplication app)
-    {
+    {        
+        app.UseAuthentication();
+        app.UseAuthorization();
+        
         app.UseMiddleware<CsrfInitializeMiddleware>();
         app.UseMiddleware<CsrfValidateMiddleware>();
     }

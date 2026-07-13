@@ -83,4 +83,14 @@ public class Result<T>
         if (IsSuccess) return onSuccess(Value!);
         return onFailure(Problem!);
     }
+
+    public Result<T> OnError(string code, Action callback)
+    {
+        if (!IsSuccess && Problem.Code == code)
+        {
+            callback();
+        }
+        
+        return this;
+    }
 }

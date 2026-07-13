@@ -2,6 +2,8 @@
 using TrailStore.Ordering.Api.Orders;
 using TrailStore.Ordering.Application.Queries.GetOrder;
 using TrailStore.Shared.Api.Mappers;
+using TrailStore.Shared.Domain.Common;
+using Order = TrailStore.Ordering.Domain.Orders.Order;
 
 namespace TrailStore.Ordering.Api.Endpoints.GetOrder;
 
@@ -16,7 +18,7 @@ public sealed class GetOrderEndpoint(GetOrderQueryHandler query)
 
     public override async Task HandleAsync(GetOrderRequest req, CancellationToken ct)
     {
-        var result = await query.Handle(new GetOrderQuery(req.Id), ct);
+        var result = await query.Handle(new GetOrderQuery(Id<Order>.From(req.Id)), ct);
 
         if (!result.IsSuccess)
         {

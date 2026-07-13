@@ -12,7 +12,10 @@ public sealed class LogoutCommandHandler(
 {
     public async Task<Result> Handle(LogoutCommand command, CancellationToken ct)
     {
-        await refreshService.RevokeTokenFamily(command.RefreshToken, ct);
+        if (command.RefreshToken is not null)
+        {
+            await refreshService.RevokeTokenFamily(command.RefreshToken, ct);
+        }
         
         await unitOfWork.SaveAsync(ct);
         

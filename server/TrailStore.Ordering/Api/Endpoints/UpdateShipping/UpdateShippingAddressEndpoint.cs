@@ -6,7 +6,9 @@ using TrailStore.Ordering.Api.Extensions;
 using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Commands.UpdateShipping;
 using TrailStore.Ordering.Domain.Orders;
+using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Mappers;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Ordering.Api.Endpoints.UpdateShipping;
 
@@ -24,7 +26,7 @@ public sealed class UpdateShippingAddressEndpoint(UpdateShippingAddressCommandHa
     {
         var result = await command.Handle
         (new UpdateShippingAddressCommand(
-            HttpContext.GetCartId()!.Value, User.GetId(),
+            HttpContext.GetCartId()!.Value, Id<UserRef>.FromNullable(User.GetSubjectId()),
             new ShippingAddress(req.ToPostalAddress())), ct);
 
         if (!result.IsSuccess)

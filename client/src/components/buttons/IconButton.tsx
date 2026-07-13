@@ -4,7 +4,12 @@ import { twMerge } from "tailwind-merge"
 interface IconButtonProps extends React.ComponentProps<"button"> {
   icon: ReactNode
 }
-const IconButton = ({ icon, className, ...props }: IconButtonProps) => {
+const IconButton = ({
+  icon,
+  children,
+  className,
+  ...props
+}: IconButtonProps) => {
   return (
     <button
       className={twMerge(

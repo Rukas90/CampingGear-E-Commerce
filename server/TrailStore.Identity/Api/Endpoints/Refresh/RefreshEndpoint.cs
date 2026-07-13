@@ -18,19 +18,20 @@ public class RefreshEndpoint(RefreshCommandHandler command, IAuthCookieService a
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        var token = HttpContext.Request.ToRefreshToken();
+        var token = HttpContext.Request.Cookies[AuthCookies.RefreshToken];
         
         var result = await command.Handle(new RefreshCommand(token), ct);
 
         if (!result.IsSuccess)
         {
+            authCookieService.RevokeAuthCookies();
+            
             await this.SendProblemAsync(result.Problem);
             
             return;
         }
         
-        authCookieService.AppendAuthCookies(
-            HttpContext.Response, result.Value.Tokens);
+        authCookieService.AppendAuthCookies(result.Value.Tokens);
         
         await Send.OkAsync(result.Value.Account.ToResponse(), ct);
     }

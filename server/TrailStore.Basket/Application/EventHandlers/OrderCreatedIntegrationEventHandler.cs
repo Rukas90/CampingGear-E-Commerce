@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using TrailStore.Basket.Application.Abstractions;
+using TrailStore.Basket.Domain.Carts;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Ordering.Contracts.IntegrationEvents;
+using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Domain.Events;
 using TrailStore.Shared.Infrastructure.DI;
 
@@ -14,7 +17,9 @@ internal sealed class OrderCreatedIntegrationEventHandler(
 {
     public async Task HandleAsync(OrderCreatedIntegrationEvent evt, CancellationToken ct)
     {
-        var result = await cartSessionService.FindCart(evt.UserId, evt.CartId, ct);
+        var result = await cartSessionService.FindCart(
+            Id<Cart>.FromNullable(evt.CartId), 
+            Id<UserRef>.FromNullable(evt.UserId), ct);
 
         if (!result.IsSuccess)
         {

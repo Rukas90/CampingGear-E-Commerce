@@ -13,7 +13,7 @@ public static class ContextExtensions
     extension(HttpContext httpContext)
     {
         public CartSessionContextRef GetCartSessionContext(ClaimsPrincipal user)
-            => new(httpContext.GetId<CartRef>(CartCookies.CartIdentifier), user.GetId());
+            => new(httpContext.GetId<CartRef>(CartCookies.CartIdentifier), Id<UserRef>.FromNullable(user.GetSubjectId()));
 
         public Id<CartRef>? GetCartId()
             => httpContext.GetId<CartRef>(CartCookies.CartIdentifier);

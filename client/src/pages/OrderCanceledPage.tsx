@@ -20,10 +20,10 @@ const OrderCanceledPage = () => {
   return (
     <PageWrapper className="w-full flex gap-16 py-24">
       <div className="basis-1/2 flex flex-col gap-4">
-        <p className="text-lg font-semibold">ORDER HAS BEEN CANCELED</p>
+        <p className="text-2xl font-semibold">PAYMENT FAILED</p>
         <Line className="bg-neutral-200" />
         <MessageBox variant="error">
-          <span>Your order is being processed</span>
+          <span>Your order has been cancelled</span>
         </MessageBox>
         <p className="text-sm text-neutral-700">
           <span className="font-semibold">Order:</span> #{data?.token}

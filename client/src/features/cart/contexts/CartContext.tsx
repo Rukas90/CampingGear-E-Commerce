@@ -29,7 +29,10 @@ export const CartProvider = ({ children }: React.PropsWithChildren) => {
 
   const invalidateCart = async () => {
     await queryClient.invalidateQueries({
-      queryKey: ["cart", "session-summary"],
+      queryKey: ["cart"],
+    })
+    await queryClient.invalidateQueries({
+      queryKey: ["session-summary"],
     })
   }
 

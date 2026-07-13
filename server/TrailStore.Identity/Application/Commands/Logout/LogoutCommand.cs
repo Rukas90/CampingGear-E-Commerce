@@ -2,4 +2,4 @@
 
 namespace TrailStore.Identity.Application.Commands.Logout;
 
-public sealed record LogoutCommand(string Jti, string RefreshToken, DateTime SessionExpireAt) : ICommand;
+public sealed record LogoutCommand(string? Jti, string? RefreshToken, DateTimeOffset? SessionExpireAt) : ICommand;

@@ -1,13 +1,16 @@
 ﻿using FastEndpoints;
 using TrailStore.Basket.Api.Sessions;
 using TrailStore.Basket.Application.Queries.GetCart;
+using TrailStore.Basket.Contracts.Session;
 using TrailStore.Identity.Contracts.Users;
+using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Mappers;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Basket.Api.Endpoints.GetCart;
 
 public class GetCartEndpoint(
-    GetCartQueryHandler query, CartCookieService cartCookieService) 
+    GetCartQueryHandler query, ICartCookieService cartCookieService) 
     : EndpointWithoutRequest<CartItemResponse[]>
 {
     public override void Configure()
@@ -19,10 +22,12 @@ public class GetCartEndpoint(
     public override async Task HandleAsync(CancellationToken ct)
     {
         var result = await query.Handle(
-            new GetCartQuery(HttpContext.GetCartId(), User.GetId()), ct);
+            new GetCartQuery(HttpContext.GetCartId(), Id<UserRef>.FromNullable(User.GetSubjectId())), ct);
         
         if (!result.IsSuccess)
         {
+            result.OnError("cart.not_found", cartCookieService.ClearCart);
+            
             await this.SendProblemAsync(result.Problem);
             
             return;

@@ -41,7 +41,7 @@ namespace TrailStore.Basket.Infrastructure.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShoppingSessions", "basket");
+                    b.ToTable("Carts", "basket");
                 });
 
             modelBuilder.Entity("TrailStore.Basket.Domain.Carts.CartItem", b =>

@@ -4,7 +4,9 @@ using TrailStore.Ordering.Api.Extensions;
 using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Commands.UpdateContact;
 using TrailStore.Ordering.Domain.Checkout;
+using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Mappers;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Ordering.Api.Endpoints.UpdateContact;
 
@@ -22,7 +24,7 @@ public sealed class UpdateContactEndpoint(UpdateContactCommandHandler command)
     {
         var result = await command.Handle(
             new UpdateContactCommand(
-                HttpContext.GetCartId()!.Value, User.GetId(),
+                HttpContext.GetCartId()!.Value, Id<UserRef>.FromNullable(User.GetSubjectId()),
                 new CheckoutContact
                 {
                     EmailAddress = req.EmailAddress,

@@ -6,7 +6,9 @@ using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Commands.UpdateBilling;
 using TrailStore.Ordering.Domain.Checkout;
 using TrailStore.Ordering.Domain.Orders;
+using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Mappers;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Ordering.Api.Endpoints.UpdateBilling;
 
@@ -23,7 +25,7 @@ public sealed class UpdateBillingEndpoint(UpdateBillingCommandHandler command)
     public override async Task HandleAsync(UpdateBillingRequest req, CancellationToken ct)
     {
         var result = await command.Handle(
-            new UpdateBillingCommand(HttpContext.GetCartId()!.Value, User.GetId(),
+            new UpdateBillingCommand(HttpContext.GetCartId()!.Value, Id<UserRef>.FromNullable(User.GetSubjectId()),
                 new CheckoutBilling
                 {
                     AsShippingAddress = req.AsShippingAddress ?? true,

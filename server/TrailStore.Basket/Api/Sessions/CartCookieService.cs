@@ -1,17 +1,15 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using TrailStore.Basket.Contracts.Session;
-using TrailStore.Basket.Domain.Carts;
 using TrailStore.Basket.Infrastructure.Carts;
-using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Basket.Api.Sessions;
 
-[AppService<CartCookieService>]
+[AppService<ICartCookieService>]
 public sealed class CartCookieService(
     IHttpContextAccessor httpContextAccessor,
-    IOptions<CartOptions> options)
+    IOptions<CartOptions> options) : ICartCookieService
 {
     private readonly CookieOptions cookieOptions = new()
     {
@@ -23,23 +21,40 @@ public sealed class CartCookieService(
     
     private HttpContext Http => httpContextAccessor.HttpContext!;
     
-    public void SyncCart(Id<Cart> next)
+    public void SyncCart(Guid next)
     {
-        if (!next.Equals(Http.GetCartId()))
+        if (!next.Equals(GetId()))
         {
-            UpdateCartId(next);
+            UpdateCart(next);
         }
     }
     
-    public void UpdateCartId(Id<Cart> cartId)
+    public void UpdateCart(Guid? id)
     {
+        if (id is null)
+        {
+            ClearCart();
+            
+            return;
+        }
         Http.Response.Cookies.Append(
             CartCookies.CartIdentifier,
-            cartId.ToString(),
+            id.Value.ToString(),
             cookieOptions);
     }
 
-    public void ClearCartId()
+    public Guid? GetId()
+    {
+        if (Http.Request.Cookies.TryGetValue(CartCookies.CartIdentifier, out var idStr)
+            && Guid.TryParse(idStr, out var cartId))
+        {
+            return cartId;
+        }
+        
+        return null;
+    }
+    
+    public void ClearCart()
     {
         Http.Response.Cookies.Delete(CartCookies.CartIdentifier);
     }

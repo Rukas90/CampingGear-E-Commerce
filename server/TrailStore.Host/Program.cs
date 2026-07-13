@@ -15,9 +15,6 @@ app.UseCors("AllowClient");
 app.UseHttpsRedirection();
 app.UseResponseCompression();
 
-app.UseAuthentication();
-app.UseAuthorization();
-
 app.UseIdentityModule();
 
 app.UseOutputCache();

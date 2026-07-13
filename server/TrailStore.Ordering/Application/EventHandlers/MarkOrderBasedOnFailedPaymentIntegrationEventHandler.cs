@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using TrailStore.Inventory.Contracts;
 using TrailStore.Ordering.Application.Abstractions;
+using TrailStore.Ordering.Domain.Orders;
 using TrailStore.Payments.Contracts.IntegrationEvents;
+using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Domain.Events;
 using TrailStore.Shared.Infrastructure.DI;
 
@@ -17,7 +19,7 @@ public sealed class MarkOrderBasedOnFailedPaymentIntegrationEventHandler(
 {
     public async Task HandleAsync(PaymentFailedIntegrationEvent evt, CancellationToken ct)
     {
-        var order = await orderRepository.FindAsync(evt.ReferenceId, ct);
+        var order = await orderRepository.FindAsync(Id<Order>.From(evt.ReferenceId), ct);
 
         if (order is null)
         {

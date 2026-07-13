@@ -3,7 +3,9 @@ using TrailStore.Identity.Contracts.Users;
 using TrailStore.Ordering.Api.Extensions;
 using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Commands.UpdateShipping;
+using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Mappers;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Ordering.Api.Endpoints.UpdateShipping;
 
@@ -21,7 +23,7 @@ public class UpdateShippingMethodEndpoint(UpdateShippingMethodCommandHandler com
     {
         var result = await command.Handle(
             new UpdateShippingMethodCommand(
-                HttpContext.GetCartId()!.Value, User.GetId(),
+                HttpContext.GetCartId()!.Value, Id<UserRef>.FromNullable(User.GetSubjectId()),
                 req.ShippingMethodId), ct);
 
         if (!result.IsSuccess)

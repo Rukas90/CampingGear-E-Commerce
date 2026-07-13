@@ -13,7 +13,8 @@ namespace TrailStore.Identity.Infrastructure.Refresh;
 [AppService<IRefreshService>]
 public class RefreshService(
     IOptions<RefreshOptions> options, 
-    IRefreshRepository repository, IPasswordHasher passwordHasher) : IRefreshService
+    IRefreshRepository repository, 
+    IPasswordHasher passwordHasher) : IRefreshService
 {
     private readonly RefreshOptions refreshOptions = options.Value;
 

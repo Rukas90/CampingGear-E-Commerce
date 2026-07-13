@@ -1,7 +1,5 @@
 import {
-  IconAccount,
   IconArrow,
-  IconSearch,
   LogoWithText,
   PageWrapper,
   ProductCategoryListing,
@@ -14,6 +12,7 @@ import clsx from "clsx"
 import { useCartContext } from "@features"
 import { twMerge } from "tailwind-merge"
 import type { TopNavVariant } from "@types"
+import AccountBadge from "./AccountBadge"
 
 interface TopNavProps extends Omit<
   React.ComponentProps<"nav">,
@@ -65,8 +64,7 @@ const TopNav = ({ variant = "default", className, ...props }: TopNavProps) => {
             <div className="flex gap-5 items-center justify-end w-1/3">
               {hasMenuItems && (
                 <>
-                  <IconSearch className="size-5 dark:text-stone-100 text-stone-800 z-1 relative " />
-                  <IconAccount className="size-5 dark:text-stone-100 text-stone-800" />
+                  <AccountBadge />
                   <WishlistBadge />
                 </>
               )}
@@ -92,3 +90,5 @@ const TopNav = ({ variant = "default", className, ...props }: TopNavProps) => {
   )
 }
 export default TopNav
+
+// <IconSearch className="size-5 dark:text-stone-100 text-stone-800 z-1 relative " />

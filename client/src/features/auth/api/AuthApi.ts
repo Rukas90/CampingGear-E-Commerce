@@ -14,5 +14,7 @@ const authApi = {
 
   me: async () =>
     await makeRequest<CustomerAccount | null>("/api/v1/me", "get"),
+
+  logout: async () => await makeRequest("/api/v1/auth/logout", "post"),
 }
 export default authApi

@@ -11,8 +11,10 @@ const useSessionSummary = (options?: QueryOptions) => {
     ...options,
   })
 
-  const invalidate = () =>
-    queryClient.invalidateQueries({ queryKey: ["session-summary", "cart"] })
+  const invalidate = async () => {
+    await queryClient.invalidateQueries({ queryKey: ["session-summary"] })
+    await queryClient.invalidateQueries({ queryKey: ["cart"] })
+  }
 
   return {
     summary: query.data ?? {

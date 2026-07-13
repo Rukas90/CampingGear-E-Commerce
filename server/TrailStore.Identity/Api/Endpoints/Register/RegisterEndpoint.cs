@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using TrailStore.Basket.Contracts.Session;
 using TrailStore.Identity.Api.Common;
 using TrailStore.Identity.Api.Cookies;
 using TrailStore.Identity.Api.Extensions;
@@ -7,7 +8,10 @@ using TrailStore.Shared.Api.Mappers;
 
 namespace TrailStore.Identity.Api.Endpoints.Register;
 
-public class RegisterEndpoint(RegisterCommandHandler handler, IAuthCookieService authCookieService) 
+public class RegisterEndpoint(
+    RegisterCommandHandler handler, 
+    IAuthCookieService authCookieService,
+    ICartCookieService cartCookieService) 
     : Endpoint<RegisterRequest, AccountResponse>
 {
     public override void Configure()
@@ -29,11 +33,10 @@ public class RegisterEndpoint(RegisterCommandHandler handler, IAuthCookieService
             return;
         }
         
-        authCookieService.AppendAuthCookies(
-            HttpContext.Response, result.Value.Tokens);
+        authCookieService.AppendAuthCookies(result.Value.Auth.Tokens);
 
-        HttpContext.ClearCartSessionCookieId();
+        cartCookieService.UpdateCart(result.Value.CartId);
         
-        await Send.OkAsync(result.Value.Account.ToResponse(), ct);
+        await Send.OkAsync(result.Value.Auth.Account.ToResponse(), ct);
     }
 }

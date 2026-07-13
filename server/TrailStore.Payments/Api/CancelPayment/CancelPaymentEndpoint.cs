@@ -1,6 +1,8 @@
 ﻿using FastEndpoints;
 using TrailStore.Payments.Application.Commands;
+using TrailStore.Payments.Domain;
 using TrailStore.Shared.Api.Mappers;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Payments.Api.CancelPayment;
 
@@ -15,7 +17,7 @@ public sealed class CancelPaymentEndpoint(CancelPaymentCommandHandler command)
 
     public override async Task HandleAsync(CancelPaymentRequest req, CancellationToken ct)
     {
-        var result = await command.Handle(new CancelPaymentCommand(req.PaymentId), ct);
+        var result = await command.Handle(new CancelPaymentCommand(Id<Payment>.From(req.PaymentId)), ct);
 
         if (!result.IsSuccess)
         {

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using TrailStore.Basket.Application.Abstractions;
 using TrailStore.Basket.Domain.Carts;
-using TrailStore.Basket.Domain.Sessions;
 using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
@@ -27,6 +26,9 @@ public sealed class CartSessionService(
 
     public async Task<Result<Cart>> FindCart(Id<Cart>? cartId, Id<UserRef>? userId, CancellationToken ct)
     {
+        Console.WriteLine("CartId: " + cartId?.Value ?? "Null");
+        Console.WriteLine("UserId: " + userId?.Value ?? "Null");
+        
         if (cartId is null)
         {
             if (userId is not null)
@@ -34,16 +36,24 @@ public sealed class CartSessionService(
                 return await FindUserCart(userId.Value, ct);
             }
             
+            Console.WriteLine("No cart found");
+            
             return CartProblems.NotFound;
         }
         
         var cart = await cartRepository.FindAsync(cartId.Value, ct);
         
-        if (cart is null || cart.UserId is not null && cart.UserId != userId)
+        if (cart is null || cart.UserId != userId)
         {
+            Console.WriteLine("Cart found but user ids do not match");
+            
+            Console.WriteLine("cart.UserId: " + cart!.UserId);
+            Console.WriteLine("userId: " + userId);
+            
             return CartProblems.NotFound;
         }
         
+        Console.WriteLine("Cart found");
         return cart;
     }
 

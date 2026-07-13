@@ -120,6 +120,8 @@ const usePaymentConfirmation = ({
       } else {
         setError(getMessage(issued.error))
       }
+
+      setState("idle")
       return
     }
 
@@ -148,7 +150,6 @@ const usePaymentConfirmation = ({
         },
       },
     })
-
     pollAttempt(issued.data!.attemptId)
   }, [
     stripe,
@@ -159,6 +160,7 @@ const usePaymentConfirmation = ({
     pollAttempt,
     order,
     redirectAbsoluteUrl,
+    disabled,
   ])
 
   return { state, confirm }

@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using TrailStore.Shared.Api.Extensions;
 
 namespace TrailStore.Identity.Api.Endpoints.GetAccount;
 
@@ -6,17 +7,17 @@ public static class AccountResponseMapping
 {
     public static AccountResponse? ToAccountResponse(this ClaimsPrincipal user)
     {
-        var id = user.FindFirstValue(ClaimTypes.NameIdentifier);
-        var email = user.FindFirstValue(ClaimTypes.Email);
+        var id = user.GetSubjectId();
+        var email = user.GetEmail();
 
-        if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(email))
+        if (id is null || string.IsNullOrEmpty(email))
         {
             return null;
         }
 
         return new AccountResponse
         {
-            Id = Guid.Parse(id),
+            Id = id.Value,
             Email = email
         };
     }

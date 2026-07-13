@@ -2,6 +2,7 @@
 using TrailStore.Basket.Contracts.Carts;
 using TrailStore.Identity.Application.Abstractions;
 using TrailStore.Identity.Application.Results;
+using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Infrastructure.DI;
@@ -14,9 +15,9 @@ public class RegisterCommandHandler(
     IIdentityUnitOfWork unitOfWork,
     ICartService cartService,
     ILogger<RegisterCommandHandler> logger)
-    : ICommandHandler<RegisterCommand, AuthResult>
+    : ICommandHandler<RegisterCommand, RegisterResult>
 {
-    public async Task<Result<AuthResult>> Handle(RegisterCommand command, CancellationToken ct)
+    public async Task<Result<RegisterResult>> Handle(RegisterCommand command, CancellationToken ct)
     {
         var result = await authService.RegisterNewUser(command.Email, command.Password, ct);
 
@@ -30,13 +31,19 @@ public class RegisterCommandHandler(
         
         await unitOfWork.SaveAsync(ct);
 
-        var mergeResult = await cartService.MergeCart(command.guestCartId, newUser.Id.Value, ct);
+        var authResult = new AuthResult(session, new UserAccountResult(newUser.Id, newUser.Email));
+        
+        var mergeResult = await cartService.MergeCart(command.guestCartId, Id<UserRef>.From(newUser.Id.Value), ct);
 
         if (!mergeResult.IsSuccess)
         {
             logger.LogError("Failed to merge carts. Reason: {Reason}", mergeResult.Problem.Reason);
+
+            return new RegisterResult(authResult, CartId: null);
         }
         
-        return new AuthResult(session, new UserAccountResult(newUser.Id, newUser.Email));
+        var cartId = mergeResult.Value;
+        
+        return new RegisterResult(authResult, cartId);
     }
 }

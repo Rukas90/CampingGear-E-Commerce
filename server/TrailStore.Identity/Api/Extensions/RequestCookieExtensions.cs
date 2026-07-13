@@ -7,9 +7,10 @@ public static class RequestCookieExtensions
 {
     extension(HttpRequest request)
     {
+        public string? ToJti()
+            => request.Cookies[AuthCookies.AccessToken];
+        
         public string? ToRefreshToken()
-        {
-            return request.Cookies[AuthCookies.RefreshToken];
-        }
+            => request.Cookies[AuthCookies.RefreshToken];
     }
 }

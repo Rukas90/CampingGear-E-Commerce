@@ -17,9 +17,18 @@ const useAccount = () => {
     queryClient.setQueryData(["account"], account)
   }
 
+  const signOut = async () => {
+    const result = await authApi.logout()
+
+    if (result.isSuccess) {
+      setAccount(null)
+    }
+  }
+
   return {
     account: query.data,
     isLoggedIn: query.data !== null,
+    signOut,
     ...query,
     setAccount,
   }

@@ -12,7 +12,8 @@ public static class SessionExtensions
     extension(HttpContext httpContext)
     {
         public CartSessionContextRef GetCartSessionContext()
-            => new(httpContext.GetId<CartRef>(CartCookies.CartIdentifier), httpContext.User.GetId());
+            => new(httpContext.GetId<CartRef>(CartCookies.CartIdentifier), 
+                Id<UserRef>.FromNullable(httpContext.User.GetSubjectId()));
 
         public Id<CartRef>? GetCartId()
             => httpContext.GetId<CartRef>(CartCookies.CartIdentifier);

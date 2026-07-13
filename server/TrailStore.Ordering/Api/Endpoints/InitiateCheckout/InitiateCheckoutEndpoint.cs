@@ -3,7 +3,9 @@ using TrailStore.Identity.Contracts.Users;
 using TrailStore.Ordering.Api.Extensions;
 using TrailStore.Ordering.Api.PreProcessors;
 using TrailStore.Ordering.Application.Commands.InitiateCheckout;
+using TrailStore.Shared.Api.Extensions;
 using TrailStore.Shared.Api.Mappers;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Ordering.Api.Endpoints.InitiateCheckout;
 
@@ -20,7 +22,7 @@ public sealed class InitiateCheckoutEndpoint(InitiateCheckoutCommandHandler comm
     public override async Task HandleAsync(CancellationToken ct)
     {
         var result = await command.Handle(
-            new InitiateCheckoutCommand(HttpContext.GetCartId()!.Value, User.GetId()), ct);
+            new InitiateCheckoutCommand(HttpContext.GetCartId()!.Value, Id<UserRef>.FromNullable(User.GetSubjectId())), ct);
 
         if (!result.IsSuccess)
         {

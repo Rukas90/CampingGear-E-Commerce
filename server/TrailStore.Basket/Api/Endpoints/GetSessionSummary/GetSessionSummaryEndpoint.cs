@@ -2,13 +2,14 @@
 using TrailStore.Basket.Api.Extensions;
 using TrailStore.Basket.Api.Sessions;
 using TrailStore.Basket.Application.Queries.GetSessionSummary;
+using TrailStore.Basket.Contracts.Session;
 using TrailStore.Shared.Api.Mappers;
 
 namespace TrailStore.Basket.Api.Endpoints.GetSessionSummary;
 
 public sealed class GetSessionSummaryEndpoint(
     GetSessionSummaryQueryHandler query,
-    CartCookieService cartCookieService)
+    ICartCookieService cartCookieService)
     : EndpointWithoutRequest<SessionSummaryResponse>
 {
     public override void Configure()
@@ -24,6 +25,8 @@ public sealed class GetSessionSummaryEndpoint(
 
         if (!result.IsSuccess)
         {
+            result.OnError("cart.not_found", cartCookieService.ClearCart);
+            
             await this.SendProblemAsync(result.Problem);
             
             return;
@@ -34,12 +37,12 @@ public sealed class GetSessionSummaryEndpoint(
         if (summary.CartId is not null 
             && !summary.CartId.Equals(HttpContext.GetCartId()))
         {
-            cartCookieService.UpdateCartId(summary.CartId.Value);
+            cartCookieService.UpdateCart(summary.CartId.Value);
         }
         
         if (summary.CartId is null)
         {
-            cartCookieService.ClearCartId();
+            cartCookieService.ClearCart();
         }
 
         await Send.OkAsync(new SessionSummaryResponse

@@ -11,7 +11,7 @@ public class CsrfInitializeMiddleware(IAuthCookieService cookieService) : IMiddl
     {
         if (!context.Request.Cookies.ContainsKey(CsrfConstants.CookieName))
         {
-            cookieService.SetCsrfToken(context.Response);
+            cookieService.SetCsrfToken();
         }
 
         await next(context);

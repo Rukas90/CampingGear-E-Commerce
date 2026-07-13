@@ -5,4 +5,4 @@ using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Identity.Application.Commands.Login;
 
-public sealed record LoginCommand(string Email, string Password, Id<CartRef>? guestCartId) : ICommand<AuthResult>;
+public sealed record LoginCommand(string Email, string Password, Id<CartRef>? guestCartId) : ICommand<LoginResult>;

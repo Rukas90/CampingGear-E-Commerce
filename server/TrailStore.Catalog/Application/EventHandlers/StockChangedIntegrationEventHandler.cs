@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using TrailStore.Catalog.Application.Abstractions;
 using TrailStore.Catalog.Domain.Products;
+using TrailStore.Catalog.Domain.Skus;
 using TrailStore.Inventory.Contracts.IntegrationEvents;
+using TrailStore.Shared.Domain.Common;
 using TrailStore.Shared.Domain.Events;
 using TrailStore.Shared.Infrastructure.DI;
 
@@ -16,7 +18,7 @@ internal sealed class StockChangedIntegrationEventHandler(
 {
     public async Task HandleAsync(StockChangedIntegrationEvent evt, CancellationToken ct)
     {
-        var product = await productsRepository.FindBySkuAsync(evt.SkuId, ct);
+        var product = await productsRepository.FindBySkuAsync(Id<Sku>.From(evt.SkuId), ct);
 
         if (product is null)
         {
@@ -25,7 +27,7 @@ internal sealed class StockChangedIntegrationEventHandler(
             return;
         }
 
-        var result = product.UpdateStock(evt.SkuId, evt.Stock);
+        var result = product.UpdateStock(Id<Sku>.From(evt.SkuId), evt.Stock);
 
         if (!result.IsSuccess)
         {

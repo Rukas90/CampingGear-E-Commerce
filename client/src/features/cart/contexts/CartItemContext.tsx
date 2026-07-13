@@ -2,7 +2,6 @@ import type { CartItem } from "@types"
 import { createContext, useContext } from "react"
 import cartApi from "../api/cartApi"
 import { useCartContext } from "./CartContext"
-import { useSessionSummary } from "@features"
 
 interface CartItemData {
   item: CartItem
@@ -18,20 +17,17 @@ export const CartItemProvider = ({
   children,
 }: React.PropsWithChildren<{ item: CartItem }>) => {
   const { invalidateCart } = useCartContext()
-  const { invalidate: invalidateSession } = useSessionSummary()
 
   const id = item.id
 
   const updateQuantity = async (quantity: number) => {
     await cartApi.updateItemQuantity(id, quantity)
     await invalidateCart()
-    await invalidateSession()
   }
 
   const remove = async () => {
     await cartApi.deleteFromCart(id)
     await invalidateCart()
-    await invalidateSession()
   }
 
   return (

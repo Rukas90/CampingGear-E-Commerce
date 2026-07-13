@@ -9,8 +9,12 @@ using TrailStore.Shared.Infrastructure.DI;
 namespace TrailStore.Identity.Api.Cookies;
 
 [AppService<IAuthCookieService>]
-public class AuthCookieService(IWebHostEnvironment env, ICsrfService csrfService) : IAuthCookieService
+public class AuthCookieService(
+    IHttpContextAccessor httpContextAccessor, IWebHostEnvironment env, ICsrfService csrfService) 
+    : IAuthCookieService
 {
+    private HttpContext Http => httpContextAccessor.HttpContext!;
+    
     private CookieOptions AccessTokenOptions => new()
     {
         HttpOnly = true,
@@ -36,27 +40,25 @@ public class AuthCookieService(IWebHostEnvironment env, ICsrfService csrfService
         Path = "/"
     };
 
-    public void AppendAuthCookies(HttpResponse response, TokenPairResult tokens)
+    public void AppendAuthCookies(TokenPairResult tokens)
     {
-        response.Cookies.Append(
+        Http.Response.Cookies.Append(
             AuthCookies.AccessToken, tokens.AccessToken, AccessTokenOptions);
 
-        response.Cookies.Append(
+        Http.Response.Cookies.Append(
             AuthCookies.RefreshToken, tokens.RefreshToken, RefreshTokenOptions);
     }
 
-    public void RevokeAuthCookies(HttpResponse response)
+    public void RevokeAuthCookies()
     {
-        response.Cookies.Delete(AuthCookies.AccessToken, AccessTokenOptions);
-        response.Cookies.Delete(AuthCookies.RefreshToken, RefreshTokenOptions);
+        Http.Response.Cookies.Delete(AuthCookies.AccessToken, AccessTokenOptions);
+        Http.Response.Cookies.Delete(AuthCookies.RefreshToken, RefreshTokenOptions);
     }
 
-    public string SetCsrfToken(HttpResponse response)
+    public void SetCsrfToken()
     {
         var token = csrfService.GenerateToken();
 
-        response.Cookies.Append(CsrfConstants.CookieName, token, CsrfTokenOptions);
-
-        return token;
+        Http.Response.Cookies.Append(CsrfConstants.CookieName, token, CsrfTokenOptions);
     }
 }
