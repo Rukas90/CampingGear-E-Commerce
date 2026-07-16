@@ -1,17 +1,21 @@
-import type { CheckoutContact } from "@types"
+import type { CheckoutContact, UpdateCheckoutContactRequest } from "@types"
 import checkoutApi from "../api/checkoutApi"
 import { useCheckoutContext, useCheckoutSection, useData } from "@features"
 
 const useCheckoutContact = () => {
   const { form, isPending, errors } = useCheckoutContext()
 
-  const data = useData<CheckoutContact>({
+  const data = useData<CheckoutContact, UpdateCheckoutContactRequest>({
     data: form?.contact,
     defaultData: {
       emailAddress: "",
+      isEmailReadOnly: false,
     },
     mutationKey: ["checkout-contact"],
     requestFunc: checkoutApi.updateContact,
+    toRequest: (data) => ({
+      emailAddress: data.emailAddress,
+    }),
     errorKeyMappers: [(key) => key, (key) => `contact.${key}`],
     errorPool: errors,
     onMutationSuccess: () => section.close(),

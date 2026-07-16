@@ -10,5 +10,6 @@ public sealed record ValidatedCheckoutInformation(
     Country Country,
     ShippingAddress ShippingAddress,
     BillingAddress BillingAddress,
-    Id<ShippingMethod> ShippingMethodId
+    Id<ShippingMethod> ShippingMethodId,
+    bool ShippingAddressAsBillingAddress
 );

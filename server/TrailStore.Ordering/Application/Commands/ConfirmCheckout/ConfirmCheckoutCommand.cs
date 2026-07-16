@@ -5,4 +5,4 @@ using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Ordering.Application.Commands.ConfirmCheckout;
 
-public sealed record ConfirmCheckoutCommand(Id<CartRef> cartId) : ICommand<OrderCreatedResult>;
+public sealed record ConfirmCheckoutCommand(bool SaveInformation, Id<CartRef> cartId) : ICommand<OrderCreatedResult>;

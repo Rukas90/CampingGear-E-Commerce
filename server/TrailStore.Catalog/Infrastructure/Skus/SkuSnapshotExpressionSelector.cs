@@ -15,7 +15,7 @@ internal static class SkuSnapshotExpressionSelector
         Brand = new EntityIdentifier(sku.Product.Brand.Name, sku.Product.Brand.Slug),
         UnitPrice = sku.UnitPrice,
         Stock = sku.Stock,
-        ThumbnailUrl = sku.Product.ThumbnailUrl,
+        ThumbnailUrl = sku.Product.GetThumbnailUrl(sku.Id),
         Options = sku.Options
             .Select(o => new SkuOptionSnapshot(
                 new EntityIdentifier(o.OptionGroup.Name, o.OptionGroup.Slug),

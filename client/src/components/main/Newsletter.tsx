@@ -2,23 +2,23 @@ import { Button, InputField, Line } from "@components"
 
 const Newsletter = () => {
   return (
-    <div className="relative w-full py-8 bg-[#f1f1ee]">
+    <div className="relative w-full py-8 bg-[#f1f1ee] overflow-hidden">
       <img
         src="/img/forest-nature-backdrop.webp"
         className="absolute mx-auto h-full left-1/2 top-1/2 -translate-y-1/2 scale-125 -translate-1/2 mix-blend-darken opacity-5 select-none pointer-events-none"
       />
-      <div className="relative flex flex-col gap-3 items-center justify-center z-1">
+      <div className="relative flex flex-col gap-3 items-center justify-center z-1 sm:px-12 px-4">
         <div className="flex w-full items-center">
-          <Line className="bg-stone-400" />
-          <p className="font-black text-xl uppercase font-serif shrink-0 mx-8">
+          <Line className="bg-stone-400 sm:block hidden" />
+          <p className="font-black sm:text-xl uppercase font-serif sm:shrink-0 sm:mx-8 mx-auto text-center">
             Camping Gear Line
           </p>
-          <Line className="bg-stone-400" />
+          <Line className="bg-stone-400 sm:block hidden" />
         </div>
-        <p className="text-base">
+        <p className="sm:text-base text-xm text-center">
           Join our mailing list to receive the latest news and promotions.
         </p>
-        <div className="flex gap-2 justify-center w-[384px]">
+        <div className="flex sm:flex-row flex-col gap-2 justify-center sm:w-[384px]">
           <span className="w-full">
             <InputField
               className="text-base w-full rounded-lg bg-stone-50"
@@ -29,12 +29,12 @@ const Newsletter = () => {
             style="contrast"
             fill="filled"
             radius="halfRound"
-            className="w-32 mt-0"
+            className="mt-0 sm:w-32 w-full"
           >
             Subscribe
           </Button>
         </div>
-        <p className="text-sm w-125 text-center mx-auto text-stone-700">
+        <p className="sm:text-base text-xm text-center sm:w-125 max-w-full mx-auto text-stone-700">
           By submitting, you agree to the processing of your personal data in
           accordance with our{" "}
           <span className="font-bold text-lime-800">privacy policy</span>. We do

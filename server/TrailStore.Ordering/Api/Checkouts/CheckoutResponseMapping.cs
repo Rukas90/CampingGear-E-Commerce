@@ -9,6 +9,7 @@ public static class CheckoutResponseMapping
         => new()
         {
             EmailAddress = contact.EmailAddress,
+            IsEmailReadOnly = contact.IsEmailReadOnly
         };
     
     public static CheckoutShippingResponse ToResponse(this CheckoutShipping shipping)
@@ -22,6 +23,6 @@ public static class CheckoutResponseMapping
         => new()
         {
             AsShippingAddress = billing.AsShippingAddress,
-            Address = billing.Address?.ToResponse(),
+            Address = billing.Address?.ToResponse()
         };
 }

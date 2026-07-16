@@ -10,7 +10,7 @@ namespace TrailStore.Ordering.Application.Commands.InitiateCheckout;
 [AppService<InitiateCheckoutCommandHandler>]
 public sealed class InitiateCheckoutCommandHandler(
     ICartService cartService,
-    ICheckoutSessionService checkoutSessionService, 
+    ICheckoutSessionService checkoutSessionService,
     IOrderingUnitOfWork unitOfWork) : ICommandHandler<InitiateCheckoutCommand>
 {
     public async Task<Result> Handle(InitiateCheckoutCommand command, CancellationToken ct)

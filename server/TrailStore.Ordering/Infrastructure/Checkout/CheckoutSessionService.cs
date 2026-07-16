@@ -11,6 +11,7 @@ namespace TrailStore.Ordering.Infrastructure.Checkout;
 [AppService<ICheckoutSessionService>]
 public class CheckoutSessionService(
     ICheckoutSessionRepository checkoutSessionRepository,
+    ISavedCheckoutDetailsRepository savedCheckoutDetailsRepository,
     IUserService userService,
     IOptions<CheckoutSessionOptions> options) 
     : ICheckoutSessionService
@@ -65,6 +66,13 @@ public class CheckoutSessionService(
         if (!result.IsSuccess)
         {
             return result.Problem;
+        }
+        
+        var savedDetails = await savedCheckoutDetailsRepository.FindByUserIdAsync(userId.Value, ct);
+
+        if (savedDetails is not null)
+        {
+            newCheckoutSession.Fill(savedDetails);
         }
         
         return newCheckoutSession;

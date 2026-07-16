@@ -1,10 +1,10 @@
 import { Line } from "@components"
 import PaymentCostLabel from "./PaymentCostLabel"
 import { formatPrice } from "@utils"
-import type { OrderSummary } from "@types"
+import type { OrderDetails } from "@types"
 
 interface PaymentOrderSummaryProps {
-  order: OrderSummary
+  order: OrderDetails
 }
 
 const PaymentOrderSummary = ({ order }: PaymentOrderSummaryProps) => {

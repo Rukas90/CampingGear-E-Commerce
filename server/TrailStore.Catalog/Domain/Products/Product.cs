@@ -60,6 +60,29 @@ public class Product : AggregateRoot<Product>
 
         return Result.Ok();
     }
+    
+    public string? GetThumbnailUrl(Id<Sku> skuId)
+    {
+        var sku = FindSku(skuId);
+
+        if (sku is null)
+        {
+            return null;
+        }
+
+        var imageOption = sku.Options.FirstOrDefault(option =>
+            Images.Any(image => image.OptionId == option.Id));
+            
+        var productImage = imageOption is not null
+            ? Images.FirstOrDefault(img => img.OptionId == imageOption.Id)
+            : null;
+
+        var url = productImage?.Urls
+            .OrderBy(u => u.SortOrder)
+            .FirstOrDefault()?.Url;
+        
+        return url ?? ThumbnailUrl;
+    }
 
     private Sku? FindSku(Id<Sku> skuId)
         => Skus.FirstOrDefault(sku => sku.Id == skuId);

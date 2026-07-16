@@ -1,4 +1,5 @@
 ﻿using TrailStore.Basket.Domain.Carts;
+using TrailStore.Catalog.Contracts.Skus;
 using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Basket.Application.Results;
@@ -6,6 +7,7 @@ namespace TrailStore.Basket.Application.Results;
 public class CartItemResult
 {
     public required Id<CartItem> Id { get; init; }
+    public required Id<SkuRef> SkuId { get; init; }
     public required int Quantity { get; init; }
     public required string ProductName { get; init; }
     public required Slug ProductSlug { get; init; }

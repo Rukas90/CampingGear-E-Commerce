@@ -1,5 +1,4 @@
-﻿using TrailStore.Basket.Domain.Sessions;
-using TrailStore.Catalog.Contracts.Skus;
+﻿using TrailStore.Catalog.Contracts.Skus;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 

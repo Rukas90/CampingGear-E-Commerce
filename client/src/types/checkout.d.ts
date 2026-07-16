@@ -11,6 +11,7 @@ export type CheckoutForm = {
 
 export type CheckoutContact = {
   emailAddress?: string
+  isEmailReadOnly: boolean
 }
 
 export type CheckoutShipping = {

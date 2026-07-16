@@ -1,4 +1,5 @@
-﻿using TrailStore.Shared.Domain.Common;
+﻿using Stripe;
+using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Payments.Domain;
 
@@ -18,4 +19,7 @@ public static class PaymentProblems
     
     public static readonly Problem NotFound 
         = new("Not found", "payment.not_found", "Payment not found.");
+    
+    public static Problem StripeError(string message) 
+        => new("Stripe error", "payment.stripe_error", message);
 }

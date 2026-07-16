@@ -34,7 +34,8 @@ public static class CheckoutSessionValidator
             Country: CountryRegistry.For(session.ShippingAddress!.CountryCode)!,
             ShippingAddress: session.ShippingAddress!,
             BillingAddress: billingAddress,
-            ShippingMethodId: session.ShippingMethodId!.Value
+            ShippingMethodId: session.ShippingMethodId!.Value,
+            ShippingAddressAsBillingAddress: session.ShippingAddressAsBillingAddress
         );
     }
 

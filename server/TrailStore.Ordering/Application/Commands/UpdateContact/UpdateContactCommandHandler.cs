@@ -22,7 +22,7 @@ public sealed class UpdateContactCommandHandler(
 
         var session = result.Value;
         
-        var update = session.UpdateEmailAddress(command.Data.EmailAddress);
+        var update = session.UpdateEmailAddress(command.EmailAddress);
 
         if (!update.IsSuccess)
         {

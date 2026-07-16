@@ -10,10 +10,10 @@ using TrailStore.Shared.Infrastructure.Persistence;
 namespace TrailStore.Ordering.Infrastructure.Checkout;
 
 [AppService<ICheckoutSessionRepository>]
-public class CheckoutSessionRepository(OrderingDbContext _context) 
+public sealed class CheckoutSessionRepository(OrderingDbContext _context) 
     : AggregateRepository<CheckoutSession, OrderingDbContext>(_context), ICheckoutSessionRepository
 {
     public Task<CheckoutSession?> FindByCartIdAsync(Id<CartRef> cartId, CancellationToken ct)
         => AggregateWriteQuery
-            .FirstOrDefaultAsync(session => session.CartId == cartId, ct);
+            .FirstOrDefaultAsync(session => session.CartId == cartId && session.Status == CheckoutStatus.Draft, ct);
 }

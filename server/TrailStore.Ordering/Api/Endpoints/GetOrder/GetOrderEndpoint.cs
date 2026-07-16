@@ -8,7 +8,7 @@ using Order = TrailStore.Ordering.Domain.Orders.Order;
 namespace TrailStore.Ordering.Api.Endpoints.GetOrder;
 
 public sealed class GetOrderEndpoint(GetOrderQueryHandler query)
-    : Endpoint<GetOrderRequest, OrderSummaryResponse>
+    : Endpoint<GetOrderRequest, OrderDetailsResponse>
 {
     public override void Configure()
     {

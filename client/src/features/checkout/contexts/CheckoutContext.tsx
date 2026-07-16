@@ -16,7 +16,7 @@ interface CheckoutContextData {
   isPending: boolean
   errors: ErrorPool
   registerSection: (name: string, activate: () => void) => void
-  confirm: () => void
+  confirm: (saveInformation: boolean) => void
 }
 
 const CheckoutContext = createContext<CheckoutContextData | undefined>(
@@ -56,9 +56,9 @@ const CheckoutProvider = ({ children }: React.PropsWithChildren) => {
     return () => sections.current.delete(name)
   }
 
-  const handleConfirm = async () => {
+  const handleConfirm = async (saveInformation: boolean) => {
     if (!confirm.isPending) {
-      await confirm.mutateAsync()
+      await confirm.mutateAsync(saveInformation)
     }
   }
 

@@ -1,13 +1,24 @@
 import type { PostalAddress } from "./common"
-import type { OrderToken } from "./id"
+import type { OrderStatus } from "./enums"
+import type { OrderId, OrderToken } from "./id"
 
-export type OrderSummary = {
+export type OrderDetails = {
   emailAddress: string
   token: OrderToken
   financials: Financials
   shippingName: string
+  status: OrderStatusType
+  createdAt: string
   lineItems: OrderLineItem[]
   billing: PostalAddress
+}
+
+export type OrderSummary = {
+  id: OrderId
+  token: OrderToken
+  createdAt: string
+  status: OrderStatusType
+  total: number
 }
 
 export type OrderLineItem = {
@@ -30,3 +41,5 @@ export type FreeShippingInfo = {
   eligibleForFreeShipping: boolean
   addCostForFreeShipping: number
 }
+
+export type OrderStatusType = (typeof OrderStatus)[keyof typeof OrderStatus]

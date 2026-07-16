@@ -13,9 +13,6 @@ public static class OrderProblems
     public static Problem CannotCancel(OrderStatus status)
         => new("Cannot cancel order", "order.cannot_cancel", $"Orders in '{status}' status cannot be cancelled.");
     
-    public static Problem CannotRefund(OrderStatus status)
-        => new("Cannot refund order", "order.cannot_refund", $"Orders in '{status}' status cannot be refunded.");
-    
     public static Problem NonPendingOrderPayment
         => new("Cannot issue payment", "order.not_pending", "Payment can only be issued while the order is pending.");
     

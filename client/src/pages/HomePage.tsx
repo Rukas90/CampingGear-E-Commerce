@@ -16,7 +16,7 @@ const HomePage = () => {
       </div>
       <img
         src={Banner}
-        className="relative w-full object-cover object-bottom-right -translate-y-6 pointer-events-none"
+        className="relative w-full object-cover object-bottom-right pointer-events-none"
       />
     </>
   )

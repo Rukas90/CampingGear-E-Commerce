@@ -1,4 +1,7 @@
-﻿namespace TrailStore.Catalog.Application.Results;
+﻿using TrailStore.Catalog.Domain.Skus;
+using TrailStore.Shared.Domain.Common;
+
+namespace TrailStore.Catalog.Application.Results;
 
 public class ProductSummaryResult
 {
@@ -8,7 +11,7 @@ public class ProductSummaryResult
     public required string BrandSlug { get; init; }
     public required string CategoryName { get; init; }
     public required string CategorySlug { get; init; }
-    public required string DefaultSkuCode { get; init; }
+    public required Id<Sku> DefaultSkuId { get; init; }
     public required decimal MinPrice { get; init; }
     public required decimal MaxPrice { get; init; }
     public required double AverageRating { get; init; }

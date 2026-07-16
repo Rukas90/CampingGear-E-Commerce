@@ -29,7 +29,8 @@ public class GetCheckoutFormQueryHandler(
         {
             Contact = new CheckoutContact
             {
-                EmailAddress = session.EmailAddress
+                EmailAddress = session.EmailAddress,
+                IsEmailReadOnly = session.UserId is not null
             },
             Shipping = new CheckoutShipping
             {

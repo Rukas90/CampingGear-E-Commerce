@@ -8,6 +8,7 @@ using TrailStore.Payments;
 using TrailStore.Shared.Api.Handlers;
 using TrailStore.Shared.Api.Registrations;
 using TrailStore.Shared.Infrastructure.Extensions;
+using TrailStore.Wishlist;
 
 namespace TrailStore.Host;
 
@@ -37,7 +38,8 @@ public static class ServicesBuilder
                 .AddBasketModule()
                 .AddOrderingModule()
                 .AddInventoryModule()
-                .AddPaymentsModule();
+                .AddPaymentsModule()
+                .AddWishlistModule();
 
         builder.Services.AddFastEndpoints(options =>
         {

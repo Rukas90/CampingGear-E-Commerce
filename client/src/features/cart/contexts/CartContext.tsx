@@ -32,7 +32,7 @@ export const CartProvider = ({ children }: React.PropsWithChildren) => {
       queryKey: ["cart"],
     })
     await queryClient.invalidateQueries({
-      queryKey: ["session-summary"],
+      queryKey: ["cart-summary"],
     })
   }
 

@@ -1,4 +1,4 @@
-import type { SkuCode } from "./id"
+import type { CartItemId, SkuCode, SkuId } from "./id"
 
 export type Cart = {
   customerId: CustomerId
@@ -11,6 +11,7 @@ export type CartLineItem = {
 
 export type CartItem = {
   id: CartItemId
+  skuId: SkuId
   quantity: number
   unitPrice: number
   stock: number
@@ -25,4 +26,8 @@ export type CartItem = {
 export type CartItemOption = {
   groupName: string
   valueName: string
+}
+
+export type CartSummary = {
+  count: number
 }

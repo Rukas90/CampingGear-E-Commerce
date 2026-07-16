@@ -8,7 +8,7 @@ public static class OrderMappingExtensions
 {
     extension(Order order)
     {
-        public OrderSummary ToSummary()
+        public OrderDetailsResult ToDetails()
             => new()
             {
                 EmailAddress = order.EmailAddress,
@@ -18,8 +18,20 @@ public static class OrderMappingExtensions
                 ShippingCost = order.Shipping.PriceBeforeTax,
                 ShippingName = order.Shipping.MethodName,
                 Total = order.TotalPrice,
+                Status = order.Status,
+                CreatedAt = order.CreatedAt,
                 LineItems = order.Items.Select(item => item.ToLineItem()).ToArray(),
-                BillingAddress = order.BillingAddress,
+                BillingAddress = order.BillingAddress
+            };
+        
+        public OrderSummaryResult ToSummary()
+            => new()
+            {
+                Id = order.Id,
+                Token = OrderTokenization.ToDisplayToken(order.Token),
+                CreatedAt = order.CreatedAt,
+                Status = order.Status,
+                Total = order.TotalPrice
             };
     }
 }

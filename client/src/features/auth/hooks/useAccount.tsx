@@ -2,10 +2,11 @@ import { HandleReqFn } from "@lib"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import type { CustomerAccount, ProblemDetails } from "@types"
 import { authApi } from "../api"
+import { useSession } from "@features"
 
 const useAccount = () => {
   const queryClient = useQueryClient()
-
+  const { invalidate } = useSession()
   const query = useQuery<CustomerAccount | null, ProblemDetails>({
     queryKey: ["account"],
     queryFn: () => HandleReqFn(() => authApi.me()),
@@ -23,6 +24,8 @@ const useAccount = () => {
     if (result.isSuccess) {
       setAccount(null)
     }
+
+    await invalidate()
   }
 
   return {

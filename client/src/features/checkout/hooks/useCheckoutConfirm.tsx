@@ -1,6 +1,7 @@
-import type { OrderId, ProblemDetails } from "@types"
+import { type OrderId, type ProblemDetails } from "@types"
 import checkoutApi from "../api/checkoutApi"
-import { useMutateHandler } from "@features"
+import { useMutation } from "@tanstack/react-query"
+import { HandleReqFn } from "@lib"
 
 const useCheckoutConfirm = ({
   onSuccess,
@@ -9,13 +10,12 @@ const useCheckoutConfirm = ({
   onSuccess: (id: OrderId) => void
   onError: (problem: ProblemDetails) => void
 }) => {
-  return useMutateHandler({
-    key: ["checkout-confirm"],
-    func: () => checkoutApi.confirmCheckout(),
-    options: {
-      onSuccess: (data) => onSuccess(data.orderId),
-      onError,
-    },
+  return useMutation({
+    mutationKey: ["checkout-confirm"],
+    mutationFn: (saveInformation: boolean) =>
+      HandleReqFn(() => checkoutApi.confirmCheckout(saveInformation)),
+    onSuccess: (data) => onSuccess(data.orderId),
+    onError,
   })
 }
 export default useCheckoutConfirm

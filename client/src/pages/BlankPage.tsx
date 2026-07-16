@@ -1,14 +1,14 @@
 import { CartSidePanel, FooterBottom, Line, TopNav } from "@components"
-import type { TopNavVariant } from "@types"
 import { Outlet } from "react-router-dom"
 
 interface BlankPageProps {
-  topNavigation?: TopNavVariant
+  menu?: boolean
+  cart?: boolean
 }
-const BlankPage = ({ topNavigation = "functionless" }: BlankPageProps) => {
+const BlankPage = ({ menu, cart }: BlankPageProps) => {
   return (
     <div className="flex flex-col w-full min-h-dvh">
-      <TopNav className="relative" variant={topNavigation} />
+      <TopNav className="relative" showMenuItems={menu} showCartButton={cart} />
       <Line className="bg-neutral-200" />
       <div className="flex  flex-1">
         <Outlet />

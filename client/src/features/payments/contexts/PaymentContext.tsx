@@ -1,5 +1,5 @@
 import { useOrder } from "@features/orders"
-import { type Payment, type OrderSummary, type OrderId } from "@types"
+import { type Payment, type OrderDetails, type OrderId } from "@types"
 import { createContext, useContext, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import usePaymentConfirmation, {
@@ -8,7 +8,7 @@ import usePaymentConfirmation, {
 import paymentsApi from "../api/paymentsApi"
 
 interface PaymentContextData {
-  order: OrderSummary
+  order: OrderDetails
   state: ConfirmationState
   actions: {
     confirm: () => void

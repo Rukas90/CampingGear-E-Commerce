@@ -36,3 +36,7 @@ export type ReviewsRequest = {
 export type GetCartSkusRequest = {
   codes: string[]
 }
+
+export type UpdateCheckoutContactRequest = {
+  emailAddress?: string
+}

@@ -22,9 +22,9 @@ const ProfileAccountPanel = ({ onClose }: AccountPanelProps) => {
             Profile
           </ContrastButton>
         </Link>
-        <PopButton className="w-full py-2.5 text-sm basis-1/2">
-          Orders
-        </PopButton>
+        <Link to="/orders" className="basis-1/2">
+          <PopButton className="w-full py-2.5 text-sm">Orders</PopButton>
+        </Link>
       </div>
     </div>
   )

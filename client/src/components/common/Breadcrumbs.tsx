@@ -8,7 +8,7 @@ interface BreadcrumbsProps {
 }
 const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
   return (
-    <p className="text-sm mb-4 space-x-2 font-medium">
+    <p className="sm:text-sm text-xs mb-4 space-x-2 font-medium">
       {items?.map((item, index) => (
         <span key={item.name + "_" + item.link}>
           {item.disabled ? (

@@ -36,5 +36,8 @@ public class SkuRepository(CatalogDbContext _context) : ReadRepository<Sku, Cata
             .Include(sku => sku.Product)
             .ThenInclude(product => product.Brand)
             .Include(sku => sku.Product)
-            .ThenInclude(product => product.Category);
+            .ThenInclude(product => product.Category)
+            .Include(sku => sku.Product)
+            .ThenInclude(product => product.Images)
+            .ThenInclude(image => image.Urls);
 }

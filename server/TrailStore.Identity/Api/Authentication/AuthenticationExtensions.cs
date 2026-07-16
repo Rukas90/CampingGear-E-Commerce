@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using TrailStore.Identity.Api.Cookies;
 using TrailStore.Identity.Domain.Auth;
+using TrailStore.Shared.Domain.Problems;
 
 namespace TrailStore.Identity.Api.Authentication;
 
@@ -43,7 +44,7 @@ public static class AuthenticationExtensions
                     {
                         context.HandleResponse();
 
-                        var problem = AuthProblems.Unauthenticated;
+                        var problem = SharedAuthProblems.Unauthenticated;
 
                         await new ProblemDetails
                         {

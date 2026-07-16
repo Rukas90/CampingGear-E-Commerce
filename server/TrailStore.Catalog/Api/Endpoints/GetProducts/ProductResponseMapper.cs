@@ -16,7 +16,7 @@ public static class ProductResponseMapper
             BrandSlug = summary.BrandSlug,
             CategoryName = summary.CategoryName,
             CategorySlug = summary.CategorySlug,
-            DefaultSkuCode = summary.DefaultSkuCode,
+            DefaultSkuId = summary.DefaultSkuId,
             MinPrice = summary.MinPrice,
             MaxPrice = summary.MaxPrice,
             AverageRating = summary.AverageRating,

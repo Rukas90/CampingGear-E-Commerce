@@ -19,7 +19,7 @@ public class ReviewRepository(CatalogDbContext _context)
 {
     public async Task<List<Review>> ListAsync(ReviewsFilter filter, CancellationToken ct)
     {
-        var queryable = ReadQuery.AsQueryable();
+        var queryable = AggregateReadQuery.AsQueryable();
 
         var specification = ReviewsSpecificationBuilder.Build(filter);
 
@@ -55,7 +55,7 @@ public class ReviewRepository(CatalogDbContext _context)
     {
         var ids = productIds.ToList();
 
-        return await ReadQuery
+        return await AggregateReadQuery
             .Where(review => ids.Contains(review.ProductId))
             .GroupBy(review => review.ProductId)
             .Select(g => new ReviewsSummary(

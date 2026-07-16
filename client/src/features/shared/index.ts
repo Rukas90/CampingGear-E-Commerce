@@ -9,7 +9,6 @@ export {
   default as useQueryHandler,
   type QueryOptions,
 } from "./hooks/useQueryHandler"
-export { default as useMutateHandler } from "./hooks/useMutateHandler"
 export { default as reqToParams } from "./mappers/ReqToParams"
 export { recordMapper } from "./mappers/ParamMappers"
 export * from "./hooks/useData"

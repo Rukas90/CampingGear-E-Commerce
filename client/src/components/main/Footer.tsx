@@ -1,5 +1,6 @@
 import { Newsletter, PageWrapper } from "@components"
 import FooterBottom from "./FooterBottom"
+import FooterNavigationSection from "./FooterNavigationSection"
 
 const Footer = () => {
   return (
@@ -7,55 +8,35 @@ const Footer = () => {
       <Newsletter />
       <div className="px-24 py-12">
         <PageWrapper>
-          <div className="grid grid-cols-5 gap-6">
-            <div>
-              <p className="playfair-display text-lg font-semibold">Account</p>
-              <ul className="mt-2 grid flex-col gap-2 text-base">
-                <li className="text-stone-700">Your Account</li>
-                <li className="text-stone-700">My Whishlist</li>
-              </ul>
-            </div>
-            <div>
-              <p className="playfair-display text-lg font-semibold">Shop</p>
-              <ul className="mt-2 grid flex-col gap-2 text-base">
-                <li className="text-stone-700">Bestsellers</li>
-                <li className="text-stone-700">New Arrivals</li>
-                <li className="text-stone-700">Gift Card</li>
-              </ul>
-            </div>
-            <div>
-              <p className="playfair-display text-lg font-semibold">Help</p>
-              <ul className="mt-2 grid flex-col gap-2 text-base">
-                <li className="text-stone-700">Customer Support</li>
-                <li className="text-stone-700">Shipping Policy</li>
-                <li className="text-stone-700">Returns & Refunds</li>
-                <li className="text-stone-700">Warranty & Repair</li>
-                <li className="text-stone-700">FAQ</li>
-                <li className="text-stone-700">Privacy</li>
-                <li className="text-stone-700">Terms of Service</li>
-                <li className="text-stone-700">Terms & Conditions</li>
-              </ul>
-            </div>
-            <div>
-              <p className="playfair-display text-lg font-semibold">
-                Work with Us
-              </p>
-              <ul className="mt-2 grid flex-col gap-2 text-base">
-                <li className="text-stone-700">Jobs & Careers</li>
-                <li className="text-stone-700">Co-op Culture</li>
-                <li className="text-stone-700">Affiliate Program</li>
-              </ul>
-            </div>
-            <div>
-              <p className="playfair-display text-lg font-semibold">
+          <div className="flex xl:flex-row flex-col gap-16">
+            <FooterNavigationSection
+              header="Account"
+              items={[{ name: "Your Account" }, { name: "My Whishlist" }]}
+            />
+            <FooterNavigationSection
+              header="Help"
+              items={[
+                { name: "Customer Support" },
+                { name: "Shipping Policy" },
+                { name: "Returns & Refunds" },
+                { name: "Warranty & Repair" },
+                { name: "FAQ" },
+                { name: "Privacy" },
+                { name: "Terms of Service" },
+                { name: "Terms & Conditions" },
+              ]}
+            />
+
+            <div className="xl:ml-auto mx-auto">
+              <p className="playfair-display text-lg font-semibold xl:text-start text-center">
                 Connect with us
               </p>
-              <ul className="mt-2 grid flex-col gap-2 text-base">
-                <li className="text-stone-700">Camping Gear EU</li>
+              <ul className="mt-2 grid flex-col gap-2 text-base xl:text-start text-center">
+                <li className="text-stone-700">TrailStore Gear EU</li>
                 <li className="text-stone-700">Phone: +12 (345) 678-999</li>
-                <li className="text-stone-700">Email: info@campgear.com</li>
+                <li className="text-stone-700">Email: info@trailstore.com</li>
                 <li className="text-stone-700">
-                  Hours:Monday-Friday, 8:30am-5pm CET
+                  Hours: Monday-Friday, 8:30am-5pm CET
                 </li>
               </ul>
             </div>

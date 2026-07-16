@@ -1,5 +1,4 @@
 import {
-  IconArrow,
   LogoWithText,
   PageWrapper,
   ProductCategoryListing,
@@ -11,24 +10,27 @@ import { useEffect, useState } from "react"
 import clsx from "clsx"
 import { useCartContext } from "@features"
 import { twMerge } from "tailwind-merge"
-import type { TopNavVariant } from "@types"
 import AccountBadge from "./AccountBadge"
+import NavMenu from "./NavMenu"
 
 interface TopNavProps extends Omit<
   React.ComponentProps<"nav">,
   "children" | "onMouseLeave"
 > {
-  variant?: TopNavVariant
+  showMenuItems?: boolean
+  showCartButton?: boolean
 }
-const TopNav = ({ variant = "default", className, ...props }: TopNavProps) => {
+const TopNav = ({
+  showMenuItems = true,
+  showCartButton = true,
+  className,
+  ...props
+}: TopNavProps) => {
   const { openCartPanel } = useCartContext()
   const [showListing, setShowListing] = useState(false)
   const location = useLocation()
 
   useEffect(() => setShowListing(false), [location.pathname])
-
-  const hasMenuItems = variant === "default"
-  const hasCart = variant !== "functionless"
 
   return (
     <nav
@@ -40,35 +42,27 @@ const TopNav = ({ variant = "default", className, ...props }: TopNavProps) => {
       {...props}
     >
       <div className="relative">
-        <PageWrapper className="z-65 bg-white">
-          <div className="flex items-center justify-between w-full">
-            <div className="w-1/3">
-              {hasMenuItems && (
-                <ul className="flex gap-5 dark:text-stone-200">
-                  <li
-                    className="font-normal text-sm flex gap-1.5 items-center"
-                    onMouseOver={() => setShowListing(true)}
-                  >
-                    Products <IconArrow className="rotate-90 size-3" />
-                  </li>
-                  <li className="font-normal text-sm">Help</li>
-                  <li className="font-normal text-sm">About</li>
-                </ul>
-              )}
-            </div>
-            <div className="flex items-center justify-center w-1/3">
+        <PageWrapper className="z-65">
+          <div className="grid grid-cols-3">
+            {showMenuItems && (
+              <NavMenu
+                openListing={() => setShowListing(true)}
+                showingListing={showListing}
+              />
+            )}
+            <div className="flex items-center justify-center">
               <Link to="/">
                 <LogoWithText />
               </Link>
             </div>
-            <div className="flex gap-5 items-center justify-end w-1/3">
-              {hasMenuItems && (
-                <>
+            <div className="flex gap-5 justify-end items-center">
+              {showMenuItems && (
+                <div className="sm:flex hidden gap-5 items-center">
                   <AccountBadge />
                   <WishlistBadge />
-                </>
+                </div>
               )}
-              {hasCart && <CartBadge onClicked={openCartPanel} />}
+              {showCartButton && <CartBadge onClicked={openCartPanel} />}
             </div>
           </div>
         </PageWrapper>

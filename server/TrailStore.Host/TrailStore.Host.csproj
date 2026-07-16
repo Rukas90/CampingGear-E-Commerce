@@ -24,6 +24,7 @@
       <ProjectReference Include="..\TrailStore.Inventory\TrailStore.Inventory.csproj" />
       <ProjectReference Include="..\TrailStore.Ordering\TrailStore.Ordering.csproj" />
       <ProjectReference Include="..\TrailStore.Payments\TrailStore.Payments.csproj" />
+      <ProjectReference Include="..\TrailStore.Wishlist\TrailStore.Wishlist.csproj" />
     </ItemGroup>
 
 </Project>

@@ -66,6 +66,38 @@ namespace TrailStore.Ordering.Infrastructure.Database.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TrailStore.Ordering.Domain.Checkout.SavedCheckoutDetails", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<bool>("ShippingAddressAsBillingAddress")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("ShippingMethodId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SavedCheckoutDetails", "ordering");
+                });
+
             modelBuilder.Entity("TrailStore.Ordering.Domain.Orders.Order", b =>
                 {
                     b.Property<Guid>("Id")
@@ -419,6 +451,133 @@ namespace TrailStore.Ordering.Infrastructure.Database.Migrations
                     b.Navigation("BillingAddress");
 
                     b.Navigation("ShippingAddress");
+                });
+
+            modelBuilder.Entity("TrailStore.Ordering.Domain.Checkout.SavedCheckoutDetails", b =>
+                {
+                    b.OwnsOne("TrailStore.Ordering.Domain.Orders.BillingAddress", "BillingAddress", b1 =>
+                        {
+                            b1.Property<Guid>("SavedCheckoutDetailsId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("AddressLine")
+                                .IsRequired()
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
+
+                            b1.Property<string>("ApartmentSuite")
+                                .HasMaxLength(200)
+                                .HasColumnType("character varying(200)");
+
+                            b1.Property<string>("City")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.Property<string>("Company")
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.Property<string>("CountryCode")
+                                .IsRequired()
+                                .HasMaxLength(2)
+                                .HasColumnType("character varying(2)");
+
+                            b1.Property<string>("PhoneNumber")
+                                .IsRequired()
+                                .HasMaxLength(40)
+                                .HasColumnType("character varying(40)");
+
+                            b1.Property<string>("PostalCode")
+                                .HasMaxLength(20)
+                                .HasColumnType("character varying(20)");
+
+                            b1.Property<string>("RecipientFirstName")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
+
+                            b1.Property<string>("RecipientLastName")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
+
+                            b1.Property<string>("Region")
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.HasKey("SavedCheckoutDetailsId");
+
+                            b1.ToTable("SavedCheckoutDetails", "ordering");
+
+                            b1.WithOwner()
+                                .HasForeignKey("SavedCheckoutDetailsId");
+                        });
+
+                    b.OwnsOne("TrailStore.Ordering.Domain.Orders.ShippingAddress", "ShippingAddress", b1 =>
+                        {
+                            b1.Property<Guid>("SavedCheckoutDetailsId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("AddressLine")
+                                .IsRequired()
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
+
+                            b1.Property<string>("ApartmentSuite")
+                                .HasMaxLength(200)
+                                .HasColumnType("character varying(200)");
+
+                            b1.Property<string>("City")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.Property<string>("Company")
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.Property<string>("CountryCode")
+                                .IsRequired()
+                                .HasMaxLength(2)
+                                .HasColumnType("character varying(2)");
+
+                            b1.Property<string>("PhoneNumber")
+                                .IsRequired()
+                                .HasMaxLength(40)
+                                .HasColumnType("character varying(40)");
+
+                            b1.Property<string>("PostalCode")
+                                .HasMaxLength(20)
+                                .HasColumnType("character varying(20)");
+
+                            b1.Property<string>("RecipientFirstName")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
+
+                            b1.Property<string>("RecipientLastName")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)");
+
+                            b1.Property<string>("Region")
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)");
+
+                            b1.HasKey("SavedCheckoutDetailsId");
+
+                            b1.ToTable("SavedCheckoutDetails", "ordering");
+
+                            b1.WithOwner()
+                                .HasForeignKey("SavedCheckoutDetailsId");
+                        });
+
+                    b.Navigation("BillingAddress")
+                        .IsRequired();
+
+                    b.Navigation("ShippingAddress")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TrailStore.Ordering.Domain.Orders.Order", b =>

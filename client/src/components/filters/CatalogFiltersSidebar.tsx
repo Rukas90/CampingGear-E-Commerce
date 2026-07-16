@@ -23,7 +23,7 @@ const CatalogFiltersSidebar = ({
   const isHidden = (key: (typeof exclude)[number]) => exclude.includes(key)
 
   return (
-    <div className="min-w-62 sticky top-22">
+    <div className="min-w-62 sm:w-auto w-full max-w-full sm:sticky top-22">
       <TextButton>Clear filters</TextButton>
       {!isHidden("categories") && (
         <CatalogCategoryFilter categories={categories} />

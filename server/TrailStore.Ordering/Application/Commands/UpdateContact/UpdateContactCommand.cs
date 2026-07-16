@@ -6,4 +6,4 @@ using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Ordering.Application.Commands.UpdateContact;
 
-public sealed record UpdateContactCommand(Id<CartRef> CartId, Id<UserRef>? UserId, CheckoutContact Data) : ICommand;
+public sealed record UpdateContactCommand(Id<CartRef> CartId, Id<UserRef>? UserId, string? EmailAddress) : ICommand;

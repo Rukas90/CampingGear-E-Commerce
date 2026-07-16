@@ -1,8 +1,10 @@
 import type { ProductSummary } from "@types"
 import PriceBadge from "./PriceBadge"
 import OutOfStockTag from "./OutOfStockTag"
-import { RatingBadge, IconSaved } from "@components"
+import { RatingBadge } from "@components"
 import { Link } from "react-router-dom"
+import { useWishlist } from "@features"
+import WishlistToggle from "./WishlistToggle"
 
 const ProductItem = ({
   name,
@@ -13,9 +15,11 @@ const ProductItem = ({
   maxPrice,
   averageRating,
   reviewCount,
+  defaultSkuId,
   inStock,
   thumbnailUrl,
 }: ProductSummary) => {
+  const { isInWishlist, toggleItem } = useWishlist()
   const link = `/product/${slug}`
 
   return (
@@ -38,7 +42,10 @@ const ProductItem = ({
       <PriceBadge minPrice={minPrice} maxPrice={maxPrice} />
       <RatingBadge averageRating={averageRating} reviewCount={reviewCount} />
       <div className="flex gap-2 mt-1.5">
-        <IconSaved className="size-5 text-gray-700" />
+        <WishlistToggle
+          isSaved={isInWishlist(defaultSkuId)}
+          toggle={() => toggleItem(defaultSkuId)}
+        />
       </div>
     </div>
   )

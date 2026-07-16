@@ -17,7 +17,7 @@ export type ProductSummary = {
   brandSlug: string
   categoryName: string
   categorySlug: string
-  defaultSkuCode: SkuCode
+  defaultSkuId: SkuId
   minPrice: number
   maxPrice: number
   averageRating: number

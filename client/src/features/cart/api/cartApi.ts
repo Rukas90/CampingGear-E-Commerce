@@ -1,5 +1,5 @@
 import { makeRequest } from "@lib"
-import type { CartItem, CartItemId, SkuId } from "@types"
+import type { CartItem, CartItemId, CartSummary, SkuId } from "@types"
 
 const cartApi = {
   addToCart: async (skuId: SkuId, quantity: number) =>
@@ -17,5 +17,7 @@ const cartApi = {
   emptyCart: async () => await makeRequest<string>(`api/v1/cart`, "delete"),
 
   getCart: async () => await makeRequest<CartItem[]>(`api/v1/cart`),
+
+  getSummary: async () => await makeRequest<CartSummary>(`api/v1/cart/summary`),
 }
 export default cartApi

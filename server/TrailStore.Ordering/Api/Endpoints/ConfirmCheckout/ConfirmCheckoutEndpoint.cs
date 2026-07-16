@@ -7,19 +7,19 @@ using TrailStore.Shared.Api.Mappers;
 namespace TrailStore.Ordering.Api.Endpoints.ConfirmCheckout;
 
 public sealed class ConfirmCheckoutEndpoint(ConfirmCheckoutCommandHandler command) 
-    : EndpointWithoutRequest
+    : Endpoint<CheckoutConfirmRequest, ConfirmCheckoutResponse>
 {
     public override void Configure()
     {
         Post("/api/v1/checkout/confirm");
         AllowAnonymous();
-        PreProcessor<RequireCartId<EmptyRequest>>();
+        PreProcessor<RequireCartId<CheckoutConfirmRequest>>();
     }
 
-    public override async Task HandleAsync(CancellationToken ct)
+    public override async Task HandleAsync(CheckoutConfirmRequest req, CancellationToken ct)
     {
         var result = await command.Handle(
-            new ConfirmCheckoutCommand(HttpContext.GetCartId()!.Value), ct);
+            new ConfirmCheckoutCommand(req.SaveInformation, HttpContext.GetCartId()!.Value), ct);
 
         if (!result.IsSuccess)
         {

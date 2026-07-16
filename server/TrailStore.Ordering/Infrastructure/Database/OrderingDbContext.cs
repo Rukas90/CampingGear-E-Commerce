@@ -21,6 +21,8 @@ public sealed class OrderingDbContext(DbContextOptions<OrderingDbContext> option
 
     public DbSet<CheckoutSession> CheckoutSessions { get; set; }
     
+    public DbSet<SavedCheckoutDetails> SavedCheckoutDetails { get; set; }
+    
     public DbSet<ShippingMethod> ShippingMethods { get; set; }
     
     public DbSet<ShippingZone> ShippingZones { get; set; }

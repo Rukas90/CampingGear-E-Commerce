@@ -1,31 +1,45 @@
-import { IconCart, IconSaved } from "@components"
+import { IconCart } from "@components"
+import { useCartContext, useWishlist } from "@features"
+import type { ProductSku } from "@types"
+import WishlistToggle from "./WishlistToggle"
 
 interface ProductButtonsProps {
   stock: number
-  isInSavedList?: boolean
   unitPrice: number
   quantity: number
-  onAddToCart?: () => void
-  onAddToWishlist?: () => void
+  sku?: ProductSku
 }
 const ProductButtons = ({
   stock,
-  isInSavedList,
   unitPrice,
   quantity,
-  onAddToCart,
-  onAddToWishlist,
+  sku,
 }: ProductButtonsProps) => {
+  const { addItem } = useCartContext()
+  const { toggleItem, isInWishlist } = useWishlist()
+
+  const handleAddToCart = () => {
+    if (!sku) {
+      return
+    }
+    addItem(sku.id, quantity)
+  }
+
+  const handleWishlistToggle = () => {
+    if (!sku) {
+      return
+    }
+    toggleItem(sku.id)
+  }
+
   return (
     <div className="mt-4 flex gap-4 lg:flex-row flex-col">
-      <button className="cursor-pointer" onClick={onAddToWishlist}>
-        <IconSaved
-          className="size-5"
-          fill={isInSavedList ? "#000000" : "none"}
-        />
-      </button>
+      <WishlistToggle
+        isSaved={!!sku && isInWishlist(sku.id)}
+        toggle={handleWishlistToggle}
+      />
       <button
-        onClick={onAddToCart}
+        onClick={handleAddToCart}
         className="flex cursor-pointer font-medium gap-2 justify-center items-center w-full bg-black py-2.5 text-neutral-100 rounded-lg"
       >
         <IconCart className="size-5" />

@@ -1,8 +1,8 @@
 import { OrderFinancialsStats } from "@components"
-import { useCheckoutStats, useSessionSummary } from "@features"
+import { useCartSummary, useCheckoutStats } from "@features"
 
 const CheckoutOrderStats = () => {
-  const { summary } = useSessionSummary()
+  const { summary } = useCartSummary()
   const { stats, isPending } = useCheckoutStats()
 
   if (!stats) {
@@ -11,7 +11,7 @@ const CheckoutOrderStats = () => {
 
   return (
     <OrderFinancialsStats
-      itemsCount={summary.cartCount}
+      itemsCount={summary?.count ?? 0}
       financials={stats.financials}
       freeShippingInfo={stats.freeShippingInfo}
       isPending={isPending}

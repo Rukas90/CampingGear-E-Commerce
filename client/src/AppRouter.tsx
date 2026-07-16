@@ -17,10 +17,12 @@ const NotFoundPage = lazy(() => import("./pages/NotFoundPage"))
 const OrderConfirmationPage = lazy(
   () => import("./pages/OrderConfirmationPage"),
 )
-const OrderCanceledPage = lazy(() => import("./pages/OrderCanceledPage"))
+const OrderCancelledPage = lazy(() => import("./pages/OrderCancelledPage"))
 const ProfilePage = lazy(() => import("./pages/ProfilePage"))
 const OrdersPage = lazy(() => import("./pages/OrdersPage"))
 const AddressesPage = lazy(() => import("./pages/AddressesPage"))
+const OrderPage = lazy(() => import("./pages/OrderPage"))
+const WishlistPage = lazy(() => import("./pages/WishlistPage"))
 
 const AppRouter = () => {
   useAuthInterceptor()
@@ -39,24 +41,29 @@ const AppRouter = () => {
         <Route path="*" element={<NotFoundPage />} />
       </Route>
       <Route element={<ProtectedGuard />}>
-        <Route element={<BlankPage topNavigation="default" />}>
+        <Route element={<BlankPage />}>
           <Route element={<AccountPage />}>
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/orders" element={<OrdersPage />} />
             <Route path="/addresses" element={<AddressesPage />} />
           </Route>
+          <Route path="/order/:orderId" element={<OrderPage />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
         </Route>
       </Route>
-      <Route element={<BlankPage topNavigation="checkout" />}>
+      <Route element={<BlankPage menu={false} />}>
         <Route path="/checkout" element={<CheckoutPage />} />
       </Route>
-      <Route element={<BlankPage topNavigation="functionless" />}>
+      <Route element={<BlankPage menu={false} cart={false} />}>
         <Route path="/orders/pay/:orderId" element={<PaymentPage />} />
         <Route
           path="/orders/confirmation/:orderId"
           element={<OrderConfirmationPage />}
         />
-        <Route path="/orders/failed/:orderId" element={<OrderCanceledPage />} />
+        <Route
+          path="/orders/failed/:orderId"
+          element={<OrderCancelledPage />}
+        />
       </Route>
     </Routes>
   )

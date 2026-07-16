@@ -18,7 +18,7 @@ public class Specification<T> : ISpecification<T>
 
     public Expression<Func<T, bool>> ToExpression()
     {
-        return expression ?? (_ => true);
+        return (expression ?? (_ => true)).Expand();
     }
 
     public Specification<T> And(Specification<T> other)

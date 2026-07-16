@@ -10,9 +10,9 @@ namespace TrailStore.Ordering.Application.Queries.GetOrder;
 
 [AppService<GetOrderQueryHandler>]
 public sealed class GetOrderQueryHandler(IOrderRepository orderRepository)
-    : IQueryHandler<GetOrderQuery, OrderSummary>
+    : IQueryHandler<GetOrderQuery, OrderDetailsResult>
 {
-    public async Task<Result<OrderSummary>> Handle(GetOrderQuery query, CancellationToken ct)
+    public async Task<Result<OrderDetailsResult>> Handle(GetOrderQuery query, CancellationToken ct)
     {
         var order = await orderRepository.FindAsync(query.Id, ct);
 
@@ -21,6 +21,6 @@ public sealed class GetOrderQueryHandler(IOrderRepository orderRepository)
             return OrderProblems.NotFound(query.Id);
         }
 
-        return order.ToSummary();
+        return order.ToDetails();
     }
 }

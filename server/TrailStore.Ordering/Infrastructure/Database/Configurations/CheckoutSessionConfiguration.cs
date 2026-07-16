@@ -19,11 +19,11 @@ public class CheckoutSessionConfiguration : IEntityTypeConfiguration<CheckoutSes
         builder.Property(session => session.Status)
             .IsRequired();
         
-        builder.ToTable(t => t.HasCheckConstraint(
+        builder.ToTable(session => session.HasCheckConstraint(
             "CK_CheckoutSessions_EmailRequiredForUser",
             "\"UserId\" IS NULL OR \"EmailAddress\" IS NOT NULL"));
 
-        builder.Property(review => review.CreatedAt)
+        builder.Property(session => session.CreatedAt)
             .IsRequired()
             .HasDefaultValueSql("NOW()");
         

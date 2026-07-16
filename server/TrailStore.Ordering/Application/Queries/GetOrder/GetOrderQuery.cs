@@ -5,4 +5,4 @@ using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Ordering.Application.Queries.GetOrder;
 
-public sealed record GetOrderQuery(Id<Order> Id) : IQuery<OrderSummary>;
+public sealed record GetOrderQuery(Id<Order> Id) : IQuery<OrderDetailsResult>;

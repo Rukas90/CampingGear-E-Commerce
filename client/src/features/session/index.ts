@@ -1,1 +1,1 @@
-export { default as useSessionSummary } from "./hooks/useSessionSummary"
+export { default as useSession } from "./hooks/useSession"

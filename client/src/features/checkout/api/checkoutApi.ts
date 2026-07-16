@@ -1,7 +1,7 @@
 import { makeRequest } from "@lib"
 import type {
   CheckoutForm,
-  CheckoutContact,
+  UpdateCheckoutContactRequest,
   PostalAddress,
   CheckoutBilling,
   ShippingMethodId,
@@ -16,7 +16,7 @@ const checkoutApi = {
   getForm: async () =>
     await makeRequest<CheckoutForm>(`api/v1/checkout/form`, "get"),
 
-  updateContact: async (contact: CheckoutContact) =>
+  updateContact: async (contact: UpdateCheckoutContactRequest) =>
     await makeRequest<string>(`api/v1/checkout/contact`, "patch", contact),
 
   updateShippingAddress: async (address: PostalAddress) =>
@@ -37,7 +37,9 @@ const checkoutApi = {
   getStats: async () =>
     await makeRequest<CheckoutStats>(`api/v1/checkout/stats`),
 
-  confirmCheckout: async () =>
-    await makeRequest<CheckoutConfirmation>(`api/v1/checkout/confirm`, "post"),
+  confirmCheckout: async (saveInformation: boolean) =>
+    await makeRequest<CheckoutConfirmation>(`api/v1/checkout/confirm`, "post", {
+      saveInformation: saveInformation,
+    }),
 }
 export default checkoutApi

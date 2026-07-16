@@ -11,6 +11,7 @@ public static class CartResponseMapper
         => new()
         {
             Id = item.Id,
+            SkuId = item.SkuId,
             Quantity = item.Quantity,
             UnitPrice = item.UnitPrice,
             Stock = item.Stock,

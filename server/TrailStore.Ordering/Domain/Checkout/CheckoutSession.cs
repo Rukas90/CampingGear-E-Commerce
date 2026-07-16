@@ -34,6 +34,15 @@ public class CheckoutSession : AggregateRoot<CheckoutSession>, IEntityCreatable,
             ExpiresAt = DateTime.UtcNow.Add(expireTime),
             ShippingAddressAsBillingAddress = true
         };
+
+    public void Fill(SavedCheckoutDetails details)
+    {
+        EmailAddress = details.EmailAddress;
+        ShippingAddress = details.ShippingAddress;
+        BillingAddress = details.BillingAddress;
+        ShippingAddressAsBillingAddress = details.ShippingAddressAsBillingAddress;
+        ShippingMethodId = details.ShippingMethodId;
+    }
     
     public Result AssignUser(Id<UserRef> userId, string emailAddress)
     {
@@ -50,11 +59,6 @@ public class CheckoutSession : AggregateRoot<CheckoutSession>, IEntityCreatable,
 
     public Result UpdateEmailAddress(string? emailAddress)
     {
-        if (Status != CheckoutStatus.Draft)
-        {
-            return CheckoutProblems.CheckoutNotEditable;
-        }
-        
         if (UserId is not null && string.IsNullOrWhiteSpace(emailAddress))
         {
             return CheckoutProblems.EmailRequired;
@@ -67,11 +71,6 @@ public class CheckoutSession : AggregateRoot<CheckoutSession>, IEntityCreatable,
 
     public Result UpdateShippingAddress(ShippingAddress? address)
     {
-        if (Status != CheckoutStatus.Draft)
-        {
-            return CheckoutProblems.CheckoutNotEditable;
-        }
-
         ShippingAddress = address;
         
         UpdateBillingAddress(BillingAddress);
@@ -81,11 +80,6 @@ public class CheckoutSession : AggregateRoot<CheckoutSession>, IEntityCreatable,
     
     public Result UpdateShippingMethodId(Id<ShippingMethod>? methodId)
     {
-        if (Status != CheckoutStatus.Draft)
-        {
-            return CheckoutProblems.CheckoutNotEditable;
-        }
-
         ShippingMethodId = methodId;
         
         return Result.Ok();
@@ -93,11 +87,6 @@ public class CheckoutSession : AggregateRoot<CheckoutSession>, IEntityCreatable,
 
     public Result UpdateBilling(bool shippingAddressAsBillingAddress, BillingAddress? address)
     {
-        if (Status != CheckoutStatus.Draft)
-        {
-            return CheckoutProblems.CheckoutNotEditable;
-        }
-
         ShippingAddressAsBillingAddress = shippingAddressAsBillingAddress;
         
         UpdateBillingAddress(address);
@@ -111,17 +100,5 @@ public class CheckoutSession : AggregateRoot<CheckoutSession>, IEntityCreatable,
             ? ShippingAddress is not null 
                 ? new BillingAddress(ShippingAddress) : null
             : address;
-    }
-
-    public Result Confirm()
-    {
-        if (Status is CheckoutStatus.Complete)
-        {
-            return CheckoutProblems.AlreadyComplete;
-        }
-
-        Status = CheckoutStatus.Complete;
-        
-        return Result.Ok();
     }
 }

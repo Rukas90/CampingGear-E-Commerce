@@ -1,5 +1,4 @@
 ﻿using TrailStore.Basket.Domain.Carts;
-using TrailStore.Basket.Domain.Sessions;
 using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;

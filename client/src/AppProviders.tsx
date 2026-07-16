@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client"
 import { BrowserRouter } from "react-router-dom"
 import { get, set, del } from "idb-keyval"
-import { CartProvider } from "@features"
+import { CartProvider, WishlistProvider } from "@features"
 import "react-loading-skeleton/dist/skeleton.css"
 
 const queryClient = new QueryClient({
@@ -27,7 +27,9 @@ const AppProviders = ({ children }: React.PropsWithChildren) => {
   return (
     <QueryClientProvider client={queryClient}>
       <CartProvider>
-        <BrowserRouter>{children}</BrowserRouter>
+        <WishlistProvider>
+          <BrowserRouter>{children}</BrowserRouter>
+        </WishlistProvider>
       </CartProvider>
     </QueryClientProvider>
   )

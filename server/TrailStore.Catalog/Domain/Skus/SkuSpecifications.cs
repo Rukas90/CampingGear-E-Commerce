@@ -6,7 +6,7 @@ public static class SkuSpecifications
 {
     public static Specification<Sku> Id(Id<Sku> id)
     {
-        return Specification<Sku>.Where(sku => sku.Product.Skus.Any(s => s.Id == id));
+        return Specification<Sku>.Where(sku => sku.Id == id);
     }
     
     public static Specification<Sku> Brand(string slug)

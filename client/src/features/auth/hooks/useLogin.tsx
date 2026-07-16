@@ -5,11 +5,11 @@ import { authApi } from "../api"
 import { HandleReqFn } from "@lib"
 import type { CustomerAccount, ProblemDetails } from "@types"
 import useAccount from "./useAccount"
-import { useSessionSummary } from "@features"
+import { useSession } from "@features"
 
 const useLogin = () => {
   const navigate = useNavigate()
-  const { invalidate } = useSessionSummary()
+  const { invalidate } = useSession()
   const { setAccount } = useAccount()
 
   return useMutation<CustomerAccount, ProblemDetails, LoginData>({

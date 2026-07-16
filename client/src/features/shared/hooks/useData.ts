@@ -31,11 +31,12 @@ export type ValueInterface<T> = {
   commit: () => void
 }
 
-export interface UseDataProps<TData, TResponse> {
+export interface UseDataProps<TData, TRequest = TData, TResponse = unknown> {
   data?: TData
   defaultData: TData
   mutationKey: string[]
-  requestFunc: (data: TData) => Promise<ApiResult<TResponse>>
+  requestFunc: (request: TRequest) => Promise<ApiResult<TResponse>>
+  toRequest?: (data: TData) => TRequest
   onMutationSuccess?: (response: TResponse | undefined) => void
   errorPool: ErrorPool
   errorKeyMappers?: ErrorKeyMapper[]
@@ -46,22 +47,26 @@ export interface UseDataSnapshot {
   revertToSnapshot: () => void
 }
 
-export const useData = <TData, TResponse = unknown>({
+export const useData = <TData, TRequest = TData, TResponse = unknown>({
   data,
   defaultData,
   mutationKey,
   requestFunc,
+  toRequest,
   onMutationSuccess,
   errorPool,
   errorKeyMappers,
-}: UseDataProps<TData, TResponse>) => {
+}: UseDataProps<TData, TRequest, TResponse>) => {
   const [internalData, setInternalData] = useState<TData>(data ?? defaultData)
   const [cachedResponse, setCachedResponse] = useState<TResponse | undefined>()
 
   const snapshot = useRef<TData>(undefined)
   const formState = useFormState(internalData)
 
-  const { commitWith, isPending } = useManagedMutation<TData, TResponse>({
+  const mapToRequest =
+    toRequest ?? ((value: TData) => value as unknown as TRequest)
+
+  const { commitWith, isPending } = useManagedMutation<TRequest, TResponse>({
     mutationKey,
     requestFunc,
     onSuccess: (response) => {
@@ -89,7 +94,7 @@ export const useData = <TData, TResponse = unknown>({
     if (!formState.isAnyDirty()) {
       return
     }
-    commitWith(internalData)
+    commitWith(mapToRequest(internalData))
   }
 
   const findError = (key: string | number | symbol): string | undefined => {

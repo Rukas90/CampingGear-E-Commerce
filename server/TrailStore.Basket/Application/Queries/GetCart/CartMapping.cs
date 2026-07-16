@@ -14,6 +14,7 @@ public static class CartMapping
             .Select(x => new CartItemResult
             {
                 Id = x.item.Id,
+                SkuId = x.sku.Id,
                 Quantity = x.item.Quantity,
                 ProductName = x.sku.Product.Name,
                 ProductSlug = x.sku.Product.Slug,
@@ -22,7 +23,7 @@ public static class CartMapping
                 UnitPrice = x.sku.UnitPrice,
                 Stock = x.sku.Stock,
                 ThumbnailUrl = x.sku.ThumbnailUrl,
-                Options = x.sku!.Options
+                Options = x.sku.Options
                     .Select(snapshot => new ItemOptionResult(snapshot.Group.Name, snapshot.Value.Name))
                     .ToArray()
             }).ToList();

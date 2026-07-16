@@ -28,6 +28,15 @@ export const PostalCodeRequirement = {
   Required: "Required",
 } as const
 
+export const OrderStatus = {
+  Pending: "Pending",
+  OnHold: "OnHold",
+  Processing: "Processing",
+  Failed: "Failed",
+  Canceled: "Canceled",
+  Completed: "Completed",
+} as const
+
 export const PaymentStatus = {
   Pending: "Pending",
   Succeeded: "Succeeded",

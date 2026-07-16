@@ -8,12 +8,12 @@ public class ShippingZoneConfiguration : IEntityTypeConfiguration<ShippingZone>
 {
     public void Configure(EntityTypeBuilder<ShippingZone> builder)
     {
-        builder.HasKey(r => r.Id);
+        builder.HasKey(zone => zone.Id);
 
-        builder.Property(r => r.Name)
+        builder.Property(zone => zone.Name)
             .IsRequired();
         
-        builder.Property(r => r.CountryCodes)
+        builder.Property(zone => zone.CountryCodes)
             .IsRequired();
     }
 }

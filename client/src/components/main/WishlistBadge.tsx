@@ -1,7 +1,14 @@
 import { IconSaved } from "@components"
 import CountBadge from "./CountBadge"
+import { useWishlist } from "@features"
+import { Link } from "react-router-dom"
 
 const WishlistBadge = () => {
-  return <CountBadge icon={IconSaved} count={0} />
+  const { items } = useWishlist()
+  return (
+    <Link to="/wishlist">
+      <CountBadge icon={IconSaved} count={items?.length ?? 0} />
+    </Link>
+  )
 }
 export default WishlistBadge

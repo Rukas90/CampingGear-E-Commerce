@@ -1,9 +1,8 @@
 import { makeRequest } from "@lib"
-import type { OrderId, OrderSummary } from "@types"
+import type { OrderId, OrderDetails, OrderSummary } from "@types"
 
 const ordersApi = {
-  get: async (id: OrderId) => {
-    return await makeRequest<OrderSummary>(`api/v1/orders/${id}`)
-  },
+  get: (id: OrderId) => makeRequest<OrderDetails>(`api/v1/orders/${id}`),
+  getOrders: () => makeRequest<OrderSummary[]>(`api/v1/orders`),
 }
 export default ordersApi

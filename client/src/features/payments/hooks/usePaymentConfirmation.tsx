@@ -1,7 +1,7 @@
 import { useElements, useStripe } from "@stripe/react-stripe-js"
 import { useCallback, useEffect, useRef, useState } from "react"
 import {
-  type OrderSummary,
+  type OrderDetails,
   type Payment,
   type PaymentAttemptId,
   type ProblemDetails,
@@ -21,7 +21,7 @@ const POLL_INTERVAL_MS = 2000
 
 interface PaymentConfirmationProps {
   payment: Payment
-  order?: OrderSummary
+  order?: OrderDetails
   redirectAbsoluteUrl: string
   disabled?: boolean
   onComplete?: () => void

@@ -29,7 +29,9 @@ const ProductsCategoryListingHeader = ({
           { name: category.name, link: "#", disabled: true },
         ]}
       />
-      <p className="text-4xl font-medium">{category.name}</p>
+      <p className="md:text-4xl sm:text-3xl text-2xl sm:font-medium font-semibold sm:my-0 my-6 sm:text-start text-center">
+        {category.name}
+      </p>
       <p>{category.description}</p>
     </div>
   )

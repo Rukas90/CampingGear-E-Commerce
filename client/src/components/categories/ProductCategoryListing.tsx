@@ -36,12 +36,14 @@ interface ListingProps {
 const Listing = ({ group, categories }: ListingProps) => {
   return (
     <div>
-      <p className="font-medium text-[15px] mb-1">{group.name}</p>
+      <p className="font-semibold text-sx mb-1">{group.name}</p>
       <ul>
         {categories.map((category) => (
           <Link key={category.slug} to={`/products/${category.slug}`}>
-            <li className="hover:text-neutral-600 text-sm mt-1">
-              {category.name}
+            <li className="group hover:text-neutral-600 text-sm mt-2">
+              <p className="group-hover:translate-x-2 transition-transform will-change-transform">
+                {category.name}
+              </p>
             </li>
           </Link>
         ))}
