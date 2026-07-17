@@ -32,7 +32,10 @@ const ProductReviewsProvider = ({
   const [sortBy, setSorting] = useState<ReviewSortByType | undefined>(
     ReviewSortBy.MostRecent,
   )
-  const request: ReviewsRequest = { sortBy, starFilter }
+  const request: ReviewsRequest = {
+    sortBy: sortBy ?? ReviewSortBy.MostRecent,
+    starFilter,
+  }
 
   const query = useQuery({
     queryKey: ["reviews", slug, request],
