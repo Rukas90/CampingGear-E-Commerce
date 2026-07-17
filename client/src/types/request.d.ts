@@ -1,8 +1,9 @@
 import { ProductSortBy } from "./product"
 import { Availability, ReviewSortBy } from "./enums"
-import type { StarRating } from "./review"
-import type { SkuCode } from "./id"
+import type { ReviewSortByType, StarRating } from "./review"
+import type { SkuCode } from "./brands"
 import type { CartEntry, CartLineItem } from "./cart"
+import type { AvailabilityType } from "./filter"
 
 export type ProductsQueryRequest = {
   sortBy?: ProductSortBy
@@ -13,7 +14,7 @@ export type ProductsQueryRequest = {
   pageSize?: number
   priceGte?: number
   priceLte?: number
-  availability?: Availability
+  availability?: AvailabilityType
   option?: Record<string, string>
   skuCode?: SkuCode[]
 }
@@ -29,7 +30,7 @@ export type FiltersQueryRequest = Omit<
 export type ReviewsRequest = {
   page?: number
   pageSize?: number
-  sortBy: ReviewSortBy
+  sortBy: ReviewSortByType
   starFilter?: StarRating
 }
 

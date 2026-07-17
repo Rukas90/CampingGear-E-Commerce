@@ -1,4 +1,4 @@
-import type { CustomerId, OptionId, SkuCode, SkuId } from "./id"
+import type { CustomerId, OptionId, SkuCode, SkuId } from "./brands"
 import { NameSlug } from "./base"
 import { PreviewType } from "./enums"
 import type { StarRating } from "./review"

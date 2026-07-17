@@ -1,3 +1,4 @@
+import type { ReviewId } from "./brands"
 import type { ReviewSortBy } from "./enums"
 
 export type StarRating = 1 | 2 | 3 | 4 | 5

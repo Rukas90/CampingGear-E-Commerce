@@ -1,4 +1,4 @@
-import type { SkuCode, SkuId } from "./id"
+import type { SkuCode, SkuId } from "./brands"
 
 export type CustomerAccount = {
   id: string

@@ -1,6 +1,6 @@
 import type { PostalAddress } from "./common"
 import type { CheckoutStatus } from "./enums"
-import type { OrderId, OrderToken } from "./id"
+import type { OrderId, OrderToken, ShippingMethodId } from "./brands"
 import type { Financials, FreeShippingInfo } from "./order"
 
 export type CheckoutForm = {

@@ -1,4 +1,4 @@
-import type { CartItemId, SkuCode, SkuId } from "./id"
+import type { CartItemId, CustomerId, SkuCode, SkuId } from "./brands"
 
 export type Cart = {
   customerId: CustomerId

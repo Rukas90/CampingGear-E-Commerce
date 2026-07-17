@@ -1,5 +1,5 @@
 import type { PaymentStatus } from "./enums"
-import type { PaymentAttemptId } from "./id"
+import type { PaymentAttemptId, PaymentId } from "./brands"
 
 export type Payment = {
   paymentId: PaymentId

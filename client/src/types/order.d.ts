@@ -1,6 +1,6 @@
 import type { PostalAddress } from "./common"
 import type { OrderStatus } from "./enums"
-import type { OrderId, OrderToken } from "./id"
+import type { OrderId, OrderToken } from "./brands"
 
 export type OrderDetails = {
   emailAddress: string

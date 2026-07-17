@@ -1,5 +1,5 @@
 import type { NameSlug } from "./base"
-import type { CategoryId } from "./id"
+import type { CategoryId } from "./brands"
 
 export type Category = {
   id: CategoryId
