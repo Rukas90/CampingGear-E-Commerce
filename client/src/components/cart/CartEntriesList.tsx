@@ -31,7 +31,7 @@ const CartEntriesList = ({
     <div
       id="cart-content"
       className={twMerge(
-        "grow overflow-y-scroll overflow-x-hidden px-10",
+        "grow overflow-y-scroll overflow-x-hidden sm:px-10 px-5",
         className,
       )}
       {...props}

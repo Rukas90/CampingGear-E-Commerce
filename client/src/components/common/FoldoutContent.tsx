@@ -1,16 +1,19 @@
 import { IconPlus } from "@components"
 import clsx from "clsx"
 import { useState } from "react"
+import { twMerge } from "tailwind-merge"
 
 interface FoldoutContentProps extends React.ComponentProps<"div"> {
   label: string
   opened?: boolean
+  labelClassName?: string
 }
 const FoldoutContent = ({
   label,
   opened,
   children,
   className,
+  labelClassName,
 }: FoldoutContentProps) => {
   const [isOpened, setOpened] = useState(opened)
 
@@ -20,7 +23,12 @@ const FoldoutContent = ({
         onClick={() => setOpened((current) => !current)}
         className="group flex w-full justify-between items-center cursor-pointer"
       >
-        <p className="text-[1.085rem] font-medium group-hover:text-neutral-800 group-active:text-neutral-700">
+        <p
+          className={twMerge(
+            "text-[1.085rem] font-medium group-hover:text-neutral-800 group-active:text-neutral-700",
+            labelClassName,
+          )}
+        >
           {label}
         </p>
         <IconPlus

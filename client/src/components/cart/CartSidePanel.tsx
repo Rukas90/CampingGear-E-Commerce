@@ -32,7 +32,7 @@ const CartSidePanel = () => {
           containerRef={containerRef}
         />
         <div
-          className="fixed h-full w-lg max-w-full right-0 top-0 p-4 z-130"
+          className="fixed h-full sm:w-lg w-full right-0 top-0 sm:p-4 p-2 z-130"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex flex-col justify-between bg-stone-100 w-full h-full rounded-lg py-8">

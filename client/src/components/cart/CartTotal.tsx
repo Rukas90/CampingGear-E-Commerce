@@ -8,7 +8,7 @@ import {
 
 const CartTotal = () => {
   return (
-    <div className="sticky min-w-90 top-24">
+    <div className="sticky w-90 max-w-full shrink-0 top-24">
       <div className="flex flex-col items-center w-full shrink-0 px-8 py-6 rounded-lg border border-neutral-300 bg-[hsl(60,3%,97%)]">
         <div className="flex flex-col gap-1.5 w-full">
           <div className="flex justify-between text-sm">

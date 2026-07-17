@@ -6,11 +6,11 @@ const IconStarHalf = (props: React.SVGProps<SVGSVGElement>) => {
     <svg viewBox="0 0 24 24" fill="none" {...props}>
       <defs>
         <linearGradient id={`${id}-fill`}>
-          <stop offset="50%" stopColor="#ffd280" />
+          <stop offset="50%" stopColor="#AFB9A4" />
           <stop offset="50%" stopColor="#e5e7eb" />
         </linearGradient>
         <linearGradient id={`${id}-stroke`}>
-          <stop offset="50%" stopColor="#bd7b2d" />
+          <stop offset="50%" stopColor="#859473" />
           <stop offset="50%" stopColor="#9ca3af" />
         </linearGradient>
       </defs>

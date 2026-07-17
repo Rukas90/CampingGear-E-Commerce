@@ -11,7 +11,7 @@ const CartPage = () => {
   return (
     <CartItemsProvider>
       <PageWrapper className="relative w-full flex items-start">
-        <div className="flex items-start gap-24 py-24 w-full">
+        <div className="flex lg:flex-row flex-col items-start gap-24 py-24 w-full">
           <div className="w-full">
             <div className="flex justify-between items-center">
               <p className="flex gap-2.5 items-center">

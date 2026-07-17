@@ -1,13 +1,9 @@
-import { useReviews } from "@features"
-import type { ReviewsRequest } from "@types"
+import { useProductReviews } from "@features"
 import ReviewItem from "./ReviewItem"
 import { Line } from "@components"
 
-interface ReviewsListProps extends ReviewsRequest {
-  slug: string
-}
-const ReviewsList = ({ slug, ...request }: ReviewsListProps) => {
-  const { reviews } = useReviews({ slug, ...request })
+const ReviewsList = () => {
+  const { reviews } = useProductReviews()
 
   return (
     <div>

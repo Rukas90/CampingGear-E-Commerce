@@ -1,5 +1,4 @@
 ﻿using TrailStore.Catalog.Domain.Reviews.Enums;
-using TrailStore.Shared.Domain.Common;
 
 namespace TrailStore.Catalog.Api.Endpoints.GetReviews;
 

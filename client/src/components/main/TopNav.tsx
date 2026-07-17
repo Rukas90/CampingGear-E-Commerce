@@ -1,13 +1,11 @@
 import {
   LogoWithText,
   PageWrapper,
-  ProductCategoryListing,
   WishlistBadge,
   CartBadge,
 } from "@components"
 import { Link, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
-import clsx from "clsx"
 import { useCartContext } from "@features"
 import { twMerge } from "tailwind-merge"
 import AccountBadge from "./AccountBadge"
@@ -66,19 +64,6 @@ const TopNav = ({
             </div>
           </div>
         </PageWrapper>
-        <div
-          className={clsx(
-            "absolute w-full left-0 bg-white translate-y-2 z-63 transition-all duration-200",
-            showListing && "top-full opacity-100 pointer-events-auto",
-            !showListing && "-top-full opacity-0 pointer-events-none",
-          )}
-        >
-          <div className="w-full bg-neutral-200 h-0.5" />
-          <PageWrapper className="py-4">
-            <ProductCategoryListing />
-          </PageWrapper>
-          <div className="w-full bg-black h-0.5" />
-        </div>
       </div>
     </nav>
   )

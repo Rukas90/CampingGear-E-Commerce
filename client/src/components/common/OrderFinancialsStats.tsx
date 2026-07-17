@@ -1,5 +1,5 @@
 import type { Financials, FreeShippingInfo } from "@types"
-import CostLabel from "./CostLabel"
+import CostLabel from "../labels/CostLabel"
 import FreeShippingQualifyLabel from "./FreeShippingQualifyLabel"
 
 interface OrderFinancialsStatsProps {

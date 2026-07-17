@@ -1,28 +1,23 @@
-import { useCartItem, useWishlist } from "@features"
+import { useCartItem } from "@features"
 import { formatPrice } from "@utils"
-import { useNavigate } from "react-router-dom"
 
-const EntryFooter = () => {
-  const { item, totalPrice, remove } = useCartItem()
-  const { addItem } = useWishlist()
-  const navigate = useNavigate()
-
-  const handleSave = async () => {
-    if (await addItem(item.skuId)) {
-      remove()
-      navigate("/wishlist")
-    }
-  }
+interface EntryFooterProps {
+  addToWishlist: () => void
+}
+const EntryFooter = ({ addToWishlist }: EntryFooterProps) => {
+  const { totalPrice } = useCartItem()
 
   return (
     <div className="flex justify-between w-full mt-1">
       <button
-        onClick={handleSave}
-        className="text-sm underline hover:no-underline text-neutral-600 cursor-pointer"
+        onClick={addToWishlist}
+        className="sm:block hidden text-sm underline hover:no-underline text-neutral-600 cursor-pointer"
       >
         Save for later
       </button>
-      <p className="text-sm font-medium">Total: {formatPrice(totalPrice)}</p>
+      <p className="text-sm font-medium sm:mt-0 mt-4">
+        Total: {formatPrice(totalPrice)}
+      </p>
     </div>
   )
 }

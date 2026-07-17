@@ -1,5 +1,5 @@
 import { Line } from "@components"
-import PaymentCostLabel from "./PaymentCostLabel"
+import PaymentCostLabel from "../labels/PaymentCostLabel"
 import { formatPrice } from "@utils"
 import type { OrderDetails } from "@types"
 

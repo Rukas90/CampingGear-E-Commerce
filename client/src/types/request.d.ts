@@ -30,7 +30,7 @@ export type ReviewsRequest = {
   page?: number
   pageSize?: number
   sortBy: ReviewSortBy
-  filter?: StarRating
+  starFilter?: StarRating
 }
 
 export type GetCartSkusRequest = {

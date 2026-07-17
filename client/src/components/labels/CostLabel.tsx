@@ -1,6 +1,6 @@
 import { formatPrice } from "@utils"
 import { twMerge } from "tailwind-merge"
-import SkeletonLine from "./SkeletonLine"
+import SkeletonLine from "../common/SkeletonLine"
 
 interface CostLabelProps extends Omit<React.ComponentProps<"p">, "children"> {
   cost?: number

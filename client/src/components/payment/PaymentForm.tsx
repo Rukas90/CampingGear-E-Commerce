@@ -1,6 +1,6 @@
 import { CancelButton, SubmitButton } from "@components"
 import { PaymentElement } from "@stripe/react-stripe-js"
-import SecuredBadge from "./SecuredBadge"
+import SecuredBadge from "../badges/SecuredBadge"
 import PaymentOrderSummary from "./PaymentOrderSummary"
 import { usePaymentContext } from "@features"
 import { formatPrice } from "@utils"

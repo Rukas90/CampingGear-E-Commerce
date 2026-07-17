@@ -2,7 +2,7 @@ import { makeRequest } from "@lib"
 import type { Review, ReviewsRequest } from "@types"
 
 const reviewsApi = {
-  queryReviews: async (slug: string, request: ReviewsRequest) => {
+  queryReviews: async (request: ReviewsRequest, slug?: string) => {
     const params = new URLSearchParams()
 
     Object.entries(request).forEach(([key, value]) => {

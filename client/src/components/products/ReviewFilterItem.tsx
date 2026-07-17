@@ -1,27 +1,66 @@
 import { RatingStars } from "@components"
 import type { StarRating } from "@types"
+import clsx from "clsx"
 
 interface ReviewFilterItemProps {
   rating: StarRating
   count: number
   total: number
+  selected: boolean
+  onSelect: (rating: StarRating) => void
+  onDeselect: () => void
 }
-const ReviewFilterItem = ({ rating, count, total }: ReviewFilterItemProps) => {
+const ReviewFilterItem = ({
+  rating,
+  count,
+  total,
+  selected,
+  onSelect,
+  onDeselect,
+}: ReviewFilterItemProps) => {
   const percentage = total > 0 ? (count / total) * 100 : 0
 
+  const handleClick = () => {
+    if (count <= 0) {
+      return
+    }
+    if (!selected) {
+      onSelect(rating)
+
+      return
+    }
+    onDeselect()
+  }
+
   return (
-    <button className="group flex gap-4 items-center cursor-pointer">
+    <button
+      onClick={handleClick}
+      className="group flex gap-4 items-center cursor-pointer"
+    >
       <RatingStars
         rating={rating}
-        className="opacity-90 group-hover:opacity-100"
+        className={clsx(
+          !selected && "opacity-90 group-hover:opacity-100",
+          selected && "opacity-100",
+        )}
       />
-      <div className="w-34 h-3 rounded-lg bg-[#e0dedc] group-hover:bg-[#e6e4e2] overflow-hidden">
+      <div className="lg:w-34 w-full h-3 rounded-lg bg-[#e0dedc] group-hover:bg-[#e6e4e2] overflow-hidden">
         <div
-          className="h-full rounded-lg bg-black group-hover:bg-stone-600"
+          className={clsx(
+            "h-full rounded-lg group-hover:bg-stone-600",
+            !selected && "bg-[#AFB9A4]",
+            selected && "bg-neutral-800",
+          )}
           style={{ width: `${percentage}%` }}
         />
       </div>
-      <p className="text-sm font-medium text-stone-600 group-hover:underline">
+      <p
+        className={clsx(
+          "text-sm group-hover:underline font-medium",
+          selected && "underline text-neutral-800",
+          !selected && "text-accent",
+        )}
+      >
         {count}
       </p>
     </button>

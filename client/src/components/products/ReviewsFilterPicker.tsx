@@ -1,10 +1,12 @@
 import type { StarRating } from "@types"
 import ReviewFilterItem from "./ReviewFilterItem"
+import { useProductReviews } from "@features"
 
 interface ReviewsFilterPickerProps {
   starCounts: Record<StarRating, number>
 }
 const ReviewsFilterPicker = ({ starCounts }: ReviewsFilterPickerProps) => {
+  const { setStarFilter, clearStarFilter, filter } = useProductReviews()
   const total = Object.values(starCounts).reduce((sum, count) => sum + count, 0)
 
   return (
@@ -17,6 +19,9 @@ const ReviewsFilterPicker = ({ starCounts }: ReviewsFilterPickerProps) => {
             rating={star}
             count={starCounts[star]}
             total={total}
+            onSelect={setStarFilter}
+            onDeselect={clearStarFilter}
+            selected={filter === star}
           />
         ))}
     </div>

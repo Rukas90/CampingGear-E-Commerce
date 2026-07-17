@@ -1,4 +1,4 @@
-import { CostLabel } from "@components/common"
+import { CostLabel } from "@components"
 import { useCartItems } from "@features"
 import { twMerge } from "tailwind-merge"
 
@@ -15,7 +15,10 @@ const CartSubtotal = ({
   return (
     <CostLabel
       cost={totalCartCost}
-      className={twMerge("text-2xl font-medium text-neutral-800", className)}
+      className={twMerge(
+        "sm:text-2xl text-xl sm:font-medium font-semibold text-neutral-800",
+        className,
+      )}
       suffix="EUR"
       {...props}
     />

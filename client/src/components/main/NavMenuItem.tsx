@@ -5,7 +5,10 @@ const NavMenuItem = ({
   className,
   ...props
 }: React.ComponentProps<"li">) => (
-  <li className={twMerge("group font-normal text-sm", className)} {...props}>
+  <li
+    className={twMerge("group font-normal text-sm cursor-default", className)}
+    {...props}
+  >
     {children}
   </li>
 )

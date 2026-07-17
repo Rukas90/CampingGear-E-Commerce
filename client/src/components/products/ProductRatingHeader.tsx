@@ -16,7 +16,7 @@ const ProductRatingHeader = () => {
   const { data } = useProductView()
 
   return (
-    <div className="grid grid-cols-3">
+    <div className="grid lg:grid-cols-3 lg:gap-0 gap-12">
       <div>
         <p className="mb-4 text-sm">Overall Rating</p>
         <RatingBadge
@@ -30,14 +30,14 @@ const ProductRatingHeader = () => {
           total={data?.reviewCount ?? 0}
         />
       </div>
-      <div className="mx-auto">
+      <div className="mx-auto lg:w-auto w-full">
         <p className="mb-4 text-sm">Select a row below to filter reviews.</p>
         <ReviewsFilterPicker
           starCounts={data?.starCounts ?? DEFAULT_STAR_COUNTS}
         />
       </div>
 
-      <div className="mx-auto">
+      <div className="mx-auto lg:w-auto w-full">
         <p className="mb-4 text-sm">Review this Product</p>
         <button className="px-8 py-2 bg-black text-white rounded-lg">
           Write a Review

@@ -1,1 +1,4 @@
-export { default as useReviews } from "./hooks/useReviews"
+export {
+  default as ProductReviewsProvider,
+  useProductReviews,
+} from "./contexts/ProductReviewsContext"
