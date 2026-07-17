@@ -127,7 +127,7 @@ const usePaymentConfirmation = ({
 
     setState("confirming")
 
-    const { error: confirmError } = await stripe.confirmPayment({
+    await stripe.confirmPayment({
       elements,
       clientSecret: payment.clientSecret,
       redirect: "if_required",

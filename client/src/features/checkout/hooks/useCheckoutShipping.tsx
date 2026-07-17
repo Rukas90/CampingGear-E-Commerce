@@ -13,7 +13,7 @@ const useCheckoutShipping = () => {
   const { form, isPending, errors } = useCheckoutContext()
   const { invalidate } = useCheckoutStats()
 
-  const addressData = useData<PostalAddress, CheckoutShipping>({
+  const addressData = useData<PostalAddress, PostalAddress, CheckoutShipping>({
     data: form?.shipping.address,
     defaultData: DEFAULT_ADDRESS,
     mutationKey: ["checkout-shipping-address"],
@@ -34,7 +34,11 @@ const useCheckoutShipping = () => {
     data: addressData,
   })
 
-  const methodData = useData<ShippingMethodId | undefined>({
+  const methodData = useData<
+    ShippingMethodId | undefined,
+    ShippingMethodId,
+    string
+  >({
     data: form?.shipping.selectedMethodId,
     defaultData: undefined,
     mutationKey: ["checkout-shipping-method"],

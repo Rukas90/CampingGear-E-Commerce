@@ -24,4 +24,20 @@ export default defineConfig({
       "@features": path.resolve(__dirname, "./src/features"),
     },
   },
+  build: {
+    chunkSizeWarningLimit: 600,
+    rolldownOptions: {
+      output: {
+        codeSplitting: true,
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("react") || id.includes("react-dom")) {
+              return "react-vendor"
+            }
+            return "vendor"
+          }
+        },
+      },
+    },
+  },
 })
