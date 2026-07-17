@@ -10,6 +10,7 @@ import type { CheckoutForm } from "@types"
 import checkoutApi from "../api/checkoutApi"
 import { useNavigate } from "react-router-dom"
 import useCheckoutConfirm from "../hooks/useCheckoutConfirm"
+import { hasError } from "@lib"
 
 interface CheckoutContextData {
   form?: CheckoutForm
@@ -24,18 +25,28 @@ const CheckoutContext = createContext<CheckoutContextData | undefined>(
 )
 
 const CheckoutProvider = ({ children }: React.PropsWithChildren) => {
+  const navigate = useNavigate()
   const query = useQueryHandler({
     key: ["checkout"],
     func: () => checkoutApi.init(),
-    retry: 4,
-    retryDelay: 2000,
+    retry: false,
+    onError: (pd) => {
+      if (
+        hasError(pd, [
+          "checkout.empty_cart",
+          "checkout.no_session",
+          "checkout.already_complete",
+        ])
+      ) {
+        navigate("/")
+      }
+    },
   })
   const { form, isPending } = useCheckoutForm({
     enabled: !query.isPending,
   })
   const errors = useErrorPool()
   const { invalidateCart } = useCartContext()
-  const navigate = useNavigate()
 
   const sections = useRef<Map<string, () => void>>(new Map())
 

@@ -22,6 +22,7 @@ const ProductsCategoryListingHeader = ({
 
   return (
     <div>
+      <title>{`Trailstore - Browse - ${category.name}`}</title>
       <Breadcrumbs
         items={[
           { name: "Home", link: "/" },

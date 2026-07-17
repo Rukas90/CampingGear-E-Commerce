@@ -45,7 +45,7 @@ const EntryContent = () => {
         </div>
       </div>
       <EntryFooter addToWishlist={handleSave} />
-      <div className="sm:hidden flex flex-col gap-1 items-start mt-4 mb-2">
+      <div className="sm:hidden flex flex-col gap-1 items-start ml-auto mt-4 mb-2">
         <TextButton onClick={handleSave}>Save for later</TextButton>
         <TextButton onClick={remove}>Remove item</TextButton>
       </div>

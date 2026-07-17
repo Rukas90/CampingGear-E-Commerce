@@ -4,6 +4,7 @@ import Banner from "/img/banner.webp"
 const HomePage = () => {
   return (
     <>
+      <title>Trailstore</title>
       <div className="flex justify-center w-full">
         <p className="flex flex-col items-center pt-10 text-2xl gap-1">
           <span className="font-semibold">Find the latest Camping Gear</span>

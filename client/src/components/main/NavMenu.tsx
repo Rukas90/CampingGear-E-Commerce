@@ -11,7 +11,7 @@ const NavMenu = ({ openListing, showingListing }: NavMenuProps) => {
   const { menu } = useApp()
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center flex-1">
       <ul className="lg:flex hidden gap-5 dark:text-stone-200">
         <NavMenuItem
           className="flex gap-1.5 items-center"

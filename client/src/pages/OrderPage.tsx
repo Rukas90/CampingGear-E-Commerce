@@ -10,6 +10,7 @@ const OrderPage = () => {
 
   return (
     <PageWrapper className="w-full py-12">
+      <title>Trailstore - Order</title>
       <Link to="/orders">
         <p className="mb-8 text-sm text-neutral-600">Back to orders</p>
       </Link>

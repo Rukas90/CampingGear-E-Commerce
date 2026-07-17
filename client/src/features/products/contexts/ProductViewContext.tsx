@@ -166,6 +166,7 @@ export const ProductViewProvider = ({ slug, children }: ProductViewProps) => {
         availableOptionIds,
       }}
     >
+      <title>{`Trailstore - ${data?.name}`}</title>
       {children}
     </ProductViewContext.Provider>
   )

@@ -1,4 +1,4 @@
-import { CartSubtotal, Line } from "@components"
+import { CartSubtotal, ContrastButton, Line, PopButton } from "@components"
 
 const CartFooter = () => {
   return (
@@ -18,13 +18,15 @@ const CartFooter = () => {
 
       <div className="flex gap-4">
         <a className="w-1/2" href="/cart">
-          <button className="bg-[#e9e9e8] hover:bg-black text-black hover:text-white font-medium w-full sm:py-4 py-2.5 rounded-lg sm:text-base text-sm">
+          <PopButton className="sm:py-4 py-2.5 sm:text-base text-sm w-full bg-[#e9e9e8]">
             View Cart
-          </button>
+          </PopButton>
         </a>
-        <button className="bg-black text-white font-medium w-1/2 sm:py-4 py-2.5 rounded-lg sm:text-base text-sm">
-          Checkout
-        </button>
+        <a className="w-1/2" href="/checkout">
+          <ContrastButton className="sm:py-4 py-2.5 sm:text-base text-sm w-full">
+            Checkout
+          </ContrastButton>
+        </a>
       </div>
     </div>
   )

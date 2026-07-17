@@ -10,6 +10,8 @@ import { useCartContext } from "@features"
 import { twMerge } from "tailwind-merge"
 import AccountBadge from "./AccountBadge"
 import NavMenu from "./NavMenu"
+import ProductsMenu from "./ProductsMenu"
+import clsx from "clsx"
 
 interface TopNavProps extends Omit<
   React.ComponentProps<"nav">,
@@ -41,29 +43,38 @@ const TopNav = ({
     >
       <div className="relative">
         <PageWrapper className="z-65">
-          <div className="grid grid-cols-3">
+          <div className="flex w-full">
             {showMenuItems && (
               <NavMenu
                 openListing={() => setShowListing(true)}
                 showingListing={showListing}
               />
             )}
-            <div className="flex items-center justify-center">
+            <div
+              className={clsx(
+                "flex items-center mx-auto flex-1",
+                (showMenuItems || (!showMenuItems && !showCartButton)) &&
+                  "justify-center",
+              )}
+            >
               <Link to="/">
                 <LogoWithText />
               </Link>
             </div>
-            <div className="flex gap-5 justify-end items-center">
-              {showMenuItems && (
-                <div className="sm:flex hidden gap-5 items-center">
-                  <AccountBadge />
-                  <WishlistBadge />
-                </div>
-              )}
-              {showCartButton && <CartBadge onClicked={openCartPanel} />}
-            </div>
+            {(showMenuItems || showCartButton) && (
+              <div className="flex gap-5 justify-end items-center flex-1">
+                {showMenuItems && (
+                  <div className="sm:flex hidden gap-5 items-center">
+                    <AccountBadge />
+                    <WishlistBadge />
+                  </div>
+                )}
+                {showCartButton && <CartBadge onClicked={openCartPanel} />}
+              </div>
+            )}
           </div>
         </PageWrapper>
+        <ProductsMenu className="lg:block hidden" show={showListing} />
       </div>
     </nav>
   )

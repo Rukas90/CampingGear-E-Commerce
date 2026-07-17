@@ -29,6 +29,7 @@ const RegisterPage = () => {
 
   return (
     <PageWrapper className="flex items-center flex-col w-full py-8">
+      <title>Trailstore - Register</title>
       <p className="font-medium text-5xl text-center font-serif">
         Your Account
       </p>

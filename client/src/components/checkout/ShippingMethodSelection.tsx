@@ -57,6 +57,7 @@ const ShippingMethodSelection = ({
 
         return (
           <button
+            key={method.id}
             disabled={disabled}
             onClick={() => onSelected?.(method.id)}
             className="cursor-pointer"

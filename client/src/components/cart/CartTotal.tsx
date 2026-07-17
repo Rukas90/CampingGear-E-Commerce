@@ -8,12 +8,12 @@ import {
 
 const CartTotal = () => {
   return (
-    <div className="sticky w-90 max-w-full shrink-0 top-24">
-      <div className="flex flex-col items-center w-full shrink-0 px-8 py-6 rounded-lg border border-neutral-300 bg-[hsl(60,3%,97%)]">
+    <div className="sm:sticky lg:w-90 w-full max-w-full shrink-0 top-24">
+      <div className="flex flex-col items-center w-full shrink-0 px-8 py-6 rounded-lg border border-neutral-300 lg:bg-[hsl(60,3%,97%)]">
         <div className="flex flex-col gap-1.5 w-full">
           <div className="flex justify-between text-sm">
             <span className="font-medium">Subtotal:</span>
-            <CartSubtotal className="text-sm font-normal text-neutral-600" />
+            <CartSubtotal className="text-sm sm:text-sm font-normal text-neutral-600" />
           </div>
           <div className="flex justify-between text-sm">
             <span className="font-medium">Tax:</span>
@@ -33,7 +33,7 @@ const CartTotal = () => {
 
         <div className="flex justify-between w-full">
           <span className="font-semibold">Total:</span>
-          <CartSubtotal className="text-base font-semibold" />
+          <CartSubtotal className="text-base sm:text-base font-semibold" />
         </div>
 
         <p className="text-sm text-neutral-500 mt-3">

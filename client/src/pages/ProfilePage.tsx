@@ -6,6 +6,7 @@ const ProfilePage = () => {
 
   return (
     <div className="flex flex-col gap-5 items-start">
+      <title>Trailstore - Profile</title>
       <ContentBox>
         <p className="text-neutral-500 font-light">Email Address</p>
         <p className="text-accent">{account?.email}</p>

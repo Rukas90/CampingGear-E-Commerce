@@ -4,6 +4,7 @@ import { CheckoutProvider } from "@features"
 const CheckoutPage = () => {
   return (
     <CheckoutProvider>
+      <title>Trailstore - Checkout</title>
       <div className="flex flex-1 lg:flex-row flex-col-reverse">
         <div className="relative flex flex-col flex-1 basis-[54%] bg-white">
           <CheckoutForm />

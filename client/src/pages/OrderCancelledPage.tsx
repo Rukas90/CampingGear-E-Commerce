@@ -19,6 +19,7 @@ const OrderCancelledPage = () => {
 
   return (
     <PageWrapper className="w-full flex gap-16 py-24">
+      <title>Trailstore - Payment Failed</title>
       <div className="basis-1/2 flex flex-col gap-4">
         <p className="text-2xl font-semibold">PAYMENT FAILED</p>
         <Line className="bg-neutral-200" />

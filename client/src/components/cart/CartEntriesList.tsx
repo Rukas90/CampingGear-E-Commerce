@@ -1,6 +1,6 @@
 import { CartItemProvider, useCartItems } from "@features"
 import CartItemEntry from "./CartItemEntry"
-import { Line } from "@components"
+import { BrowseProductsButton, Line } from "@components"
 import { twMerge } from "tailwind-merge"
 import type { CartItem } from "@types"
 import { Fragment } from "react/jsx-runtime"
@@ -10,11 +10,13 @@ interface CartEntriesListProps extends Omit<
   "children" | "id"
 > {
   renderItem?: (item: CartItem) => React.ReactNode
+  showBrowseButton?: boolean
 }
 
 const CartEntriesList = ({
   className,
   renderItem,
+  showBrowseButton,
   ...props
 }: CartEntriesListProps) => {
   const items = useCartItems()
@@ -37,9 +39,12 @@ const CartEntriesList = ({
       {...props}
     >
       {items.length <= 0 && (
-        <p className="w-full text-neutral-400 mt-4 text-center">
-          No items in cart
-        </p>
+        <div className="flex flex-col justify-center pb-4">
+          <p className="w-full text-neutral-400 mt-4 text-center mb-4 text-sm">
+            No items in cart
+          </p>
+          {showBrowseButton && <BrowseProductsButton />}
+        </div>
       )}
       {items?.map((item, index) => (
         <Fragment key={item.id}>

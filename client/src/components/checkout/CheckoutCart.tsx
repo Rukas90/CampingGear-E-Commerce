@@ -14,7 +14,7 @@ const CheckoutCart = () => {
       <Line className="bg-neutral-200 my-2" />
       <CartItemsProvider>
         <CartEntriesList
-          className="px-0 overflow-y-auto"
+          className="px-0 sm:px-0 overflow-y-auto"
           renderItem={(item) => <CheckoutCartItem item={item} />}
         />
       </CartItemsProvider>

@@ -38,6 +38,7 @@ const PaymentPage = () => {
         },
       }}
     >
+      <title>Trailstore - Pay</title>
       <PaymentProvider orderId={orderId!} payment={payment}>
         <PaymentForm />
       </PaymentProvider>

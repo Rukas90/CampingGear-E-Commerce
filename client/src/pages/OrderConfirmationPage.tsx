@@ -23,6 +23,7 @@ const OrderConfirmationPage = () => {
 
   return (
     <PageWrapper className="w-full flex gap-16 py-24">
+      <title>Trailstore - Order Confirmation</title>
       <div className="basis-2/3 flex flex-col gap-4">
         <p className="text-xl font-medium">THANK YOU FOR YOUR ORDER!</p>
         <Line className="bg-neutral-200" />

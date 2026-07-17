@@ -6,7 +6,7 @@ const FreeShippingNote = () => {
       <IconCart className="size-5" />
       <p>
         <span className="font-semibold">Free Shipping </span>
-        On Orders $150+
+        On Orders 100€+
       </p>
     </div>
   )

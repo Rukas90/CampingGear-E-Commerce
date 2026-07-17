@@ -12,6 +12,7 @@ const OrdersPage = () => {
 
   return (
     <table className="w-full">
+      <title>Trailstore - Orders</title>
       <thead>
         <tr className="border-b-2 border-stone-800 font-semibold text-xm">
           <th className="text-start py-1.5">Order #</th>

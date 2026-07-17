@@ -51,10 +51,9 @@ const AppRouter = () => {
           <Route path="/wishlist" element={<WishlistPage />} />
         </Route>
       </Route>
-      <Route element={<BlankPage menu={false} />}>
-        <Route path="/checkout" element={<CheckoutPage />} />
-      </Route>
+
       <Route element={<BlankPage menu={false} cart={false} />}>
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/orders/pay/:orderId" element={<PaymentPage />} />
         <Route
           path="/orders/confirmation/:orderId"
