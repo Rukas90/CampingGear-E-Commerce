@@ -4,13 +4,13 @@ using TrailStore.Shared.Infrastructure.Extensions;
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.Services.AddSharedInfrastructure(builder.Configuration);
-
 builder
     .AddIdentitySeeding()
     .AddCatalogSeeding()
     .AddOrderingSeeding()
     .AddInventorySeeding();
+
+builder.Services.AddEventPublishing();
 
 var moduleArg = args.FirstOrDefault(a => a.StartsWith("--module="))?.Split('=')[1];
 var clearOnly = args.Contains("clear-only");
@@ -36,12 +36,19 @@ if (moduleArg is not null && seeders.Length == 0)
 
 foreach (var seeder in seeders)
 {
-    if (clearOnly)
+    try
     {
-        await seeder.ClearAsync();
+        if (clearOnly)
+        {
+            await seeder.ClearAsync();
+        }
+        else
+        {
+            await seeder.RunAsync(new SeedOptions { Reseed = reseed, Logger = logger });
+        }
     }
-    else
+    catch (Exception ex)
     {
-        await seeder.RunAsync(new SeedOptions { Reseed = reseed, Logger = logger });
+        Console.WriteLine(ex.Message);
     }
 }

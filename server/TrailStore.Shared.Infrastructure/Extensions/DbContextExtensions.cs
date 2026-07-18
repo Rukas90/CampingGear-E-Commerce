@@ -33,4 +33,14 @@ public static class DbContextExtensions
 
         return services;
     }
+    
+    public static async Task MigrateAsync<TContext>(this IServiceProvider services)
+        where TContext : DbContext
+    {
+        using var scope = services.CreateScope();
+        
+        var db = scope.ServiceProvider.GetRequiredService<TContext>();
+        
+        await db.Database.MigrateAsync();
+    }
 }

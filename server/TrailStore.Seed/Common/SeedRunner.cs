@@ -6,7 +6,7 @@ public abstract class SeedRunner : ISeedRunner
 {
     public abstract string Identifier { get; }
     
-    protected Assembly ExecutingAssembly => typeof(SeedRunner).Assembly;
+    protected static Assembly ExecutingAssembly => typeof(SeedRunner).Assembly;
     
     public async Task RunAsync(SeedOptions options)
     {

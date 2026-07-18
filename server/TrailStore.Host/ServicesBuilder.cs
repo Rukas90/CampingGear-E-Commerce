@@ -29,7 +29,8 @@ public static class ServicesBuilder
         });
 
         builder.Services.AddHttpContextAccessor();
-        builder.Services.AddSharedInfrastructure(builder.Configuration);
+        builder.Services.AddPasswordHasher();
+        builder.Services.AddEventPublishing();
         
         var moduleBuilder 
             = new ModuleHostBuilder(builder.Services, builder.Configuration)
@@ -41,6 +42,9 @@ public static class ServicesBuilder
                 .AddPaymentsModule()
                 .AddWishlistModule();
 
+        builder.Services.AddRedisCache(builder.Configuration.GetConnectionString("Redis")
+                                       ?? throw new InvalidOperationException("Redis connection string is required."));
+        
         builder.Services.AddFastEndpoints(options =>
         {
             options.Assemblies = moduleBuilder.ApiAssemblies;

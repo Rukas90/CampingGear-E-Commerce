@@ -7,12 +7,10 @@ namespace TrailStore.Shared.Infrastructure.Extensions;
 
 public static class OutboxRegistrationExtensions
 {
-    public static IServiceCollection AddOutbox<TOutbox, TContext>(this IServiceCollection services)
+    public static void AddOutbox<TOutbox, TContext>(this IServiceCollection services)
         where TOutbox : class, IOutbox where TContext : DbContext, TOutbox
     {
         services.AddScoped<TOutbox>(sp => sp.GetRequiredService<TContext>());
         services.AddHostedService<OutboxProcessor<TOutbox>>();
-        
-        return services;
     }
 }

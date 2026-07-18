@@ -1,10 +1,8 @@
 ﻿using Isopoh.Cryptography.Argon2;
 using TrailStore.Shared.Domain.Abstractions;
-using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Shared.Infrastructure.Security;
 
-[AppService<IPasswordHasher>]
 public class PasswordHasher : IPasswordHasher
 {
     public string Hash(string password)

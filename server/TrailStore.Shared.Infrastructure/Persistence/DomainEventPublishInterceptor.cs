@@ -2,11 +2,9 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Logging;
 using TrailStore.Shared.Domain.Events;
-using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Shared.Infrastructure.Persistence;
 
-[AppService<DomainEventPublishInterceptor>]
 public sealed class DomainEventPublishInterceptor(
     ILogger<DomainEventPublishInterceptor> logger,
     IEventPublisher eventPublisher) : SaveChangesInterceptor

@@ -1,12 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using StackExchange.Redis;
+﻿using StackExchange.Redis;
 using TrailStore.Shared.Domain.Caching;
-using TrailStore.Shared.Infrastructure.DI;
 using IDatabase = StackExchange.Redis.IDatabase;
 
 namespace TrailStore.Shared.Infrastructure.Caching;
 
-[AppService<IRedisCacheService>(ServiceLifetime.Singleton)]
 public class RedisCacheService(IConnectionMultiplexer redis) : IRedisCacheService
 {
     private readonly IDatabase database = redis.GetDatabase();

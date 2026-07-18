@@ -1,8 +1,16 @@
 using FastEndpoints;
 using Scalar.AspNetCore;
+using TrailStore.Basket.Infrastructure.Database;
+using TrailStore.Catalog.Infrastructure.Database;
 using TrailStore.Host;
 using TrailStore.Identity;
+using TrailStore.Identity.Infrastructure.Database;
+using TrailStore.Inventory.Infrastructure.Database;
+using TrailStore.Ordering.Infrastructure.Database;
+using TrailStore.Payments.Infrastructure.Database;
 using TrailStore.Shared.Api.Extensions;
+using TrailStore.Shared.Infrastructure.Extensions;
+using TrailStore.Wishlist.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +30,14 @@ app.UseFastEndpoints(config => config.ConfigureAppDefaults());
 
 if (app.Environment.IsDevelopment())
 {
+    await app.Services.MigrateAsync<BasketDbContext>();
+    await app.Services.MigrateAsync<CatalogDbContext>();
+    await app.Services.MigrateAsync<WishlistDbContext>();
+    await app.Services.MigrateAsync<IdentityDbContext>();
+    await app.Services.MigrateAsync<InventoryDbContext>();
+    await app.Services.MigrateAsync<OrderingDbContext>();
+    await app.Services.MigrateAsync<PaymentDbContext>();
+    
     app.MapOpenApi();
     app.MapScalarApiReference();
 }

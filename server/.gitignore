@@ -79,3 +79,5 @@ publish/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+.containers/
