@@ -1,8 +1,16 @@
 param(
     [string]$command,
     [string]$module = "",
-    [string]$name = "Migration"
+    [string]$name = "Migration",
+    [ValidateSet("dev", "prod")]
+    [string]$env = "dev"
 )
+
+if ($env -eq "prod") {
+    $env:DOTNET_ENVIRONMENT = "Production"
+} else {
+    $env:DOTNET_ENVIRONMENT = "Development"
+}
 
 $modules = @{
     "basket" = @{
