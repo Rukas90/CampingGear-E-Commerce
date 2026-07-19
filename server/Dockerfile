@@ -6,7 +6,5 @@ RUN dotnet publish "TrailStore.Host/TrailStore.Host.csproj" -o /published /p:Use
 FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine
 WORKDIR /app
 COPY --from=build /published .
-ENV ASPNETCORE_HTTP_PORTS=8080
-ENV ASPNETCORE_ENVIRONMENT=Development
 EXPOSE 8080
 ENTRYPOINT [ "dotnet", "TrailStore.Host.dll" ]

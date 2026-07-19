@@ -17,15 +17,14 @@ var clearOnly = args.Contains("clear-only");
 var reseed = args.Contains("--reseed") || clearOnly;
 
 var app = builder.Build();
-var scope = app.Services.CreateScope();
 
+var scope = app.Services.CreateScope();
 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
 var allSeeders = scope.ServiceProvider.GetServices<ISeedRunner>();
 
 var seeders = moduleArg is null
-    ? allSeeders.ToArray()
-    : allSeeders.Where(runner => runner.Identifier.Equals(moduleArg, StringComparison.OrdinalIgnoreCase)).ToArray();
+        ? allSeeders.ToArray() : allSeeders.Where(runner => runner.Identifier.Equals(moduleArg, StringComparison.OrdinalIgnoreCase)).ToArray();
 
 if (moduleArg is not null && seeders.Length == 0)
 {

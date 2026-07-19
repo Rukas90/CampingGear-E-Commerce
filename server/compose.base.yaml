@@ -1,0 +1,18 @@
+﻿version: '1.0'
+
+services:
+  host:
+    image: ${DOCKER_REGISTRY-}trailstore
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - database
+
+  database:
+    image: postgres:16
+    volumes:
+      - trailstore-pgdata:/var/lib/postgresql/data
+
+volumes:
+  trailstore-pgdata:
