@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using TrailStore.Identity.Api.Common;
 
 namespace TrailStore.Identity.Api.Endpoints.GetAccount;
 

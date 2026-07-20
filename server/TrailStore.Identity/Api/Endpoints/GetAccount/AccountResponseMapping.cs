@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using TrailStore.Identity.Api.Common;
 using TrailStore.Shared.Api.Extensions;
 
 namespace TrailStore.Identity.Api.Endpoints.GetAccount;
