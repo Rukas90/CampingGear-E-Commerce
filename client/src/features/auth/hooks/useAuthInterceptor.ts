@@ -3,6 +3,7 @@ import { AuthErrorCodes } from "../errors"
 import { client } from "@lib"
 import type { ProblemDetails } from "@types"
 import useAuthRefresh from "./useAuthRefresh"
+import useAccount from "./useAccount"
 
 const isUnauthenticated = (data: ProblemDetails) =>
   data?.status === 401 &&
@@ -10,6 +11,7 @@ const isUnauthenticated = (data: ProblemDetails) =>
 
 const useAuthInterceptor = () => {
   const { refresh } = useAuthRefresh()
+  const { isLoggedIn } = useAccount()
 
   useLayoutEffect(() => {
     const interceptorId = client.interceptors.response.use(
@@ -20,7 +22,17 @@ const useAuthInterceptor = () => {
         if (originalRequest._retry) {
           return Promise.reject(error)
         }
-        if (!isUnauthenticated(error.response?.data)) {
+
+        const isUnauthenticatedResponse = isUnauthenticated(
+          error.response?.data,
+        )
+
+        // Reject refresh if the response was not unauthenticated
+        // or if it was an unauthenticated response and the user was not previously authenticated
+        if (
+          !isUnauthenticatedResponse ||
+          (isUnauthenticatedResponse && !isLoggedIn)
+        ) {
           return Promise.reject(error)
         }
 

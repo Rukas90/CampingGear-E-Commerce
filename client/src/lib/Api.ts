@@ -9,7 +9,7 @@ export const client: AxiosInstance = axios.create({
   withCredentials: true,
 })
 
-const CSRF_COOKIE_NAME = "csrf_token" as const
+const CSRF_COOKIE_NAME = "csrf_token__trailstore" as const
 const CSRF_HEADER_NAME = "X-Csrf-Token" as const
 
 client.interceptors.request.use(async (request) => {
