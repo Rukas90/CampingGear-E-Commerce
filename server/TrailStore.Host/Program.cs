@@ -28,6 +28,10 @@ app.UseIdentityModule();
 app.UseOutputCache();
 app.UseFastEndpoints(config => config.ConfigureAppDefaults());
 
+app.MapGet("/", () => "Running.");
+app.MapGet("/ping", () => "pong");
+app.MapGet("/health", () => "ok");
+
 if (app.Environment.IsDevelopment())
 {
     await app.Services.MigrateAllAsync(
