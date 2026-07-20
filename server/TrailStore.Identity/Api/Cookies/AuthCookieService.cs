@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using TrailStore.Identity.Api.Csrf;
 using TrailStore.Identity.Application.Results;
@@ -10,17 +11,19 @@ namespace TrailStore.Identity.Api.Cookies;
 
 [AppService<IAuthCookieService>]
 public class AuthCookieService(
-    IHttpContextAccessor httpContextAccessor, IWebHostEnvironment env, ICsrfService csrfService) 
+    IHttpContextAccessor httpContextAccessor, IWebHostEnvironment env, ICsrfService csrfService, IConfiguration configuration) 
     : IAuthCookieService
 {
     private HttpContext Http => httpContextAccessor.HttpContext!;
+    private readonly string? CookieDomain = configuration.GetValue<string>("Config:Cookies:Domain");
     
     private CookieOptions AccessTokenOptions => new()
     {
         HttpOnly = true,
         Secure = env.IsProduction(),
         SameSite = SameSiteMode.Lax,
-        Expires = DateTimeOffset.UtcNow.AddMinutes(15)
+        Expires = DateTimeOffset.UtcNow.AddMinutes(15),
+        Domain = CookieDomain
     };
 
     private CookieOptions RefreshTokenOptions => new()
@@ -29,7 +32,8 @@ public class AuthCookieService(
         Secure = env.IsProduction(),
         SameSite = SameSiteMode.Lax,
         Expires = DateTimeOffset.UtcNow.AddDays(30),
-        Path = "/api/v1/auth/refresh"
+        Path = "/api/v1/auth/refresh",
+        Domain = CookieDomain
     };
 
     private CookieOptions CsrfTokenOptions => new()
@@ -37,7 +41,8 @@ public class AuthCookieService(
         HttpOnly = false,
         Secure = env.IsProduction(),
         SameSite = SameSiteMode.Lax,
-        Path = "/"
+        Path = "/",
+        Domain = CookieDomain
     };
 
     public void AppendAuthCookies(TokenPairResult tokens)
