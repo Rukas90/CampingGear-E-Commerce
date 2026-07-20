@@ -7,9 +7,18 @@ param(
 )
 
 if ($env -eq "prod") {
-    $env:DOTNET_ENVIRONMENT = "Production"
+    $env:DOTNET_ENVIRONMENT = "production"
+    if (-not $env:ConnectionStrings__DefaultConnection) {
+        $env:ConnectionStrings__DefaultConnection = $env:TRAILSTORE_PROD_CONNECTION_STRING
+    }
 } else {
-    $env:DOTNET_ENVIRONMENT = "Development"
+    $env:DOTNET_ENVIRONMENT = "development"
+    $env:ConnectionStrings__DefaultConnection = $env:TRAILSTORE_LOCAL_CONNECTION_STRING
+}
+
+if (-not $env:ConnectionStrings__DefaultConnection) {
+    Write-Host "ConnectionStrings__DefaultConnection is not set."
+    exit 1
 }
 
 $modules = @{
@@ -56,18 +65,18 @@ function Run-Migration($mod) {
     switch ($command) {
         "update"  {
             Write-Host "Migrating $project..."
-            dotnet ef database update --project $project --context $context --startup-project TrailStore.Host
+            dotnet ef database update --project $project --context $context
         }
         "add"      {
             Write-Host "Adding migration '$name' to $project..."
-            dotnet ef migrations add $name --project $project --context $context --startup-project TrailStore.Host --output-dir $mod.MigrationsDir
+            dotnet ef migrations add $name --project $project --context $context --output-dir $mod.MigrationsDir
         }
         "remove"   {
             Write-Host "Removing last migration from $project..."
-            dotnet ef migrations remove --project $project --context $context --startup-project TrailStore.Host
+            dotnet ef migrations remove --project $project --context $context
         }
         "list"     {
-            dotnet ef migrations list --project $project --context $context --startup-project TrailStore.Host
+            dotnet ef migrations list --project $project --context $context
         }
     }
 }
