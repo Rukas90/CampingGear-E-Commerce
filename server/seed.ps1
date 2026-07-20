@@ -6,9 +6,11 @@ param(
 )
 
 if ($env -eq "prod") {
-    $env:DOTNET_ENVIRONMENT = "Production"
+    $env:DOTNET_ENVIRONMENT = "production"
+    $env:ConnectionStrings__DefaultConnection = $env:TRAILSTORE_PROD_CONNECTION_STRING
 } else {
-    $env:DOTNET_ENVIRONMENT = "Development"
+    $env:DOTNET_ENVIRONMENT = "development"
+    $env:ConnectionStrings__DefaultConnection = $env:TRAILSTORE_LOCAL_CONNECTION_STRING
 }
 
 $moduleArg = if ($module) { "--module=$module" } else { "" }

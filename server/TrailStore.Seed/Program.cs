@@ -4,6 +4,8 @@ using TrailStore.Shared.Infrastructure.Extensions;
 
 var builder = Host.CreateApplicationBuilder(args);
 
+Console.WriteLine("Running seeding for {0}.", builder.Environment.EnvironmentName);
+
 builder
     .AddIdentitySeeding()
     .AddCatalogSeeding()

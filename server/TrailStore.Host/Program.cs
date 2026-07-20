@@ -30,13 +30,14 @@ app.UseFastEndpoints(config => config.ConfigureAppDefaults());
 
 if (app.Environment.IsDevelopment())
 {
-    await app.Services.MigrateAsync<BasketDbContext>();
-    await app.Services.MigrateAsync<CatalogDbContext>();
-    await app.Services.MigrateAsync<WishlistDbContext>();
-    await app.Services.MigrateAsync<IdentityDbContext>();
-    await app.Services.MigrateAsync<InventoryDbContext>();
-    await app.Services.MigrateAsync<OrderingDbContext>();
-    await app.Services.MigrateAsync<PaymentDbContext>();
+    await app.Services.MigrateAllAsync(
+        typeof(BasketDbContext),
+        typeof(CatalogDbContext),
+        typeof(WishlistDbContext),
+        typeof(IdentityDbContext),
+        typeof(InventoryDbContext),
+        typeof(OrderingDbContext),
+        typeof(PaymentDbContext));
     
     app.MapOpenApi();
     app.MapScalarApiReference();
