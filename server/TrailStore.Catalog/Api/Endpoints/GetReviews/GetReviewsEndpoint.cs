@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using Microsoft.Extensions.DependencyInjection;
 using TrailStore.Catalog.Application.Queries.GetReviews;
 using TrailStore.Catalog.Domain.Reviews.Enums;
 using TrailStore.Shared.Api.Mappers;
@@ -13,6 +14,11 @@ public class GetReviewsEndpoint(GetReviewsQueryHandler query)
     {
         Get("/api/v1/products/{slug}/reviews");
         AllowAnonymous();
+        Options(x => x.CacheOutput(policy => policy
+            .Expire(TimeSpan.FromDays(31))
+            .Tag("reviews")
+            .SetVaryByRouteValue("slug")
+            .SetVaryByQuery("*")));
     }
 
     public override async Task HandleAsync(GetReviewsRequest req, CancellationToken ct)

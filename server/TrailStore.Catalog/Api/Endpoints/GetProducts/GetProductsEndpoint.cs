@@ -1,4 +1,6 @@
 ﻿using FastEndpoints;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using TrailStore.Catalog.Application.Queries.GetProducts;
 using TrailStore.Shared.Api.Mappers;
 
@@ -12,6 +14,10 @@ public class GetProductsEndpoint(GetProductsQueryHandler query)
         Get("/api/v1/products");
         AllowAnonymous();
         RequestBinder(new ProductsRequestBinder());
+        Options(x => x.CacheOutput(policy => policy
+            .Expire(TimeSpan.FromHours(1))
+            .Tag("products")
+            .SetVaryByQuery("*")));
     }
 
     public override async Task HandleAsync(GetProductsRequest req, CancellationToken ct)

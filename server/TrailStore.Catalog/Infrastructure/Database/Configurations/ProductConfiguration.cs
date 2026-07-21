@@ -23,15 +23,19 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 
         builder.HasIndex(p => p.Slug)
             .IsUnique();
-
+        
         builder.HasOne(p => p.Category)
             .WithMany()
             .HasForeignKey(p => p.CategoryId)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        builder.HasIndex(p => p.CategoryId);
 
         builder.HasOne(p => p.Brand)
             .WithMany()
             .HasForeignKey(p => p.BrandId)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        builder.HasIndex(p => p.BrandId);
     }
 }

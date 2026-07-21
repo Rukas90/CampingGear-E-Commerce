@@ -20,9 +20,11 @@ public class SkuConfiguration : IEntityTypeConfiguration<Sku>
         builder.Property(sku => sku.UnitPrice)
             .IsRequired()
             .HasPrecision(18, 2);
+        builder.HasIndex(sku => sku.UnitPrice);
 
         builder.Property(sku => sku.Stock)
             .IsRequired();
+        builder.HasIndex(sku => sku.Stock);
 
         builder.HasOne(sku => sku.Product)
             .WithMany(product => product.Skus)

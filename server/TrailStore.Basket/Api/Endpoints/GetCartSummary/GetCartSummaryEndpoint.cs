@@ -3,7 +3,6 @@ using TrailStore.Basket.Api.Extensions;
 using TrailStore.Basket.Api.Sessions;
 using TrailStore.Basket.Application.Queries.GetCartSummary;
 using TrailStore.Basket.Contracts.Session;
-using TrailStore.Shared.Api.Mappers;
 
 namespace TrailStore.Basket.Api.Endpoints.GetCartSummary;
 
@@ -27,7 +26,10 @@ public sealed class GetCartSummaryEndpoint(
         {
             result.OnError("cart.not_found", cartCookieService.ClearCart);
             
-            await this.SendProblemAsync(result.Problem);
+            await Send.OkAsync(new CartSummaryResponse
+            {
+                Count = 0
+            }, ct);
             
             return;
         }

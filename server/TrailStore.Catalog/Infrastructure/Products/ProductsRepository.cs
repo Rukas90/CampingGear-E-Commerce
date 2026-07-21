@@ -71,5 +71,6 @@ public sealed class ProductsRepository(CatalogDbContext _context)
             .Include(product => product.Images)
             .ThenInclude(image => image.Urls)
             .Include(product => product.Skus)
-            .ThenInclude(sku => sku.Options).ThenInclude(option => option.OptionGroup);
+            .ThenInclude(sku => sku.Options).ThenInclude(option => option.OptionGroup)
+            .AsSplitQuery();
 }

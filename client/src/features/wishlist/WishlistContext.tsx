@@ -25,6 +25,7 @@ const WishlistProvider = ({ children }: React.PropsWithChildren) => {
   const query = useQuery({
     queryKey: ["wishlist"],
     queryFn: () => HandleReqFn(() => wishlistApi.getAll()),
+    retry: false,
   })
   const queryClient = useQueryClient()
   const [busy, setBusy] = useState(false)

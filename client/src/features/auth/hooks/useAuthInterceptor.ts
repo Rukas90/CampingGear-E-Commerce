@@ -10,7 +10,7 @@ const isUnauthenticated = (data: ProblemDetails) =>
   data?.errors?.[0]?.code === AuthErrorCodes.AUTH_UNAUTHENTICATED
 
 const useAuthInterceptor = () => {
-  const { refresh } = useAuthRefresh()
+  const { lastRefresh, refresh } = useAuthRefresh()
   const { isLoggedIn } = useAccount()
 
   useLayoutEffect(() => {
@@ -27,11 +27,10 @@ const useAuthInterceptor = () => {
           error.response?.data,
         )
 
-        // Reject refresh if the response was not unauthenticated
-        // or if it was an unauthenticated response and the user was not previously authenticated
         if (
           !isUnauthenticatedResponse ||
-          (isUnauthenticatedResponse && !isLoggedIn)
+          (isUnauthenticatedResponse && !isLoggedIn) ||
+          lastRefresh === "Failed"
         ) {
           return Promise.reject(error)
         }

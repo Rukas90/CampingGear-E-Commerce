@@ -1,12 +1,15 @@
 import type { CustomerAccount, ProblemDetails } from "@types"
-import { useCallback, useRef } from "react"
+import { useCallback, useRef, useState } from "react"
 import { authApi } from "../api"
 import { HandleReqFn } from "@lib"
 import { useMutation } from "@tanstack/react-query"
 import useAccount from "./useAccount"
 
+type LastRefreshResult = "None" | "Success" | "Failed"
+
 const useAuthRefresh = () => {
   const { setAccount } = useAccount()
+  const [lastRefresh, setLastRefresh] = useState<LastRefreshResult>("None")
 
   const refreshPromiseRef = useRef<Promise<CustomerAccount> | null>(null)
 
@@ -14,9 +17,11 @@ const useAuthRefresh = () => {
     mutationFn: () => HandleReqFn(() => authApi.refresh()),
     onSuccess: (account) => {
       setAccount(account)
+      setLastRefresh("Success")
     },
     onError: () => {
       setAccount(null)
+      setLastRefresh("Failed")
     },
     onSettled: () => {
       refreshPromiseRef.current = null
@@ -33,6 +38,7 @@ const useAuthRefresh = () => {
 
   return {
     refresh,
+    lastRefresh,
     promise: refreshPromiseRef.current,
   }
 }

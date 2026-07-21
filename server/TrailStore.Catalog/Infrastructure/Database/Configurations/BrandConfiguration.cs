@@ -20,6 +20,9 @@ public class BrandConfiguration : IEntityTypeConfiguration<Brand>
         builder.Property(brand => brand.Slug)
             .HasMaxLength(100)
             .IsRequired();
+        
+        builder.HasIndex(brand => brand.Slug)
+            .IsUnique();
 
         builder.Property(brand => brand.LogoUrl)
             .HasMaxLength(400)

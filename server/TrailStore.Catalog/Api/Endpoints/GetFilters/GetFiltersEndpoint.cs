@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using Microsoft.Extensions.DependencyInjection;
 using TrailStore.Catalog.Application.Queries.GetFilters;
 using TrailStore.Catalog.Domain.Filters;
 using TrailStore.Catalog.Domain.Options;
@@ -16,6 +17,10 @@ public class GetFiltersEndpoint(GetFiltersQueryHandler query)
         Get("/api/v1/filters");
         AllowAnonymous();
         RequestBinder(new FiltersRequestBinder());
+        Options(x => x.CacheOutput(policy => policy
+            .Expire(TimeSpan.FromHours(1))
+            .Tag("filters")
+            .SetVaryByQuery("*")));
     }
 
     public override async Task HandleAsync(GetFiltersRequest req, CancellationToken ct)

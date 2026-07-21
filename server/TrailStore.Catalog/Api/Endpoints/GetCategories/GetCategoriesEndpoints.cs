@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using Microsoft.Extensions.DependencyInjection;
 using TrailStore.Catalog.Application.Queries.GetCategories;
 using TrailStore.Shared.Api.Mappers;
 
@@ -11,6 +12,9 @@ public sealed class GetCategoriesEndpoints(GetAllCategoriesQueryHandler query)
     {
         Get("/api/v1/categories");
         AllowAnonymous();
+        Options(x => x.CacheOutput(policy => policy
+            .Expire(TimeSpan.FromDays(31))
+            .Tag("categories")));
     }
 
     public override async Task HandleAsync(CancellationToken ct)
