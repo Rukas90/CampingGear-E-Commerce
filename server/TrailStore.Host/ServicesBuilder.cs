@@ -16,6 +16,13 @@ public static class ServicesBuilder
 {
     public static void AddProgramServices(this WebApplicationBuilder builder)
     {
+        using var factory = LoggerFactory.Create(logging => 
+        {
+            logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
+            logging.AddConsole();
+        });
+        var logger = factory.CreateLogger("TrailStore.Setup");
+        
         var allowedOrigins = builder.Configuration
             .GetSection("Cors:AllowedOrigins")
             .Get<string[]>() ?? [];
@@ -46,14 +53,12 @@ public static class ServicesBuilder
                 .AddPaymentsModule()
                 .AddWishlistModule();
 
-        builder.Services.AddRedisCache(builder.Configuration.GetConnectionString("Redis")
-                                       ?? throw new InvalidOperationException("Redis connection string is required."));
-        
+        builder.Services.AddRedisCache(builder.Configuration);
         builder.Services.AddFastEndpoints(options =>
         {
             options.Assemblies = moduleBuilder.ApiAssemblies;
         });
-        builder.Services.AddOutputCache();
+        builder.Services.AddTrailStoreOutputCache(builder.Configuration, builder.Environment, logger);
         builder.Services.AddOpenApi();
         
         builder.Services.AddResponseCompression(options => { options.EnableForHttps = true; });
