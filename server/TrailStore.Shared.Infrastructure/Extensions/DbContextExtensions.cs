@@ -14,6 +14,7 @@ public static class DbContextExtensions
         this IServiceCollection services,
         IConfiguration configuration,
         string schema,
+        Action<IServiceProvider, DbContextOptionsBuilder>? configureOptions = null,
         string connectionString = "DefaultConnection")
         where TContext : BaseDbContext<TContext>, TUnitOfWork
         where TUnitOfWork : class, IUnitOfWork
@@ -27,6 +28,8 @@ public static class DbContextExtensions
                     .UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
             
             options.AddInterceptors(sp.GetRequiredService<DomainEventPublishInterceptor>());
+            
+            configureOptions?.Invoke(sp, options);
         });
 
         services.AddScoped<TUnitOfWork>(sp => sp.GetRequiredService<TContext>());

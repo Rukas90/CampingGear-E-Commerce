@@ -12,5 +12,7 @@ public static class OutboxRegistrationExtensions
     {
         services.AddScoped<TOutbox>(sp => sp.GetRequiredService<TContext>());
         services.AddHostedService<OutboxProcessor<TOutbox>>();
+        services.AddSingleton<OutboxSignal<TOutbox>>();
+        services.AddScoped<OutboxSignalInterceptor<TOutbox>>();
     }
 }

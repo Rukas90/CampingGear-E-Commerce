@@ -9,6 +9,7 @@ namespace TrailStore.Shared.Infrastructure.Outbox;
 
 public sealed class OutboxProcessor<TOutbox>(
     IServiceScopeFactory scopeFactory,
+    OutboxSignal<TOutbox> signal,
     ILogger<OutboxProcessor<TOutbox>> logger) : BackgroundService
     where TOutbox : IOutbox
 {
@@ -23,7 +24,10 @@ public sealed class OutboxProcessor<TOutbox>(
         {
             try
             {
-                await ProcessBatchAsync(ct);
+                await foreach (var _ in signal.WaitForMessagesAsync(ct))
+                {
+                    await ProcessBatchAsync(ct);
+                }
             }
             catch (OperationCanceledException) when (ct.IsCancellationRequested)
             {
