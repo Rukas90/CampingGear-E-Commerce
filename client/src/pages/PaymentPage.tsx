@@ -1,8 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom"
 import type { OrderId } from "@types"
-import { PaymentForm } from "@components"
-import { PaymentProvider } from "@features/payments"
-import { usePayment } from "@features"
+import { usePayment, PaymentForm, PaymentProvider } from "@features"
 import { loadStripe } from "@stripe/stripe-js"
 import { Elements } from "@stripe/react-stripe-js"
 

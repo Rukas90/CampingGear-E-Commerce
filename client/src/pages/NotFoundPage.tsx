@@ -1,4 +1,4 @@
-import { Button } from "@components"
+import { ContrastButton } from "@features"
 import { Link } from "react-router-dom"
 
 const NotFoundPage = () => {
@@ -9,9 +9,9 @@ const NotFoundPage = () => {
         <p className="text-5xl font-bold">404 Page Not Found</p>
         <p>The page you requested does not exist.</p>
         <Link to="/">
-          <Button className="text-sm" style="contrast">
+          <ContrastButton className="text-sm px-2.5">
             Continue shopping
-          </Button>
+          </ContrastButton>
         </Link>
       </div>
     </>

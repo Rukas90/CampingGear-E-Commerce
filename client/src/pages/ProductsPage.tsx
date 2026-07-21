@@ -3,8 +3,9 @@ import {
   PageWrapper,
   ProductItem,
   ProductsCategoryListingHeader,
-} from "@components"
-import { useCategoryProductsQuery, useFilters } from "@features"
+  useCategoryProductsQuery,
+  useFilters,
+} from "@features"
 import { useParams, useSearchParams } from "react-router-dom"
 
 const ProductsPage = () => {

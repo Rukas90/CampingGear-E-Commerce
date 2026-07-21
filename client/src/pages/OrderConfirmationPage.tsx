@@ -1,15 +1,15 @@
 import {
-  IconSuccess,
-  MessageBox,
-  PageWrapper,
-  OutlineButton,
-  IconArrow,
-  DotCount,
   CostLabel,
-  OrderFinancialsStats,
+  DotCount,
+  IconArrow,
+  IconSuccess,
   Line,
-} from "@components"
-import { useOrder } from "@features"
+  MessageBox,
+  OrderFinancialsStats,
+  OutlineButton,
+  PageWrapper,
+  useOrder,
+} from "@features"
 import type { OrderId } from "@types"
 import { useParams } from "react-router-dom"
 

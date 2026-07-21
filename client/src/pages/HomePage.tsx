@@ -1,4 +1,4 @@
-import { Button } from "@components"
+import { Button } from "@features"
 import Banner from "/img/banner.webp"
 
 const HomePage = () => {

@@ -5,7 +5,7 @@ import {
   Footer,
   MobileSideMenu,
   TopNav,
-} from "@components"
+} from "@features"
 import { Outlet } from "react-router-dom"
 
 const ContentPage = () => {

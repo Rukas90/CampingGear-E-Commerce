@@ -1,5 +1,4 @@
-import { Spinner } from "@components"
-import { useOrders } from "@features"
+import { Spinner, useOrders } from "@features"
 import { formatDate, formatPrice } from "@utils"
 import { Link } from "react-router-dom"
 

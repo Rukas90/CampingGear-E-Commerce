@@ -1,10 +1,10 @@
 import {
   CartCounter,
   CartEntriesList,
+  CartItemsProvider,
   CartTotal,
   PageWrapper,
-} from "@components"
-import { CartItemsProvider } from "@features"
+} from "@features"
 
 const CartPage = () => {
   return (

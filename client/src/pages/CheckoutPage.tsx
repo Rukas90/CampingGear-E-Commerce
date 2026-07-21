@@ -1,5 +1,9 @@
-import { CheckoutForm, CheckoutSummary, Line } from "@components"
-import { CheckoutProvider } from "@features"
+import {
+  CheckoutProvider,
+  CheckoutForm,
+  CheckoutSummary,
+  Line,
+} from "@features"
 
 const CheckoutPage = () => {
   return (

@@ -1,16 +1,16 @@
 import {
+  Line,
   PageWrapper,
-  ProductSummary,
+  ProductBreadcrumbs,
+  ProductCustomerReviews,
+  ProductDescription,
   ProductImageViewer,
   ProductOptionPicker,
   ProductPurchase,
+  ProductSummary,
   ProductTrustMessages,
-  ProductBreadcrumbs,
-  ProductDescription,
-  Line,
-  ProductCustomerReviews,
-} from "@components"
-import { ProductViewProvider } from "@features"
+  ProductViewProvider,
+} from "@features"
 import { useNavigate, useParams } from "react-router-dom"
 
 const ProductPage = () => {

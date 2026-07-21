@@ -1,0 +1,16 @@
+import { IconMountain } from "@features"
+
+const LogoWithText = () => {
+  return (
+    <div className="flex gap-2">
+      <div className="shine">
+        <IconMountain className="size-12 dark:text-stone-900 text-stone-800" />
+      </div>
+      <p className="font-medium text-xl dark:text-stone-200 text-stone-900 my-auto">
+        <span className="font-semibold">Trail</span>
+        <span className="font-medium playfair-display italic">Store</span>
+      </p>
+    </div>
+  )
+}
+export default LogoWithText

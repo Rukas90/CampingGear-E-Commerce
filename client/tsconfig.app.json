@@ -27,8 +27,6 @@
     "ignoreDeprecations": "5.0",
     "baseUrl": ".",
     "paths": {
-      "@components": ["src/components/index.ts"],
-      "@components/*": ["src/components/*"],
       "@types": ["src/types/index.ts"],
       "@types/*": ["src/types/*"],
       "@lib": ["src/lib/index.ts"],

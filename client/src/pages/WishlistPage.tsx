@@ -2,9 +2,9 @@ import {
   BrowseProductsButton,
   Line,
   PageWrapper,
+  useWishlist,
   WishlistCard,
-} from "@components"
-import { useWishlist } from "@features"
+} from "@features"
 
 const WishlistPage = () => {
   const { items, removeItem, busy } = useWishlist()

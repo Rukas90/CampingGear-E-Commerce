@@ -1,15 +1,17 @@
+import { Link } from "react-router-dom"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Button,
   GoogleButton,
   HorizontalLineLabel,
   LabeledInputField,
+  LoginSchema,
   PageWrapper,
   Spinner,
-} from "@components"
-import { Link } from "react-router-dom"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { LoginSchema, useLogin, type LoginData } from "@features"
+  useLogin,
+  type LoginData,
+} from "@features"
 
 const LoginPage = () => {
   const {

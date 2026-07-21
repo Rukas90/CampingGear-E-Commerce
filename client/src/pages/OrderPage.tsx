@@ -1,5 +1,4 @@
-import { Line, OrderFinancialLine, PageWrapper } from "@components"
-import { useOrder } from "@features"
+import { Line, OrderFinancialLine, PageWrapper, useOrder } from "@features"
 import type { OrderId } from "@types"
 import { formatDate, formatPrice } from "@utils"
 import { Link, useParams } from "react-router-dom"

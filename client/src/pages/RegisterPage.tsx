@@ -1,14 +1,16 @@
+import { Link } from "react-router-dom"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Button,
   GoogleButton,
   HorizontalLineLabel,
   LabeledInputField,
   PageWrapper,
-} from "@components"
-import { Link } from "react-router-dom"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { RegisterSchema, useRegister, type RegisterData } from "@features"
+  RegisterSchema,
+  useRegister,
+  type RegisterData,
+} from "@features"
 
 const RegisterPage = () => {
   const {

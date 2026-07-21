@@ -1,5 +1,10 @@
-import { ContentBox, OutlineButton, TextButton } from "@components"
-import { useAccount, useLogout } from "@features"
+import {
+  ContentBox,
+  OutlineButton,
+  TextButton,
+  useAccount,
+  useLogout,
+} from "@features"
 
 const ProfilePage = () => {
   const { account } = useAccount()

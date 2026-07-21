@@ -1,4 +1,4 @@
-import { PageWrapper, AccountNavItem } from "@components"
+import { PageWrapper, AccountNavItem } from "@features"
 import { Outlet } from "react-router-dom"
 
 const AccountPage = () => {

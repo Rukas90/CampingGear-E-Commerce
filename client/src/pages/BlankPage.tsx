@@ -4,7 +4,7 @@ import {
   Line,
   MobileSideMenu,
   TopNav,
-} from "@components"
+} from "@features"
 import { Outlet } from "react-router-dom"
 
 interface BlankPageProps {

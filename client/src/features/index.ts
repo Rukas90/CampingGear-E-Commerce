@@ -1,5 +1,6 @@
 export * from "./app"
-export * from "./category"
+export * from "./account"
+export * from "./categories"
 export * from "./auth"
 export * from "./products"
 export * from "./filters"

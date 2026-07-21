@@ -1,0 +1,36 @@
+import { useEffect, useState } from "react"
+import ProductButtons from "./ProductButtons"
+import ProductStockLabel from "./ProductStockLabel"
+import { AddToCartQuantity, useProductView } from "@features"
+
+const ProductPurchase = () => {
+  const { sku } = useProductView()
+  const [quantity, setQuantity] = useState(1)
+
+  const stock = sku?.stock ?? 0
+
+  useEffect(() => setQuantity(stock > 0 ? 1 : 0), [sku?.code])
+
+  const handleQuantityChange = (newQuantity: number) => {
+    newQuantity = Math.min(Math.max(newQuantity, 1), stock)
+    setQuantity(newQuantity)
+  }
+
+  return (
+    <>
+      <AddToCartQuantity
+        quantity={quantity}
+        onQuantityChanged={handleQuantityChange}
+        disabled={stock <= 0}
+      />
+      <ProductStockLabel stock={stock} />
+      <ProductButtons
+        stock={stock}
+        unitPrice={sku?.unitPrice ?? 0}
+        quantity={quantity}
+        sku={sku}
+      />
+    </>
+  )
+}
+export default ProductPurchase
