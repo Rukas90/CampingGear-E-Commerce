@@ -9,6 +9,7 @@ import {
   useState,
 } from "react"
 import wishlistApi from "./wishlistApi"
+import { useAccount } from "@features"
 
 interface WishlistData {
   toggleItem: (skuId: SkuId) => Promise<boolean>
@@ -22,10 +23,12 @@ interface WishlistData {
 const WishlistContext = createContext<WishlistData | undefined>(undefined)
 
 const WishlistProvider = ({ children }: React.PropsWithChildren) => {
+  const { isLoggedIn } = useAccount()
   const query = useQuery({
     queryKey: ["wishlist"],
     queryFn: () => HandleReqFn(() => wishlistApi.getAll()),
     retry: false,
+    enabled: isLoggedIn,
   })
   const queryClient = useQueryClient()
   const [busy, setBusy] = useState(false)
@@ -34,7 +37,9 @@ const WishlistProvider = ({ children }: React.PropsWithChildren) => {
 
   const process = useCallback(
     async <T,>(getPromise: () => Promise<ApiResult<T>>): Promise<boolean> => {
-      if (busy) return false
+      if (busy) {
+        return false
+      }
       setBusy(true)
       try {
         const result = await getPromise()

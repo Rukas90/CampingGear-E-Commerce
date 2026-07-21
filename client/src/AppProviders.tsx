@@ -1,9 +1,11 @@
-import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client"
 import { BrowserRouter } from "react-router-dom"
-import { get, set, del } from "idb-keyval"
-import { AppProvider, CartProvider, WishlistProvider } from "@features"
+import {
+  AppProvider,
+  AuthProvider,
+  CartProvider,
+  WishlistProvider,
+} from "@features"
 import "react-loading-skeleton/dist/skeleton.css"
 
 const queryClient = new QueryClient({
@@ -15,43 +17,19 @@ const queryClient = new QueryClient({
   },
 })
 
-const persister = createAsyncStoragePersister({
-  storage: {
-    getItem: (key) => get(key),
-    setItem: (key, value) => set(key, value),
-    removeItem: (key) => del(key),
-  },
-})
-
 const AppProviders = ({ children }: React.PropsWithChildren) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <WishlistProvider>
-          <BrowserRouter>
-            <AppProvider>{children}</AppProvider>
-          </BrowserRouter>
-        </WishlistProvider>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <BrowserRouter>
+              <AppProvider>{children}</AppProvider>
+            </BrowserRouter>
+          </WishlistProvider>
+        </CartProvider>
+      </AuthProvider>
     </QueryClientProvider>
-  )
-  return (
-    <PersistQueryClientProvider
-      client={queryClient}
-      persistOptions={{
-        persister,
-        dehydrateOptions: {
-          shouldDehydrateQuery: (query) => {
-            const key = query.queryKey[0]
-            return key === "categories" || key === "products" || key === "skus"
-          },
-        },
-      }}
-    >
-      <CartProvider>
-        <BrowserRouter>{children}</BrowserRouter>
-      </CartProvider>
-    </PersistQueryClientProvider>
   )
 }
 export default AppProviders

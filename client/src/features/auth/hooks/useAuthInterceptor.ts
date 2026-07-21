@@ -1,17 +1,20 @@
-import { useLayoutEffect } from "react"
+import { useLayoutEffect, useRef } from "react"
 import { AuthErrorCodes } from "../errors"
 import { client } from "@lib"
 import type { ProblemDetails } from "@types"
-import useAuthRefresh from "./useAuthRefresh"
-import useAccount from "./useAccount"
+import { type AuthRefreshData } from "./useAuthRefresh"
 
 const isUnauthenticated = (data: ProblemDetails) =>
   data?.status === 401 &&
   data?.errors?.[0]?.code === AuthErrorCodes.AUTH_UNAUTHENTICATED
 
-const useAuthInterceptor = () => {
-  const { lastRefresh, refresh } = useAuthRefresh()
-  const { isLoggedIn } = useAccount()
+interface AuthInterceptorProps {
+  refresh: AuthRefreshData
+}
+
+const useAuthInterceptor = ({ refresh }: AuthInterceptorProps) => {
+  const refreshRef = useRef(refresh)
+  refreshRef.current = refresh
 
   useLayoutEffect(() => {
     const interceptorId = client.interceptors.response.use(
@@ -27,16 +30,12 @@ const useAuthInterceptor = () => {
           error.response?.data,
         )
 
-        if (
-          !isUnauthenticatedResponse ||
-          (isUnauthenticatedResponse && !isLoggedIn) ||
-          lastRefresh === "Failed"
-        ) {
+        if (!isUnauthenticatedResponse || !refreshRef.current.canRefresh) {
           return Promise.reject(error)
         }
 
         try {
-          await refresh()
+          await refresh.execute()
           originalRequest._retry = true
           await new Promise((r) => setTimeout(r, 10))
           return client(originalRequest)
@@ -46,6 +45,6 @@ const useAuthInterceptor = () => {
       },
     )
     return () => client.interceptors.response.eject(interceptorId)
-  }, [refresh])
+  }, [])
 }
 export default useAuthInterceptor

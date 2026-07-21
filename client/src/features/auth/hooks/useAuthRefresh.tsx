@@ -1,45 +1,58 @@
 import type { CustomerAccount, ProblemDetails } from "@types"
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useRef } from "react"
 import { authApi } from "../api"
 import { HandleReqFn } from "@lib"
 import { useMutation } from "@tanstack/react-query"
 import useAccount from "./useAccount"
 
-type LastRefreshResult = "None" | "Success" | "Failed"
+export type AuthRefreshData = {
+  execute: () => Promise<CustomerAccount>
+  canRefresh: React.RefObject<boolean>
+  promise: Promise<CustomerAccount> | null
+  reset: () => void
+  block: () => void
+}
 
-const useAuthRefresh = () => {
+const useAuthRefresh = (): AuthRefreshData => {
   const { setAccount } = useAccount()
-  const [lastRefresh, setLastRefresh] = useState<LastRefreshResult>("None")
-
+  const canRefreshRef = useRef(true)
   const refreshPromiseRef = useRef<Promise<CustomerAccount> | null>(null)
 
   const { mutateAsync } = useMutation<CustomerAccount, ProblemDetails>({
     mutationFn: () => HandleReqFn(() => authApi.refresh()),
     onSuccess: (account) => {
       setAccount(account)
-      setLastRefresh("Success")
+      canRefreshRef.current = true
     },
     onError: () => {
       setAccount(null)
-      setLastRefresh("Failed")
+      canRefreshRef.current = false
     },
     onSettled: () => {
       refreshPromiseRef.current = null
     },
   })
 
-  const refresh = useCallback(() => {
-    if (refreshPromiseRef.current) {
-      return refreshPromiseRef.current
-    }
+  const execute = useCallback(() => {
+    if (refreshPromiseRef.current) return refreshPromiseRef.current
     refreshPromiseRef.current = mutateAsync()
     return refreshPromiseRef.current
-  }, [setAccount])
+  }, [mutateAsync])
+
+  const reset = useCallback(() => {
+    canRefreshRef.current = true
+  }, [])
+
+  const block = useCallback(() => {
+    canRefreshRef.current = false
+  }, [])
 
   return {
-    refresh,
-    lastRefresh,
+    execute,
+    canRefresh: canRefreshRef,
     promise: refreshPromiseRef.current,
+    reset,
+    block,
   }
 }
 export default useAuthRefresh

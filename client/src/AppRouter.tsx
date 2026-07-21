@@ -2,7 +2,7 @@ import { lazy } from "react"
 import { Route, Routes } from "react-router-dom"
 import ContentPage from "./pages/ContentPage"
 import BlankPage from "./pages/BlankPage"
-import { GuestOnlyGuard, ProtectedGuard, useAuthInterceptor } from "@features"
+import { GuestOnlyGuard, ProtectedGuard } from "@features"
 import AccountPage from "./pages/AccountPage"
 
 const HomePage = lazy(() => import("./pages/HomePage"))
@@ -25,8 +25,6 @@ const OrderPage = lazy(() => import("./pages/OrderPage"))
 const WishlistPage = lazy(() => import("./pages/WishlistPage"))
 
 const AppRouter = () => {
-  useAuthInterceptor()
-
   return (
     <Routes>
       <Route element={<ContentPage />}>

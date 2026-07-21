@@ -1,28 +1,30 @@
 import { useMutation } from "@tanstack/react-query"
-import { useNavigate } from "react-router-dom"
 import type { LoginData } from "../schemas"
 import { authApi } from "../api"
 import { HandleReqFn } from "@lib"
 import type { CustomerAccount, ProblemDetails } from "@types"
 import useAccount from "./useAccount"
+import { useAuth } from "../contexts/AuthContext"
 import { useSession } from "@features"
 
-const useLogin = () => {
-  const navigate = useNavigate()
-  const { invalidate } = useSession()
+const useLogin = (opts?: {
+  onSuccess?: (a: CustomerAccount) => void
+  onError?: (p: ProblemDetails) => void
+}) => {
   const { setAccount } = useAccount()
+  const { refresh } = useAuth()
+  const { invalidate } = useSession()
 
   return useMutation<CustomerAccount, ProblemDetails, LoginData>({
-    mutationFn: (data: LoginData) => HandleReqFn(() => authApi.login(data)),
+    mutationFn: (data) => HandleReqFn(() => authApi.login(data)),
     onSuccess: async (account) => {
       setAccount(account)
+      refresh.reset()
       await invalidate()
-      navigate("/")
+
+      opts?.onSuccess?.(account)
     },
-    onError: () => {
-      setAccount(null)
-    },
+    onError: opts?.onError,
   })
 }
-
 export default useLogin
