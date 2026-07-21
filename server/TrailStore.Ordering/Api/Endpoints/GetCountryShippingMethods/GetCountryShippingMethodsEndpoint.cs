@@ -12,7 +12,10 @@ public sealed class GetCountryShippingMethodsEndpoint(GetShippingMethodsQueryHan
     {
         Get("/api/v1/shipping/methods");
         AllowAnonymous();
-        Options(x => x.CacheOutput(p => p.Expire(TimeSpan.FromDays(1))));
+        Options(x => x.CacheOutput(policy => policy
+            .Expire(TimeSpan.FromDays(31))
+            .Tag("shipping-methods")
+            .SetVaryByQuery("*")));
     }
     
     public override async Task HandleAsync(GetCountryShippingMethodsRequest req, CancellationToken ct)

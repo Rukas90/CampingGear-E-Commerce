@@ -8,6 +8,8 @@ const useCountries = (options?: QueryOptions) => {
     func: () => countriesApi.getCountries(),
     ...options,
     select: (data) => data.toSorted((a, b) => a.name.localeCompare(b.name)),
+    staleTime: Infinity,
+    gcTime: Infinity,
   })
 
   const findByCode = (code?: string): Country | undefined => {

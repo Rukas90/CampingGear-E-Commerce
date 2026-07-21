@@ -41,6 +41,7 @@ const ProductReviewsProvider = ({
     queryKey: ["reviews", slug, request],
     queryFn: () => HandleReqFn(() => reviewsApi.queryReviews(request, slug)),
     enabled: !!slug,
+    staleTime: 1000 * 60 * 60,
   })
 
   return (

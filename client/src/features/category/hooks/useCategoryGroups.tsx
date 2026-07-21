@@ -6,6 +6,8 @@ const useCategoryGroups = () => {
   const { data } = useQuery({
     queryKey: ["category-groups"],
     queryFn: () => HandleReqFn(() => categoryApi.getAllCategoryGroups()),
+    staleTime: Infinity,
+    gcTime: Infinity,
   })
   return { data }
 }

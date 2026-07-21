@@ -7,6 +7,8 @@ const useCategories = () => {
   const { data } = useQuery<Category[], ProblemDetails>({
     queryKey: ["categories"],
     queryFn: async () => HandleReqFn(() => categoryApi.getAllCategories()),
+    staleTime: Infinity,
+    gcTime: Infinity,
   })
   return { data }
 }

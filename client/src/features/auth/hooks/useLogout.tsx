@@ -4,6 +4,7 @@ import { HandleReqFn } from "@lib"
 import type { ProblemDetails } from "@types"
 import { useAuth } from "../contexts/AuthContext"
 import useAccount from "./useAccount"
+import { useSession } from "@features"
 
 const useLogout = (opts?: {
   onSuccess?: () => void
@@ -11,6 +12,7 @@ const useLogout = (opts?: {
 }) => {
   const { setAccount } = useAccount()
   const { refresh } = useAuth()
+  const { invalidate } = useSession()
 
   return useMutation<unknown, ProblemDetails>({
     mutationFn: async () => {
@@ -18,7 +20,10 @@ const useLogout = (opts?: {
       setAccount(null)
       return HandleReqFn(() => authApi.logout())
     },
-    onSuccess: opts?.onSuccess,
+    onSuccess: async () => {
+      await invalidate()
+      opts?.onSuccess
+    },
     onError: opts?.onError,
   })
 }

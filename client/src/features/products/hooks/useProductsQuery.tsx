@@ -10,6 +10,7 @@ const useProductsQuery = (
     key: ["products", request],
     func: () => productsApi.queryProducts(request),
     ...options,
+    staleTime: 1000 * 60 * 15,
   })
 
   return { products: query.data, ...query }

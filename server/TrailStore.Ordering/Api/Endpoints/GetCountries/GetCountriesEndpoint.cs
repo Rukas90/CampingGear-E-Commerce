@@ -11,7 +11,9 @@ public sealed class GetCountriesEndpoint
     {
         Get("/api/v1/countries");
         AllowAnonymous();
-        Options(x => x.CacheOutput(p => p.Expire(TimeSpan.FromDays(1))));
+        Options(x => x.CacheOutput(policy => policy
+            .Expire(TimeSpan.FromDays(31))
+            .Tag("countries")));
     }
     
     public override async Task HandleAsync(CancellationToken ct)

@@ -8,6 +8,8 @@ const useCountryShippingMethods = (
   const query = useQueryHandler({
     key: ["country-shipping-methods", countryCode],
     func: () => shippingApi.getCountryShippingMethods(countryCode),
+    staleTime: Infinity,
+    gcTime: Infinity,
     ...options,
   })
 

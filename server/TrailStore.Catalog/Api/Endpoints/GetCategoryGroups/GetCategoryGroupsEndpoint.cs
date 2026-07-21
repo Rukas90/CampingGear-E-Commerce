@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using TrailStore.Catalog.Application.Queries.GetCategories;
 using TrailStore.Shared.Api.Mappers;
