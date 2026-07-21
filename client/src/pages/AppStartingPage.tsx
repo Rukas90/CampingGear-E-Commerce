@@ -5,7 +5,7 @@ const AppStartingPage = () => {
     <div className="flex flex-col gap-6 justify-center items-center w-dvw h-dvh text-center sm:p-8 p-4 bg-stone-50">
       <IconMountain className="size-12" />
       <p className="sm:text-4xl text-3xl font-semibold uppercase">
-        Waking up...
+        Please wait...
       </p>
       <p className="sm:text-base text-sm">
         Due to a cold start, the server needs a moment to spin up. Please wait a

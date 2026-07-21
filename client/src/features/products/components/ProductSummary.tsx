@@ -1,13 +1,37 @@
-import { Line, RatingBadge, useProductView } from "@features"
+import { Line, RatingBadge, Text, useProductView } from "@features"
 
 const ProductSummary = () => {
-  const { sku, data } = useProductView()
+  const { sku, data, isPending } = useProductView()
 
   return (
     <div className="flex flex-col gap-1">
-      <p className="text-lg text-neutral-400">{data?.brandName}</p>
-      <p className="text-3xl font-semibold mb-2">{data?.name}</p>
-      <p className="text-xl text-accent font-semibold">{sku?.unitPrice}€</p>
+      <Text
+        className="text-lg text-neutral-400"
+        showSkeleton={isPending}
+        skeleton={{
+          className: "w-32! max-w-full!",
+        }}
+      >
+        {data?.brandName}
+      </Text>
+      <Text
+        className="text-3xl font-semibold mb-2"
+        showSkeleton={isPending}
+        skeleton={{
+          className: "h-8 w-64! max-w-full!",
+        }}
+      >
+        {data?.name}
+      </Text>
+      <Text
+        className="text-xl text-accent font-semibold"
+        showSkeleton={isPending}
+        skeleton={{
+          className: "h-5 w-14! max-w-full!",
+        }}
+      >
+        {sku?.unitPrice}€
+      </Text>
       <p className="italic text-neutral-400 text-sm">Excluding Tax</p>
       <a href="#customer-reviews">
         <RatingBadge

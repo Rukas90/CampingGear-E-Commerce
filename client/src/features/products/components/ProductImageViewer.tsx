@@ -1,8 +1,9 @@
 import { ImageViewer, useProductView } from "@features"
 import { useMemo } from "react"
+import Skeleton from "react-loading-skeleton"
 
 const ProductImageViewer = () => {
-  const { images } = useProductView()
+  const { images, isPending } = useProductView()
 
   const imagePaths = useMemo(
     () =>
@@ -11,6 +12,10 @@ const ProductImageViewer = () => {
         .flatMap((img) => img.url) ?? [],
     [images],
   )
+
+  if (isPending) {
+    return <Skeleton className="h-full aspect-square" />
+  }
 
   return <ImageViewer imagePaths={imagePaths} />
 }
