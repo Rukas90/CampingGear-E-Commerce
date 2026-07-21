@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TrailStore.Catalog.Application.Abstractions;
-using TrailStore.Shared.Infrastructure.Constants;
 using TrailStore.Shared.Infrastructure.Extensions;
-using TrailStore.Shared.Infrastructure.Persistence;
 
 namespace TrailStore.Catalog.Infrastructure.Database;
 
