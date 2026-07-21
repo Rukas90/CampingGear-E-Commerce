@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import appApi from "../api/appApi"
+import appApi from "../api/AppApi"
 
 const useServerHealth = () => {
   return useQuery({
