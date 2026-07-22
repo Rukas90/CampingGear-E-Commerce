@@ -12,12 +12,12 @@ public class User : AggregateRoot<User>, IEntityCreatable
     [MaxLength(254)]
     public required string Email { get; init; }
 
-    public required string PasswordHash { get; init; }
+    public string? PasswordHash { get; init; }
     public Privileges Privileges { get; init; } = Privileges.User;
 
     public DateTime CreatedAt { get; set; }
     
-    public static User Create(string email, string passwordHash)
+    public static User Create(string email, string? passwordHash)
         => new()
         {
             Id = Id<User>.New(),

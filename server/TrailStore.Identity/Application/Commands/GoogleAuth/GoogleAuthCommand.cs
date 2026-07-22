@@ -3,6 +3,6 @@ using TrailStore.Identity.Application.Results;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
 
-namespace TrailStore.Identity.Application.Commands.Login;
+namespace TrailStore.Identity.Application.Commands.GoogleAuth;
 
-public sealed record LoginCommand(string Email, string Password, Id<CartRef>? GuestCartId) : ICommand<LoginResult>;
+public record GoogleAuthCommand(string Email, Id<CartRef>? GuestCartId) : ICommand<LoginResult>;

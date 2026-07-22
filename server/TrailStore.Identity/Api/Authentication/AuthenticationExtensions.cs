@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using TrailStore.Identity.Api.Cookies;
-using TrailStore.Identity.Domain.Auth;
 using TrailStore.Shared.Domain.Problems;
 
 namespace TrailStore.Identity.Api.Authentication;
@@ -61,6 +60,15 @@ public static class AuthenticationExtensions
                         }.ExecuteAsync(context.HttpContext);
                     }
                 };
+            })
+            .AddCookie("External")
+            .AddGoogle(options =>
+            {
+                options.ClientId = configuration["Google:ClientId"]!;
+                options.ClientSecret = configuration["Google:ClientSecret"]!;
+                options.SignInScheme = "External";
+                options.UsePkce = true;
+                options.CallbackPath = "/api/v1/auth/google/callback";
             });
 
         return services;

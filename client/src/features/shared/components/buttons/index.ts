@@ -1,6 +1,6 @@
 export { default as Button } from "./Button"
+export { default as BaseButton, type ButtonProps } from "./BaseButton"
 export { default as IconButton } from "./IconButton"
-export { default as GoogleButton } from "./GoogleButton"
 export { default as CheckoutButton } from "./CheckoutButton"
 export { default as ContrastButton } from "./ContrastButton"
 export { default as PopButton } from "./PopButton"

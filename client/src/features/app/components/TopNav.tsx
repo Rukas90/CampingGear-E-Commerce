@@ -4,6 +4,7 @@ import {
   WishlistBadge,
   CartBadge,
   useCartContext,
+  useAccount,
 } from "@features"
 import AccountBadge from "./AccountBadge"
 import NavMenu from "./NavMenu"
@@ -27,6 +28,7 @@ const TopNav = ({
   ...props
 }: TopNavProps) => {
   const { openCartPanel } = useCartContext()
+  const { isLoggedIn } = useAccount()
   const [showListing, setShowListing] = useState(false)
   const location = useLocation()
 
@@ -66,7 +68,7 @@ const TopNav = ({
                 {showMenuItems && (
                   <div className="sm:flex hidden gap-5 items-center">
                     <AccountBadge />
-                    <WishlistBadge />
+                    {isLoggedIn && <WishlistBadge />}
                   </div>
                 )}
                 {showCartButton && <CartBadge onClicked={openCartPanel} />}

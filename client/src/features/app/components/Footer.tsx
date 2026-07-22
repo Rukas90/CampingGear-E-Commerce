@@ -1,8 +1,10 @@
-import { Line, Newsletter, PageWrapper } from "@features"
+import { Line, Newsletter, PageWrapper, useAccount } from "@features"
 import FooterBottom from "./FooterBottom"
 import FooterNavigationSection from "./FooterNavigationSection"
 
 const Footer = () => {
+  const { isLoggedIn } = useAccount()
+
   return (
     <footer className="relative bg-[#f1f1ee]">
       <Newsletter />
@@ -11,7 +13,16 @@ const Footer = () => {
           <div className="flex xl:flex-row flex-col xl:gap-24 gap-4">
             <FooterNavigationSection
               header="Account"
-              items={[{ name: "Your Account" }, { name: "My Whishlist" }]}
+              items={[
+                {
+                  name: "Your Account",
+                  link: isLoggedIn ? "/profile" : "/login",
+                },
+                {
+                  name: "My Whishlist",
+                  link: isLoggedIn ? "/wishlist" : "/login",
+                },
+              ]}
             />
             <Line className="xl:hidden block" />
             <FooterNavigationSection

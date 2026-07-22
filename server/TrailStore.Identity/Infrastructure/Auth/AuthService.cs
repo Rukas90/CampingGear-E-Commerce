@@ -16,16 +16,9 @@ public class AuthService(
     IPasswordHasher passwordHasher,
     IUserRepository userRepository) : IAuthService
 {
-    public async Task<Result<User>> RegisterNewUser(string email, string password, CancellationToken ct)
+    public User RegisterNewUser(string email, string? password)
     {
-        var userExistsByEmail = await userRepository.ExistsByEmailAsync(email, ct);
-
-        if (userExistsByEmail)
-        {
-            return UserProblems.ExistsByEmail(email);
-        }
-
-        var hashedPassword = passwordHasher.Hash(password);
+        var hashedPassword = password is not null ? passwordHasher.Hash(password) : null;
         var newUser = User.Create(email, hashedPassword);
         
         userRepository.Add(newUser);
@@ -37,7 +30,7 @@ public class AuthService(
     {
         var user = await userRepository.FindByEmailAsync(email, ct);
 
-        if (user is null)
+        if (user?.PasswordHash is null)
         {
             return AuthProblems.InvalidCredentials;
         }

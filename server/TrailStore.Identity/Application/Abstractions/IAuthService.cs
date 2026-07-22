@@ -7,7 +7,7 @@ namespace TrailStore.Identity.Application.Abstractions;
 
 public interface IAuthService
 {
-    Task<Result<User>> RegisterNewUser(string email, string password, CancellationToken ct);
+    User RegisterNewUser(string email, string? password);
     
     Task<Result<AuthResult>> LoginWithCredentials(string email, string password, CancellationToken ct);
     

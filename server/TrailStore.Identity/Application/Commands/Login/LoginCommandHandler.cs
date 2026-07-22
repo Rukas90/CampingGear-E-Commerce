@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using TrailStore.Basket.Contracts.Carts;
 using TrailStore.Identity.Application.Abstractions;
+using TrailStore.Identity.Application.Results;
 using TrailStore.Identity.Contracts.Users;
 using TrailStore.Shared.Domain.Abstractions;
 using TrailStore.Shared.Domain.Common;
@@ -31,7 +32,7 @@ public sealed class LoginCommandHandler(
         var account = authResult.Account;
             
         var mergeResult = await cartService.MergeCart(
-            command.guestCartId, Id<UserRef>.From(account.Id.Value), ct);
+            command.GuestCartId, Id<UserRef>.From(account.Id.Value), ct);
         
         if (!mergeResult.IsSuccess)
         {
