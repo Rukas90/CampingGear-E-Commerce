@@ -18,6 +18,7 @@ builder.AddProgramServices();
 
 var app = builder.Build();
 
+app.UseForwardedHeaders();
 app.UseExceptionHandler();
 app.UseCors("AllowClient");
 app.UseHttpsRedirection();

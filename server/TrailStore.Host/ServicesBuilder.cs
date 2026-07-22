@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using Microsoft.AspNetCore.HttpOverrides;
 using TrailStore.Basket;
 using TrailStore.Catalog;
 using TrailStore.Identity;
@@ -39,6 +40,17 @@ public static class ServicesBuilder
             });
         });
 
+        builder.Services.Configure<ForwardedHeadersOptions>(options =>
+        {
+            options.ForwardedHeaders =
+                ForwardedHeaders.XForwardedFor 
+                | ForwardedHeaders.XForwardedProto 
+                | ForwardedHeaders.XForwardedHost;
+
+            options.KnownIPNetworks.Clear();
+            options.KnownProxies.Clear();
+        });
+        
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddPasswordHasher();
         builder.Services.AddEventPublishing();
