@@ -7,9 +7,7 @@ using TrailStore.Ordering.Application.Abstractions;
 using TrailStore.Ordering.Domain.Checkout;
 using TrailStore.Ordering.Domain.Orders;
 using TrailStore.Ordering.Domain.Shipping;
-using TrailStore.Shared.Domain.Events;
 using TrailStore.Shared.Domain.Messages;
-using TrailStore.Shared.Infrastructure.Outbox;
 using TrailStore.Shared.Infrastructure.Persistence;
 
 namespace TrailStore.Ordering.Infrastructure.Database;
@@ -42,10 +40,4 @@ public sealed class OrderingDbContext(DbContextOptions<OrderingDbContext> option
             typeof(SkuRef).Assembly,
             typeof(OutboxMessage).Assembly
         ];
-
-    public void Enqueue<TEvent>(TEvent evt) where TEvent : IntegrationEvent
-        => Messages.Add(OutboxMessage.Create(evt));
-
-    public IOutboxMessages GetMessages()
-        => new OutboxMessages(Messages);
 }

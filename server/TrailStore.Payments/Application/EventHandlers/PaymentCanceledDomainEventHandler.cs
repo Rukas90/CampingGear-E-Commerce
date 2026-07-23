@@ -12,7 +12,7 @@ public class PaymentCanceledDomainEventHandler(IPaymentOutbox outbox, IPaymentUn
 {
     public async Task HandleAsync(PaymentCanceledDomainEvent evt, CancellationToken ct)
     {
-        outbox.Enqueue(new PaymentFailedIntegrationEvent(WasCanceled: true, evt.ReferenceId));
+        outbox.AddMessage(new PaymentFailedIntegrationEvent(WasCanceled: true, evt.ReferenceId));
         
         await unitOfWork.SaveAsync(ct);
     }

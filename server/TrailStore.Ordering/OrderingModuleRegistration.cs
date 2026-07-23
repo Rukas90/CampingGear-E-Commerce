@@ -13,8 +13,6 @@ public static class OrderingModuleRegistration
         var configuration = builder.Configuration;
 
         services.AddOrderingContext(configuration);
-
-        services.AddOutbox<IOrderingOutbox, OrderingDbContext>();
         
         services.AddAppServicesFromAssemblies(OrderingMarker.Reference);
         

@@ -9,6 +9,8 @@ public interface IProductsRepository : IAggregateRepository<Product>
 {
     Task<Product?> FindBySkuAsync(Id<Sku> skuId, CancellationToken ct);
     
+    Task<List<Product>> FindAllFromSkuIdsAsync(IEnumerable<Id<Sku>> skuIds, CancellationToken ct);
+    
     Task<Id<Product>?> GetIdFromSlug(Slug productSlug, CancellationToken ct);
     
     Task<Product?> GetFullProductAsync(Slug slug, CancellationToken ct);

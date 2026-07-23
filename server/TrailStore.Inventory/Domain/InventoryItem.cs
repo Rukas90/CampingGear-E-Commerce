@@ -19,6 +19,18 @@ public sealed class InventoryItem : AggregateRoot<InventoryItem>
             Reserved = reserved
         };
     
+    public Result AddStock(int quantity)
+    {
+        if (quantity <= 0)
+        {
+            return InventoryProblems.InvalidQuantity(quantity);
+        }
+    
+        Stock += quantity;
+        
+        return Result.Ok();
+    }
+    
     public Result Reserve(int quantity)
     {
         if (quantity <= 0)

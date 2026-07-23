@@ -10,5 +10,5 @@ internal sealed class StockReservedDomainEventHandler(IEventPublisher publisher)
     : IEventHandler<StockReservedDomainEvent>
 {
     public Task HandleAsync(StockReservedDomainEvent evt, CancellationToken ct)
-        => publisher.PublishAsync(new StockChangedIntegrationEvent(evt.SkuId, evt.AvailableStock), ct);
+        => publisher.PublishAsync(new ItemStockChangedIntegrationEvent(evt.SkuId, evt.AvailableStock), ct);
 }

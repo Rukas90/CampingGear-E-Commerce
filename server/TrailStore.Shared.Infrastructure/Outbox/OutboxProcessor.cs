@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TrailStore.Shared.Domain.Events;
-using TrailStore.Shared.Domain.Messages;
 
 namespace TrailStore.Shared.Infrastructure.Outbox;
 
@@ -82,6 +81,7 @@ public sealed class OutboxProcessor<TOutbox>(
             catch (Exception ex)
             {
                 message.MarkAsFailed(ex.Message);
+                
                 logger.LogError(ex, "Failed to dispatch outbox message {Id} ({Type}), attempt {RetryCount}", message.Id, message.Type, message.RetryCount + 1);
             }
         }

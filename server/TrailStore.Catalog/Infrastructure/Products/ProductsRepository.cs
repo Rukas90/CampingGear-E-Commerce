@@ -18,6 +18,11 @@ public sealed class ProductsRepository(CatalogDbContext _context)
             .Where(product => product.Skus.Any(sku => sku.Id == skuId))
             .SingleOrDefaultAsync(ct);
 
+    public Task<List<Product>> FindAllFromSkuIdsAsync(IEnumerable<Id<Sku>> skuIds, CancellationToken ct)
+        => AggregateWriteQuery
+            .Where(p => p.Skus.Any(sku => skuIds.Contains(sku.Id)))
+            .ToListAsync(ct);
+
     public Task<Id<Product>?> GetIdFromSlug(Slug productSlug, CancellationToken ct)
         => ReadQuery
             .Where(product => product.Slug == productSlug)

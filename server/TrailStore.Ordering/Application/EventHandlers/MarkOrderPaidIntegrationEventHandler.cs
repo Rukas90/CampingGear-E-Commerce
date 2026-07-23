@@ -48,7 +48,7 @@ public sealed class MarkOrderPaidIntegrationEventHandler(
         {
             logger.LogError("Error occurred while marking order as paid. Message: {Message}", e.Message);
             
-            outbox.Enqueue(new PaymentRefundedIntegrationEvent(evt.PaymentId));
+            outbox.AddMessage(new PaymentRefundedIntegrationEvent(evt.PaymentId));
             
             await unitOfWork.SaveAsync(ct);
         }

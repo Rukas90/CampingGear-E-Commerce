@@ -6,4 +6,6 @@ namespace TrailStore.Inventory.Application.Abstractions;
 public interface IInventoryItemRepository : IAggregateRepository<InventoryItem>
 {
     Task<List<InventoryItem>> GetBySkuIdsAsync(IEnumerable<Guid> skuIds, CancellationToken ct);
+    
+    Task<List<InventoryItem>> FindLowStockItemsAsync(CancellationToken ct);
 }

@@ -1,4 +1,5 @@
-﻿using TrailStore.Inventory.Infrastructure.Database;
+﻿using TrailStore.Inventory.Application.Abstractions;
+using TrailStore.Inventory.Infrastructure.Database;
 using TrailStore.Shared.Api.Registrations;
 using TrailStore.Shared.Infrastructure.Extensions;
 

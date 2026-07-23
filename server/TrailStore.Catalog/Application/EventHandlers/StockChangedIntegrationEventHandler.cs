@@ -9,14 +9,14 @@ using TrailStore.Shared.Infrastructure.DI;
 
 namespace TrailStore.Catalog.Application.EventHandlers;
 
-[AppService<IEventHandler<StockChangedIntegrationEvent>>]
+[AppService<IEventHandler<ItemStockChangedIntegrationEvent>>]
 internal sealed class StockChangedIntegrationEventHandler(
     IProductsRepository productsRepository,
     ILogger<StockChangedIntegrationEventHandler> logger, 
     ICatalogUnitOfWork unitOfWork)
-    : IEventHandler<StockChangedIntegrationEvent>
+    : IEventHandler<ItemStockChangedIntegrationEvent>
 {
-    public async Task HandleAsync(StockChangedIntegrationEvent evt, CancellationToken ct)
+    public async Task HandleAsync(ItemStockChangedIntegrationEvent evt, CancellationToken ct)
     {
         var product = await productsRepository.FindBySkuAsync(Id<Sku>.From(evt.SkuId), ct);
 

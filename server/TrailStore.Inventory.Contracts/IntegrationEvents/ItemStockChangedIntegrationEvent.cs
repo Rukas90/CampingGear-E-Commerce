@@ -2,4 +2,4 @@
 
 namespace TrailStore.Inventory.Contracts.IntegrationEvents;
 
-public sealed record StockChangedIntegrationEvent(Guid SkuId, int Stock) : IntegrationEvent;
+public sealed record ItemStockChangedIntegrationEvent(Guid SkuId, int Stock) : IntegrationEvent;

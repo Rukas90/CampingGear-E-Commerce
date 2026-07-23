@@ -13,4 +13,7 @@ public sealed class InventoryItemRepository(InventoryDbContext _context)
 {
     public Task<List<InventoryItem>> GetBySkuIdsAsync(IEnumerable<Guid> skuIds, CancellationToken ct)
         => AggregateWriteQuery.Where(item => skuIds.Contains(item.SkuId)).ToListAsync(ct);
+
+    public Task<List<InventoryItem>> FindLowStockItemsAsync(CancellationToken ct)
+        => AggregateWriteQuery.Where(i => i.Stock - i.Reserved <= 2).ToListAsync(ct);
 }

@@ -15,8 +15,6 @@ public static class PaymentsModuleRegistration
         var configuration = builder.Configuration;
 
         services.AddPaymentsContext(configuration);
-
-        services.AddOutbox<IPaymentOutbox, PaymentDbContext>();
         
         services.AddAppServicesFromAssemblies(PaymentsMarker.Reference);
 

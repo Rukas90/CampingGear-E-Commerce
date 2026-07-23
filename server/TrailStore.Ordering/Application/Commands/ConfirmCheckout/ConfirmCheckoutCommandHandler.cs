@@ -32,7 +32,7 @@ public sealed class ConfirmCheckoutCommandHandler(
         
         if (!order.IsSuccess) { return order.Problem; }
         
-        outbox.Enqueue(new OrderCreatedIntegrationEvent(checkoutSession.CartId, checkoutSession.UserId));
+        outbox.AddMessage(new OrderCreatedIntegrationEvent(checkoutSession.CartId, checkoutSession.UserId));
 
         if (command.SaveInformation && checkoutSession.UserId is not null)
         {
