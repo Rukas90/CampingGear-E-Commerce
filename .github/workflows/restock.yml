@@ -8,4 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Invoke
-        run: curl -f -X POST "${{ secrets.API_URL }}/api/v1/inventory/restock" -H "X-Api-Key: ${{ secrets.RESTOCK_API_KEY }}"
+        run: |
+          curl -f -X POST "${{ secrets.API_URL }}/api/v1/inventory/restock" -H "X-Api-Key: ${{ secrets.RESTOCK_API_KEY }}"
